@@ -110,7 +110,10 @@
             </div>
         </div>
         <div class="km-listview-wrapper">
-            <form class="km-filter-form"><div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a  data-bind="click: openActSheet"  class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div></form>
+            <form class="km-filter-form">
+                <div class="km-filter-wrap">
+                    <input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheet" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div>
+            </form>
         </div>
         <span>Last Updated :
                 <span data-bind="text: lastupdatereallocate"></span>
@@ -1013,9 +1016,11 @@
             </div>
         </div>
         <div class="km-listview-wrapper" data-bind="visible: isSearch">
-            <form class="km-filter-form"><div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:assignFilter, events: { keyup: filterAssignEvent }" data-value-update="keyup" ><a  data-bind="click: openActSheet"  class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div></form>
+            <form class="km-filter-form">
+                <div class="km-filter-wrap">
+                    <input type="search" placeholder="Search..." data-bind="value:assignFilter, events: { keyup: filterAssignEvent }" data-value-update="keyup"><a data-bind="click: openActSheet" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div>
+            </form>
         </div>
-        
         <span>Last Updated :
                 <span data-bind="text: lastupdateassign"></span>
         </span>
@@ -1068,9 +1073,7 @@
             <li>
                 <button><i class="fa fa-sort"></i></button>
             </li>
-            
         </ul>
-        
     </div>
     <!--${COUNTDOWN} data-bind="click: setActionSheet"-->
     <script id="assign-template" type="text/x-kendo-template">
@@ -1174,10 +1177,11 @@
             </div>
         </div>
         <div class="km-listview-wrapper" data-bind="visible: isSearch">
-            <form class="km-filter-form"><div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:acceptFilter, events: { keyup: filterAcceptEvent }" data-value-update="keyup"><a  data-bind="click: openActSheet"  class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div></form>
+            <form class="km-filter-form">
+                <div class="km-filter-wrap">
+                    <input type="search" placeholder="Search..." data-bind="value:acceptFilter, events: { keyup: filterAcceptEvent }" data-value-update="keyup"><a data-bind="click: openActSheet" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div>
+            </form>
         </div>
-        
-
         <span>Last Updated :
                 <span data-bind="text: lastupdateaccept"></span>
         </span>
@@ -3573,7 +3577,7 @@
         </ul>
     </div>
     <!--powerService-->
-    <div  data-role="view" id="powerService" data-model="app.powerSearchService.viewModel" data-init="app.powerSearchService.init" data-show="app.powerSearchService.show" data-hide="app.powerSearchService.hide" data-layout="tabstrip-layout">
+    <div data-role="view" id="powerService" data-model="app.powerSearchService.viewModel" data-init="app.powerSearchService.init" data-show="app.powerSearchService.show" data-hide="app.powerSearchService.hide" data-layout="tabstrip-layout">
         <div data-role="header">
             <div data-role="navbar">
                 <a data-role="button" data-rel="drawer" href="#my-drawer" class="ion" data-icon="menu" data-align="left"></a>
@@ -3581,23 +3585,105 @@
                 <span>Power Service</span>
             </div>
         </div>
-        
         <div style="height:10px">&nbsp;</div>
         <span>Last Updated :
                 <span data-bind="text: lastupdateaccept"></span>
         </span>
         <div style="height: 10px">&nbsp;</div>
-        
-        
         <div data-role="content">
             <ul id="lvPowerSearchList"></ul>
+            <ul data-role="actionsheet" id="pAssignActions">
+                <li>
+                    <a href="#tabstrip-assign" data-action="app.jobService.viewModel.acceptJob">Accept</a>
+                </li>
+                <li>
+                    <a href="#tabstrip-assign" data-action="app.jobService.viewModel.gotoReject">Reject</a>
+                </li>
+                <li>
+                    <a href="#tabstrip-assign" data-action="app.jobService.viewModel.gotoAssignDetail">Go to detail</a>
+                </li>
+            </ul>
+            <ul data-role="actionsheet" id="pAcceptActions">
+                <li class="km-actionsheet-title">Change Status to:</li>
+                <li>
+                    <a data-action="app.jobService.viewModel.initJobNoDetail">Initiate</a>
+                </li>
+                <li>
+                    <a data-action="app.jobService.viewModel.onSiteJobNoDetail">Onsite</a>
+                </li>
+                <!--<li><a href="#" data-action="waitreport">Waite for Report</a></li>
+             <li><a href="#" data-action="waitmore">Waite for More Detail</a></li>-->
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoDetail">Go to Detail</a>
+                </li>
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoAlarm">Check Alarm</a>
+                </li>
+            </ul>
+            <ul data-role="actionsheet" id="pInitialActions">
+                <li class="km-actionsheet-title">Change Status to:</li>
+                <li>
+                    <a data-action="app.jobService.viewModel.onSiteJobNoDetail">On Site</a>
+                </li>
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoReportDetail">Report</a>
+                </li>
+                <!--<li><a href="#" data-action="waitreport">Waite for Report</a></li>
+             <li><a href="#" data-action="waitmore">Waite for More Detail</a></li>-->
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoDetail">Go to Detail</a>
+                </li>
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoAlarm">Check Alarm</a>
+                </li>
+            </ul>
+            <ul data-role="actionsheet" id="pOnsiteActions">
+                <li class="km-actionsheet-title">Change Status to:</li>
+                <li>
+                    <a data-action="app.jobService.viewModel.initJobNoDetail">Initiate</a>
+                </li>
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoReportDetail">Report</a>
+                </li>
+                <!--<li><a href="#" data-action="waitreport">Waite for Report</a></li>
+             <li><a href="#" data-action="waitmore">Waite for More Detail</a></li>-->
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoDetail">Go to Detail</a>
+                </li>
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoAlarm">Check Alarm</a>
+                </li>
+            </ul>
+            <ul data-role="actionsheet" id="pReportActions">
+                <li class="km-actionsheet-title">Change Status to:</li>
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoReportDetail">Report</a>
+                </li>
+                <!--<li><a href="#" data-action="waitreport">Waite for Report</a></li>
+             <li><a href="#" data-action="waitmore">Waite for More Detail</a></li>-->
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoDetail">Go to Detail</a>
+                </li>
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoAlarm">Check Alarm</a>
+                </li>
+            </ul>
         </div>
-        
     </div>
-    <!--Accept template-->
+    <!--Power Search template-->
     <script type="text/x-kendo-tmpl" id="psearch-template">
-        <a data-rel="actionsheet"  data-actionsheet-context="${jobId}">
-        
+            #if(status=="Assign"){#
+            <a data-rel="actionsheet" href="\\#pAssignActions" data-actionsheet-context="${jobId}">
+            #}else if (status=="Accept"){#
+            <a data-rel="actionsheet" href="\\#pAcceptActions" data-actionsheet-context="${jobId}">
+            #}else if (status=="Initiate"){#
+                <a data-rel="actionsheet" href="\\#pInitialActions" data-actionsheet-context="${jobId}">
+            #}else if (status=="On-Site"){#
+                <a data-rel="actionsheet" href="\\#pOnsiteActions" data-actionsheet-context="${jobId}">
+            #}else {#
+                <a data-rel="actionsheet" href="\\#pReportActions" data-actionsheet-context="${jobId}">
+            #}#
+
             #if(priorityName=="Critical"){#
                 <img src="images/Critical.png" class="image_icon" />
             #}else if (priorityName=="Major"){#

@@ -16,6 +16,6 @@
  
  timeout: 3600000,
  pinCluster: false,
- isMorkupData: false
+ isMorkupData: true
  };
  })(window);
