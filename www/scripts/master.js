@@ -8075,16 +8075,7 @@
              ////console.log("loadJobpc");
              if (app.configService.isMorkupData) {
                  var response = {"jobProblems":[
-                  {"jobId": "",
-                   "problemCauseMainId": "",
-                   "problemCauseDesc": "",
-                   "problemCauseSubId": "",
-                   "problemCauseSubDesc": "",
-                   "seqId":null,
-                   "levelCause":null,
-                   "problemCauseId":null
-                   }
-                 ],"version":"1","userId":"701","priority":"1","jobId":null};
+                    ],"version":"1","userId":"701","priority":"1","jobId":null};
                  localStorage.setItem("jbCauseData", JSON.stringify(response));
              } else {
                  $.ajax({ //using jsfiddle's echo service to simulate remote data loading
@@ -8133,16 +8124,7 @@
              var that = this;
              if (app.configService.isMorkupData) {
                  var response = {"jobProblems":[
-                  {"jobId": "",
-                   "problemCauseMainId": "",
-                   "problemCauseDesc": "",
-                   "problemCauseSubId": "",
-                   "problemCauseSubDesc": "",
-                   "seqId":null,
-                   "levelCause":null,
-                   "problemCauseId":null
-                   }
-                 ],"version":"1","userId":"701","priority":"1","jobId":null};
+                    ],"version":"1","userId":"701","priority":"1","jobId":null};
                  localStorage.setItem("jbCauseMData", JSON.stringify(response));
              } else {
                  $.ajax({ //using jsfiddle's echo service to simulate remote data loading
@@ -8193,7 +8175,8 @@
          loadMyJBProblemSolve: function() {
              var that = this;
              if (app.configService.isMorkupData) {
-                 var response = {};
+                 var response = {"jobProblems":[
+                    ],"version":"1","userId":"701","priority":"1","jobId":null};
                  localStorage.setItem("jbSolveData", JSON.stringify(response));
              } else {
                  $.ajax({ //using jsfiddle's echo service to simulate remote data loading
@@ -8244,7 +8227,22 @@
          },
          loadReasonOverdue: function() {
              if (app.configService.isMorkupData) {
-                 var response = {};
+                 var response = {"reasonOverdues":[{
+                    "id":11,
+                    "description":"เข้าสถานที่ไม่ได้"
+                    },{
+                    "id":21,
+                    "description":"งานกลางคืน/ฝนตกดำเนินการไม่ได้"
+                    },{
+                    "id":22,
+                    "description":"เจ้าของอาคารและการไฟฟ้าดับไฟ"
+                    },{
+                    "id":23,
+                    "description":"ปัญหาจราจร"
+                    },{
+                    "id":51,
+                    "description":"Spare part"
+                    }],"token":null,"version":"1","userName":null};
                  localStorage.setItem("reasonOverDueData", JSON.stringify(response));
              } else {
                  $.ajax({ //using jsfiddle's echo service to simulate remote data loading
