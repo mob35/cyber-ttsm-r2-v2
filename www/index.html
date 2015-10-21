@@ -110,8 +110,8 @@
             </div>
         </div>
         <div class="km-listview-wrapper">
-
-            <form class="km-filter-form"><div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheet" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div></form>
+            <form class="km-filter-form">
+                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheetReAllocate" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div></form>
         </div>
         <span>Last Updated :
                 <span data-bind="text: lastupdatereallocate"></span>
@@ -139,6 +139,17 @@
             <li>
                 <a data-action="app.reallocateService.viewModel.gotoDisplay">Go to detail</a>
             </li>
+        </ul>
+        <ul data-role="actionsheet" id="sortActionSheetReAllocate">
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('jobId')">Count Down</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('jobId')">Job ID</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('title')">Title</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('siteAccessDesc')">Site Access(Code)</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('siteAccessDesc')">Site Access(Name Thai)</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('initiateDate')">Assign Date</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('finishDate')">Finish Date</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('priorityId')">Priority</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('status')">Status</a></li>
         </ul>
     </div>
     <div data-role="view" id="Re-AllocateWithStatus" data-model="app.reallocateService.viewModel" data-layout="tabstrip-layout" data-show="app.reallocateService.showlistWithStatus">
@@ -751,8 +762,7 @@
                         <b>Task Description</b>
                     </div>
                     <div class="position-right">
-                        <label data-bind="text: selectItem.systemName"></label>
-                        
+                        <label data-bind="text: selectItem.taskDesc"></label>
                     </div>
                 </li>
             </ul>
@@ -1017,17 +1027,15 @@
     <!--Inbox Assign-->
     <div data-role="view" id="tabstrip-assign" data-model="app.jobService.viewModel" data-layout="tabstrip-layout" data-show="app.jobService.showAssignlist" data-init="app.jobService.initAssignlist">
         <div data-role="header">
-            <div data-role="navbar">
-                <a data-role="button" data-rel="drawer" href="#my-drawer" class="ion" data-icon="menu" data-align="left"></a>
+            <div data-role="navbar"><a data-role="button" data-rel="drawer" href="#my-drawer" class="ion" data-icon="menu" data-align="left"></a>
                 <span>Inbox</span>
                 <a data-icon="search" data-role="button" data-align="right" data-bind="click: onSearch"></a>
             </div>
         </div>
         <div class="km-listview-wrapper" data-bind="visible: isSearch">
-
-            <form class="km-filter-form"><div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:assignFilter, events: { keyup: filterAssignEvent }" data-value-update="keyup"><a data-bind="click: openActSheet" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div>
+            <form class="km-filter-form">
+                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:assignFilter, events: { keyup: filterAssignEvent }" data-value-update="keyup"><a data-bind="click: openActSheetAssign" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div>
             </form>
-
         </div>
         <span>Last Updated :
                 <span data-bind="text: lastupdateassign"></span>
@@ -1066,31 +1074,16 @@
             </li>
         </ul>
         <ul data-role="actionsheet" id="sortActionSheet">
-            <li> <a>Count Down</a></li>
-            <li> <a>Job ID</a></li>
-            <li> <a>Title</a></li>
-            <li> <a>Site Access(Code)</a></li>
-            <li> <a>Site Access(Name Thai)</a></li>
-            <li> <a>Assign Date</a></li>
-            <li> <a>Finish Date</a></li>
-            <li> <a>Priority</a></li>
-            <li> <a>Status</a></li>
-           <!--  <li>
-                <div>
-                    <span class="fa btn fa-sort"></span>
-                    <i class="fa fa-sort"></i>
-                </div>
-            </li>
-            <li>
-                <button><i class="fa fa-sort"></i></button>
-            </li>
-            <li>
-                <button><i class="fa fa-sort"></i></button>
-            </li>
-            <li>
-                <button><i class="fa fa-sort"></i></button>
-            </li>
-        </ul> -->
+            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('jobId')">Count Down</a></li>
+            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('jobId')">Job ID</a></li>
+            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('title')">Title</a></li>
+            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('siteAccessDesc')">Site Access(Code)</a></li>
+            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('siteAccessDesc')">Site Access(Name Thai)</a></li>
+            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('initiateDate')">Assign Date</a></li>
+            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('finishDate')">Finish Date</a></li>
+            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('priorityId')">Priority</a></li>
+            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('status')">Status</a></li>
+        </ul>
     </div>
     <!--${COUNTDOWN} data-bind="click: setActionSheet"-->
     <script id="assign-template" type="text/x-kendo-template">
@@ -1194,15 +1187,15 @@
             </div>
         </div>
         <div class="km-listview-wrapper" data-bind="visible: isSearch">
-
-            <form class="km-filter-form"><div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:acceptFilter, events: { keyup: filterAcceptEvent }" data-value-update="keyup"><a data-bind="click: openActSheet" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div></form>
-
+            <form class="km-filter-form">
+                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:acceptFilter, events: { keyup: filterAcceptEvent }" data-value-update="keyup"><a data-bind="click: openActSheetAccept" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div>
+            </form>
         </div>
-
         <span>Last Updated :
                 <span data-bind="text: lastupdateaccept"></span>
         </span>
         <div style="height: 10px">&nbsp;</div>
+
         <ul id="acceptgroup" data-role="buttongroup" data-index="0" style="color: #74A333">
             <li>
                 <img src="images/iconStatus_accept.png" class="iconStatus" />
@@ -1220,10 +1213,12 @@
                 <img src="images/iconStatus_wDetail.png" class="iconStatus" />
             </li>
         </ul>
+
         <!--<ul id="fixed-listview" data-bind="source: job_dtls, click: editJob" class="inboxList"></ul>-->
         <div data-role="content">
             <ul id="lvAcceptList"></ul>
         </div>
+
         <ul data-role="actionsheet" id="AcceptActions">
             <li class="km-actionsheet-title">Change Status to:</li>
             <li>
@@ -1288,6 +1283,18 @@
             <li>
                 <a data-action="app.jobService.viewModel.gotoAlarm">Check Alarm</a>
             </li>
+        </ul>
+       
+     <ul data-role="actionsheet" id="sortActionSheetAccept">
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('jobId')">Count Down</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('jobId')">Job ID</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('title')">Title</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('siteAccessDesc')">Site Access(Code)</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('siteAccessDesc')">Site Access(Name Thai)</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('initiateDate')">Assign Date</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('finishDate')">Finish Date</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('priorityId')">Priority</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('status')">Status</a></li>
         </ul>
     </div>
     <!--Accept template-->
@@ -1685,7 +1692,7 @@
                     </div>
                     <div class="position-right">
                         <label data-bind="text: selectItem.title"></label>
-                        13LF-3SCPCWD02H-Fepalarm can't send alaem to l2000
+                        <!-- 13LF-3SCPCWD02H-Fepalarm can't send alaem to l2000 -->
                     </div>
                 </li>
                 <li data-icon="contact">
@@ -1694,7 +1701,7 @@
                     </div>
                     <div class="position-right">&nbsp;
                         <label data-bind="text: selectItem.status"></label>
-                        Waiting for Report
+                        <!-- Waiting for Report -->
                     </div>
                 </li>
                 <li data-icon="contact">
@@ -1704,7 +1711,7 @@
                     <div class="position-right">
                         <img data-bind="attr: { src: imageSrc}" class="image_icon" />&nbsp;
                         <label data-bind="text: selectItem.priorityName"></label>
-                        <img src='../images/Minor2.png' width="20" height="20"> Critical
+                        <!-- <img src='../images/Minor2.png' width="20" height="20"> Critical -->
                     </div>
                 </li>
                 <li data-icon="contact">
@@ -1713,7 +1720,7 @@
                     </div>
                     <div class="position-right">
                         <label data-bind="text: formatInitialDate"></label>
-                        07-January-2014 22:23:00
+                       <!--  07-January-2014 22:23:00 -->
                     </div>
                 </li>
                 <li data-icon="contact">
@@ -1722,7 +1729,7 @@
                     </div>
                     <div class="position-right">
                         <label data-bind="text: formatFinishDate"></label>
-                        08-January-2012 01:23:00
+                       <!--  08-January-2012 01:23:00 -->
                     </div>
                 </li>
                 <li data-icon="contact">
@@ -1731,7 +1738,7 @@
                     </div>
                     <div class="position-right">
                         <label data-bind="text: selectItem.assignByName"></label>
-                        Hansa Saensing
+                     <!--    Hansa Saensing -->
                     </div>
                 </li>
                 <li data-icon="contact">
@@ -1740,7 +1747,7 @@
                     </div>
                     <div class="position-right">
                         <label data-bind="text: selectItem.assignToName"></label>
-                        Hansa Saensing
+                       <!--  Hansa Saensing -->
                     </div>
                 </li>
                 <li data-icon="contact">
@@ -1749,19 +1756,19 @@
                     </div>
                     <div class="position-right">
                         <label data-bind="text: selectItem.systemName"></label>
-                        GSM900(All),GSM1800
+                      <!--   GSM900(All),GSM1800 -->
                     </div>
                 </li>
                 <li data-icon="contact">
                     <a data-bind="click: goSiteAssess">
-                        <b>Site Access</b> ( 3
+                        <b>Site Access</b> (
                         <label class="job-bind" data-bind="text: cntSiteAccess"></label>
                         )
                     </a>
                 </li>
                 <li data-icon="contact">
                     <a data-bind="click: goSiteAffect">
-                        <b>Site Affect</b> ( 1
+                        <b>Site Affect</b> (
                         <label class="job-bind" data-bind="text: cntSiteAffect"></label>
                         )
                     </a>
@@ -1771,11 +1778,9 @@
                         <b>Task Description</b>
                     </div>
                     <div class="position-right">
-                        <label data-bind="text: selectItem.systemName"></label>
-                        
+                        <label data-bind="text: selectItem.taskDesc"></label>
                     </div>
                 </li>
-                
             </ul>
             <ul data-role="listview" data-style="inset" style="display: none">
                 <li data-icon="contact">
@@ -3696,8 +3701,8 @@
     </div>
     <!--Power Search template-->
     <script type="text/x-kendo-tmpl" id="psearch-template">
-            #if(status=="Assign"){#
-            <a data-rel="actionsheet" href="\\#pAssignActions" data-actionsheet-context="${jobId}">
+        #if(status=="Assign"){#
+        <a data-rel="actionsheet" href="\\#pAssignActions" data-actionsheet-context="${jobId}">
             #}else if (status=="Accept"){#
             <a data-rel="actionsheet" href="\\#pAcceptActions" data-actionsheet-context="${jobId}">
             #}else if (status=="Initiate"){#

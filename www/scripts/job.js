@@ -2519,7 +2519,7 @@
                                         }
                                         //app.jobService.viewModel.set("selectItem",null);
 
-                                        
+
                                         app.jobService.viewModel.loadacceptlist();
 
                                         ////console.log("load inbox");
@@ -4100,8 +4100,38 @@
                 }
             );
         },
-        openActSheet: function() {
+
+        openActSheetAssign: function() {
             $("#sortActionSheet").data("kendoMobileActionSheet").open();
+        },
+        onAssignSortby: function(fieldName) {
+            console.debug(fieldName);
+            var lvAssignList = $("#lvAssignList").data("kendoMobileListView");
+
+            lvAssignList.dataSource.sort({
+                field: fieldName,
+                dir: "desc"
+            });
+            //jigkoh comment for not re-read datasource
+            //lvAssignList.dataSource.read();
+            lvAssignList.refresh();
+            app.application.view().scroller.reset();
+        },
+        openActSheetAccept: function() {
+            $("#sortActionSheetAccept").data("kendoMobileActionSheet").open();
+        },
+        onAcceptSortby: function(fieldName) {
+            console.debug(fieldName);
+            var lvAcceptList = $("#lvAcceptList").data("kendoMobileListView");
+
+            lvAcceptList.dataSource.sort({
+                field: fieldName,
+                dir: "desc"
+            });
+            //jigkoh comment for not re-read datasource
+            //lvAcceptList.dataSource.read();
+            lvAcceptList.refresh();
+            app.application.view().scroller.reset();
         },
         gotoDetailSearch: function(e) {
             var txtJob = $(e.target).closest("form").find("input[type=search]");
@@ -4154,10 +4184,10 @@
             // ////console.log("Assign Filter : " + index);
             // that.showLoading();
             var filterJob = {
-                    field: "jobId",
-                    operator: "contains",
-                    value: assignFilter
-                };
+                field: "jobId",
+                operator: "contains",
+                value: assignFilter
+            };
 
             lvAssignList.dataSource.filter({
                 logic: "and",
@@ -4169,7 +4199,7 @@
                     field: "priorityId",
                     operator: "eq",
                     value: index
-                },filterJob ]
+                }, filterJob]
             });
             //jigkoh comment for not re-read datasource
             //lvAssignList.dataSource.read();
@@ -4190,10 +4220,10 @@
             // ////console.log("Assign Filter : " + index);
             // that.showLoading();
             var filterJob = {
-                        field: "jobId",
-                        operator: "contains",
-                        value: acceptFilter.toUpperCase()
-                    };
+                field: "jobId",
+                operator: "contains",
+                value: acceptFilter.toUpperCase()
+            };
             if (index == 0) {
                 //accept
                 var filter = {

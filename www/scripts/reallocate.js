@@ -21,6 +21,22 @@
         _isLoading: true,
         rejectReturnUrl: null,
         isSearch: false,
+        openActSheetReAllocate: function() {
+            $("#sortActionSheetReAllocate").data("kendoMobileActionSheet").open();
+        },
+        onReAllocateSortby: function(fieldName) {
+            console.debug(fieldName);
+            var lvReallocate = $("#lvReallocate").data("kendoMobileListView");
+            
+            lvReallocate.dataSource.sort({
+                field: fieldName,
+                dir: "desc"
+            });
+            //jigkoh comment for not re-read datasource
+            //lvReallocate.dataSource.read();
+            lvReallocate.refresh();
+            app.application.view().scroller.reset();
+        },
         isReportType: function() {
             var that = this;
             var selectItem = that.get("selectItem");
