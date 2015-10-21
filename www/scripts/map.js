@@ -87,7 +87,7 @@
             dist = dist * 60 * 1.1515
             if (unit == "K") {
                 dist = dist * 1.609344
-                //console.log("km");
+                    //console.log("km");
             }
             if (unit == "N") {
                 dist = dist * 0.8684
@@ -111,6 +111,35 @@
         checkNull: function(text) {
             if (text == null) return "";
             else return text;
+        },
+        onDirectTo: function(myLat, myLong, lat, lng) {
+            //$(".c_loading").show();
+            checkDirect = true;
+            console.debug(lat + ':' + lng)
+            var start = new google.maps.LatLng(myLat, myLong);
+            var end = new google.maps.LatLng(lat, lng);
+            var request = {
+                origin: start,
+                destination: end,
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+            var directionsService = new google.maps.DirectionsService();
+            directionsService.route(request, function(response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                    /*=============== result_distance ===========*/
+                    directionsDisplay.setMap(map);
+
+                    _distance = response.routes[0].legs[0].distance.value;
+                    _distance = parseFloat(_distance / 1000).toFixed(1);
+                    $('#result_distance').html(' = ' + _distance + ' km');
+
+                } else {
+                    directionsDisplay.setMap(null);
+                }
+            });
+
+            //$(".c_loading").hide();
         },
         calcRoute: function() {
 
@@ -144,6 +173,26 @@
                 }
             });
 
+        },
+        directTo: function(lat, lng) {
+            infowindow.close();
+            $("#map-direction-wrap").show();
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    //alert(position);
+                    myLat = position.coords.latitude;
+                    myLong = position.coords.longitude;
+                    app.mapService.viewModel.onDirectTo(myLat, myLong, lat, lng);
+
+
+                },
+                function(error) {
+
+                    navigator.notification.alert("Unable to determine current location. Cannot connect to GPS satellite.",
+                        function() {}, "Location failed", 'OK');
+                }
+            );
+            
         },
         checkCal: function() {
 
@@ -207,10 +256,10 @@
                 var successful = document.execCommand('copy');
                 var msg = successful ? 'successful' : 'unsuccessful';
                 //console.log('Copying text command was ' + msg);
-                
+
             } catch (err) {
                 //console.log('Oops, unable to copy');
-                
+
             }
 
             document.body.removeChild(textArea);
@@ -1091,7 +1140,7 @@
             var textJob = '';
             $.ajax({
                 beforeSend: app.loginService.viewModel.checkOnline,
-                url: app.configService.serviceUrl + "post-json.service?s=transaction-service&o=getEngineerMap.json",
+                url: app.configService.serviceUrl + "post-json.service?s=transaction-service&o=getEngineerMapTTSME.json",
                 type: "POST",
                 timeout: 180000,
                 data: JSON.stringify(dataValue),
@@ -1256,7 +1305,7 @@
                         '<i class="fa fa-flag-checkered"></i>&nbsp;' +
                         '</a>';
                     //var enhance_act_director = '';
-                    var enhance_act_director = ' | &nbsp;' + '<a class="linkText" href="#tabstrip-map" onclick="$(\'#endMap\').html(\'' + arr[i] + '\');  $(\'#lat_end\').val(\'' + la_site + '\'); $(\'#long_end\').val(\'' + long_site + '\'); app.mapService.viewModel.checkCal();">' +
+                    var enhance_act_director = ' | &nbsp;' + '<a class="linkText" href="#tabstrip-map" onclick="app.mapService.viewModel.directTo(\'' + la_site + '\',\'' + long_site + '\');">' +
                         '<i class="fa iconTTSM-compass2"></i>' + '</a>';
                     var enhance_act_get_alarm = ' | &nbsp;' + '<a class="linkText fa" href="#SiteAlarmDtl" onclick="app.mapService.viewModel.gotoAlarmDtl(\'' + arr[i] + '\');">' +
                         '<i class="fa iconTTSM-notification6 assertive"></i>' +
@@ -20693,19 +20742,30 @@
                             "jbId": "",
                             "version": "2"
                         };
+
                         //alert('getEngineerMap : ' + JSON.stringify(dataValue));
                         if (app.configService.isMorkupData) {
                             var response = {
-                                "engineerMaps": [],
+                                "engineerMaps": [{
+                                    "userId": "7478",
+                                    "userName": "hansasae",
+                                    "firstName": "Hansa",
+                                    "lastName": "Saensing",
+                                    "currentTime": 1443676020000,
+                                    "latitude": "13.782713",
+                                    "longitude": "100.546645",
+                                    "fullName": "Hansa Saensing",
+                                    "mobileNo": "0840177525"
+                                }],
                                 "version": "1",
-                                "jobPriority": null,
-                                "jobStatus": null,
+                                "jobPriority": "",
+                                "jobStatus": "",
                                 "teamId": "",
                                 "name": "",
                                 "jbId": "",
-                                "userId": null,
-                                "regionId": null,
-                                "zoneId": null
+                                "userId": "7478",
+                                "regionId": "",
+                                "zoneId": ""
                             };
                             var mcInfo = "";
                             var j = 0;
@@ -20717,6 +20777,7 @@
                                     '<a href="#mapJobList" class="underline" onclick="app.mapService.viewModel.loadJobList(\'' + item.userId + '\');" data-userid="' + item.userId + '">' + item.fullName + '</a>' +
                                     '<br /><br /><a class="linkText" href="javascript:void(0);" onclick="$(\'#startMap\').html(\'' + item.fullName + '\'); $(\'#lat_start\').val(\'' + item.latitude + '\'); $(\'#long_start\').val(\'' + item.longitude + '\'); app.mapService.viewModel.checkCal();"><i class="fa fa-flag"></i></a> ' +
                                     '| <a class="linkText" href="javascript:void(0);" onclick="$(\'#endMap\').html(\'' + item.fullName + '\'); $(\'#lat_end\').val(\'' + item.latitude + '\'); $(\'#long_end\').val(\'' + item.longitude + '\'); app.mapService.viewModel.checkCal();"><i class="fa fa-flag-checkered"></i></a>' +
+                                    '<br />Mobile No. :' + item.mobileNo + '' +
                                     '</div>Last check in :' + app.mapService.viewModel.format_time_date2(item.currentTime);
 
                                 filterBy = item.fullName;
@@ -20743,7 +20804,7 @@
                         } else {
                             $.ajax({
                                 beforeSend: app.loginService.viewModel.checkOnline,
-                                url: app.configService.serviceUrl + "post-json.service?s=transaction-service&o=getEngineerMap.json",
+                                url: app.configService.serviceUrl + "post-json.service?s=transaction-service&o=getEngineerMapTTSME.json",
                                 type: "POST",
                                 timeout: 180000,
                                 data: JSON.stringify(dataValue),
@@ -20762,7 +20823,9 @@
                                             '<a href="#mapJobList" class="underline" onclick="app.mapService.viewModel.loadJobList(\'' + item.userId + '\');" data-userid="' + item.userId + '">' + item.fullName + '</a>' +
                                             '<br /><br /><a class="linkText" href="javascript:void(0);" onclick="$(\'#startMap\').html(\'' + item.fullName + '\'); $(\'#lat_start\').val(\'' + item.latitude + '\'); $(\'#long_start\').val(\'' + item.longitude + '\'); app.mapService.viewModel.checkCal();"><i class="fa fa-flag"></i></a> ' +
                                             '| <a class="linkText" href="javascript:void(0);" onclick="$(\'#endMap\').html(\'' + item.fullName + '\'); $(\'#lat_end\').val(\'' + item.latitude + '\'); $(\'#long_end\').val(\'' + item.longitude + '\'); app.mapService.viewModel.checkCal();"><i class="fa fa-flag-checkered"></i></a>' +
+                                            '<br />Mobile No. :' + item.mobileNo + '' +
                                             '</div>Last check in :' + app.mapService.viewModel.format_time_date2(item.currentTime);
+
 
                                         filterBy = item.fullName;
                                         _searchMC_data[i] = ['<li onclick="app.mapService.viewModel.clickResult(\'' + filterBy + '\', \'' + item.latitude + '\', \'' + item.longitude + '\');" class="post_site" data-filter="' + filterBy + '"><a href="#tabstrip-map" style="text-decoration:none;"> ' +

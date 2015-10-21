@@ -110,9 +110,7 @@
             </div>
         </div>
         <div class="km-listview-wrapper">
-            <form class="km-filter-form">
-                <div class="km-filter-wrap">
-                    <input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheet" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div>
+            <form class="km-filter-form"><div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheet" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div>
             </form>
         </div>
         <span>Last Updated :
@@ -747,6 +745,15 @@
                         )
                     </a>
                 </li>
+                <li data-icon="contact">
+                    <div class="position-left">
+                        <b>Task Description</b>
+                    </div>
+                    <div class="position-right">
+                        <label data-bind="text: selectItem.systemName"></label>
+                        
+                    </div>
+                </li>
             </ul>
             <ul data-role="listview" data-style="inset" style="display: none">
                 <!--li data-icon="contact">data-bind="visible: allowAcceptReject"
@@ -1016,9 +1023,7 @@
             </div>
         </div>
         <div class="km-listview-wrapper" data-bind="visible: isSearch">
-            <form class="km-filter-form">
-                <div class="km-filter-wrap">
-                    <input type="search" placeholder="Search..." data-bind="value:assignFilter, events: { keyup: filterAssignEvent }" data-value-update="keyup"><a data-bind="click: openActSheet" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div>
+            <form class="km-filter-form"><div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:assignFilter, events: { keyup: filterAssignEvent }" data-value-update="keyup"><a data-bind="click: openActSheet" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div>
             </form>
         </div>
         <span>Last Updated :
@@ -1177,11 +1182,9 @@
             </div>
         </div>
         <div class="km-listview-wrapper" data-bind="visible: isSearch">
-            <form class="km-filter-form">
-                <div class="km-filter-wrap">
-                    <input type="search" placeholder="Search..." data-bind="value:acceptFilter, events: { keyup: filterAcceptEvent }" data-value-update="keyup"><a data-bind="click: openActSheet" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div>
-            </form>
+            <form class="km-filter-form"><div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:acceptFilter, events: { keyup: filterAcceptEvent }" data-value-update="keyup"><a data-bind="click: openActSheet" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div></form>
         </div>
+
         <span>Last Updated :
                 <span data-bind="text: lastupdateaccept"></span>
         </span>
@@ -1749,9 +1752,16 @@
                         )
                     </a>
                 </li>
-                <li><b style="color: Grey;font-size: 0.5em">Task Description : 26540 RF Unit AC Input Power Failure Cabinet No.=0, Subrack No.=80,Slot No.=0, Board type=MRRU(Active>15min)</b>
-                    </p>
+                <li data-icon="contact">
+                    <div class="position-left">
+                        <b>Task Description</b>
+                    </div>
+                    <div class="position-right">
+                        <label data-bind="text: selectItem.systemName"></label>
+                        
+                    </div>
                 </li>
+                
             </ul>
             <ul data-role="listview" data-style="inset" style="display: none">
                 <li data-icon="contact">
