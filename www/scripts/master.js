@@ -35428,8 +35428,13 @@
              ////console.log("loadJobpc");
              if (app.configService.isMorkupData) {
 
-                 var response = {"jobProblems":[
-                    ],"version":"1","userId":"701","priority":"1","jobId":null};
+                 var response = {
+                     "jobProblems": [],
+                     "version": "1",
+                     "userId": "701",
+                     "priority": "1",
+                     "jobId": null
+                 };
 
                  localStorage.setItem("jbCauseData", JSON.stringify(response));
              } else {
@@ -35479,8 +35484,13 @@
              var that = this;
              if (app.configService.isMorkupData) {
 
-                 var response = {"jobProblems":[
-                    ],"version":"1","userId":"701","priority":"1","jobId":null};
+                 var response = {
+                     "jobProblems": [],
+                     "version": "1",
+                     "userId": "701",
+                     "priority": "1",
+                     "jobId": null
+                 };
 
                  localStorage.setItem("jbCauseMData", JSON.stringify(response));
              } else {
@@ -35532,8 +35542,13 @@
          loadMyJBProblemSolve: function() {
              var that = this;
              if (app.configService.isMorkupData) {
-                 var response = {"jobProblems":[
-                    ],"version":"1","userId":"701","priority":"1","jobId":null};
+                 var response = {
+                     "jobProblems": [],
+                     "version": "1",
+                     "userId": "701",
+                     "priority": "1",
+                     "jobId": null
+                 };
                  localStorage.setItem("jbSolveData", JSON.stringify(response));
              } else {
                  $.ajax({ //using jsfiddle's echo service to simulate remote data loading
@@ -35584,22 +35599,27 @@
          },
          loadReasonOverdue: function() {
              if (app.configService.isMorkupData) {
-                 var response = {"reasonOverdues":[{
-                    "id":11,
-                    "description":"เข้าสถานที่ไม่ได้"
-                    },{
-                    "id":21,
-                    "description":"งานกลางคืน/ฝนตกดำเนินการไม่ได้"
-                    },{
-                    "id":22,
-                    "description":"เจ้าของอาคารและการไฟฟ้าดับไฟ"
-                    },{
-                    "id":23,
-                    "description":"ปัญหาจราจร"
-                    },{
-                    "id":51,
-                    "description":"Spare part"
-                    }],"token":null,"version":"1","userName":null};
+                 var response = {
+                     "reasonOverdues": [{
+                         "id": 11,
+                         "description": "เข้าสถานที่ไม่ได้"
+                     }, {
+                         "id": 21,
+                         "description": "งานกลางคืน/ฝนตกดำเนินการไม่ได้"
+                     }, {
+                         "id": 22,
+                         "description": "เจ้าของอาคารและการไฟฟ้าดับไฟ"
+                     }, {
+                         "id": 23,
+                         "description": "ปัญหาจราจร"
+                     }, {
+                         "id": 51,
+                         "description": "Spare part"
+                     }],
+                     "token": null,
+                     "version": "1",
+                     "userName": null
+                 };
                  localStorage.setItem("reasonOverDueData", JSON.stringify(response));
              } else {
                  $.ajax({ //using jsfiddle's echo service to simulate remote data loading
@@ -35640,6 +35660,174 @@
              }
 
          },
+
+
+         loadFavoriteProblemCauses: function() {
+             if (app.configService.isMorkupData) {
+                 var response = {
+                     "favoriteProblemCauses": [{
+                         "userId": "7478",
+                         "favProblemCauseId": "6",
+                         "problemCauseMainId": "02",
+                         "problemCauseDesc": "Transmission",
+                         "problemCauseSubId": "016",
+                         "problemCauseSubDesc": "Connector/Patch cord"
+                     }, {
+                         "userId": "7478",
+                         "favProblemCauseId": "2",
+                         "problemCauseMainId": "08",
+                         "problemCauseDesc": "AC MAIN FAILED",
+                         "problemCauseSubId": "042",
+                         "problemCauseSubDesc": "MEA/PEA Failed"
+                     }, {
+                         "userId": "7478",
+                         "favProblemCauseId": "1",
+                         "problemCauseMainId": "08",
+                         "problemCauseDesc": "AC MAIN FAILED",
+                         "problemCauseSubId": "050",
+                         "problemCauseSubDesc": "Phase Error / Loss of Phase"
+                     }],
+                     "version": "1",
+                     "userId": "7478",
+                     "jobId": ""
+                 };
+                 localStorage.setItem("favoriteProblemCausesData", JSON.stringify(response));
+             } else {
+                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                     type: "POST",
+                     timeout: 180000,
+                     url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=getFavoriteProblemCauseTTSME.json',
+                     data: JSON.stringify({
+                         "token": localStorage.getItem("token"),
+                         "userId": JSON.parse(localStorage.getItem("profileData")).userId,
+                         "statusId": "",
+                         "version": "2"
+                     }),
+
+                     dataType: "json",
+                     contentType: 'application/json',
+                     success: function(response) {
+                         localStorage.setItem("favoriteProblemCausesData", JSON.stringify(response));
+                         //that.hideLoading();
+                         ////console.log("fetch Reason Over Due Data : Complete");
+                         ////console.log("Reason Over Due Data :" + JSON.stringify(response));
+                     },
+                     error: function(xhr, error) {
+
+                         if (!app.ajaxHandlerService.error(xhr, error)) {
+                             var cache = localStorage.getItem("favoriteProblemCausesData");
+
+                             if (cache == null || cache == undefined) {
+                                 ////console.log("Get Reason Over Due failed");
+                                 ////console.log(xhr);
+                                 ////console.log(error);
+                                 navigator.notification.alert(xhr.status + error,
+                                     function() {}, "Get Favorite Problem Causes failed", 'OK');
+                             }
+
+                         }
+                         return;
+                     },
+                     complete: function() {}
+                 });
+             }
+
+         },
+
+         loadFavoriteProblemCausesM: function() {
+             if (app.configService.isMorkupData) {
+                 var response = {
+                     "favoriteProblemCauses": [{
+                         "userId": "7478",
+                         "favProblemCauseId": "1",
+                         "seqId": "1",
+                         "multiCauseId": "13",
+                         "multiCauseDesc": "Activity - link down",
+                         "multiCauseLevel": "1",
+                         "maxLevel": "1"
+                     }, {
+                         "userId": "7478",
+                         "favProblemCauseId": "2",
+                         "seqId": "1",
+                         "multiCauseId": "45",
+                         "multiCauseDesc": "Fiber optic",
+                         "multiCauseLevel": "2",
+                         "maxLevel": "2"
+                     }, {
+                         "userId": "7478",
+                         "favProblemCauseId": "3",
+                         "seqId": "2",
+                         "multiCauseId": "7",
+                         "multiCauseDesc": "Core network - link down",
+                         "multiCauseLevel": "1",
+                         "maxLevel": "1"
+                     }, {
+                         "userId": "7478",
+                         "favProblemCauseId": "4",
+                         "seqId": "2",
+                         "multiCauseId": "36",
+                         "multiCauseDesc": "IPTN network",
+                         "multiCauseLevel": "2",
+                         "maxLevel": "2"
+                     }, {
+                         "userId": "7478",
+                         "favProblemCauseId": "5",
+                         "seqId": "2",
+                         "multiCauseId": "135",
+                         "multiCauseDesc": "Fiber cut both side",
+                         "multiCauseLevel": "3",
+                         "maxLevel": "3"
+                     }],
+                     "version": "1",
+                     "userId": "7478",
+                     "jobId": ""
+                 }
+                 localStorage.setItem("favoriteProblemCausesMultiData", JSON.stringify(response));
+             } else {
+                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                     type: "POST",
+                     timeout: 180000,
+                     url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=getFavoriteProblemCauseMultiTTSME.json',
+                     data: JSON.stringify({
+                         "token": localStorage.getItem("token"),
+                         "userId": JSON.parse(localStorage.getItem("profileData")).userId,
+                         "statusId": "",
+                         "version": "2"
+                     }),
+
+                     dataType: "json",
+                     contentType: 'application/json',
+                     success: function(response) {
+                         localStorage.setItem("favoriteProblemCausesMultiData", JSON.stringify(response));
+                         //that.hideLoading();
+                         ////console.log("fetch Reason Over Due Data : Complete");
+                         ////console.log("Reason Over Due Data :" + JSON.stringify(response));
+                     },
+                     error: function(xhr, error) {
+
+                         if (!app.ajaxHandlerService.error(xhr, error)) {
+                             var cache = localStorage.getItem("favoriteProblemCausesMultiData");
+
+                             if (cache == null || cache == undefined) {
+                                 ////console.log("Get Reason Over Due failed");
+                                 ////console.log(xhr);
+                                 ////console.log(error);
+                                 navigator.notification.alert(xhr.status + error,
+                                     function() {}, "Get Favorite Problem Causes Multi failed", 'OK');
+                             }
+
+                         }
+                         return;
+                     },
+                     complete: function() {}
+                 });
+             }
+
+         },
+
+
+
+
          setCount: function(assignCount, acceptCount) {
              var tabstrip = $(".mytabstrip").data("kendoMobileTabStrip");
              if (tabstrip != null || tabstrip != undefined) {

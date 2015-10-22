@@ -8,3 +8,9 @@ List:
 	4: Power Search [Service]
 	5: Direction on Map
 	6: Map Engineer เพิ่มเบอร์โทรศัพท์
+	
+version: "2.0.4"
+List: 
+	1: Team/My Team Job Search - Edit iconSearch link to powerSearch
+	2: master.js add function loadFavoriteProblemCauses and loadFavoriteProblemCausesM [MorkupData and json]
+	3: Search & Sort ที่ Job List เรียงตามตัวอักษร
