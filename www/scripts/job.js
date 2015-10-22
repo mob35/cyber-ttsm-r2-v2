@@ -4104,14 +4104,17 @@
         openActSheetAssign: function() {
             $("#sortActionSheet").data("kendoMobileActionSheet").open();
         },
+
         onAssignSortby: function(fieldName) {
             console.debug(fieldName);
             var lvAssignList = $("#lvAssignList").data("kendoMobileListView");
-
+            
             lvAssignList.dataSource.sort({
                 field: fieldName,
                 dir: "desc"
             });
+
+            //asc
             //jigkoh comment for not re-read datasource
             //lvAssignList.dataSource.read();
             lvAssignList.refresh();
