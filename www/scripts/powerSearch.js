@@ -835,7 +835,7 @@
                                         }
                                     },
                                     complete: function() {
-                                        that.countAccept();
+                                        // that.countAccept();
                                         that.set("lastupdateaccept", format_time_date(new Date()));
                                         app.myService.viewModel.hideLoading();
                                     }

@@ -1691,6 +1691,8 @@
 
                     var selectItem = view[0];
 
+                    $("#assignActionSheet").data("kendoMobileActionSheet").close();
+
 
                     if (selectItem != undefined && selectItem != null) {
 
