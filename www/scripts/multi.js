@@ -328,7 +328,7 @@
 						$.ajax({ //using jsfiddle's echo service to simulate remote data loading
 							beforeSend: app.loginService.viewModel.checkOnline,
 							type: "POST", timeout: 180000,
-							url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=getJob.json',
+							url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=getJobTTSME.json',
 							dataType: "json",
 							contentType: 'application/json',
 							data: data,

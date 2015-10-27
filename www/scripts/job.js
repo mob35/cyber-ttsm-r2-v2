@@ -1995,7 +1995,7 @@
 
         },
         changeStatus: function() {
-            //console.log("########### changeStatus ######## ");
+            console.log("########### changeStatus ######## ");
             var that = app.jobService.viewModel;
             var selectItem = that.get("selectItem");
             var jobId = selectItem.jobId;
@@ -2123,8 +2123,9 @@
                         console.log("update status");
                         that.exeChangeStatusJob(dataValue);
                     } else {
-                        //navigator.notification.alert("Please select problem solve.",
-                        //  function() {}, "Change Status Job : Save incomplete!", 'OK');
+                        navigator.notification.alert("Please select problem solve.",
+                         function() {}, "Change Status Job : Save incomplete!", 'OK');
+                        //alert("Please select problem solve.");
                     }
                 }
 
@@ -2299,83 +2300,109 @@
 
 
             if (!isOffline) {
-                //console.log("#### datavalue : " + JSON.stringify(dataValue));
                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading
                     type: "POST",
                     timeout: 180000,
-                    url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=changeStatusJob.json',
-                    data: JSON.stringify(dataValue),
+                    url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=createJBRemarkOverDue.json',
+                    data: JSON.stringify({
+                        token: localStorage.getItem("token"),
+                        jobId: selectItem.jobId,
+                        remarkOverDue: selectItem.remarkOverDue,
+                        version: "2"
+                    }),
                     dataType: "json",
                     //async: false,
                     contentType: 'application/json',
                     success: function(response) {
-                        //alert('SUCCESS:' + response.status);
-                        that.hideLoading();
 
-                        if (response.status == "TRUE") {
-                            var returnUrl = that.get("returnUrl");
+                        //console.log("#### datavalue : " + JSON.stringify(dataValue));
+                        $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                            type: "POST",
+                            timeout: 180000,
+                            url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=changeStatusJob.json',
+                            data: JSON.stringify(dataValue),
+                            dataType: "json",
+                            //async: false,
+                            contentType: 'application/json',
+                            success: function(response) {
+                                //alert('SUCCESS:' + response.status);
+                                that.hideLoading();
 
-                            if (returnUrl == "#tabstrip-accept") {
-                                ////console.log("start upload");
+                                if (response.status == "TRUE") {
+                                    var returnUrl = that.get("returnUrl");
 
-                                if (dataValue.allItemList[0].jbList[0].newStatus == "05") {
-                                    app.jobService.viewModel.uploadPhoto(dataValue.allItemList[0].jbList[0].jobId);
-                                }
+                                    if (returnUrl == "#tabstrip-accept") {
+                                        ////console.log("start upload");
 
-                                navigator.notification.alert(dataValue.allItemList[0].jbList[0].jobId,
-                                    function() {
                                         if (dataValue.allItemList[0].jbList[0].newStatus == "05") {
-                                            app.jobService.viewModel.deleteFolder(dataValue.allItemList[0].jbList[0].jobId);
+                                            app.jobService.viewModel.uploadPhoto(dataValue.allItemList[0].jbList[0].jobId);
                                         }
-                                        //app.jobService.viewModel.set("selectItem",null);
 
-                                        app.application.navigate(
-                                            '#tabstrip-accept'
-                                        );
-                                        app.jobService.viewModel.loadacceptlist();
+                                        navigator.notification.alert(dataValue.allItemList[0].jbList[0].jobId,
+                                            function() {
+                                                if (dataValue.allItemList[0].jbList[0].newStatus == "05") {
+                                                    app.jobService.viewModel.deleteFolder(dataValue.allItemList[0].jbList[0].jobId);
+                                                }
+                                                //app.jobService.viewModel.set("selectItem",null);
 
+                                                app.application.navigate(
+                                                    '#tabstrip-accept'
+                                                );
+                                                app.jobService.viewModel.loadacceptlist();
+
+                                                ////console.log("load inbox");
+
+                                                var btnGroup = $("#acceptgroup").data("kendoMobileButtonGroup");
+                                                app.jobService.viewModel.filteraccept(btnGroup.current().index());
+                                            }, "Change Status Job : Save complete!", 'OK');
+                                    } else if (returnUrl == "#Multi") {
+                                        navigator.notification.alert(dataValue.allItemList[0].jbList[0].jobId,
+                                            function() {
+                                                app.application.navigate('#Multi');
+                                                app.multiService.viewModel.set("selected", []);
+                                                app.multiService.viewModel.loadMultiDetail();
+                                            }, "Change Status Job : Save complete!", 'OK');
+
+                                    } else {
+
+                                        //app.jobService.viewModel.loadacceptlist();
+                                        navigator.notification.alert(dataValue.allItemList[0].jbList[0].jobId,
+                                            function() {
+                                                var AcceptActions = $("#AcceptActions").data("kendoMobileActionSheet");
+                                                var InitialActions = $("#InitialActions").data("kendoMobileActionSheet");
+                                                var OnsiteActions = $("#OnsiteActions").data("kendoMobileActionSheet");
+                                                var ReportActions = $("#ReportActions").data("kendoMobileActionSheet");
+
+                                                AcceptActions.close();
+                                                InitialActions.close();
+                                                OnsiteActions.close();
+                                                ReportActions.close();
+                                                app.jobService.viewModel.loadacceptlist();
+                                                app.jobService.viewModel.filteraccept(btnGroup.current().index());
+                                            }, "Change Status Job : Save complete!", 'OK');
                                         ////console.log("load inbox");
 
-                                        var btnGroup = $("#acceptgroup").data("kendoMobileButtonGroup");
-                                        app.jobService.viewModel.filteraccept(btnGroup.current().index());
-                                    }, "Change Status Job : Save complete!", 'OK');
-                            } else if (returnUrl == "#Multi") {
-                                navigator.notification.alert(dataValue.allItemList[0].jbList[0].jobId,
-                                    function() {
-                                        app.application.navigate('#Multi');
-                                        app.multiService.viewModel.set("selected", []);
-                                        app.multiService.viewModel.loadMultiDetail();
-                                    }, "Change Status Job : Save complete!", 'OK');
+                                        //var btnGroup = $("#acceptgroup").data("kendoMobileButtonGroup");
 
-                            } else {
-
-                                //app.jobService.viewModel.loadacceptlist();
-                                navigator.notification.alert(dataValue.allItemList[0].jbList[0].jobId,
-                                    function() {
-                                        var AcceptActions = $("#AcceptActions").data("kendoMobileActionSheet");
-                                        var InitialActions = $("#InitialActions").data("kendoMobileActionSheet");
-                                        var OnsiteActions = $("#OnsiteActions").data("kendoMobileActionSheet");
-                                        var ReportActions = $("#ReportActions").data("kendoMobileActionSheet");
-
-                                        AcceptActions.close();
-                                        InitialActions.close();
-                                        OnsiteActions.close();
-                                        ReportActions.close();
-                                        app.jobService.viewModel.loadacceptlist();
-                                        app.jobService.viewModel.filteraccept(btnGroup.current().index());
-                                    }, "Change Status Job : Save complete!", 'OK');
-                                ////console.log("load inbox");
-
-                                //var btnGroup = $("#acceptgroup").data("kendoMobileButtonGroup");
-
-                            }
+                                    }
 
 
-                        } else {
-                            navigator.notification.alert(response.msg,
-                                function() {}, "Change Status Job : Save incomplete!", 'OK');
-                        }
+                                } else {
+                                    navigator.notification.alert(response.msg,
+                                        function() {}, "Change Status Job : Save incomplete!", 'OK');
+                                }
 
+                            },
+                            error: function(xhr, error) {
+                                that.hideLoading();
+                                if (!app.ajaxHandlerService.error(xhr, error)) {
+                                    navigator.notification.alert(error,
+                                        function() {}, "Change Status Job : Save incomplete!", 'OK');
+                                }
+                                ////console.log(JSON.stringify(xhr));
+                            },
+                            complete: function() {}
+                        });
                     },
                     error: function(xhr, error) {
                         that.hideLoading();
@@ -2387,6 +2414,8 @@
                     },
                     complete: function() {}
                 });
+
+
 
             } else {
                 console.log('alert offline');
@@ -4100,17 +4129,17 @@
                 }
             );
         },
-        onClick:function() {
-            // get a reference to the switch widget
-            var switchInstance = $("#switch").data("kendoMobileSwitch");
+        // onClick:function() {
+        //     // get a reference to the switch widget
+        //     var switchInstance = $("#switch").data("kendoMobileSwitch");
 
-            // get the checked state of the switch.
-            console.log(switchInstance.check());
-            // set the checked state of the switch.
-            switchInstance.check(true);
-            console.log(switchInstance.check());
+        //     // get the checked state of the switch.
+        //     console.log(switchInstance.check());
+        //     // set the checked state of the switch.
+        //     switchInstance.check(true);
+        //     console.log(switchInstance.check());
 
-        },
+        // },
         openActSheetAssign: function() {
             $("#sortActionSheet").data("kendoMobileActionSheet").open();
         },
