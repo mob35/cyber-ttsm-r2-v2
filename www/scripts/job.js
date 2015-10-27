@@ -1691,8 +1691,6 @@
 
                     var selectItem = view[0];
 
-                    $("#assignActionSheet").data("kendoMobileActionSheet").close();
-
 
                     if (selectItem != undefined && selectItem != null) {
 
@@ -4102,21 +4100,30 @@
                 }
             );
         },
+        onClick:function() {
+            // get a reference to the switch widget
+            var switchInstance = $("#switch").data("kendoMobileSwitch");
 
+            // get the checked state of the switch.
+            console.log(switchInstance.check());
+            // set the checked state of the switch.
+            switchInstance.check(true);
+            console.log(switchInstance.check());
+
+        },
         openActSheetAssign: function() {
             $("#sortActionSheet").data("kendoMobileActionSheet").open();
         },
-
         onAssignSortby: function(fieldName) {
-            console.debug(fieldName);
+            console.log(fieldName);
+            var switchInstance = $("#switchAssign").data("kendoMobileSwitch");
+            console.log(switchInstance.check());
             var lvAssignList = $("#lvAssignList").data("kendoMobileListView");
-            
+
             lvAssignList.dataSource.sort({
                 field: fieldName,
-                dir: "desc"
+                dir: switchInstance.check() ? "desc" : "asc"
             });
-
-            //asc
             //jigkoh comment for not re-read datasource
             //lvAssignList.dataSource.read();
             lvAssignList.refresh();
@@ -4127,11 +4134,13 @@
         },
         onAcceptSortby: function(fieldName) {
             console.debug(fieldName);
+            var switchInstance = $("#switchAccept").data("kendoMobileSwitch");
+            console.log(switchInstance.check());
             var lvAcceptList = $("#lvAcceptList").data("kendoMobileListView");
 
             lvAcceptList.dataSource.sort({
                 field: fieldName,
-                dir: "desc"
+                dir: switchInstance.check() ? "desc" : "asc"
             });
             //jigkoh comment for not re-read datasource
             //lvAcceptList.dataSource.read();

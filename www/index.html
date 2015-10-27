@@ -143,7 +143,7 @@
         </ul>
         <ul data-role="actionsheet" id="sortActionSheetReAllocate">
             <div class="position-right">
-               <input id="switchRe" data-role="switch"  data-on-label="A-Z" data-off-label="Z-A" />
+               <input id="switchReAllocate" data-role="switch"  data-on-label="A-Z" data-off-label="Z-A" />
             </div>
             <li> <font color = "White">Sort By</font></li>
             <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('jobId')">Count Down</a></li>
@@ -1081,18 +1081,18 @@
         </ul>
         <ul data-role="actionsheet" id="sortActionSheet">
             <div class="position-right">
-               <input id="switchASS" data-role="switch"  data-on-label="A-Z" data-off-label="Z-A" />
+               <input id="switchAssign" data-role="switch" data-on-label="A-Z" data-off-label="Z-A" >
             </div>
             <li> <font color = "White">Sort By</font></li>
-            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('jobId')">Count Down</a></li>
-            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('jobId')">Job ID</a></li>
-            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('title')">Title</a></li>
-            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('siteAccessDesc')">Site Access(Code)</a></li>
-            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('siteAccessDesc')">Site Access(Name Thai)</a></li>
-            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('initiateDate')">Assign Date</a></li>
-            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('finishDate')">Finish Date</a></li>
-            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('priorityId')">Priority</a></li>
-            <li> <a href="#tabstrip-assign" data-action="app.jobService.viewModel.onAssignSortby('status')">Status</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')">Count Down</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('jobId')">Job ID</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('title')">Title</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('siteAccessDesc')">Site Access(Code)</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('siteAccessDesc')">Site Access(Name Thai)</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('initiateDate')">Assign Date</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')">Finish Date</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('priorityId')">Priority</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('status')">Status</a></li>
         </ul>
     </div>
     <!--${COUNTDOWN} data-bind="click: setActionSheet"-->
@@ -1293,7 +1293,7 @@
         </ul>
         <ul data-role="actionsheet" id="sortActionSheetAccept">
             <div class="position-right">
-               <input id="switchACC" data-role="switch"  data-on-label="A-Z" data-off-label="Z-A" />
+               <input id="switchAccept" data-role="switch"  data-on-label="A-Z" data-off-label="Z-A" />
             </div>
             <li> <font color = "White">Sort By</font></li>
             <li> <a data-action="app.jobService.viewModel.onAcceptSortby('jobId')">Count Down</a></li>
@@ -1891,7 +1891,7 @@
                 </li>
                 <li data-icon="contact" class="job-bind" data-bind="visible: isReportType">
                     <label>
-                        Remark Over Due
+                        <b>Remark Over Due</b>
                     </label>
                     <div class="position-right">
                         <textarea maxlength="1000" placeholder="Input Remark Over Due..." class="k-textbox" style="height: 60px" data-bind="value: selectItem.report"></textarea>
@@ -4275,6 +4275,8 @@
         var datess = moment(timess / 1000, 'X').format("DD-MMMM-YYYY HH:mm:ss");
         return datess;
     }
+
+    
     </script>
 </body>
 

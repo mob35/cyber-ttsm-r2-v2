@@ -4,7 +4,7 @@
  app.configService = {
 // serviceUrl: 'https://ttsm.ais.co.th/TTSMWeb/rest-service/',//TTSM production
  // serviceUrl: 'https://ttsdev.ais.co.th:8543/TTSMWeb/rest-service/',//TTSDEV
- serviceUrl: 'http://10.252.66.40:8180/TTSMWeb/rest-service/',//TTEME
+ serviceUrl: 'http://10.252.66.40:8780/TTSMWeb/rest-service/',//TTEME
  //serviceUrl: 'http://10.239.133.116:8081/TTSMWeb/rest-service/',
     //serviceUrl: 'http://172.16.45.92:8080/TTSMWeb/rest-service/',
  fingerprint: 'E5 32 A9 68 C6 E2 51 54 3B 6A E9 5D 1C 34 22 8D 51 DD 56 B3',//TTSDEV

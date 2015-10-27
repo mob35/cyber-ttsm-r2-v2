@@ -26,11 +26,13 @@
         },
         onReAllocateSortby: function(fieldName) {
             console.debug(fieldName);
+            var switchInstance = $("#switchReAllocate").data("kendoMobileSwitch");
+            console.log(switchInstance.check());
             var lvReallocate = $("#lvReallocate").data("kendoMobileListView");
             
             lvReallocate.dataSource.sort({
                 field: fieldName,
-                dir: "desc"
+                dir: switchInstance.check() ? "desc" : "asc"
             });
             //jigkoh comment for not re-read datasource
             //lvReallocate.dataSource.read();
