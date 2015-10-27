@@ -14,3 +14,9 @@ List:
 	1: Team/My Team Job Search - Edit iconSearch link to powerSearch
 	2: master.js add function loadFavoriteProblemCauses and loadFavoriteProblemCausesM [MorkupData and json]
 	3: Search & Sort ที่ Job List เรียงตามตัวอักษร
+
+version: "2.0.5"
+List: 
+	1:Power Search & My Team[label]
+	2:Remark Over Due
+	3:Search & Sort Job List [Inbox, Active Box]

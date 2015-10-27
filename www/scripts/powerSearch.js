@@ -310,6 +310,7 @@
         siteNameThai: "",
         assignTo: "",
         assignBy: "",
+        titletxt: 'Power Search',
         setTmp: function() {
             // alert("Region");
             // ddlregion
@@ -835,7 +836,7 @@
                                         }
                                     },
                                     complete: function() {
-                                        // that.countAccept();
+                                        // that.countAccept();                                        
                                         that.set("lastupdateaccept", format_time_date(new Date()));
                                         app.myService.viewModel.hideLoading();
                                     }

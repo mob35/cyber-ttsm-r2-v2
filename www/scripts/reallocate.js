@@ -29,15 +29,16 @@
             var switchInstance = $("#switchReAllocate").data("kendoMobileSwitch");
             console.log(switchInstance.check());
             var lvReallocate = $("#lvReallocate").data("kendoMobileListView");
-            
+
             lvReallocate.dataSource.sort({
                 field: fieldName,
-                dir: switchInstance.check() ? "desc" : "asc"
+                dir: switchInstance.check() ? "asc" : "desc"
             });
             //jigkoh comment for not re-read datasource
             //lvReallocate.dataSource.read();
             lvReallocate.refresh();
             app.application.view().scroller.reset();
+            $("#sortActionSheetReAllocate").data("kendoMobileActionSheet").close();
         },
         isReportType: function() {
             var that = this;
@@ -931,7 +932,7 @@
                                     data: JSON.stringify({
                                         "token": localStorage.getItem("token"),
                                         "userId": JSON.parse(localStorage.getItem("profileData")).userId,
-                                        "zoneId" : "",
+                                        "zoneId": "",
                                         "version": "2"
                                     }),
                                     dataType: "json",
@@ -964,7 +965,7 @@
                         operator: "neq",
                         value: selectItem.assignTo
                     },
-                    
+
 
                 });
 

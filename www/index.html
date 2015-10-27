@@ -111,7 +111,7 @@
         </div>
         <div class="km-listview-wrapper">
             <form class="km-filter-form">
-                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheetReAllocate" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div>
+                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheetReAllocate" class="km-filter-reset" title="Sort"><span class="fa fa-search sort-icon"></span></a></div>
             </form>
         </div>
         <span>Last Updated :
@@ -294,7 +294,7 @@
             <div data-role="navbar">
                 <a data-role="button" data-rel="drawer" href="#my-drawer" class="ion" data-icon="menu" data-align="left"></a>
                 <span data-role="view-title"></span>
-                <a data-icon="search" data-role="button" data-align="right" href="#powerSearch"></a>
+                <a data-icon="search" data-role="button" data-align="right" data-bind ="click:gotoPserach"></a>
                 <!-- <a data-icon="search" data-role="button" data-align="right" data-bind="click: onSearch"></a> -->
             </div>
         </div>
@@ -1040,7 +1040,7 @@
         </div>
         <div class="km-listview-wrapper" data-bind="visible: isSearch">
             <form class="km-filter-form">
-                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:assignFilter, events: { keyup: filterAssignEvent }" data-value-update="keyup"><a data-bind="click: openActSheetAssign" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div>
+                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:assignFilter, events: { keyup: filterAssignEvent }" data-value-update="keyup"><a data-bind="click: openActSheetAssign" class="km-filter-reset" title="Sort"><span class="fa fa-search sort-icon"></span></a></div>
             </form>
         </div>
         <span>Last Updated :
@@ -1084,7 +1084,7 @@
                <input id="switchAssign" data-role="switch" data-on-label="A-Z" data-off-label="Z-A" >
             </div>
             <li> <font color = "White">Sort By</font></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')">Count Down</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')"><i class="fa fa-search position-left"></i>Count Down</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('jobId')">Job ID</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('title')">Title</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('siteAccessDesc')">Site Access(Code)</a></li>
@@ -1198,7 +1198,7 @@
         </div>
         <div class="km-listview-wrapper" data-bind="visible: isSearch">
             <form class="km-filter-form">
-                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:acceptFilter, events: { keyup: filterAcceptEvent }" data-value-update="keyup"><a data-bind="click: openActSheetAccept" class="km-filter-reset" title="Sort"><span class="fa fa-sort"></span></a></div>
+                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:acceptFilter, events: { keyup: filterAcceptEvent }" data-value-update="keyup"><a data-bind="click: openActSheetAccept" class="km-filter-reset" title="Sort"><span class="fa fa-search sort-icon"></span></a></div>
             </form>
         </div>
         <span>Last Updated :
@@ -3483,7 +3483,7 @@
     <div id="powerSearch" data-role="view" data-layout="tabstrip-layout" data-model="app.powerSearchService.viewModel" data-init="app.powerSearchService.init" data-show="app.powerSearchService.show" data-hide="app.powerSearchService.hide">
         <div data-role="header">
             <div data-role="navbar">
-                <span>Power Search</span>
+                <span><label data-bind="text: titletxt"></label></span>
                 <a data-role="button" data-rel="drawer" href="#my-drawer" class="ion" data-icon="menu" data-align="left"></a>
                 <a data-role="button" data-bind="click: showResult" data-icon="check" data-align="right"></a>
             </div>

@@ -2124,7 +2124,7 @@
                         that.exeChangeStatusJob(dataValue);
                     } else {
                         navigator.notification.alert("Please select problem solve.",
-                         function() {}, "Change Status Job : Save incomplete!", 'OK');
+                            function() {}, "Change Status Job : Save incomplete!", 'OK');
                         //alert("Please select problem solve.");
                     }
                 }
@@ -4151,12 +4151,14 @@
 
             lvAssignList.dataSource.sort({
                 field: fieldName,
-                dir: switchInstance.check() ? "desc" : "asc"
+                dir: switchInstance.check() ? "asc" : "desc"
             });
+
             //jigkoh comment for not re-read datasource
             //lvAssignList.dataSource.read();
             lvAssignList.refresh();
             app.application.view().scroller.reset();
+            $("#sortActionSheet").data("kendoMobileActionSheet").close();
         },
         openActSheetAccept: function() {
             $("#sortActionSheetAccept").data("kendoMobileActionSheet").open();
@@ -4169,12 +4171,13 @@
 
             lvAcceptList.dataSource.sort({
                 field: fieldName,
-                dir: switchInstance.check() ? "desc" : "asc"
+                dir: switchInstance.check() ? "asc" : "desc"
             });
             //jigkoh comment for not re-read datasource
             //lvAcceptList.dataSource.read();
             lvAcceptList.refresh();
             app.application.view().scroller.reset();
+            $("#sortActionSheetAccept").data("kendoMobileActionSheet").close();
         },
         gotoDetailSearch: function(e) {
             var txtJob = $(e.target).closest("form").find("input[type=search]");

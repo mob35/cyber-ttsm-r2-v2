@@ -795,6 +795,10 @@
             }
 
         },
+        gotoPserach: function(){
+           app.powerSearchService.viewModel.set("titletxt", "Team/My Team Job Search");
+           app.application.navigate('#powerSearch');
+        },
         onSearch: function() {
             var that = this;
             that.set("isSearch", !that.get("isSearch"));
