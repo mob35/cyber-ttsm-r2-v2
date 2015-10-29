@@ -3316,6 +3316,72 @@
                                 that.hideLoading();
                                 if (!app.ajaxHandlerService.error(xhr, error)) {
                                     ////console.log("Accept : Save incomplete! ");
+                                    console.log("err=>xhr : " + JSON.stringify(xhr) + ", error : " + error);
+                                    navigator.notification.alert(error,
+                                        function() {}, "Get job incomplete! ", 'OK');
+                                }
+                                //return false;
+                            },
+                            complete: function() {
+                                that.hideLoading();
+                            }
+                        });
+                    }
+                },
+                schema: {
+                    data: "jobCheckAlarms"
+                }
+            });
+
+            // jbAlarm.fetch(function() {
+
+            // });
+            // console.log(jbAlarm);
+
+            $("#lvSiteAlarm").kendoMobileListView({
+                dataSource: jbAlarm,
+                style: "inset",
+                template: $("#lv-site-alarm-template").html()
+            });
+            var lvSiteAlarm = $("#lvSiteAlarm").data("kendoMobileListView");
+
+            lvSiteAlarm.dataSource.filter({
+                field: "siteType",
+                operator: "eq",
+                value: "AC"
+            });
+            lvSiteAlarm.dataSource.read();
+            lvSiteAlarm.refresh();
+            //alert(that.get("alarmJobId"));
+            app.application.navigate(
+                '#SiteAlarm'
+            );
+        },
+        gotoDirection: function(e) {
+            var that = app.jobService.viewModel;
+            that.set("alarmJobId", e.context);
+            var jbDirec = new kendo.data.DataSource({
+                transport: {
+                    read: function(operation) {
+                        $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                            beforeSend: app.loginService.viewModel.checkOnline,
+                            type: "POST",
+                            timeout: 180000,
+                            url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=getJobCheckAlarmTTSME.json',
+                            data: JSON.stringify({
+                                "jobId": e.context,
+                                "token": localStorage.getItem("token"),
+                                "version": "2"
+                            }),
+                            dataType: "json",
+                            contentType: 'application/json',
+                            success: function(response) {
+                                operation.success(response);
+                            },
+                            error: function(xhr, error) {
+                                that.hideLoading();
+                                if (!app.ajaxHandlerService.error(xhr, error)) {
+                                    ////console.log("Accept : Save incomplete! ");
                                     ////console.log("err=>xhr : " + JSON.stringify(xhr) + ", error : " + error);
                                     navigator.notification.alert(error,
                                         function() {}, "Get job incomplete! ", 'OK');
@@ -3337,24 +3403,46 @@
 
             // });
 
-            $("#lvSiteAlarm").kendoMobileListView({
-                dataSource: jbAlarm,
+            $("#lvSiteDirec").kendoMobileListView({
+                dataSource: jbDirec,
                 style: "inset",
-                template: $("#lv-site-alarm-template").html()
+                template: $("#lv-site-Direc-template").html()
             });
-            var lvSiteAlarm = $("#lvSiteAlarm").data("kendoMobileListView");
+            var lvSiteDirec = $("#lvSiteDirec").data("kendoMobileListView");
 
-            lvSiteAlarm.dataSource.filter({
+            lvSiteDirec.dataSource.filter({
                 field: "siteType",
                 operator: "eq",
                 value: "AC"
             });
-            lvSiteAlarm.dataSource.read();
-            lvSiteAlarm.refresh();
+            lvSiteDirec.dataSource.read();
+            lvSiteDirec.refresh();
             //alert(that.get("alarmJobId"));
             app.application.navigate(
-                '#SiteAlarm'
+                '#SiteDirection'
             );
+        },
+        gotoMap: function(e) {
+            //var dataItem = e.dataItem;
+            //             ckFlag: "0"
+            // latitude: null
+            // longitude: null
+            // parent: ()
+            // siteCode: "4IPCLKBPL1H_L9"
+            // siteId: "S-INS-430996"
+            // siteNameEn: "LTE900 IPCLK BANGPLE 1 HUAWEI"
+            // siteType: "AC"
+            // uid: "436e4949-070f-4bab-9521-cf402fc8d992"
+            //app.mapService.viewModel.directTo(e.dataItem.latitude,e.dataItem.longitude);
+            if ((e.dataItem.latitude != null && e.dataItem.longitude != null )) {
+                app.mapService.viewModel.set("isGoFromJob", true);
+                app.mapService.viewModel.set("latitude", e.dataItem.latitude);
+                app.mapService.viewModel.set("longitude", e.dataItem.longitude);
+                app.application.navigate(
+                    '#tabstrip-map'
+                );
+            }
+
         },
         initSiteAlarmList: function() {
             var that = this;

@@ -10,6 +10,12 @@
     font: 1em/1em 'icon-TTSM';
 }
 
+.mo .km-icon:after,
+.mo .km-icon:before
+{
+    font: 1em/1em 'icomoon';
+}
+
 .ion .km-icon:after,
 .ion .km-icon:before
 {
@@ -99,6 +105,21 @@
     /*content: url("../images/iconAssign.png");*/
     content:"\e605";
     /*color:#11c1f3;*/
+}
+
+.km-icon-save2:after,
+.km-icon-save2:before
+{
+    /*content: url("../images/iconMyTeam.png");*/
+    content: "\e905";
+    /*color:#33cd5f;*/
+}
+.km-icon-save:after,
+.km-icon-save:before
+{
+    /*content: url("../images/iconMyTeam.png");*/
+    content: "\e904";
+    /*color:#33cd5f;*/
 }
 
 .km-flat .km-tabstrip .km-button .km-gab-iconActiveBox

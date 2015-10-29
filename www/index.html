@@ -15,6 +15,7 @@
     <link href="css/font-awesome.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/style2.css" rel="stylesheet" />
+    <link href="css/style3.css" rel="stylesheet" />
     <link href="css/ionic.css" rel="stylesheet" />
     <link href="styles/main.css" rel="stylesheet" />
     <link href="styles/icon.css" rel="stylesheet" />
@@ -111,7 +112,7 @@
         </div>
         <div class="km-listview-wrapper">
             <form class="km-filter-form">
-                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheetReAllocate" class="km-filter-reset" title="Sort"><span class="fa fa-search sort-icon"></span></a></div>
+                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheetReAllocate" class="km-filter-reset" title="Sort"><span class="fa icon-AZ3 sort-icon"></span></a></div>
             </form>
         </div>
         <span>Last Updated :
@@ -1040,7 +1041,7 @@
         </div>
         <div class="km-listview-wrapper" data-bind="visible: isSearch">
             <form class="km-filter-form">
-                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:assignFilter, events: { keyup: filterAssignEvent }" data-value-update="keyup"><a data-bind="click: openActSheetAssign" class="km-filter-reset" title="Sort"><span class="fa fa-search sort-icon"></span></a></div>
+                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:assignFilter, events: { keyup: filterAssignEvent }" data-value-update="keyup"><a data-bind="click: openActSheetAssign" class="km-filter-reset" title="Sort"><span class="fa icon-AZ3 sort-icon"></span></a></div>
             </form>
         </div>
         <span>Last Updated :
@@ -1077,6 +1078,9 @@
             </li>
             <li>
                 <a href="#tabstrip-assign" data-action="app.jobService.viewModel.gotoAssignDetail">Go to detail</a>
+            </li>
+            <li>
+                <a data-action="app.jobService.viewModel.gotoDirection">Direction</a>
             </li>
         </ul>
         <ul data-role="actionsheet" id="sortActionSheet">
@@ -1198,7 +1202,7 @@
         </div>
         <div class="km-listview-wrapper" data-bind="visible: isSearch">
             <form class="km-filter-form">
-                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:acceptFilter, events: { keyup: filterAcceptEvent }" data-value-update="keyup"><a data-bind="click: openActSheetAccept" class="km-filter-reset" title="Sort"><span class="fa fa-search sort-icon"></span></a></div>
+                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:acceptFilter, events: { keyup: filterAcceptEvent }" data-value-update="keyup"><a data-bind="click: openActSheetAccept" class="km-filter-reset" title="Sort"><span class="fa icon-AZ3 sort-icon"></span></a></div>
             </form>
         </div>
         <span>Last Updated :
@@ -1242,6 +1246,9 @@
             <li>
                 <a data-action="app.jobService.viewModel.gotoAlarm">Check Alarm</a>
             </li>
+            <li>
+                <a data-action="app.jobService.viewModel.gotoDirection">Direction</a>
+            </li>
         </ul>
         <ul data-role="actionsheet" id="InitialActions">
             <li class="km-actionsheet-title">Change Status to:</li>
@@ -1258,6 +1265,9 @@
             </li>
             <li>
                 <a data-action="app.jobService.viewModel.gotoAlarm">Check Alarm</a>
+            </li>
+            <li>
+                <a data-action="app.jobService.viewModel.gotoDirection">Direction</a>
             </li>
         </ul>
         <ul data-role="actionsheet" id="OnsiteActions">
@@ -1276,6 +1286,9 @@
             <li>
                 <a data-action="app.jobService.viewModel.gotoAlarm">Check Alarm</a>
             </li>
+            <li>
+                <a data-action="app.jobService.viewModel.gotoDirection">Direction</a>
+            </li>
         </ul>
         <ul data-role="actionsheet" id="ReportActions">
             <li class="km-actionsheet-title">Change Status to:</li>
@@ -1289,6 +1302,9 @@
             </li>
             <li>
                 <a data-action="app.jobService.viewModel.gotoAlarm">Check Alarm</a>
+            </li>
+            <li>
+                <a data-action="app.jobService.viewModel.gotoDirection">Direction</a>
             </li>
         </ul>
         <ul data-role="actionsheet" id="sortActionSheetAccept">
@@ -1684,8 +1700,8 @@
             <div data-role="navbar">
                 <a data-role="button" class="fa" data-icon="fa-back" data-align="left" data-bind="click: onBack"></a>
                 <span data-role="view-title" data-bind="text: selectItem.jobId"></span>
-                <a data-role="button" class="fa" data-icon="fa-save" data-align="right" data-bind="click: changeStatusMore"></a>
-                <a data-role="button" class="fa" data-icon="fa-save" data-align="right" data-bind="click: changeStatus"></a>
+                <a data-role="button" class="mo" data-icon="icon-save2" data-align="right" data-bind="click: changeStatusMore"></a>
+                <a data-role="button" class="mo" data-icon="icon-save" data-align="right" data-bind="click: changeStatus"></a>
             </div>
         </header>
         <div data-role="content">
@@ -3754,6 +3770,24 @@
             <span class="info_view">Site Access : <b style="color:black">${siteAccessDesc}</b></span>
         </a>
     </script>
+    <!--SiteDirection-->
+    <div data-role="view" id="SiteDirection" data-layout="tabstrip-layout" data-model="app.jobService.viewModel">
+        <div data-role="header">
+            <div data-role="navbar">
+                <span>SiteD</span>
+                <a data-role="backbutton" data-align="left" class="fa" data-icon="fa-back"></a>
+                </div>
+        </div>
+        <center class="job-bar" data-bind="text: alarmJobId"></center>
+        <ul id="AlarmGroup" data-role="buttongroup" style="color: #74A333" data-index="0">
+            <li>Site AccessD</li>
+            <li>Site AffectD</li>
+        </ul>
+        <ul data-role="listview" id="lvSiteDirec" data-style="inset" data-bind="events: { click: gotoMap }">
+        </ul>
+    </div>
+    <!--End-->
+    <!--SiteAlarm-->
     <div data-role="view" id="SiteAlarm" data-layout="tabstrip-layout" data-model="app.jobService.viewModel" data-init="app.jobService.initSiteAlarm">
         <div data-role="header">
             <div data-role="navbar">
@@ -3770,6 +3804,7 @@
         <ul data-role="listview" id="lvSiteAlarm" data-style="inset">
         </ul>
     </div>
+    <!--End-->
     <div data-role="view" id="SiteAlarmDtl" data-layout="tabstrip-layout" data-model="app.jobService.viewModel">
         <div data-role="header">
             <div data-role="navbar">
@@ -3780,6 +3815,7 @@
         <ul data-role="listview" id="lvAlarm" data-style="inset">
         </ul>
     </div>
+    <!--End-->
     <!--Profile-->
     <!--data-model="app.profileService.viewModel"-->
     <div data-role="view" id="Profile" data-model="app.profileService.viewModel" data-show="app.profileService.show" data-layout="tabstrip-layout">
@@ -4095,8 +4131,16 @@
     <script id="lv-site-alarm-template" type="text/x-kendo-template">
         <label data-icon="contact">
             #if(checkFlag=="1" || checkFlag=="2"){#
-            <input type="checkbox" class="chkSiteAlarm-${siteCode}" #=c heckFlag=="2" ? checked="checked" : "" # /> #}# ${siteCode}
+            <input type="checkbox" class="chkSiteAlarm-${siteCode}" #=checkFlag=="2" ? checked="checked" : "" # /> #}# ${siteCode}
+
         </label>
+    </script>
+    <script id="lv-site-Direc-template" type="text/x-kendo-template">
+            
+            ${siteCode}
+            #if(latitude != null && longitude != null){#
+    <span class="position-right "><i class="fa iconTTSM-compass2 icon-red" style="font-size: 2.0em" ></i> </span> #}#
+            
     </script>
     <script id="multi-zone-template" type="text/x-kendo-template">
         <label data-icon="contact">

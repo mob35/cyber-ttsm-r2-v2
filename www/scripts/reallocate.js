@@ -928,7 +928,7 @@
                                     type: "POST",
                                     timeout: 180000,
                                     //url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=getTeamMember.json',
-                                    url: app.configService.serviceUrl + 'post-json.service?s=transact-service&o=getReallocateTTSME.json',
+                                    url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=getReallocateTTSME.json',
                                     data: JSON.stringify({
                                         "token": localStorage.getItem("token"),
                                         "userId": JSON.parse(localStorage.getItem("profileData")).userId,

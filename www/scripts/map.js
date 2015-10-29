@@ -30,6 +30,7 @@
         _siteCode = '',
         dragstart, dragend,
         _usrDisplay = 'S';
+
     app = global.app = global.app || {};
 
     if (typeof google === "object" && typeof google.maps === "object") {
@@ -42,7 +43,9 @@
         direction: false,
         mcDataSource: null,
         siteDataSource: null,
-
+        isGoFromJob: false,
+        latitude: null,
+        longitude: null,
         address: "",
         isGoogleMapsInitialized: false,
 
@@ -192,7 +195,7 @@
                         function() {}, "Location failed", 'OK');
                 }
             );
-            
+
         },
         checkCal: function() {
 
@@ -40286,6 +40289,8 @@
         },
         showNewSolution: function() {
 
+            //app.mapService.viewModel.get("isGoogleMapsInitialized")
+
             $('#div_map_bottom').hide();
 
             $("#map-canvas").css("display", "");
@@ -40469,7 +40474,13 @@
                 } else {
                     alert("User Profile is undefined!!");
                 }
+                var isGoFromJob = app.mapService.viewModel.get("isGoFromJob");
 
+                if (isGoFromJob) {
+                    var longitude = app.mapService.viewModel.get("longitude");
+                    var latitude = app.mapService.viewModel.get("latitude");
+                    app.mapService.viewModel.directTo(latitude, longitude);
+                }
             }
         },
 
