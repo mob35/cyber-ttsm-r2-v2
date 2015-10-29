@@ -2211,11 +2211,10 @@
                                 dataType: "json",
                                 contentType: 'application/json',
                                 success: function(response) {
-                                    alert("test");
-                                        //alert("Alarm Active not found.");
-                                        // navigator.notification.alert("Alarm Active not found.",
-                                        //     function() {}, "Alarm Active ", 'OK');
-                                    
+                                    //alert("Alarm Active not found.");
+                                    // navigator.notification.alert("Alarm Active not found.",
+                                    //     function() {}, "Alarm Active ", 'OK');
+
                                     operation.success(response);
                                 },
                                 error: function(xhr, error) {
@@ -2229,7 +2228,7 @@
                                     //return false;
                                 },
                                 complete: function() {
-                                   app.myService.viewModel.hideLoading();
+                                    app.myService.viewModel.hideLoading();
                                 }
                             });
                         }
@@ -2244,12 +2243,12 @@
             // console.log(alarmDataSource);
             // });
             $("#lvPowerSearchList").kendoMobileListView({
-                    dataSource: alarmDataSource,
-                    //style: "inset",
-                    template: $("#psearch-template").html(),
-                    // pullToRefresh: true,
-                    // endlessScroll: true
-                });
+                dataSource: alarmDataSource,
+                //style: "inset",
+                template: $("#psearch-template").html(),
+                // pullToRefresh: true,
+                // endlessScroll: true
+            });
 
             app.powerSearchService.viewModel.set("titletxtJobListMap", "Job List");
             app.application.navigate(
@@ -2257,6 +2256,7 @@
             );
 
         },
+
 
         clearCal: function() {
             directionsDisplay.setMap(null);
@@ -3209,7 +3209,7 @@
 
         },
 
-        tempBalloon_allSite: function(nameSite_s, siteType, siteAlarm, la_site, long_site, jobsStatus, snt, sne) {
+        tempBalloon_allSite: function(nameSite_s, siteType, siteAlarm, la_site, long_site, jobsStatus, snt, sne, sIds) {
             infowindow = new google.maps.InfoWindow();
             var inFor = "";
             //nameSite_s = "name1,name2,name3";
@@ -3220,6 +3220,7 @@
             var arrStatus = jobsStatus.split(',');
             var arrNameTH = snt.split(',');
             var arrNameEN = sne.split(',');
+            var arrSId = sIds.split(',');
 
 
             for (var i = 0; i < arr.length; i++) {
@@ -3237,7 +3238,7 @@
                     var enhance_act_get_alarm = ' | &nbsp;' + '<a class="linkText fa" href="#SiteAlarmDtl" onclick="app.mapService.viewModel.gotoAlarmDtl(\'' + arr[i] + '\');">' +
                         '<i class="fa iconTTSM-notification6 assertive"></i>' +
                         '</a>';
-                    var enhance_act_get_job = ' | &nbsp;' + '<div class="linkText fa" style="cursor:pointer" onclick="app.mapService.viewModel.gotoAlarmMob(\'' + arr[i] + '\');">' +
+                    var enhance_act_get_job = ' | &nbsp;' + '<div class="linkText fa" style="cursor:pointer" onclick="app.mapService.viewModel.gotoAlarmMob(\'' + arrSId[i] + '\');">' +
                         '<i class="fa fa-file"></i>' +
                         '</div>';
                     //var enhance_act_get_job = '';
@@ -22295,6 +22296,7 @@
                                 var siteStatusList = "";
                                 var snt = "";
                                 var sne = "";
+                                var sIds = "";
                                 $.each(item.sDtls, function(ii, iitem) {
                                     //filterBy = iitem.sCd;
                                     filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc);
@@ -22302,6 +22304,7 @@
                                     siteTypes += iitem.sTy + ",";
                                     siteAlarms += iitem.sAl + ",";
                                     siteStatusList += iitem.jSt + ",";
+                                    sIds += iitem.sId + ",";
                                     imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
                                     snt += iitem.snt + ",";
                                     sne += iitem.sne + ",";
@@ -22332,7 +22335,7 @@
                                     _default_long = item.lgt;
                                 }
                                 _site[i] = [
-                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne),
+                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds),
                                     item.ltt,
                                     item.lgt,
                                     app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
@@ -22366,71 +22369,72 @@
 
                                     $.each(response.siteMaps, function(i, item) {
 
-                                        //alert(i);
-                                        var SITE_CODE = "";
-                                        var siteTypes = "";
-                                        var siteAlarms = "";
-                                        var imagePin = "";
-                                        var filterBy = "";
-                                        var siteOn = false;
-                                        var siteInAct = false;
-                                        var siteStatus = "0";
-                                        var siteStatusList = "";
-                                        var snt = "";
-                                        var sne = "";
-                                        $.each(item.sDtls, function(ii, iitem) {
-                                            //filterBy = iitem.sCd;
-                                            filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc);
-                                            SITE_CODE += filterBy + "|";
-                                            siteTypes += iitem.sTy + ",";
-                                            siteAlarms += iitem.sAl + ",";
-                                            siteStatusList += iitem.jSt + ",";
-                                            imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
-                                            snt += iitem.snt + ",";
-                                            sne += iitem.sne + ",";
+                                //alert(i);
+                                var SITE_CODE = "";
+                                var siteTypes = "";
+                                var siteAlarms = "";
+                                var imagePin = "";
+                                var filterBy = "";
+                                var siteOn = false;
+                                var siteInAct = false;
+                                var siteStatus = "0";
+                                var siteStatusList = "";
+                                var snt = "";
+                                var sne = "";
+                                var sIds = "";
+                                $.each(item.sDtls, function(ii, iitem) {
+                                    //filterBy = iitem.sCd;
+                                    filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc);
+                                    SITE_CODE += filterBy + "|";
+                                    siteTypes += iitem.sTy + ",";
+                                    siteAlarms += iitem.sAl + ",";
+                                    siteStatusList += iitem.jSt + ",";
+                                    sIds += iitem.sId + ",";
+                                    imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
+                                    snt += iitem.snt + ",";
+                                    sne += iitem.sne + ",";
 
-                                            _searchSite_data[count_searchSite] = ['<li onclick="app.mapService.viewModel.clickResult(\'' + filterBy + '\', \'' + item.ltt + '\', \'' + item.lgt + '\');" class="post_site" title="' + iitem.sTy + iitem.sAl + '" data-filter="' + filterBy + '"><a href="#tabstrip-map" style="text-decoration:none;"> ' +
-                                                '&nbsp;&nbsp; <img src="' + app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt) + '" class="icon_result_width" /> ' + filterBy + '</a></li>' +
-                                                ''
-                                            ];
-                                            //console.debug(_searchSite_data[count_searchSite]);
-                                            if (iitem.jSt == "1") {
-                                                siteOn = true;
-                                            }
-                                            if (iitem.jSt == "2") {
-                                                siteInAct = true;
-                                            }
-                                            count_searchSite++;
-                                        });
-                                        if (siteOn) {
-                                            siteStatus = "1";
-                                        } else {
-                                            if (siteInAct) {
-                                                siteStatus = "2";
-                                            }
-                                        }
+                                    _searchSite_data[count_searchSite] = ['<li onclick="app.mapService.viewModel.clickResult(\'' + filterBy + '\', \'' + item.ltt + '\', \'' + item.lgt + '\');" class="post_site" title="' + iitem.sTy + iitem.sAl + '" data-filter="' + filterBy + '"><a href="#tabstrip-map" style="text-decoration:none;"> ' +
+                                        '&nbsp;&nbsp; <img src="' + app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt) + '" class="icon_result_width" /> ' + filterBy + '</a></li>' +
+                                        ''
+                                    ];
+                                    //console.debug(_searchSite_data[count_searchSite]);
+                                    if (iitem.jSt == "1") {
+                                        siteOn = true;
+                                    }
+                                    if (iitem.jSt == "2") {
+                                        siteInAct = true;
+                                    }
+                                    count_searchSite++;
+                                });
+                                if (siteOn) {
+                                    siteStatus = "1";
+                                } else {
+                                    if (siteInAct) {
+                                        siteStatus = "2";
+                                    }
+                                }
 
-                                        if (i == Math.round(Object.keys(response.siteMaps).length / 2) - 1) {
-                                            _default_lat = item.ltt;
-                                            _default_long = item.lgt;
-                                        }
-                                        _site[i] = [
-                                            app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne),
-                                            item.ltt,
-                                            item.lgt,
-                                            app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
-                                        ];
-                                        _allLatLong[_count_allLatLong] = new google.maps.LatLng(item.ltt, item.lgt);
-                                        _count_allLatLong++;
+                                if (i == Math.round(Object.keys(response.siteMaps).length / 2) - 1) {
+                                    _default_lat = item.ltt;
+                                    _default_long = item.lgt;
+                                }
+                                _site[i] = [
+                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds),
+                                    item.ltt,
+                                    item.lgt,
+                                    app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
+                                ];
+                                _allLatLong[_count_allLatLong] = new google.maps.LatLng(item.ltt, item.lgt);
+                                _count_allLatLong++;
 
-                                    });
-                                    //alert("ok");
-                                    app.mapService.viewModel.setType_search('earch_site');
-                                    //---------go to set Marker ------------
-                                    app.mapService.viewModel._putSiteMarker();
-                                    $(".c_loading").hide();
-                                    //app.mapService.viewModel.hideLoading();
-                                    operation.success(response);
+                            });
+                            //alert("ok");
+                            app.mapService.viewModel.setType_search('earch_site');
+                            //---------go to set Marker ------------
+                            app.mapService.viewModel._putMarker();
+                            //app.mapService.viewModel.hideLoading();
+                            operation.success(response);
 
                                 },
 
@@ -41794,6 +41798,7 @@
                                 var siteStatusList = "";
                                 var snt = "";
                                 var sne = "";
+                                var sIds = "";
                                 $.each(item.sDtls, function(ii, iitem) {
                                     //filterBy = iitem.sCd;
                                     filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc);
@@ -41801,6 +41806,7 @@
                                     siteTypes += iitem.sTy + ",";
                                     siteAlarms += iitem.sAl + ",";
                                     siteStatusList += iitem.jSt + ",";
+                                    sIds += iitem.sId + ",";
                                     imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
                                     snt += iitem.snt + ",";
                                     sne += iitem.sne + ",";
@@ -41831,7 +41837,7 @@
                                     _default_long = item.lgt;
                                 }
                                 _site[i] = [
-                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne),
+                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds),
                                     item.ltt,
                                     item.lgt,
                                     app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
@@ -41862,73 +41868,74 @@
                                     //alert(JSON.stringify(response));
                                     //alert("success");
                                     var count_searchSite = 0;
+$.each(response.siteMaps, function(i, item) {
 
-                                    $.each(response.siteMaps, function(i, item) {
+                                //alert(i);
+                                var SITE_CODE = "";
+                                var siteTypes = "";
+                                var siteAlarms = "";
+                                var imagePin = "";
+                                var filterBy = "";
+                                var siteOn = false;
+                                var siteInAct = false;
+                                var siteStatus = "0";
+                                var siteStatusList = "";
+                                var snt = "";
+                                var sne = "";
+                                var sIds = "";
+                                $.each(item.sDtls, function(ii, iitem) {
+                                    //filterBy = iitem.sCd;
+                                    filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc);
+                                    SITE_CODE += filterBy + "|";
+                                    siteTypes += iitem.sTy + ",";
+                                    siteAlarms += iitem.sAl + ",";
+                                    siteStatusList += iitem.jSt + ",";
+                                    sIds += iitem.sId + ",";
+                                    imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
+                                    snt += iitem.snt + ",";
+                                    sne += iitem.sne + ",";
 
-                                        //alert(i);
-                                        var SITE_CODE = "";
-                                        var siteTypes = "";
-                                        var siteAlarms = "";
-                                        var imagePin = "";
-                                        var filterBy = "";
-                                        var siteOn = false;
-                                        var siteInAct = false;
-                                        var siteStatus = "0";
-                                        var siteStatusList = "";
-                                        var snt = "";
-                                        var sne = "";
-                                        $.each(item.sDtls, function(ii, iitem) {
-                                            //filterBy = iitem.sCd;
-                                            filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc);
-                                            SITE_CODE += filterBy + "|";
-                                            siteTypes += iitem.sTy + ",";
-                                            siteAlarms += iitem.sAl + ",";
-                                            siteStatusList += iitem.jSt + ",";
-                                            imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
-                                            snt += iitem.snt + ",";
-                                            sne += iitem.sne + ",";
+                                    _searchSite_data[count_searchSite] = ['<li onclick="app.mapService.viewModel.clickResult(\'' + filterBy + '\', \'' + item.ltt + '\', \'' + item.lgt + '\');" class="post_site" title="' + iitem.sTy + iitem.sAl + '" data-filter="' + filterBy + '"><a href="#tabstrip-map" style="text-decoration:none;"> ' +
+                                        '&nbsp;&nbsp; <img src="' + app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt) + '" class="icon_result_width" /> ' + filterBy + '</a></li>' +
+                                        ''
+                                    ];
+                                    //console.debug(_searchSite_data[count_searchSite]);
+                                    if (iitem.jSt == "1") {
+                                        siteOn = true;
+                                    }
+                                    if (iitem.jSt == "2") {
+                                        siteInAct = true;
+                                    }
+                                    count_searchSite++;
+                                });
+                                if (siteOn) {
+                                    siteStatus = "1";
+                                } else {
+                                    if (siteInAct) {
+                                        siteStatus = "2";
+                                    }
+                                }
 
-                                            _searchSite_data[count_searchSite] = ['<li onclick="app.mapService.viewModel.clickResult(\'' + filterBy + '\', \'' + item.ltt + '\', \'' + item.lgt + '\');" class="post_site" title="' + iitem.sTy + iitem.sAl + '" data-filter="' + filterBy + '"><a href="#tabstrip-map" style="text-decoration:none;"> ' +
-                                                '&nbsp;&nbsp; <img src="' + app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt) + '" class="icon_result_width" /> ' + filterBy + '</a></li>' +
-                                                ''
-                                            ];
-                                            //console.debug(_searchSite_data[count_searchSite]);
-                                            if (iitem.jSt == "1") {
-                                                siteOn = true;
-                                            }
-                                            if (iitem.jSt == "2") {
-                                                siteInAct = true;
-                                            }
-                                            count_searchSite++;
-                                        });
-                                        if (siteOn) {
-                                            siteStatus = "1";
-                                        } else {
-                                            if (siteInAct) {
-                                                siteStatus = "2";
-                                            }
-                                        }
+                                if (i == Math.round(Object.keys(response.siteMaps).length / 2) - 1) {
+                                    _default_lat = item.ltt;
+                                    _default_long = item.lgt;
+                                }
+                                _site[i] = [
+                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds),
+                                    item.ltt,
+                                    item.lgt,
+                                    app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
+                                ];
+                                _allLatLong[_count_allLatLong] = new google.maps.LatLng(item.ltt, item.lgt);
+                                _count_allLatLong++;
 
-                                        if (i == Math.round(Object.keys(response.siteMaps).length / 2) - 1) {
-                                            _default_lat = item.ltt;
-                                            _default_long = item.lgt;
-                                        }
-                                        _site[i] = [
-                                            app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne),
-                                            item.ltt,
-                                            item.lgt,
-                                            app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
-                                        ];
-                                        _allLatLong[_count_allLatLong] = new google.maps.LatLng(item.ltt, item.lgt);
-                                        _count_allLatLong++;
-
-                                    });
-                                    //alert("ok");
-                                    app.mapService.viewModel.setType_search('earch_site');
-                                    //---------go to set Marker ------------
-                                    app.mapService.viewModel._putMarker();
-                                    //app.mapService.viewModel.hideLoading();
-                                    operation.success(response);
+                            });
+                            //alert("ok");
+                            app.mapService.viewModel.setType_search('earch_site');
+                            //---------go to set Marker ------------
+                            app.mapService.viewModel._putMarker();
+                            //app.mapService.viewModel.hideLoading();
+                            operation.success(response);
 
                                 },
 

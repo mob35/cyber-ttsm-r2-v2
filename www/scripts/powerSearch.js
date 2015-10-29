@@ -831,7 +831,7 @@
                                                 ////console.log(xhr);
                                                 ////console.log(error);
                                                 navigator.notification.alert(xhr.status + error,
-                                                    function() {}, "Get My Job failed", 'OK');
+                                                    function() {}, "Get Power Search TTSME failed", 'OK');
                                                 return;
                                             }
                                         }
