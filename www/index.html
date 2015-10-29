@@ -1088,7 +1088,7 @@
                <input id="switchAssign" data-role="switch" data-on-label="A-Z" data-off-label="Z-A" >
             </div>
             <li> <font color = "White">Sort By</font></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')"><i class="fa fa-search position-left"></i>Count Down</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')">Count Down</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('jobId')">Job ID</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('title')">Title</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('siteAccessDesc')">Site Access(Code)</a></li>
@@ -2930,6 +2930,8 @@
         <div id="map-search-wrap" style="padding-top: 10px;" data-bind="visible: isGoogleMapsInitialized">
             <div style="float: left;">&nbsp;&nbsp;
                 <img id="earch_site" src="images/search_site_active.png" onclick="app.mapService.viewModel.setType_search('earch_site');" />
+                <img id="earch_site" src="images/search_site_active.png" onclick="app.mapService.viewModel.setType_search('earch_site');" />
+                <img id="earch_site" src="images/search_site_active.png" onclick="app.mapService.viewModel.setType_search('earch_site');" />
                 <img id="earch_mc" src="images/search_mc.png" onclick="app.mapService.viewModel.setType_search('earch_mc');" />
                 <img id="earch_job" src="images/search_job.png" onclick="app.mapService.viewModel.setType_search('earch_job');" />
                 <div class="div_searchText">
@@ -3635,15 +3637,37 @@
     <div data-role="view" id="powerService" data-model="app.powerSearchService.viewModel" data-init="app.powerSearchService.init" data-show="app.powerSearchService.show" data-hide="app.powerSearchService.hide" data-layout="tabstrip-layout">
         <div data-role="header">
             <div data-role="navbar">
+            <span><label data-bind="text: titletxtJobListMap"></label></span>
                 <a data-role="button" data-rel="drawer" href="#my-drawer" class="ion" data-icon="menu" data-align="left"></a>
                 <a data-icon="search" data-role="button" data-align="right" data-bind="click: onSearch"></a>
-                <span>Power Service</span>
+                
             </div>
         </div>
         <div style="height:10px">&nbsp;</div>
+        <div class="km-listview-wrapper" data-bind="visible: isSearch">
+            <form class="km-filter-form">
+                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheetPowerService" class="km-filter-reset" title="Sort"><span class="fa fa-search sort-icon"></span></a></div>
+            </form>
+            <ul data-role="actionsheet" id="sortActionSheetPowerService">
+            <div class="position-right">
+               <input id="switchPowerService" data-role="switch"  data-on-label="A-Z" data-off-label="Z-A" />
+            </div>
+            <li> <font color = "White">Sort By</font></li>
+            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('jobId')">Count Down</a></li>
+            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('jobId')">Job ID</a></li>
+            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('title')">Title</a></li>
+            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('siteAccessDesc')">Site Access(Code)</a></li>
+            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('siteAccessDesc')">Site Access(Name Thai)</a></li>
+            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('initiateDate')">Assign Date</a></li>
+            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('finishDate')">Finish Date</a></li>
+            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('priorityId')">Priority</a></li>
+            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('status')">Status</a></li>
+        </ul>
+        </div>
         <span>Last Updated :
                 <span data-bind="text: lastupdateaccept"></span>
         </span>
+
         <div style="height: 10px">&nbsp;</div>
         <div data-role="content">
             <ul id="lvPowerSearchList"></ul>
@@ -3815,7 +3839,19 @@
         <ul data-role="listview" id="lvAlarm" data-style="inset">
         </ul>
     </div>
+
     <!--End-->
+ <div data-role="view" id="SiteAlarmMob" data-layout="tabstrip-layout" data-model="app.jobService.viewModel">
+         <div data-role="header">
+             <div data-role="navbar">
+                 <span data-bind="text: siteAlarmMobType"></span>
+                 <a data-role="backbutton" data-align="left" class="fa" data-icon="fa-back"></a>
+             </div>
+             </div>
+                 <ul data-role="listview" id="lvAlarm" data-style="inset">
+                </ul>
+</div>
+
     <!--Profile-->
     <!--data-model="app.profileService.viewModel"-->
     <div data-role="view" id="Profile" data-model="app.profileService.viewModel" data-show="app.profileService.show" data-layout="tabstrip-layout">

@@ -334,6 +334,1933 @@
             }
 
         },
+
+        gotoAlarmMob: function(siteDesc) {
+            var siteCode = siteDesc.split('[');
+
+            //alert($.trim(siteCode[0]));
+            var sCode = $.trim(siteCode[0]);
+            //app.jobService.viewModel.gotoAlarmMobFromMap(sCode);
+            var alarmDataSource = new kendo.data.DataSource({
+                transport: {
+                    read: function(operation) {
+                        // var response = {
+                        //     "siteCode": sCode,
+                        //     "userId": userId,
+                        //     "token": localStorage.getItem("token"),
+                        //     "version": "2"
+                        // };
+
+                        if (app.configService.isMorkupData) {
+
+
+                            var response = {
+                                "jobBySites": [{
+                                    "jobId": "JB14-271876",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1419394200000,
+                                    "finishDate": 1419476400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB14-271877",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1419394260000,
+                                    "finishDate": 1419476400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB14-271875",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1419394140000,
+                                    "finishDate": 1419476400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB14-271878",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1419394260000,
+                                    "finishDate": 1419476400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB14-271879",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1419394560000,
+                                    "finishDate": 1419476400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB14-271882",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1419394800000,
+                                    "finishDate": 1419562800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB14-271881",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1419394800000,
+                                    "finishDate": 1419562800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB14-271880",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1419394740000,
+                                    "finishDate": 1419562800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB14-271884",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1419394920000,
+                                    "finishDate": 1419562800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB14-271883",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1419394860000,
+                                    "finishDate": 1419562800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000529",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135340000,
+                                    "finishDate": 1421316000000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000544",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421136000000,
+                                    "finishDate": 1421316000000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000527",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135280000,
+                                    "finishDate": 1421316000000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000543",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135940000,
+                                    "finishDate": 1421316000000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000121",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1420711260000,
+                                    "finishDate": 1421316000000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000542",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135880000,
+                                    "finishDate": 1421316000000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000116",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1420709520000,
+                                    "finishDate": 1421316000000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000528",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135280000,
+                                    "finishDate": 1421316000000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000540",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135820000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000539",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135820000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000538",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135760000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000535",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135700000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000533",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135460000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000532",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135400000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000530",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135340000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000541",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135880000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000112",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1420709400000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000114",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1420709460000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000537",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135760000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000536",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135700000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000534",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135700000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000531",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421135340000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000115",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1420709460000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000113",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1420709400000,
+                                    "finishDate": 1421726400000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000552",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421136420000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000546",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421136060000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000551",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421136420000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000118",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1420710780000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000549",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421136120000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000117",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1420710240000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000119",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1420711020000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000548",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421136120000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000554",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421136480000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000555",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421136540000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000550",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421136240000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000547",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421136060000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000556",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421136540000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000545",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421136000000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000553",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1421136480000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-000120",
+                                    "title": "CGNKSCT1_1-Test Alert Before/Over due Individaul ",
+                                    "assignBy": "776",
+                                    "assignByName": "Apichat Poddamrong",
+                                    "assignTo": "7478",
+                                    "assignToName": "Hansa Saensing",
+                                    "initiateDate": 1420711200000,
+                                    "finishDate": 1421812800000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "2",
+                                    "priorityName": "Minor",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": "CGNKSCT1_1",
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT14-587323",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT14-587323",
+                                    "taskDesc": "Test Alert Before/Over due Individaul",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }, {
+                                    "jobId": "JB15-007768",
+                                    "title": "CGNKSCT1_1-Send Email For Update Status ----New",
+                                    "assignBy": "10048",
+                                    "assignByName": "abkk003 abkk003",
+                                    "assignTo": "10048",
+                                    "assignToName": "abkk003 abkk003",
+                                    "initiateDate": 1431397800000,
+                                    "finishDate": 1431408600000,
+                                    "siteAccessDesc": "CGNKSCT1_1",
+                                    "priorityId": "1",
+                                    "priorityName": "None",
+                                    "statusId": "01",
+                                    "status": "Assign",
+                                    "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                    "siteAffect": null,
+                                    "reportTypeId": null,
+                                    "report": null,
+                                    "trId": null,
+                                    "faultAlarmNumber": null,
+                                    "ttId": "TT15-013905",
+                                    "reportTypeDesc": null,
+                                    "waitingReport": null,
+                                    "latitude": null,
+                                    "longtitude": null,
+                                    "cntProblemCause": "0",
+                                    "cntProblemSolve": "0",
+                                    "reportType": "01",
+                                    "cntProcess": "0",
+                                    "cntProblemSolvePerTemp": "0",
+                                    "reasonOverdueId": null,
+                                    "reasonOverdueDesc": null,
+                                    "groupJob": "TT15-013905",
+                                    "taskDesc": "ActivityTable:Send Email For Update Status ----New Detail:Send Email For Update Status ----New",
+                                    "siteNameTh": "ทางผ่านข้อมูลการใช้งานจีพีอาร์เอส",
+                                    "siteNameEn": "Charging Gateway"
+                                }],
+                                "userId": "7478",
+                                "siteId": "S-INS-1670",
+                                "version": "1"
+                            };
+
+                            operation.success(response);
+                        } else {
+
+                            $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                                beforeSend: app.loginService.viewModel.checkOnline,
+                                type: "POST",
+                                timeout: 180000,
+                                url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=getJobBySiteTTSME.json',
+                                data: JSON.stringify({
+                                    "siteCode": sCode,
+                                    "token": localStorage.getItem("token"),
+                                    "userId": JSON.parse(localStorage.getItem("profileData")).userId,
+                                    "version": "2"
+                                }),
+                                dataType: "json",
+                                contentType: 'application/json',
+                                success: function(response) {
+                                    //alert("Alarm Active not found.");
+                                    // navigator.notification.alert("Alarm Active not found.",
+                                    //     function() {}, "Alarm Active ", 'OK');
+
+                                    operation.success(response);
+                                },
+                                error: function(xhr, error) {
+                                    that.hideLoading();
+                                    if (!app.ajaxHandlerService.error(xhr, error)) {
+                                        ////console.log("Accept : Save incomplete! ");
+                                        ////console.log("err=>xhr : " + JSON.stringify(xhr) + ", error : " + error);
+                                        navigator.notification.alert(error,
+                                            function() {}, "Get job incomplete! ", 'OK');
+                                    }
+                                    //return false;
+                                },
+                                complete: function() {
+                                    app.myService.viewModel.hideLoading();
+                                }
+                            });
+                        }
+                    }
+                },
+                schema: {
+                    data: "jobBySites"
+                }
+            });
+
+            // alarmDataSource.fetch(function() {
+            // console.log(alarmDataSource);
+            // });
+            $("#lvPowerSearchList").kendoMobileListView({
+                dataSource: alarmDataSource,
+                //style: "inset",
+                template: $("#psearch-template").html(),
+                // pullToRefresh: true,
+                // endlessScroll: true
+            });
+
+            app.powerSearchService.viewModel.set("titletxtJobListMap", "Job List");
+            app.application.navigate(
+                '#powerService'
+            );
+
+        },
+
+
         clearCal: function() {
             directionsDisplay.setMap(null);
             // map.setZoom(map.getZoom() - 1);
@@ -1285,7 +3212,7 @@
 
         },
 
-        tempBalloon_allSite: function(nameSite_s, siteType, siteAlarm, la_site, long_site, jobsStatus, snt, sne) {
+        tempBalloon_allSite: function(nameSite_s, siteType, siteAlarm, la_site, long_site, jobsStatus, snt, sne, sIds) {
             infowindow = new google.maps.InfoWindow();
             var inFor = "";
             //nameSite_s = "name1,name2,name3";
@@ -1296,6 +3223,7 @@
             var arrStatus = jobsStatus.split(',');
             var arrNameTH = snt.split(',');
             var arrNameEN = sne.split(',');
+            var arrSId = sIds.split(',');
 
 
             for (var i = 0; i < arr.length; i++) {
@@ -1313,7 +3241,9 @@
                     var enhance_act_get_alarm = ' | &nbsp;' + '<a class="linkText fa" href="#SiteAlarmDtl" onclick="app.mapService.viewModel.gotoAlarmDtl(\'' + arr[i] + '\');">' +
                         '<i class="fa iconTTSM-notification6 assertive"></i>' +
                         '</a>';
-                    var enhance_act_get_job = ' | &nbsp;' + '<i class="fa fa-file"></i>';
+                    var enhance_act_get_job = ' | &nbsp;' + '<div class="linkText fa" style="cursor:pointer" onclick="app.mapService.viewModel.gotoAlarmMob(\'' + arrSId[i] + '\');">' +
+                        '<i class="fa fa-file"></i>' +
+                        '</div>';
                     //var enhance_act_get_job = '';
                     var enhance_act_get_name = 'Name TH :' + arrNameTH[i] + '<br>' + 'Name EN :' + arrNameEN[i];
                     var enhance_act_get_lalan = 'Lat Long :' + '<a class="linkText" onclick="app.mapService.viewModel.toClipboard(\'' + la_site + ',' + long_site + '\');"><span class="lalng">' + la_site + ',' + long_site + '</span></a>';
@@ -20369,6 +22299,7 @@
                                 var siteStatusList = "";
                                 var snt = "";
                                 var sne = "";
+                                var sIds = "";
                                 $.each(item.sDtls, function(ii, iitem) {
                                     //filterBy = iitem.sCd;
                                     filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc);
@@ -20376,6 +22307,7 @@
                                     siteTypes += iitem.sTy + ",";
                                     siteAlarms += iitem.sAl + ",";
                                     siteStatusList += iitem.jSt + ",";
+                                    sIds += iitem.sId + ",";
                                     imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
                                     snt += iitem.snt + ",";
                                     sne += iitem.sne + ",";
@@ -20406,7 +22338,7 @@
                                     _default_long = item.lgt;
                                 }
                                 _site[i] = [
-                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne),
+                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds),
                                     item.ltt,
                                     item.lgt,
                                     app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
@@ -20440,71 +22372,72 @@
 
                                     $.each(response.siteMaps, function(i, item) {
 
-                                        //alert(i);
-                                        var SITE_CODE = "";
-                                        var siteTypes = "";
-                                        var siteAlarms = "";
-                                        var imagePin = "";
-                                        var filterBy = "";
-                                        var siteOn = false;
-                                        var siteInAct = false;
-                                        var siteStatus = "0";
-                                        var siteStatusList = "";
-                                        var snt = "";
-                                        var sne = "";
-                                        $.each(item.sDtls, function(ii, iitem) {
-                                            //filterBy = iitem.sCd;
-                                            filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc);
-                                            SITE_CODE += filterBy + "|";
-                                            siteTypes += iitem.sTy + ",";
-                                            siteAlarms += iitem.sAl + ",";
-                                            siteStatusList += iitem.jSt + ",";
-                                            imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
-                                            snt += iitem.snt + ",";
-                                            sne += iitem.sne + ",";
+                                //alert(i);
+                                var SITE_CODE = "";
+                                var siteTypes = "";
+                                var siteAlarms = "";
+                                var imagePin = "";
+                                var filterBy = "";
+                                var siteOn = false;
+                                var siteInAct = false;
+                                var siteStatus = "0";
+                                var siteStatusList = "";
+                                var snt = "";
+                                var sne = "";
+                                var sIds = "";
+                                $.each(item.sDtls, function(ii, iitem) {
+                                    //filterBy = iitem.sCd;
+                                    filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc);
+                                    SITE_CODE += filterBy + "|";
+                                    siteTypes += iitem.sTy + ",";
+                                    siteAlarms += iitem.sAl + ",";
+                                    siteStatusList += iitem.jSt + ",";
+                                    sIds += iitem.sId + ",";
+                                    imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
+                                    snt += iitem.snt + ",";
+                                    sne += iitem.sne + ",";
 
-                                            _searchSite_data[count_searchSite] = ['<li onclick="app.mapService.viewModel.clickResult(\'' + filterBy + '\', \'' + item.ltt + '\', \'' + item.lgt + '\');" class="post_site" title="' + iitem.sTy + iitem.sAl + '" data-filter="' + filterBy + '"><a href="#tabstrip-map" style="text-decoration:none;"> ' +
-                                                '&nbsp;&nbsp; <img src="' + app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt) + '" class="icon_result_width" /> ' + filterBy + '</a></li>' +
-                                                ''
-                                            ];
-                                            //console.debug(_searchSite_data[count_searchSite]);
-                                            if (iitem.jSt == "1") {
-                                                siteOn = true;
-                                            }
-                                            if (iitem.jSt == "2") {
-                                                siteInAct = true;
-                                            }
-                                            count_searchSite++;
-                                        });
-                                        if (siteOn) {
-                                            siteStatus = "1";
-                                        } else {
-                                            if (siteInAct) {
-                                                siteStatus = "2";
-                                            }
-                                        }
+                                    _searchSite_data[count_searchSite] = ['<li onclick="app.mapService.viewModel.clickResult(\'' + filterBy + '\', \'' + item.ltt + '\', \'' + item.lgt + '\');" class="post_site" title="' + iitem.sTy + iitem.sAl + '" data-filter="' + filterBy + '"><a href="#tabstrip-map" style="text-decoration:none;"> ' +
+                                        '&nbsp;&nbsp; <img src="' + app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt) + '" class="icon_result_width" /> ' + filterBy + '</a></li>' +
+                                        ''
+                                    ];
+                                    //console.debug(_searchSite_data[count_searchSite]);
+                                    if (iitem.jSt == "1") {
+                                        siteOn = true;
+                                    }
+                                    if (iitem.jSt == "2") {
+                                        siteInAct = true;
+                                    }
+                                    count_searchSite++;
+                                });
+                                if (siteOn) {
+                                    siteStatus = "1";
+                                } else {
+                                    if (siteInAct) {
+                                        siteStatus = "2";
+                                    }
+                                }
 
-                                        if (i == Math.round(Object.keys(response.siteMaps).length / 2) - 1) {
-                                            _default_lat = item.ltt;
-                                            _default_long = item.lgt;
-                                        }
-                                        _site[i] = [
-                                            app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne),
-                                            item.ltt,
-                                            item.lgt,
-                                            app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
-                                        ];
-                                        _allLatLong[_count_allLatLong] = new google.maps.LatLng(item.ltt, item.lgt);
-                                        _count_allLatLong++;
+                                if (i == Math.round(Object.keys(response.siteMaps).length / 2) - 1) {
+                                    _default_lat = item.ltt;
+                                    _default_long = item.lgt;
+                                }
+                                _site[i] = [
+                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds),
+                                    item.ltt,
+                                    item.lgt,
+                                    app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
+                                ];
+                                _allLatLong[_count_allLatLong] = new google.maps.LatLng(item.ltt, item.lgt);
+                                _count_allLatLong++;
 
-                                    });
-                                    //alert("ok");
-                                    app.mapService.viewModel.setType_search('earch_site');
-                                    //---------go to set Marker ------------
-                                    app.mapService.viewModel._putSiteMarker();
-                                    $(".c_loading").hide();
-                                    //app.mapService.viewModel.hideLoading();
-                                    operation.success(response);
+                            });
+                            //alert("ok");
+                            app.mapService.viewModel.setType_search('earch_site');
+                            //---------go to set Marker ------------
+                            app.mapService.viewModel._putMarker();
+                            //app.mapService.viewModel.hideLoading();
+                            operation.success(response);
 
                                 },
 
@@ -39868,6 +41801,7 @@
                                 var siteStatusList = "";
                                 var snt = "";
                                 var sne = "";
+                                var sIds = "";
                                 $.each(item.sDtls, function(ii, iitem) {
                                     //filterBy = iitem.sCd;
                                     filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc);
@@ -39875,6 +41809,7 @@
                                     siteTypes += iitem.sTy + ",";
                                     siteAlarms += iitem.sAl + ",";
                                     siteStatusList += iitem.jSt + ",";
+                                    sIds += iitem.sId + ",";
                                     imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
                                     snt += iitem.snt + ",";
                                     sne += iitem.sne + ",";
@@ -39905,7 +41840,7 @@
                                     _default_long = item.lgt;
                                 }
                                 _site[i] = [
-                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne),
+                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds),
                                     item.ltt,
                                     item.lgt,
                                     app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
@@ -39936,73 +41871,74 @@
                                     //alert(JSON.stringify(response));
                                     //alert("success");
                                     var count_searchSite = 0;
+$.each(response.siteMaps, function(i, item) {
 
-                                    $.each(response.siteMaps, function(i, item) {
+                                //alert(i);
+                                var SITE_CODE = "";
+                                var siteTypes = "";
+                                var siteAlarms = "";
+                                var imagePin = "";
+                                var filterBy = "";
+                                var siteOn = false;
+                                var siteInAct = false;
+                                var siteStatus = "0";
+                                var siteStatusList = "";
+                                var snt = "";
+                                var sne = "";
+                                var sIds = "";
+                                $.each(item.sDtls, function(ii, iitem) {
+                                    //filterBy = iitem.sCd;
+                                    filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc);
+                                    SITE_CODE += filterBy + "|";
+                                    siteTypes += iitem.sTy + ",";
+                                    siteAlarms += iitem.sAl + ",";
+                                    siteStatusList += iitem.jSt + ",";
+                                    sIds += iitem.sId + ",";
+                                    imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
+                                    snt += iitem.snt + ",";
+                                    sne += iitem.sne + ",";
 
-                                        //alert(i);
-                                        var SITE_CODE = "";
-                                        var siteTypes = "";
-                                        var siteAlarms = "";
-                                        var imagePin = "";
-                                        var filterBy = "";
-                                        var siteOn = false;
-                                        var siteInAct = false;
-                                        var siteStatus = "0";
-                                        var siteStatusList = "";
-                                        var snt = "";
-                                        var sne = "";
-                                        $.each(item.sDtls, function(ii, iitem) {
-                                            //filterBy = iitem.sCd;
-                                            filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc);
-                                            SITE_CODE += filterBy + "|";
-                                            siteTypes += iitem.sTy + ",";
-                                            siteAlarms += iitem.sAl + ",";
-                                            siteStatusList += iitem.jSt + ",";
-                                            imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
-                                            snt += iitem.snt + ",";
-                                            sne += iitem.sne + ",";
+                                    _searchSite_data[count_searchSite] = ['<li onclick="app.mapService.viewModel.clickResult(\'' + filterBy + '\', \'' + item.ltt + '\', \'' + item.lgt + '\');" class="post_site" title="' + iitem.sTy + iitem.sAl + '" data-filter="' + filterBy + '"><a href="#tabstrip-map" style="text-decoration:none;"> ' +
+                                        '&nbsp;&nbsp; <img src="' + app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt) + '" class="icon_result_width" /> ' + filterBy + '</a></li>' +
+                                        ''
+                                    ];
+                                    //console.debug(_searchSite_data[count_searchSite]);
+                                    if (iitem.jSt == "1") {
+                                        siteOn = true;
+                                    }
+                                    if (iitem.jSt == "2") {
+                                        siteInAct = true;
+                                    }
+                                    count_searchSite++;
+                                });
+                                if (siteOn) {
+                                    siteStatus = "1";
+                                } else {
+                                    if (siteInAct) {
+                                        siteStatus = "2";
+                                    }
+                                }
 
-                                            _searchSite_data[count_searchSite] = ['<li onclick="app.mapService.viewModel.clickResult(\'' + filterBy + '\', \'' + item.ltt + '\', \'' + item.lgt + '\');" class="post_site" title="' + iitem.sTy + iitem.sAl + '" data-filter="' + filterBy + '"><a href="#tabstrip-map" style="text-decoration:none;"> ' +
-                                                '&nbsp;&nbsp; <img src="' + app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt) + '" class="icon_result_width" /> ' + filterBy + '</a></li>' +
-                                                ''
-                                            ];
-                                            //console.debug(_searchSite_data[count_searchSite]);
-                                            if (iitem.jSt == "1") {
-                                                siteOn = true;
-                                            }
-                                            if (iitem.jSt == "2") {
-                                                siteInAct = true;
-                                            }
-                                            count_searchSite++;
-                                        });
-                                        if (siteOn) {
-                                            siteStatus = "1";
-                                        } else {
-                                            if (siteInAct) {
-                                                siteStatus = "2";
-                                            }
-                                        }
+                                if (i == Math.round(Object.keys(response.siteMaps).length / 2) - 1) {
+                                    _default_lat = item.ltt;
+                                    _default_long = item.lgt;
+                                }
+                                _site[i] = [
+                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds),
+                                    item.ltt,
+                                    item.lgt,
+                                    app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
+                                ];
+                                _allLatLong[_count_allLatLong] = new google.maps.LatLng(item.ltt, item.lgt);
+                                _count_allLatLong++;
 
-                                        if (i == Math.round(Object.keys(response.siteMaps).length / 2) - 1) {
-                                            _default_lat = item.ltt;
-                                            _default_long = item.lgt;
-                                        }
-                                        _site[i] = [
-                                            app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne),
-                                            item.ltt,
-                                            item.lgt,
-                                            app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
-                                        ];
-                                        _allLatLong[_count_allLatLong] = new google.maps.LatLng(item.ltt, item.lgt);
-                                        _count_allLatLong++;
-
-                                    });
-                                    //alert("ok");
-                                    app.mapService.viewModel.setType_search('earch_site');
-                                    //---------go to set Marker ------------
-                                    app.mapService.viewModel._putMarker();
-                                    //app.mapService.viewModel.hideLoading();
-                                    operation.success(response);
+                            });
+                            //alert("ok");
+                            app.mapService.viewModel.setType_search('earch_site');
+                            //---------go to set Marker ------------
+                            app.mapService.viewModel._putMarker();
+                            //app.mapService.viewModel.hideLoading();
+                            operation.success(response);
 
                                 },
 
