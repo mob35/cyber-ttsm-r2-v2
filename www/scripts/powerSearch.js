@@ -311,6 +311,7 @@
         assignTo: "",
         assignBy: "",
         titletxt: 'Power Search',
+        titletxtJobListMap: 'Power Service',
         setTmp: function() {
             // alert("Region");
             // ddlregion
@@ -868,7 +869,7 @@
             }
         
             app.jobService.viewModel.set("jobDataSource",JBs);
-            app.jobService.viewModel.loadProblemAssign();
+            
             if ($("#lvPowerSearchList").data("kendoMobileListView") == undefined || $("#lvPowerSearchList").data("kendoMobileListView") == null) {
                 $("#lvPowerSearchList").kendoMobileListView({
                     dataSource: JBs,
@@ -887,7 +888,51 @@
                     '#powerService'
                 );
             
+        },
+        filterAllocateEvent: function() {
+            var that = app.powerSearchService.viewModel;
+            //that.showLoading();
+            var allocateFilter = that.get("allocateFilter");
+            //console.log(assignFilter);
 
+            var lvPowerSearchList = $("#lvPowerSearchList").data("kendoMobileListView");
+            // ////console.log("Assign Filter : " + index);
+            // that.showLoading();
+            var filterJob = {
+                field: "jobId",
+                operator: "contains",
+                value: allocateFilter
+            };
+
+            lvPowerSearchList.dataSource.filter(filterJob);
+            //jigkoh comment for not re-read datasource
+            //lvPowerSearchList.dataSource.read();
+            lvPowerSearchList.refresh();
+            app.application.view().scroller.reset();
+        },
+        onSearch: function() {
+            var that = this
+            that.set("isSearch", !that.get("isSearch"));
+            that.set("searchtxt", "");
+        },
+        openActSheetPowerService: function() {
+            $("#sortActionSheetPowerService").data("kendoMobileActionSheet").open();
+        },
+        onPowerServiceSortby: function(fieldName) {
+            console.debug(fieldName);
+            var switchInstance = $("#switchPowerService").data("kendoMobileSwitch");
+            console.log(switchInstance.check());
+            var lvPowerSearchList = $("#lvPowerSearchList").data("kendoMobileListView");
+
+            lvPowerSearchList.dataSource.sort({
+                field: fieldName,
+                dir: switchInstance.check() ? "asc" : "desc"
+            });
+            //jigkoh comment for not re-read datasource
+            //lvReallocate.dataSource.read();
+            lvPowerSearchList.refresh();
+            app.application.view().scroller.reset();
+            $("#sortActionSheetPowerService").data("kendoMobileActionSheet").close();
         },
     });
     app.powerSearchService = {
