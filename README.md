@@ -20,3 +20,20 @@ List:
 	1:Power Search & My Team[label]
 	2:Remark Over Due
 	3:Search & Sort Job List [Inbox, Active Box]
+
+version: "2.0.6"
+List:
+	1:Map goto Power Service[Search & Sort]
+	  Map icon [file-index]
+	2:Power Service [Service]
+	3:Direction
+	4:ChangeIcon [tripstrip edit & Sort]
+
+version: "2.0.7"
+List:
+	1:index
+	-icon
+	-font-awesome
+	-input nameTH, nameEN
+	2:map.js [nameTH, nameEN]
+	3:style4.css [font-awesome]

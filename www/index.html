@@ -16,6 +16,7 @@
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/style2.css" rel="stylesheet" />
     <link href="css/style3.css" rel="stylesheet" />
+    <link href="css/style4.css" rel="stylesheet" />
     <link href="css/ionic.css" rel="stylesheet" />
     <link href="styles/main.css" rel="stylesheet" />
     <link href="styles/icon.css" rel="stylesheet" />
@@ -2976,8 +2977,10 @@
         <div id="map-search-wrap" style="padding-top: 10px;" data-bind="visible: isGoogleMapsInitialized">
             <div style="float: left;">&nbsp;&nbsp;
                 <img id="earch_site" src="images/search_site_active.png" onclick="app.mapService.viewModel.setType_search('earch_site');" />
-                <img id="earch_site" src="images/search_site_active.png" onclick="app.mapService.viewModel.setType_search('earch_site');" />
-                <img id="earch_site" src="images/search_site_active.png" onclick="app.mapService.viewModel.setType_search('earch_site');" />
+                <!--<img id="earch_nameTH" src="images/search_nameTH_active.png" onclick="app.mapService.viewModel.setType_search('earch_nameTH');" />-->
+                <!--<img id="earch_nameEN" src="images/search_nameEN_active.png" onclick="app.mapService.viewModel.setType_search('earch_nameEN');" />-->
+                <span id="earch_nameTH" onclick="app.mapService.viewModel.setType_search('earch_nameTH');"><i class="fa icon-search_nameTH" style="font-size: 2.0em;" ></i>&nbsp;</span>
+                <span id="earch_nameEN" onclick="app.mapService.viewModel.setType_search('earch_nameEN');"><i class="fa icon-search_nameEN" style="font-size: 2.0em;" ></i> </span>
                 <img id="earch_mc" src="images/search_mc.png" onclick="app.mapService.viewModel.setType_search('earch_mc');" />
                 <img id="earch_job" src="images/search_job.png" onclick="app.mapService.viewModel.setType_search('earch_job');" />
                 <div class="div_searchText">
@@ -3007,6 +3010,10 @@
          
          <input id="search_site" type="submit" value="" style="display: none" data-bind="click: showicon" />
          <input id="search_site_active" type="submit" value="" data-bind="click: showicon" />
+         <input id="search_nameTH" type="submit" value="" style="display: none" data-bind="click: showicon" />
+         <input id="search_nameTH_active" type="submit" value="" data-bind="click: showicon" />
+         <input id="search_nameEN" type="submit" value="" style="display: none" data-bind="click: showicon" />
+         <input id="search_nameEN_active" type="submit" value="" data-bind="click: showicon" />
          <input id="search_mc" type="submit" value="" data-bind="click: showicon" />
          <input id="search_mc_active" type="submit" style="display: none" value="" data-bind="click: showicon" />
          <input id="search_job" type="submit" value="" data-bind="click: showicon" />
@@ -3122,6 +3129,10 @@
         <div>
             <!--<input id="search_site" type="submit" value="" style="display: none" data-bind="click: showicon" />
                 <input id="search_site_active" type="submit" value="" data-bind="click: showicon" />
+                <input id="search_nameTH" type="submit" value="" style="display: none" data-bind="click: showicon" />
+                <input id="search_nameTH_active" type="submit" value="" data-bind="click: showicon" />
+                <input id="search_nameEN" type="submit" value="" style="display: none" data-bind="click: showicon" />
+                <input id="search_nameEN_active" type="submit" value="" data-bind="click: showicon" />
                 <input id="search_mc" type="submit" value="" data-bind="click: showicon" />
                 <input id="search_mc_active" type="submit" style="display: none" value="" data-bind="click: showicon" />
                 <input id="search_job" type="submit" value="" data-bind="click: showicon" />
