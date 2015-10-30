@@ -9,7 +9,7 @@
     //serviceUrl: 'http://172.16.45.92:8080/TTSMWeb/rest-service/',
  fingerprint: 'E5 32 A9 68 C6 E2 51 54 3B 6A E9 5D 1C 34 22 8D 51 DD 56 B3',//TTSDEV
 // fingerprint: '4c e9 58 42 0f 63 c7 e0 b1 ed 8d 50 f3 c9 c0 aa d6 14 08 b4',//TTSM production
- version: "2.0.5",
+ version: "2.0.7",
  //downloadVersionPath : "http://rss.ais.co.th/mobileappdep/TTS_Mobility/",//TTSDEV
  downloadVersionPath : "http://rss.ais.co.th/mobileappdep/TTS_Mobility/",//TTSPROD
  //timeout: 120000,

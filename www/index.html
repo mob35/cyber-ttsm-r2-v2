@@ -2004,7 +2004,10 @@
         <div class="position-right">
             <a href="#problem-cause-master" data-role="button" data-icon="add" style="color: green"></a>
             <a data-role="button" data-bind="click: onDelProbm" data-icon="delete" style="color: red"></a>
+            <a href="#favorite-for-problem-cause" class="icon-Favorite2 position-right " data-role="button" data-icon="add" style="color: green"></a>
+            <a href="#Fproblem-cause" class="icon-Favorite1 position-right" data-role="button" data-icon="add" style="color: green"></a>
         </div>
+
         <div data-role="content">
             <ul id="lvJobProblemCause"></ul>
         </div>
@@ -2056,6 +2059,8 @@
         <div class="position-right">
             <a href="#problem-cause-multi-master" data-role="button" data-icon="add" style="color: green"></a>
             <a data-role="button" data-bind="click: onDelProbmCM" data-icon="delete" style="color: red"></a>
+            <a href="#favorite-for-problem-cause" class="position-right" data-role="button" data-icon="add" style="color: green"></a>
+            <a href="#Fproblem-cause" class="position-right" data-role="button" data-icon="add" style="color: green"></a>
         </div>
         <div data-role="content">
             <ul id="lvJobProblemCauseM"></ul>
@@ -2073,7 +2078,7 @@
     <div data-title="Problem Cause Multi Master" data-role="view" id="problem-cause-multi-master" data-layout="tabstrip-layout" data-init="app.problemCauseMultiService.init" data-show="app.problemCauseMultiService.show" data-model="app.problemCauseMultiService.viewModel" data-url="/">
         <header data-role="header">
             <div data-role="navbar">
-                <a href="#job-problem-cause-multi" data-bind="click: onBack" data-role="button" class="fa" data-icon="fa-back" data-align="left"></a>
+                <a href="#favorite-for-problem-cause" data-bind="click: onBack" data-role="button" class="fa" data-icon="fa-back" data-align="left"></a>
                 <span data-role="view-title">Problem Cause Multi Master</span>
             </div>
         </header>
@@ -2097,6 +2102,47 @@
     </script>
     <!--end problemtemplate-->
     <!--end problemcauseMulti-->
+
+        <div data-title="Problem Cause" data-role="view" id="Fproblem-cause" data-layout="tabstrip-layout" data-init="app.faProblemCauseService.init" data-show="app.faProblemCauseService.show" data-model="app.faProblemCauseService.viewModel" data-url="/">
+        <header data-role="header">
+            <div data-role="navbar">
+                <a href="#tabstrip-edit" data-role="button" class="fa" data-icon="fa-back" data-align="left"></a>
+                <span data-role="view-title">Problem Cause</span>
+            </div>
+        </header>
+            <div data-role="content">
+            <!--<ul data-role="listview">
+             <li>
+             <div class="position-right">
+             <a href="#" data-role="button" class="fa fa-plus-circle" style="color: green"></a>
+             <a href="#" data-role="button" data-bind-"click: onDelProbm" class="fa fa-minus-circle" style="color: red"></a>
+             </div>
+             </li>
+             </ul>-->
+            <ul id="lvFProblemCause"></ul>
+        </div>
+    </div>
+    <!--problemMastertemplate-->
+    <script type="text/x-kendo-tmpl" id="Fproblem-cause-template">
+        <a data-icon="contact">
+            ${problemCauseDesc} - ${problemCauseSubDesc}
+            </a>
+    </script>
+    <!--end problemMastertemplate-->
+    <!-- Favorite for Problem Cause-->
+    <div data-title="Favorite for Problem Cause" data-role="view" id="favorite-for-problem-cause" data-layout="tabstrip-layout" data-show="app.jobService.loadProblemCauseM" data-model="app.jobService.viewModel" data-after-show="app.jobService.viewModel.onClearAllCheck">
+        <header data-role="header">
+            <div data-role="navbar">
+                <a href="#job-problem-cause" data-role="button" class="fa" data-icon="fa-back" data-align="left"></a>
+                <span data-role="view-title">Favorite for Problem Cause</span>
+            </div>
+        </header>
+       
+        <div data-role="content">
+            <ul id="lvJobProblemCauseM"></ul>
+        </div>
+    </div>
+    <!--end Favorite for Problem Cause-->
     <!-- problemsolve-->
     <div data-title="Problem Solve" data-role="view" id="job-problem-solve" data-layout="tabstrip-layout" data-show="app.jobService.loadProblemSolve" data-model="app.jobService.viewModel" data-after-show="app.jobService.viewModel.onClearAllCheckPS">
         <header data-role="header">
@@ -4172,10 +4218,9 @@
         </label>
     </script>
     <script id="lv-site-Direc-template" type="text/x-kendo-template">
-            
             ${siteCode}
-            #if(latitude != null && longitude != null){#
-    <span class="position-right "><i class="fa iconTTSM-compass2 icon-red" style="font-size: 2.0em" ></i> </span> #}#
+            #if(latitude != null && longitude != null){#<span class="position-right "><i class="icon-Favorite1 icon-red" style="font-size: 2.0em" ></i> </span>
+     #}#
             
     </script>
     <script id="multi-zone-template" type="text/x-kendo-template">
@@ -4336,6 +4381,7 @@
     <script src="scripts/siteAccess.js"></script>
     <script src="scripts/reasonOverDue.js"></script>
     <script src="scripts/powerSearch.js"></script>
+    <script src="scripts/favproblemcause.js"></script>
     <!--end-->
     <script src="scripts/dashboard.js"></script>
     <script src="scripts/dashboardFilter.js"></script>
