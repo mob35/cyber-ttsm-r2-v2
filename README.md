@@ -32,8 +32,9 @@ List:
 version: "2.0.7"
 List:
 	1:index
-	-icon
-	-font-awesome
-	-input nameTH, nameEN
+		-icon
+		-font-awesome
+		-input nameTH, nameEN
 	2:map.js [nameTH, nameEN]
 	3:style4.css [font-awesome]
+	4:Favorite

@@ -33,7 +33,7 @@
 					that.hideLoading();
 				},
 				filterable: {
-					field: "description",
+					field: "problemCauseDesc",
 					ignoreCase: true
 				},
 				click: function(e) {
