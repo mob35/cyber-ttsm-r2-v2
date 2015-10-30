@@ -445,6 +445,54 @@ body, html
     background-position: center center;
 }
 
+#search_nameTH
+{
+    width: 24px;
+    height: 40px;
+    color: #fff;
+    border: none;
+    background: none;
+    background-image: url(../images/search_site.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#search_nameTH_active
+{
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    border: none;
+    background: none;
+    background-image: url(../images/search_site_active.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#search_nameEN
+{
+    width: 24px;
+    height: 40px;
+    color: #fff;
+    border: none;
+    background: none;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#search_nameEN_active
+{
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    border: none;
+    background: none;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
 #search_mc
 {
     width: 24px;

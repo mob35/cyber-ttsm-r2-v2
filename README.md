@@ -28,3 +28,12 @@ List:
 	2:Power Service [Service]
 	3:Direction
 	4:ChangeIcon [tripstrip edit & Sort]
+
+version: "2.0.7"
+List:
+	1:index
+	-icon
+	-font-awesome
+	-input nameTH, nameEN
+	2:map.js [nameTH, nameEN]
+	3:style4.css [font-awesome]
