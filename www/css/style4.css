@@ -9,7 +9,7 @@
 	font-style: normal;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="icons-"], [class*=" icons-"] {
 	font-family: 'search_site';
 	speak: none;
 	font-style: normal;
@@ -23,13 +23,13 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.icon-search_nameEN:before {
+.icons-search_nameEN:before {
 	content: "\e900";
 }
-.icon-search_nameTH:before {
+.icons-search_nameTH:before {
 	content: "\e901";
 }
-.icon-search_site:before {
+.icons-search_site:before {
 	content: "\e902";
 }
 

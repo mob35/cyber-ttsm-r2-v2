@@ -2003,10 +2003,10 @@
             </div>
         </header>
         <div class="position-right">
-            <a href="#problem-cause-master" data-role="button" data-icon="add" style="color: green"></a>
-            <a data-role="button" data-bind="click: onDelProbm" data-icon="delete" style="color: red"></a>
-            <a href="#favorite-for-problem-cause" class="icon-Favorite2 position-right " data-role="button" data-icon="add" style="color: green"></a>
-            <a href="#Fproblem-cause" class="icon-Favorite1 position-right" data-role="button" data-icon="add" style="color: green"></a>
+            <a href="#problem-cause-master" class="size"data-role="button" data-icon="add" style="color: green"></a>
+            <a data-role="button" class="size"data-bind="click: onDelProbm" data-icon="delete" style="color: red"></a>
+            <a href="#favorite-for-problem-cause" class="icon-Favorite2 position-right size" data-role="button"  style="color: yellow"></a>
+            <a href="#Fproblem-cause" class="icon-Favorite1 position-right size" data-role="button"  style="color: yellow"></a>
         </div>
 
         <div data-role="content">
@@ -2979,8 +2979,8 @@
                 <img id="earch_site" src="images/search_site_active.png" onclick="app.mapService.viewModel.setType_search('earch_site');" />
                 <!--<img id="earch_nameTH" src="images/search_nameTH_active.png" onclick="app.mapService.viewModel.setType_search('earch_nameTH');" />-->
                 <!--<img id="earch_nameEN" src="images/search_nameEN_active.png" onclick="app.mapService.viewModel.setType_search('earch_nameEN');" />-->
-                <span id="earch_nameTH" onclick="app.mapService.viewModel.setType_search('earch_nameTH');"><i class="fa icon-search_nameTH" style="font-size: 2.0em;" ></i>&nbsp;</span>
-                <span id="earch_nameEN" onclick="app.mapService.viewModel.setType_search('earch_nameEN');"><i class="fa icon-search_nameEN" style="font-size: 2.0em;" ></i> </span>
+                <span id="earch_nameTH" onclick="app.mapService.viewModel.setType_search('earch_nameTH');"><i class="fa icons-search_nameTH" style="font-size: 2.0em;" ></i>&nbsp;</span>
+                <span id="earch_nameEN" onclick="app.mapService.viewModel.setType_search('earch_nameEN');"><i class="fa icons-search_nameEN" style="font-size: 2.0em;" ></i> </span>
                 <img id="earch_mc" src="images/search_mc.png" onclick="app.mapService.viewModel.setType_search('earch_mc');" />
                 <img id="earch_job" src="images/search_job.png" onclick="app.mapService.viewModel.setType_search('earch_job');" />
                 <div class="div_searchText">
@@ -3703,7 +3703,7 @@
         <div style="height:10px">&nbsp;</div>
         <div class="km-listview-wrapper" data-bind="visible: isSearch">
             <form class="km-filter-form">
-                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheetPowerService" class="km-filter-reset" title="Sort"><span class="fa fa-search sort-icon"></span></a></div>
+                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheetPowerService" class="km-filter-reset" title="Sort"><span class="fa icon-AZ3 sort-icon"></span></a></div>
             </form>
             <ul data-role="actionsheet" id="sortActionSheetPowerService">
             <div class="position-right">
@@ -3855,14 +3855,14 @@
     <div data-role="view" id="SiteDirection" data-layout="tabstrip-layout" data-model="app.jobService.viewModel">
         <div data-role="header">
             <div data-role="navbar">
-                <span>SiteD</span>
+                <span>Site</span>
                 <a data-role="backbutton" data-align="left" class="fa" data-icon="fa-back"></a>
                 </div>
         </div>
         <center class="job-bar" data-bind="text: alarmJobId"></center>
         <ul id="AlarmGroup" data-role="buttongroup" style="color: #74A333" data-index="0">
-            <li>Site AccessD</li>
-            <li>Site AffectD</li>
+            <li>Site Access</li>
+            <li>Site Affect</li>
         </ul>
         <ul data-role="listview" id="lvSiteDirec" data-style="inset" data-bind="events: { click: gotoMap }">
         </ul>
@@ -4230,7 +4230,8 @@
     </script>
     <script id="lv-site-Direc-template" type="text/x-kendo-template">
             ${siteCode}
-            #if(latitude != null && longitude != null){#<span class="position-right "><i class="icon-Favorite1 icon-red" style="font-size: 2.0em" ></i> </span>
+            <i class="icon-Favorite1 icon-red" style="font-size: 2.0em" ></i>
+            #if(latitude != null && longitude != null){#<span class="position-right "> </span>
      #}#
             
     </script>
