@@ -899,9 +899,24 @@
             // ////console.log("Assign Filter : " + index);
             // that.showLoading();
             var filterJob = {
+                logic: "or",
+                filters: [{
                 field: "jobId",
                 operator: "contains",
                 value: allocateFilter
+            },{
+                    field: "title",
+                    operator: "contains",
+                    value: allocateFilter
+                },{
+                    field: "assignByName",
+                    operator: "contains",
+                    value: allocateFilter
+                },{
+                    field: "siteAccessDesc",
+                    operator: "contains",
+                    value: allocateFilter
+                }]
             };
 
             lvPowerSearchList.dataSource.filter(filterJob);

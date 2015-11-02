@@ -116,9 +116,24 @@
             // ////console.log("Assign Filter : " + index);
             // that.showLoading();
             var filterJob = {
+                logic: "or",
+                filters: [{
                 field: "jobId",
                 operator: "contains",
                 value: allocateFilter
+            },{
+                    field: "title",
+                    operator: "contains",
+                    value: allocateFilter
+                },{
+                    field: "assignByName",
+                    operator: "contains",
+                    value: allocateFilter
+                },{
+                    field: "siteAccessDesc",
+                    operator: "contains",
+                    value: allocateFilter
+                }]
             };
 
             lvReallocate.dataSource.filter(filterJob);
@@ -165,7 +180,7 @@
                                 beforeSend: app.loginService.viewModel.checkOnline,
                                 type: "POST",
                                 timeout: 180000,
-                                url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=getJob.json',
+                                url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=getJobTTSME.json',
                                 data: JSON.stringify({
                                     "token": localStorage.getItem("token"),
                                     "userId": userId,
@@ -291,7 +306,7 @@
                                 beforeSend: app.loginService.viewModel.checkOnline,
                                 type: "POST",
                                 timeout: 180000,
-                                url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=getJob.json',
+                                url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=getJobTTSME.json',
                                 data: JSON.stringify({
                                     "token": localStorage.getItem("token"),
                                     "userId": userId,
@@ -930,7 +945,7 @@
                                     //url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=getTeamMember.json',
 
 
-                                    url: app.configService.serviceUrl + 'post-json.service?s=transactionion-service&o=getReallocateTTSME.json',
+                                    url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=getReallocateTTSME.json',
 
                                     data: JSON.stringify({
                                         "token": localStorage.getItem("token"),

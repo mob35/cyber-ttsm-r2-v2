@@ -145,9 +145,11 @@
         </ul>
         <ul data-role="actionsheet" id="sortActionSheetReAllocate">
             <div class="position-right">
-               <input id="switchReAllocate" data-role="switch"  data-on-label="A-Z" data-off-label="Z-A" />
+                <input id="switchReAllocate" data-role="switch" data-on-label="A-Z" data-off-label="Z-A" />
             </div>
-            <li> <font color = "White">Sort By</font></li>
+            <li>
+                <font color="White">Sort By</font>
+            </li>
             <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('jobId')">Count Down</a></li>
             <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('jobId')">Job ID</a></li>
             <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('title')">Title</a></li>
@@ -296,7 +298,7 @@
             <div data-role="navbar">
                 <a data-role="button" data-rel="drawer" href="#my-drawer" class="ion" data-icon="menu" data-align="left"></a>
                 <span data-role="view-title"></span>
-                <a data-icon="search" data-role="button" data-align="right" data-bind ="click:gotoPserach"></a>
+                <a data-icon="search" data-role="button" data-align="right" data-bind="click:gotoPserach"></a>
                 <!-- <a data-icon="search" data-role="button" data-align="right" data-bind="click: onSearch"></a> -->
             </div>
         </div>
@@ -1086,9 +1088,11 @@
         </ul>
         <ul data-role="actionsheet" id="sortActionSheet">
             <div class="position-right">
-               <input id="switchAssign" data-role="switch" data-on-label="A-Z" data-off-label="Z-A" >
+                <input id="switchAssign" data-role="switch" data-on-label="A-Z" data-off-label="Z-A">
             </div>
-            <li> <font color = "White">Sort By</font></li>
+            <li>
+                <font color="White">Sort By</font>
+            </li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')">Count Down</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('jobId')">Job ID</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('title')">Title</a></li>
@@ -1310,9 +1314,11 @@
         </ul>
         <ul data-role="actionsheet" id="sortActionSheetAccept">
             <div class="position-right">
-               <input id="switchAccept" data-role="switch"  data-on-label="A-Z" data-off-label="Z-A" />
+                <input id="switchAccept" data-role="switch" data-on-label="A-Z" data-off-label="Z-A" />
             </div>
-            <li> <font color = "White">Sort By</font></li>
+            <li>
+                <font color="White">Sort By</font>
+            </li>
             <li> <a data-action="app.jobService.viewModel.onAcceptSortby('jobId')">Count Down</a></li>
             <li> <a data-action="app.jobService.viewModel.onAcceptSortby('jobId')">Job ID</a></li>
             <li> <a data-action="app.jobService.viewModel.onAcceptSortby('title')">Title</a></li>
@@ -2003,12 +2009,11 @@
             </div>
         </header>
         <div class="position-right">
-            <a href="#problem-cause-master" class="size"data-role="button" data-icon="add" style="color: green"></a>
-            <a data-role="button" class="size"data-bind="click: onDelProbm" data-icon="delete" style="color: red"></a>
-            <a href="#favorite-for-problem-cause" class="icon-Favorite2 position-right size" data-role="button"  style="color: yellow"></a>
-            <a href="#Fproblem-cause" class="icon-Favorite1 position-right size" data-role="button"  style="color: yellow"></a>
+            <a href="#problem-cause-master" class="sizes" data-role="button" data-icon="add" style="color: green"></a>
+            <a data-role="button" class="sizes" data-bind="click: onDelProbm" data-icon="delete" style="color: red"></a>
+            <a href="#Fproblem-cause" class="icon-Favorite2 position-right size" data-role="button"></a>
+            <a data-role="button" class="icon-Favorite1 position-right size" data-bind="click: onAddFavorite"></a>
         </div>
-
         <div data-role="content">
             <ul id="lvJobProblemCause"></ul>
         </div>
@@ -2103,15 +2108,14 @@
     </script>
     <!--end problemtemplate-->
     <!--end problemcauseMulti-->
-
-        <div data-title="Problem Cause" data-role="view" id="Fproblem-cause" data-layout="tabstrip-layout" data-init="app.faProblemCauseService.init" data-show="app.faProblemCauseService.show" data-model="app.faProblemCauseService.viewModel" data-url="/">
+    <div data-title="Problem Cause" data-role="view" id="Fproblem-cause" data-layout="tabstrip-layout" data-init="app.faProblemCauseService.init" data-show="app.faProblemCauseService.show" data-model="app.faProblemCauseService.viewModel" data-url="/">
         <header data-role="header">
             <div data-role="navbar">
                 <a href="#tabstrip-edit" data-role="button" class="fa" data-icon="fa-back" data-align="left"></a>
                 <span data-role="view-title">Problem Cause</span>
             </div>
         </header>
-            <div data-role="content">
+        <div data-role="content">
             <!--<ul data-role="listview">
              <li>
              <div class="position-right">
@@ -2138,7 +2142,6 @@
                 <span data-role="view-title">Favorite for Problem Cause</span>
             </div>
         </header>
-       
         <div data-role="content">
             <ul id="lvJobProblemCauseM"></ul>
         </div>
@@ -3694,10 +3697,9 @@
     <div data-role="view" id="powerService" data-model="app.powerSearchService.viewModel" data-init="app.powerSearchService.init" data-show="app.powerSearchService.show" data-hide="app.powerSearchService.hide" data-layout="tabstrip-layout">
         <div data-role="header">
             <div data-role="navbar">
-            <span><label data-bind="text: titletxtJobListMap"></label></span>
+                <span><label data-bind="text: titletxtJobListMap"></label></span>
                 <a data-role="button" data-rel="drawer" href="#my-drawer" class="ion" data-icon="menu" data-align="left"></a>
                 <a data-icon="search" data-role="button" data-align="right" data-bind="click: onSearch"></a>
-                
             </div>
         </div>
         <div style="height:10px">&nbsp;</div>
@@ -3706,25 +3708,26 @@
                 <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheetPowerService" class="km-filter-reset" title="Sort"><span class="fa icon-AZ3 sort-icon"></span></a></div>
             </form>
             <ul data-role="actionsheet" id="sortActionSheetPowerService">
-            <div class="position-right">
-               <input id="switchPowerService" data-role="switch"  data-on-label="A-Z" data-off-label="Z-A" />
-            </div>
-            <li> <font color = "White">Sort By</font></li>
-            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('jobId')">Count Down</a></li>
-            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('jobId')">Job ID</a></li>
-            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('title')">Title</a></li>
-            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('siteAccessDesc')">Site Access(Code)</a></li>
-            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('siteAccessDesc')">Site Access(Name Thai)</a></li>
-            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('initiateDate')">Assign Date</a></li>
-            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('finishDate')">Finish Date</a></li>
-            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('priorityId')">Priority</a></li>
-            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('status')">Status</a></li>
-        </ul>
+                <div class="position-right">
+                    <input id="switchPowerService" data-role="switch" data-on-label="A-Z" data-off-label="Z-A" />
+                </div>
+                <li>
+                    <font color="White">Sort By</font>
+                </li>
+                <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('jobId')">Count Down</a></li>
+                <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('jobId')">Job ID</a></li>
+                <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('title')">Title</a></li>
+                <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('siteAccessDesc')">Site Access(Code)</a></li>
+                <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('siteAccessDesc')">Site Access(Name Thai)</a></li>
+                <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('initiateDate')">Assign Date</a></li>
+                <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('finishDate')">Finish Date</a></li>
+                <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('priorityId')">Priority</a></li>
+                <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('status')">Status</a></li>
+            </ul>
         </div>
         <span>Last Updated :
                 <span data-bind="text: lastupdateaccept"></span>
         </span>
-
         <div style="height: 10px">&nbsp;</div>
         <div data-role="content">
             <ul id="lvPowerSearchList"></ul>
@@ -3857,7 +3860,7 @@
             <div data-role="navbar">
                 <span>Site</span>
                 <a data-role="backbutton" data-align="left" class="fa" data-icon="fa-back"></a>
-                </div>
+            </div>
         </div>
         <center class="job-bar" data-bind="text: alarmJobId"></center>
         <ul id="AlarmGroup" data-role="buttongroup" style="color: #74A333" data-index="0">
@@ -3896,19 +3899,17 @@
         <ul data-role="listview" id="lvAlarm" data-style="inset">
         </ul>
     </div>
-
     <!--End-->
- <div data-role="view" id="SiteAlarmMob" data-layout="tabstrip-layout" data-model="app.jobService.viewModel">
-         <div data-role="header">
-             <div data-role="navbar">
-                 <span data-bind="text: siteAlarmMobType"></span>
-                 <a data-role="backbutton" data-align="left" class="fa" data-icon="fa-back"></a>
-             </div>
-             </div>
-                 <ul data-role="listview" id="lvAlarm" data-style="inset">
-                </ul>
-</div>
-
+    <div data-role="view" id="SiteAlarmMob" data-layout="tabstrip-layout" data-model="app.jobService.viewModel">
+        <div data-role="header">
+            <div data-role="navbar">
+                <span data-bind="text: siteAlarmMobType"></span>
+                <a data-role="backbutton" data-align="left" class="fa" data-icon="fa-back"></a>
+            </div>
+        </div>
+        <ul data-role="listview" id="lvAlarm" data-style="inset">
+        </ul>
+    </div>
     <!--Profile-->
     <!--data-model="app.profileService.viewModel"-->
     <div data-role="view" id="Profile" data-model="app.profileService.viewModel" data-show="app.profileService.show" data-layout="tabstrip-layout">
@@ -4225,14 +4226,10 @@
         <label data-icon="contact">
             #if(checkFlag=="1" || checkFlag=="2"){#
             <input type="checkbox" class="chkSiteAlarm-${siteCode}" #=checkFlag=="2" ? checked="checked" : "" # /> #}# ${siteCode}
-
         </label>
     </script>
     <script id="lv-site-Direc-template" type="text/x-kendo-template">
-            ${siteCode}
-            #if(latitude != null && longitude != null){#<span class="position-right "><i class="icon-Favorite1 icon-red" style="font-size: 2.0em" ></i></span>
-     #}#
-            
+        ${siteCode} #if(latitude != null && longitude != null){#<span class="position-right "><i class="icon-Favorite1 icon-red" style="font-size: 2.0em" ></i></span> #}#
     </script>
     <script id="multi-zone-template" type="text/x-kendo-template">
         <label data-icon="contact">
@@ -4412,8 +4409,6 @@
         var datess = moment(timess / 1000, 'X').format("DD-MMMM-YYYY HH:mm:ss");
         return datess;
     }
-
-    
     </script>
 </body>
 
