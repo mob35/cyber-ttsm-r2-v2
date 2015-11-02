@@ -12,6 +12,9 @@
 				return true;
 			}
 		},
+
+		
+
 		gotoMulti: function() {
 
 			app.multiService.viewModel.set("returnurl", "Y");
@@ -21,6 +24,12 @@
 
 
 		},
+
+		gotoPserach: function(){
+           app.powerSearchService.viewModel.set("titletxt", "Power Search");
+           app.application.navigate('#powerSearch');
+           },
+
 		logout: function() {
 			var that = this;
 			//setTimeout(function() {
