@@ -803,7 +803,7 @@
                                         "finishDateFrom": finishDateFrom,
                                         "finishDateTo": finishDateTo,
                                         "jobId": jobid,
-                                        "page": "",
+                                        "page": "P",
                                         "priority": ddlpiority,
                                         "region": ddlregion,
                                         "siteCode": sitecode,

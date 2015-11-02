@@ -2844,6 +2844,296 @@
 
         },
 
+        _putMarkerSite: function() {
+
+
+           
+            for (var i = 0; i < marker_site.length; i++) {
+                marker_site[i].setMap(null);
+            }
+           
+            marker_site = [];
+            
+            _searchSite_data = [];
+            _searchNameTH_data = [];
+            _searchNameEN_data = [];
+
+
+            //alert('mc:' + _mc.length);
+            app.mapService.viewModel.myPinLocation();
+
+            var pinCluster = app.configService.pinCluster;
+
+            var allnp = [];
+            var aisnp = [];
+            var cusnp = [];
+            var allap = [];
+            var aisap = [];
+            var cusap = [];
+            //===================================== SITE position =====================================
+            for (var i = 0; i < _site.length; i++) {
+
+                if (pinCluster) {
+                    var ms = new google.maps.Marker({
+                        map: map,
+                        position: new google.maps.LatLng(_site[i][1], _site[i][2]),
+                        icon: _site[i][3],
+                        zIndex: i
+                    });
+
+                    google.maps.event.addListener(ms, 'click', function() {
+                        var pin_number = this.getZIndex();
+                        infowindow.setContent(_site[pin_number][0]);
+                        infowindow.open(map, this);
+                        //alert(_site[pin_number][0]);
+                    });
+                    if (_site[i][3].indexOf("all_site") > -1) {
+
+                        allnp.push(ms);
+
+
+                    } else if (_site[i][3].indexOf("ais_site_normal") > -1) {
+                        aisnp.push(ms);
+
+
+
+                    } else if (_site[i][3].indexOf("customer_site_normal") > -1) {
+                        cusnp.push(ms);
+
+
+
+                    } else if (_site[i][3].indexOf("all_site_alarm") > -1) {
+                        allap.push(ms);
+
+
+
+                    } else if (_site[i][3].indexOf("ais_site_alarm") > -1) {
+                        aisap.push(ms);
+
+
+
+                    } else if (_site[i][3].indexOf("customer_site_alarm") > -1) {
+                        cusap.push(ms);
+
+
+
+                    }
+
+
+
+                } else {
+                    //console.debug("put site pin");
+                    marker_site[i] = new google.maps.Marker({
+                        map: map,
+                        position: new google.maps.LatLng(_site[i][1], _site[i][2]),
+                        icon: _site[i][3],
+                        zIndex: i
+                    });
+
+
+                    google.maps.event.addListener(marker_site[i], 'click', function() {
+                        var pin_number = this.getZIndex();
+                        infowindow.setContent(_site[pin_number][0]);
+                        infowindow.open(map, this);
+
+                    });
+                }
+
+
+            }
+
+
+
+
+            if (pinCluster) {
+                all_site_normalOptions = {
+                    styles: [{
+                        height: 40,
+                        url: "images/all_site_normal1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/all_site_normal1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/all_site_normal1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/all_site_normal1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/all_site_normal1.png",
+                        width: 40
+                    }]
+                };
+
+                ais_site_normalOptions = {
+                    styles: [{
+                        height: 40,
+                        url: "images/ais_site_normal1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/ais_site_normal1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/ais_site_normal1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/ais_site_normal1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/ais_site_normal1.png",
+                        width: 40
+                    }]
+                };
+
+                customer_site_normalOptions = {
+                    styles: [{
+                        height: 40,
+                        url: "images/customer_site_normal1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/customer_site_normal1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/customer_site_normal1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/customer_site_normal1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/customer_site_normal1.png",
+                        width: 40
+                    }]
+                };
+
+                all_site_alarmOptions = {
+                    styles: [{
+                        height: 40,
+                        url: "images/all_site_alarm1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/all_site_alarm1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/all_site_alarm1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/all_site_alarm1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/all_site_alarm1.png",
+                        width: 40
+                    }]
+                };
+
+                ais_site_alarmOptions = {
+                    styles: [{
+                        height: 40,
+                        url: "images/ais_site_alarm1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/ais_site_alarm1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/ais_site_alarm1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/ais_site_alarm1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/ais_site_alarm1.png",
+                        width: 40
+                    }]
+                };
+
+                customer_site_alarmOptions = {
+                    styles: [{
+                        height: 40,
+                        url: "images/customer_site_alarm1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/customer_site_alarm1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/customer_site_alarm1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/customer_site_alarm1.png",
+                        width: 40
+                    }, {
+                        height: 40,
+                        url: "images/customer_site_alarm1.png",
+                        width: 40
+                    }]
+                };
+
+
+
+                //var markerClusterMC = new MarkerClusterer(map, marker_mc);
+                if (allnp != []) {
+                    var markerClusterAllNp = new MarkerClusterer(map, allnp, all_site_normalOptions);
+                }
+
+                if (aisnp != []) {
+                    var markerClusterAisNp = new MarkerClusterer(map, aisnp, ais_site_normalOptions);
+                }
+
+                if (cusnp != []) {
+                    var markerClusterCusNp = new MarkerClusterer(map, cusnp, customer_site_normalOptions);
+                }
+
+                if (allap != []) {
+                    var markerClusterAllAp = new MarkerClusterer(map, allap, all_site_alarmOptions);
+                }
+
+                if (aisap != []) {
+                    var markerClusterAisAp = new MarkerClusterer(map, aisap, ais_site_alarmOptions);
+                }
+
+                if (cusap != []) {
+                    var markerClusterCusAp = new MarkerClusterer(map, cusap, customer_site_alarmOptions);
+                }
+            }
+            //alert('site:'+_site.length);
+            //========================================================================================
+
+
+            map.panTo(new google.maps.LatLng(_default_lat, _default_long));
+            app.mapService.viewModel.check();
+            app.mapService.viewModel.myPinLocation();
+            // _site = null;
+            //$(".c_loading").hide();
+
+            if (_usrDisplay == "Z") {
+                map.setZoom(10);
+                _usrDisplay = "S";
+            }
+
+        },
+
         _panTo: function() {
             map.panTo(new google.maps.LatLng(_default_lat, _default_long));
 
@@ -2958,11 +3248,12 @@
             var end_li = '';
             //mob
             $('#earch_site').attr('src', 'images/search_site.png');
-            $('#earch_nameTH').attr('src', 'images/search_nameTH.png');
-            $('#earch_nameEN').attr('src', 'images/search_nameEN.png');
             $('#earch_mc').attr('src', 'images/search_mc.png');
             $('#earch_job').attr('src', 'images/search_job.png');
             $('#' + typeName).attr('src', 'images/s' + typeName + '_active.png');
+
+            $('#earch_nameTH').css('color', 'red');
+            $('#earch_nameEN').css('color', 'red');
 
             $('#searchText').val('');
             $('#Hidden1').val('set');
@@ -3288,7 +3579,7 @@
                     var enhance_act_get_lalan = 'Lat Long :' + '<a class="linkText" onclick="app.mapService.viewModel.toClipboard(\'' + la_site + ',' + long_site + '\');"><span class="lalng">' + la_site + ',' + long_site + '</span></a>';
                     inFor = inFor + '<div  data-role="scroller" class="checkPin_' + arrT[i] + '' + arrA[i] + '_show"> &nbsp;&nbsp; <img src="' + imageName + '" class="tBalloon icon_result_width" /> ' + arr[i] + '' +
                         ' &nbsp;&nbsp;' + act_navi_begin + act_navi_end +
-                        enhance_act_director + enhance_act_get_alarm + enhance_act_get_job + '<hr class="hr_head">' + enhance_act_get_name + '<br>' + enhance_act_get_lalan + '<br><br></div>';
+                        enhance_act_director + enhance_act_get_alarm + enhance_act_get_job + '<br>' + enhance_act_get_name + '<br>' + enhance_act_get_lalan  + '<hr class="hr_head">' + '</div>';
                 }
             }
             var tx = '<div style="min-width:200px; overflow:auto; height:auto;">' + inFor + '</div>';
@@ -22490,7 +22781,7 @@
                                     //alert("ok");
                                     app.mapService.viewModel.setType_search('earch_site');
                                     //---------go to set Marker ------------
-                                    app.mapService.viewModel._putMarker();
+                                    app.mapService.viewModel._putMarkerSite();
                                     //app.mapService.viewModel.hideLoading();
                                     operation.success(response);
 
@@ -42384,22 +42675,9 @@
                     // // if center changed then update lat and lon document objects
                     google.maps.event.addListener(map, 'idle', function() {
                         var location = map.getCenter();
-                        // document.getElementById("lat").innerHTML = location.lat();
-
-                        // document.getElementById("lon").innerHTML = location.lng();
-                        // // call function to reposition marker location
-                        // placeMarker(location);
-                        // _default_lat = JSON.parse(localStorage.getItem("profileData")).profiles[0].regionLat;
-                        // _default_long = JSON.parse(localStorage.getItem("profileData")).profiles[0].regionLon;
+                        
                         var center = new google.maps.LatLng(_default_lat, _default_long);
-                        // var dist = app.mapService.viewModel.distance(center.lat(), center.lng(), location.lat(), location.lng(), 'K');
-                        // if(dist >= 100)
-                        // {
-                        //     alert(dist);
-                        // }
-                        // window.setTimeout(function() {
-                        //   console.log(location.lat() + " : " + location.lng());
-                        // }, 3000);
+                        
                         dragstart = center;
                         //console.log("dragend : " + location.lat() + " : " + location.lng());
                         dragend = location;
