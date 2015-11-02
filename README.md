@@ -38,3 +38,13 @@ List:
 	2:map.js [nameTH, nameEN]
 	3:style4.css [font-awesome]
 	4:Favorite
+
+version: "2.0.8"
+List:
+	1:index [Piority to Priority]
+	2:map.js [_putMarkerSite]
+	3:more.js [page navigate - Power Search]
+	4:reallocates 
+	5:search [by Name by Site by by JobID]
+	6:addFavorite
+	
