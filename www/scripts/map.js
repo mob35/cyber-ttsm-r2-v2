@@ -3246,15 +3246,14 @@
             infowindow.close();
             var tSearch = '';
             var end_li = '';
-            //mob
+            //
             $('#earch_site').attr('src', 'images/search_site.png');
             $('#earch_mc').attr('src', 'images/search_mc.png');
             $('#earch_job').attr('src', 'images/search_job.png');
             $('#' + typeName).attr('src', 'images/s' + typeName + '_active.png');
-
-            $('#earch_nameTH').css('color', 'red');
-            $('#earch_nameEN').css('color', 'red');
-
+            $('#earch_nameTH').css('color', '');
+            $('#earch_nameEN').css('color', '');
+            $('#' + typeName).css('color', 'red');
             $('#searchText').val('');
             $('#Hidden1').val('set');
             $('#ul_searchResult').html('');
@@ -42765,7 +42764,6 @@
                     var longitude = app.mapService.viewModel.get("longitude");
                     var latitude = app.mapService.viewModel.get("latitude");
                     app.mapService.viewModel.directTo(latitude, longitude);
-                    app.mapService.viewModel.set("isGoFromJob",false);
                 }
             }
         },

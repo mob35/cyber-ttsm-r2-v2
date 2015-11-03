@@ -797,6 +797,8 @@
         },
         gotoPserach: function(){
            app.powerSearchService.viewModel.set("titletxt", "Team/My Team Job Search");
+           //paramsSearch
+           app.powerSearchService.viewModel.set("paramsSearch", "");
            app.application.navigate('#powerSearch');
         },
         onSearch: function() {
