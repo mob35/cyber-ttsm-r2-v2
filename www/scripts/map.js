@@ -2370,6 +2370,7 @@
                         '<a href="#mapJobList" class="underline"  onclick="app.mapService.viewModel.loadJobList(\'' + JSON.parse(localStorage.getItem("profileData")).userId + '\');" data-userid="' + JSON.parse(localStorage.getItem("profileData")).userId + '">' + myFullName + '</a>' +
                         '<br /><br /><a class="linkText" href="javascript:void(0);" onclick="$(\'#startMap\').html(\'' + myFullName + '\'); $(\'#lat_start\').val(\'' + myLat + '\'); $(\'#long_start\').val(\'' + myLong + '\'); app.mapService.viewModel.checkCal();"><i class="fa fa-flag"></i></a> ' +
                         '| <a class="linkText" href="javascript:void(0);" onclick="$(\'#endMap\').html(\'' + myFullName + '\'); $(\'#lat_end\').val(\'' + myLat + '\'); $(\'#long_end\').val(\'' + myLong + '\'); app.mapService.viewModel.checkCal();"><i class="fa fa-flag-checkered"></i></a>' +
+                        '<br />Mobile No. :' + JSON.parse(localStorage.getItem("profileData")).mobileNo + '' +
                         '</div>Last check in :' + app.mapService.viewModel.format_time_date2(moment());
 
                     position = new google.maps.LatLng(myLat, myLong);
