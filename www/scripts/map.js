@@ -42765,6 +42765,7 @@
                     var longitude = app.mapService.viewModel.get("longitude");
                     var latitude = app.mapService.viewModel.get("latitude");
                     app.mapService.viewModel.directTo(latitude, longitude);
+                    app.mapService.viewModel.set("isGoFromJob",false);
                 }
             }
         },
