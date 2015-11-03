@@ -3252,9 +3252,9 @@
             $('#earch_mc').attr('src', 'images/search_mc.png');
             $('#earch_job').attr('src', 'images/search_job.png');
             $('#' + typeName).attr('src', 'images/s' + typeName + '_active.png');
-            $('#earch_nameTH').css('color', '');
-            $('#earch_nameEN').css('color', '');
-            $('#' + typeName).css('color', 'red');
+            $('#earch_nameTH').css('color', '#AEAEAE');
+            $('#earch_nameEN').css('color', '#AEAEAE');
+            $('#' + typeName).css('color', '#489CD8');
             $('#searchText').val('');
             $('#Hidden1').val('set');
             $('#ul_searchResult').html('');
