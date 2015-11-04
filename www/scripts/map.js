@@ -2370,6 +2370,7 @@
                         '<a href="#mapJobList" class="underline"  onclick="app.mapService.viewModel.loadJobList(\'' + JSON.parse(localStorage.getItem("profileData")).userId + '\');" data-userid="' + JSON.parse(localStorage.getItem("profileData")).userId + '">' + myFullName + '</a>' +
                         '<br /><br /><a class="linkText" href="javascript:void(0);" onclick="$(\'#startMap\').html(\'' + myFullName + '\'); $(\'#lat_start\').val(\'' + myLat + '\'); $(\'#long_start\').val(\'' + myLong + '\'); app.mapService.viewModel.checkCal();"><i class="fa fa-flag"></i></a> ' +
                         '| <a class="linkText" href="javascript:void(0);" onclick="$(\'#endMap\').html(\'' + myFullName + '\'); $(\'#lat_end\').val(\'' + myLat + '\'); $(\'#long_end\').val(\'' + myLong + '\'); app.mapService.viewModel.checkCal();"><i class="fa fa-flag-checkered"></i></a>' +
+                        '<br />Mobile No. :' + JSON.parse(localStorage.getItem("profileData")).mobileNo + '' +
                         '</div>Last check in :' + app.mapService.viewModel.format_time_date2(moment());
 
                     position = new google.maps.LatLng(myLat, myLong);
@@ -3246,15 +3247,14 @@
             infowindow.close();
             var tSearch = '';
             var end_li = '';
-            //mob
+            //
             $('#earch_site').attr('src', 'images/search_site.png');
             $('#earch_mc').attr('src', 'images/search_mc.png');
             $('#earch_job').attr('src', 'images/search_job.png');
             $('#' + typeName).attr('src', 'images/s' + typeName + '_active.png');
-
-            $('#earch_nameTH').css('color', 'red');
-            $('#earch_nameEN').css('color', 'red');
-
+            $('#earch_nameTH').css('color', '#AEAEAE');
+            $('#earch_nameEN').css('color', '#AEAEAE');
+            $('#' + typeName).css('color', '#489CD8');
             $('#searchText').val('');
             $('#Hidden1').val('set');
             $('#ul_searchResult').html('');

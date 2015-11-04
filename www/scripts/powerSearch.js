@@ -312,6 +312,7 @@
         assignBy: "",
         titletxt: 'Power Search',
         titletxtJobListMap: 'Power Service',
+        paramsSearch : "P",
         setTmp: function() {
             // alert("Region");
             // ddlregion
@@ -536,6 +537,7 @@
             var siteNameThai = that.get("siteNameThai");
             var assignTo = that.get("assignTo");
             var assignBy = that.get("assignBy");
+            var paramsSearch = that.get("paramsSearch");
             //var networkState = navigator.connection.type;
 
             var isOffline = app.loginService.viewModel.get("isOffline");
@@ -803,7 +805,7 @@
                                         "finishDateFrom": finishDateFrom,
                                         "finishDateTo": finishDateTo,
                                         "jobId": jobid,
-                                        "page": "P",
+                                        "page": paramsSearch,
                                         "priority": ddlpiority,
                                         "region": ddlregion,
                                         "siteCode": sitecode,
@@ -840,6 +842,7 @@
                                         // that.countAccept();                                        
                                         that.set("lastupdateaccept", format_time_date(new Date()));
                                         app.myService.viewModel.hideLoading();
+                                        that.set("paramsSearch","P");
                                     }
                                 });
                             }
