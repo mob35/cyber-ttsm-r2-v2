@@ -47,4 +47,11 @@ List:
 	4:reallocates 
 	5:search [by Name by Site by by JobID]
 	6:addFavorite
+
+version: "2.0.9"
+List:
+	1:index [style="font-size: 1.7em; overflow: hidden; padding-bottom:2.5px; padding-right: 3.5px;"]
+	2:map.js FontAwesome [color - active, inactive] 
+	3:myteam.js [viewModel.set("paramsSearch", "");]
+	4:powerSearch.js set ["page": paramsSearch : "P",]
 	
