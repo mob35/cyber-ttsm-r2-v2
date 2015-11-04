@@ -35660,7 +35660,7 @@
              }
 
          },
-       
+
 
 
          loadFavoriteProblemCauses: function() {
@@ -35740,54 +35740,30 @@
                  var response = {
                      "favoriteProblemCauses": [{
                          "userId": "7478",
-                         "favProblemCauseId": "1",
+                         "favProblemCauseId": "0",
                          "seqId": "1",
-                         "multiCauseId": "13",
-                         "multiCauseDesc": "Activity - link down",
-                         "multiCauseLevel": "1",
-                         "maxLevel": "1"
-                     }, {
-                         "userId": "7478",
-                         "favProblemCauseId": "2",
-                         "seqId": "1",
-                         "multiCauseId": "45",
-                         "multiCauseDesc": "Fiber optic",
-                         "multiCauseLevel": "2",
+                         "multiCauseId": "13|45",
+                         "multiCauseDesc": "Activity - link down => Fiber optic",
+                         "multiCauseLevel": "1|2",
                          "maxLevel": "2"
                      }, {
                          "userId": "7478",
-                         "favProblemCauseId": "3",
+                         "favProblemCauseId": "0",
                          "seqId": "2",
-                         "multiCauseId": "7",
-                         "multiCauseDesc": "Core network - link down",
-                         "multiCauseLevel": "1",
-                         "maxLevel": "1"
-                     }, {
-                         "userId": "7478",
-                         "favProblemCauseId": "4",
-                         "seqId": "2",
-                         "multiCauseId": "36",
-                         "multiCauseDesc": "IPTN network",
-                         "multiCauseLevel": "2",
-                         "maxLevel": "2"
-                     }, {
-                         "userId": "7478",
-                         "favProblemCauseId": "5",
-                         "seqId": "2",
-                         "multiCauseId": "135",
-                         "multiCauseDesc": "Fiber cut both side",
-                         "multiCauseLevel": "3",
+                         "multiCauseId": "7|36|135",
+                         "multiCauseDesc": "Core network - link down => IPTN network => Fiber cut both side",
+                         "multiCauseLevel": "1|2|3",
                          "maxLevel": "3"
                      }],
                      "version": "1",
                      "userId": "7478",
                      "jobId": ""
-                 }
+                 };
                  localStorage.setItem("favoriteProblemCausesMultiData", JSON.stringify(response));
              } else {
                  $.ajax({ //using jsfiddle's echo service to simulate remote data loading
                      type: "POST",
-                     timeout: 180000,
+                     timeout: 180000, ///post-json.service?s=master-service&o=getFavoriteProblemCauseMultiTTSME.json
                      url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=getFavoriteProblemCauseMultiTTSME.json',
                      data: JSON.stringify({
                          "token": localStorage.getItem("token"),
@@ -35904,6 +35880,7 @@
              app.masterService.viewModel.loadMyJBProblemCauseM();
              app.masterService.viewModel.loadMyJBProblemSolve();
              app.masterService.viewModel.loadFavoriteProblemCauses();
+             app.masterService.viewModel.loadFavoriteProblemCausesM();
              app.masterService.viewModel.loadMyJB();
 
 

@@ -1,10 +1,21 @@
+//MULTI_CAUSE_ID	
+//MULTI_CAUSE_DESCRIPTION	
+//MULTI_CAUSE_STATUS	
+//MULTI_CAUSE_LEVEL	
+//MULTI_CAUSE_GROUP	
+//MULTI_CAUSE_GROUP_PARENT
+
 (function(global) {
-	var FaProblemCauseViewModel,
+	var FavoriteProblemCauseMViewModel,
 		app = global.app = global.app || {};
 
 
-	FaProblemCauseViewModel = kendo.data.ObservableObject.extend({
+	FavoriteProblemCauseMViewModel = kendo.data.ObservableObject.extend({
 		_isLoading: true,
+		groupParent: 0,
+		multiCauseIds: [],
+		multiCauseLevels: [],
+		multiCauseDescs: [],
 		userId: function() {
 			var cache = localStorage.getItem("profileData");
 			if (cache == null || cache == undefined) {
@@ -13,151 +24,10 @@
 				return JSON.parse(cache).userId;
 			}
 		},
-		initFaProblemCauseMaster: function() {
+		initProblemCauseMultiMaster: function() {
 			var that = this;
 
-			$("#lvFProblemCause").kendoMobileListView({
-				dataSource: {
-					transport: {
-						read: function(operation) {
-							operation.success(JSON.parse(localStorage.getItem("favoriteProblemCausesMultiData")));
-						}
-					},
-					schema: {
-						data: "favoriteProblemCauses"
-					}
-				},
-
-				template: $("#Fproblem-cause-template").html(),
-				databound: function() {
-					that.hideLoading();
-				},
-				filterable: {
-					field: "problemCauseDesc",
-					ignoreCase: true
-				},
-				click: function(e) {
-					that.selectPbC(e);
-				}
-				//virtualViewSize: 30,
-				//endlessScroll: true,
-			});
-			////console.log('lv Problemcause Master Loaded');
-
-		},
-		loadFaProblemCauseMaster: function() {
-			var that = this;
-			var lvProblemCauseMaster = $("#lvFProblemCause").data("kendoMobileListView");
-			//lvProblemCauseMaster.reset();
-			app.application.view().scroller.reset();
-			//$("#lvProblemCauseMaster").kendoMobileListView({
-			//	dataSource: problemCauseData
-			//		},
-			//		schema: {
-			//			data: "problemCauses"
-			//		},
-			//		
-			//	}),
-			//	template: $("#problem-cause-template").html(),
-			//});
-			////console.log('lv Problemcause Master Loaded');
-
-		},
-		selectPbC: function(e) {
-			//console.log("###### selectPbC #########");
-			var that = app.jobService.viewModel;
-
-			var selectItem = that.get("selectItem");
-
-			var selectProblemC = that.get("selectProblemC");
-
-			var flag = true;
-
-			//var pbc = [{"jobId": selectItem.jobId,
-			//			"problemCauseMainId": e.problemCauseId,
-			//			"problemCauseDesc": e.problemCauseDescription,
-			//			"problemCauseSubId": e.subproCauseId,
-			//			"problemCauseSubDesc": e.subproCauseDescription,
-			//			"seqId":null,
-			//			"levelCause":null,
-			//			"problemCauseId":null
-			//			}]
-
-
-
-
-
-			if (selectProblemC != null && selectProblemC != undefined) {
-				var data = selectProblemC.data();
-				for (var i = 0; i < data.length; i++) {
-					if (data[i].favProblemCauseId == e.dataItem.favProblemCauseId) {
-						flag = false;
-						e.preventDefault();
-						navigator.notification.alert("Duplicate problem cause.",
-							function() {}, "Error", 'OK');
-						i = data.length;
-					}
-				}
-			} else {
-				selectProblemC = new kendo.data.DataSource();
-
-			}
-
-			if (flag) {
-
-				selectItem.problemCauseMainId++;
-// problemCauseDesc: "AC MAIN FAILED"
-// problemCauseMainId: "08"
-// problemCauseSubDesc: "Phase Error / Loss of Phase"
-// problemCauseSubId: "050"
-
-				var pbc = {
-					"jobId": selectItem.jobId,
-					"problemCauseMainId": e.dataItem.id,
-					"problemCauseDesc": e.dataItem.problemCauseDesc,
-					"problemCauseSubId": e.dataItem.problemCauseSubId,
-					"problemCauseSubDesc": e.dataItem.problemCauseSubDesc,
-					"seqId": null,
-					"levelCause": null,
-					"problemCauseId": null
-				};
-
-				selectProblemC.pushCreate(pbc);
-
-
-				selectProblemC.fetch(function() {
-					that.set("selectProblemC", selectProblemC);
-				});
-
-				app.faProblemCauseMService.viewModel.setFaProblemSolveRadio();
-				//SUBPRO_CAUSE_ID	
-				//SUBPRO_CAUSE_DESCRIPTION	
-				//SUBPRO_CAUSE_STATUS	
-				//SUBPRO_CAUSE_PRO_CAUSE_ID	
-				//PROBLEM_CAUSE_ID	
-				//PROBLEM_CAUSE_DESCRIPTION
-
-				that.set("selectItem", selectItem);
-				//that.set("selectPage", 2);
-				app.application.navigate(
-					'#job-problem-cause'
-				);
-			} else {
-				//				navigator.notification.alert("Problem cause duplicate",
-				//					function() {}, "Error", 'OK');
-			}
-		},
-		setFaProblemSolveRadio: function() {
-			var that = app.jobService.viewModel;
-
-			var selectItem = that.get("selectItem");
-
-			var problemSolveRadioData = null;
-
-			var selectProblemC = that.get("selectProblemC");
-			var selectProblemS = that.get("selectProblemS");
-
-			var problemSolveData = new kendo.data.DataSource({
+			var ProblemCauseMulti = new kendo.data.DataSource({
 				transport: {
 					read: function(operation) {
 						operation.success(JSON.parse(localStorage.getItem("favoriteProblemCausesMultiData")));
@@ -165,123 +35,173 @@
 				},
 				schema: {
 					data: "favoriteProblemCauses"
+				},
+				filter: {
+					field: "groupParent",
+					operator: "eq",
+					value: that.get("groupParent")
 				}
 			});
 
-			var filter = {
-				logic: "or",
-				filters: []
-			}
 
-			if (selectProblemC != undefined && selectProblemC != null) {
-
-				var data = selectProblemC.data();
-				for (var i = 0; i < data.length; i++) {
-					var filters = {
-						field: "subproblemCauseId",
-						operator: "eq",
-						value: data[i].problemCauseSubId
-					};
-
-					filter.filters.push(filters);
-
+			$("#lvFProblemCauseM").kendoMobileListView({
+				dataSource: ProblemCauseMulti,
+				click: function(e) {
+					app.FavoriteproblemCauseMService.viewModel.selectPbCM(e);
+				},
+				template: $("#favorite-problem-cause-multi-template").html(),
+				filterable: {
+					field: "multiCauseDesc",
+					ignoreCase: true
 				}
+			});
 
-				problemSolveData.filter(filter);
+		},
+         onBack: function(){
+            //console.log('##### onBack #####');
+            app.FavoriteproblemCauseMService.viewModel.set("multiCauseIds",[]);
+            app.FavoriteproblemCauseMService.viewModel.set("multiCauseLevels",[]);
+            app.FavoriteproblemCauseMService.viewModel.set("multiCauseDescs",[]);  
+              
+        },
+		loadProblemCauseMultiMaster: function() {
+			var that = this;
 
-				problemSolveData.fetch(function() {
-					problemSolveRadioData = new kendo.data.DataSource({
-						transport: {
-							read: function(operation) {
-								operation.success(problemSolveData.view());
-							}
-						},
-						filter: [{
-							field: "description",
-							operator: "eq",
-							value: "Temporary"
-						}]
-					});
+			var ProblemCauseMulti = new kendo.data.DataSource({
+				transport: {
+					read: function(operation) {
+						operation.success(JSON.parse(localStorage.getItem("favoriteProblemCausesMultiData")));
+					}
+				},
+				schema: {
+					data: "favoriteProblemCauses"
+				},
+				filter: {
+					field: "groupParent",
+					operator: "eq",
+					value: that.get("multiCauseDesc")
+				}
+			});
 
-					////console.log(JSON.stringify(problemSolveData));
+			var lvFProblemCauseM = $("#lvFProblemCauseM").data("kendoMobileListView");
 
-					problemSolveRadioData.fetch(function() {
-						data = problemSolveRadioData.view();
-						if (data.length > 0) {
-							var a = data.length;
-							for (var i = 0; i < a; i++) {
+			lvFProblemCauseM.setDataSource(ProblemCauseMulti);
 
-								if (selectProblemS != undefined && selectProblemS != null) {
-									selectProblemS.fetch(function() {
+            //console.log('####### load lv Problem cause multi Master Loaded #######');
 
-										dataS = selectProblemS.data();
-										if (dataS.length > 0) {
+		},
+		selectPbCM: function(e) {
+            //console.log('####### selectPbCM #######');
+			var that = app.jobService.viewModel;
+			var multiCauseIds = app.FavoriteproblemCauseMService.viewModel.get("multiCauseIds");
+			var multiCauseLevels = app.FavoriteproblemCauseMService.viewModel.get("multiCauseLevels");
+			var multiCauseDescs = app.FavoriteproblemCauseMService.viewModel.get("multiCauseDescs");
+			var selectItem = that.get("selectItem");
 
-											var flagDup = false;
-											var b = dataS.length;
+			var checkDatasource = new kendo.data.DataSource({
+				transport: {
+					read: function(operation) {
+						operation.success(JSON.parse(localStorage.getItem("favoriteProblemCausesMultiData")));
+					}
+				},
+				schema: {
+					data: "favoriteProblemCauses"
+				},
+				filter: {
+					field: "groupParent",
+					operator: "eq",
+					value: e.dataItem.group
+				}
+			});
 
-											for (var j = 0; j < b; j++) {
-												if (data[i].subproblemCauseId == dataS[j].subProblemCauseId) {
-													var flagDup = true;
-													//return false;
-													j = dataS.length;
-												}
-											}
+			checkDatasource.fetch(function() {
 
-											if (!flagDup) {
-												var pbs = {
-													"jobId": selectItem.jobId,
-													"problemSolveId": data[i].id,
-													"problemSolveDesc": data[i].subProblemCauseDesc + "-" + data[i].description,
-													"processDesc": "",
-													"subProblemCauseId": data[i].subproblemCauseId,
-													"process": "N"
-												};
-												selectProblemS.pushCreate(pbs);
-											}
-										} else {
-											var pbs = [{
-												"jobId": selectItem.jobId,
-												"problemSolveId": data[i].id,
-												"problemSolveDesc": data[i].subProblemCauseDesc + "-" + data[i].description,
-												"processDesc": "",
-												"subProblemCauseId": data[i].subproblemCauseId,
-												"process": "N"
-											}];
-											selectProblemS = new kendo.data.DataSource({
-												data: pbs
-											});
-										}
-									})
-								} else {
-									var pbs = [{
-										"jobId": selectItem.jobId,
-										"problemSolveId": data[i].id,
-										"problemSolveDesc": data[i].subProblemCauseDesc + "-" + data[i].description,
-										"processDesc": "",
-										"subProblemCauseId": data[i].subproblemCauseId,
-										"process": "N"
-									}];
-									selectProblemS = new kendo.data.DataSource({
-										data: pbs
-									});
+				var data = checkDatasource.view();
 
-								}
+                                  var flagDup = false;
+
+                favProblemCauseId.push(e.dataItem.id);
+				multiCauseLevel.push(e.dataItem.level);
+				multiCauseDesc.push(e.dataItem.description);
+
+				if (data.length) {
+					var lvFProblemCauseM = $("#lvFProblemCauseM").data("kendoMobileListView");
+					lvFProblemCauseM.setDataSource(checkDatasource);
+					lvFProblemCauseM.refresh();
+				} else {
+					var selectProblemCM = app.jobService.viewModel.get("selectProblemCM");
+
+					if (selectProblemCM != undefined && selectProblemCM != null) {
+						var data = selectProblemCM.data();
+						for (var i = 0; i < data.length; i++) {
+							if (data[i].multiCauseIds == multiCauseIds.join("|") ) {
+								navigator.notification.alert("Duplicate problem cause.",
+                                function() {
+                                  app.FavoriteproblemCauseMService.viewModel.set("favProblemCauseId",[]);
+                                  app.FavoriteproblemCauseMService.viewModel.set("multiCauseLevel",[]);
+                                  app.FavoriteproblemCauseMService.viewModel.set("multiCauseDesc",[]);
+                                  app.application.navigate(
+                                                           '#job-problem-cause-multi'
+                                                           );
+                                  }, "Error", 'OK');
+								flagDup = true;
+                                                                    //return false;
 							}
 						}
-						if (selectProblemS != null && selectProblemS != undefined) {
-							selectProblemS.fetch(function() {
-								that.set("selectProblemS", selectProblemS);
-							});
-						} else {
-							that.set("selectProblemS", new kendo.data.DataSource());
+					}else{
+						selectProblemCM=new kendo.data.DataSource();
+					}
 
+					if (!flagDup) {
+						selectItem.cntProblemCause++;
+						
+						var pbcm = {
+							//"ids": e.dataItem.id,
+							"jobId": selectItem.jobId,
+							"seqId": null,
+                            "multiCauseIds": favProblemCauseId.join("|"),
+							"multiCauseLevels": multiCauseLevel.join("|"),
+							"maxLevel": e.dataItem.maxLevel,
+							"multiCauseDescs": multiCauseDesc.join(" => ")
 						}
-					});
-				});
-			}
+                            selectProblemCM.pushCreate(pbcm);
 
-			//
+// favProblemCauseId: "2"
+// maxLevel: "2"
+// multiCauseDesc: "Fiber optic"
+// multiCauseId: "45"
+// multiCauseLevel: "2"
+// seqId: "1"
+// userId: "7478"
+						that.set("selectProblemCM", selectProblemCM);
+                                  
+						app.application.navigate(
+							'#job-problem-cause-multi'
+						);
+					} else {
+                                  //navigator.notification.alert("Problem cause duplicate",
+                                  //function() {}, "Error", 'OK');
+                                  ////console.log("Problem cause duplicate");
+					}
+                                  app.FavoriteproblemCauseMService.viewModel.set("multiCauseIds",[]);
+                                  app.FavoriteproblemCauseMService.viewModel.set("multiCauseLevels",[]);
+                                  app.FavoriteproblemCauseMService.viewModel.set("multiCauseDescs",[]);
+                                  
+				}
+				//lvFProblemCauseM
+                                  
+			});
+
+			//MULTI_CAUSE_ID
+			//MULTI_CAUSE_DESCRIPTION
+			//MULTI_CAUSE_STATUS
+			//MULTI_CAUSE_LEVEL	
+			//MULTI_CAUSE_GROUP	
+			//MULTI_CAUSE_GROUP_PARENT
+
+			//that.set("selectPage", 2);
+                                                                   
+
 		},
 		showLoading: function() {
 			//if (this._isLoading) {
@@ -294,23 +214,24 @@
 
 	});
 
-	app.faProblemCauseMService = {
+	app.FavoriteproblemCauseMService = {
 		init: function() {
-			////console.log("myteam init start");
-			app.faProblemCauseMService.viewModel.initFaProblemCauseMaster();
-			////console.log("myteam init end");
+			////console.log("problemCauseMulti init start");
+			app.FavoriteproblemCauseMService.viewModel.initProblemCauseMultiMaster();
+			////console.log("problemCauseMulti init end");
 		},
 		show: function() {
-			////console.log("myteam show start");
-			//app.problemCauseService.viewModel.showLoading();
-			//app.problemCauseService.viewModel.loadProblemCauseMaster();
+            //console.log("##### problemCauseMulti show start #####");
+			//app.FavoriteproblemCauseMService.viewModel.showLoading();
+			// app.FavoriteproblemCauseMService.viewModel.loadProblemCauseMultiMaster();
 			//app.myService.viewModel.hideLoading(////console.logle.debug("myteam hide hide");
+        
 		},
 		hide: function() {
-			////console.log("myteam hide start");
+			////console.log("problemCauseMulti hide start");
 			//app.myService.viewModel.hideLoading();
-			////console.log("myteam hide hide");
+			////console.log("problemCauseMulti hide hide");
 		},
-		viewModel: new FaProblemCauseViewModel()
+		viewModel: new FavoriteProblemCauseMViewModel()
 	}
 })(window);

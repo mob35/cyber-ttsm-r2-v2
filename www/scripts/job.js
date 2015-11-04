@@ -3746,7 +3746,11 @@
                                     //async: false,
                                     contentType: 'application/json',
                                     success: function(response) {
-                                        alert('SUCCESS:' + response.status);
+                                        // app.masterService.viewModel.loadFavoriteProblemCauses();
+                                        var lvFProblemCause = $("#lvFProblemCause").data("kendoMobileListView");
+                                        lvFProblemCause.dataSource.read();
+                                        lvFProblemCause.refresh();
+                                        // alert('SUCCESS:' + response.status);
                                         //that.hideLoading();
 
 
@@ -3781,6 +3785,102 @@
                             }
                         }
                     }
+
+
+                });
+
+            });
+
+            // if (selectItem.cntProblemCause == 0) {
+            //     //console.log("#### Clear selectProblemS ########");
+            //     if ($("#lvProblemSolveMaster").data("kendoMobileListView") != undefined && $("#lvProblemSolveMaster").data("kendoMobileListView") != null) {
+            //         var lvProblemSolveMaster = $("#lvProblemSolveMaster").data("kendoMobileListView");
+            //         var newDataSource = new kendo.data.DataSource();
+            //         lvProblemSolveMaster.setDataSource(newDataSource);
+            //         lvProblemSolveMaster.refresh();
+            //     }
+            // }
+            // that.set("selectItem", selectItem);
+            
+
+        },
+        onAddFavoriteM: function() {
+            var that = this;
+
+            var selectItem = that.get("selectItem");
+
+            var selectProblemC = that.get("selectProblemC");
+            var selectProblemS = that.get("selectProblemS");
+
+            $.each($("input:checkbox[class^='PC']"), function(index, val) {
+                selectProblemC.fetch(function() {
+                    var dataC = selectProblemC.view();
+
+                    for (var i = 0; i < dataC.length; i++) {
+                        if (val.checked) {
+                            if (val.className.indexOf('PC' + dataC[i].problemCauseSubId + 'PC') > -1) {
+                                // console.log(dataC[i]);
+
+                                // var dataValue = {
+                                //     "token": localStorage.getItem("token"),
+                                //     "userId": JSON.parse(localStorage.getItem("profileData")).userId,
+                                //     "problemCause": dataC[i].problemCauseMainId,
+                                //     "subProblemCause": dataC[i].problemCauseSubId,
+                                //     "version": "2"
+                                // };
+                                var dataValue = {
+                                    "token": localStorage.getItem("token"),
+                                    "userId": JSON.parse(localStorage.getItem("profileData")).userId,
+                                    "problemCause": "Mu",
+                                    "seqId": "1",
+                                    "levelCause": "2",
+                                    "version": "2"
+                                };
+                                $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                                    type: "POST",
+                                    timeout: 180000,
+                                    url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=createFavoriteProblemCauseMulti.json',
+                                    data: JSON.stringify(dataValue),
+                                    dataType: "json",
+                                    //async: false,
+                                    contentType: 'application/json',
+                                    success: function(response) {
+                                        // alert('SUCCESS:' + response.status);
+                                        //that.hideLoading();
+
+
+
+                                    },
+                                    error: function(xhr, error) {
+                                        that.hideLoading();
+                                        if (!app.ajaxHandlerService.error(xhr, error)) {
+                                            navigator.notification.alert(error,
+                                                function() {}, "Change Status Job : Save incomplete!", 'OK');
+                                        }
+                                        ////console.log(JSON.stringify(xhr));
+                                    },
+                                    complete: function() {}
+                                });
+                                // selectProblemC.remove(dataC[i]);
+                                // selectItem.cntProblemCause--;
+
+                                // selectProblemS.fetch(function() {
+                                //     var dataS = selectProblemS.view();
+
+                                //     for (var j = 0; j < dataS.length; j++) {
+                                //         if (val.className.indexOf('PC' + dataS[j].subProblemCauseId + 'PC') > -1) {
+                                //             selectProblemS.remove(dataS[j]);
+                                //             if (selectItem.cntProblemSolve > 0) {
+                                //                 selectItem.cntProblemSolve--;
+                                //             }
+                                //         }
+                                //     }
+
+                                // });
+                            }
+                        }
+                    }
+
 
                 });
 
