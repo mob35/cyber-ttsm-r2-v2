@@ -3736,6 +3736,19 @@
                                     "problemCause": dataC[i].problemCauseMainId,
                                     "subProblemCause": dataC[i].problemCauseSubId,
                                     "version": "2"
+
+                                    // msg: ""
+                                    // problemCause: "pc"
+                                    // status: "TRUE"
+                                    // subProblemCause: "sub"
+                                    // userId: "7478"
+                                    // version: "1"
+
+                                    // problemCause: "pc"
+                                    // subProblemCause: "sub"
+                                    // token: "EKQvULhg2+pM6SrBjUmArB4q9InP90Ilry3vgh/wVRVva9dMX/7xbw=="
+                                    // userId: "7478"
+                                    // version: "2"
                                 };
                                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading
                                     type: "POST",
@@ -3804,48 +3817,64 @@
 
 
         },
+
         onAddFavoriteM: function() {
             var that = this;
 
             var selectItem = that.get("selectItem");
 
             var selectProblemCM = that.get("selectProblemCM");
-            var selectProblemS = that.get("selectProblemS");
-// favProblemCauseId: "1"
-// problemCauseDesc: "Activity - link down => Fiber optic"
-// problemCauseMainId: "45"
-// problemCauseSubDesc: "0"
-// problemCauseSubId: "0"
-// userId: "7478"
+            var selectProblemSP = that.get("selectProblemSP");
+            // favProblemCauseId: "1"
+            // problemCauseDesc: "Activity - link down => Fiber optic"
+            // problemCauseMainId: "45"
+            // problemCauseSubDesc: "0"
+            // problemCauseSubId: "0"
+            // userId: "7478"
             $.each($("input:checkbox[class^='CM']"), function(index, val) {
                 selectProblemCM.fetch(function() {
-                    var dataC = selectProblemCM.view();
+                    var dataCM = selectProblemCM.view();
 
-                    for (var i = 0; i < dataC.length; i++) {
+                    for (var i = 0; i < dataCM.length; i++) {
                         if (val.checked) {
-                            if (val.className.indexOf('CM' + dataC[i].problemCauseSubId + 'CM') > -1) {
+                            if (val.className.indexOf('CM' + dataCM[i].multiCauseIds + 'CM') > -1) {
                                 // console.log(dataC[i]);
 
                                 var dataValue = {
                                     "token": localStorage.getItem("token"),
                                     "userId": JSON.parse(localStorage.getItem("profileData")).userId,
-                                    "problemCause": dataC[i].problemCauseMainId,
-                                    "subProblemCause": dataC[i].problemCauseSubId,
+                                    "seqId": null,
+                                    "problemCause": dataCM[i].multiCauseIds,
+                                    "levelCause": dataCM[i].multiCauseLevels,
                                     "version": "2"
+
+                                    // levelCause: "2"
+                                    // problemCause: "Mu"
+                                    // seqId: "1"
+                                    // token: "EKQvULhg2+pM6SrBjUmArMf2glPwM1G3s2ApSNmOkhRva9dMX/7xbw=="
+                                    // userId: "7478"
+                                    // version: "2"
+
+                                    //levelCause: "2"
+                                    // problemCause: "Mu"
+                                    // -seqId: "1"
+                                    // -token: "EKQvULhg2+pM6SrBjUmArB4q9InP90Ilry3vgh/wVRVva9dMX/7xbw=="
+                                    // -userId: "7478"
+                                    // -version: "2"
                                 };
                                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading
                                     type: "POST",
                                     timeout: 180000,
-                                    url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=createFavoriteProblemCause.json',
+                                    url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=createFavoriteProblemCauseMulti.json',
                                     data: JSON.stringify(dataValue),
                                     dataType: "json",
                                     //async: false,
                                     contentType: 'application/json',
                                     success: function(response) {
                                         // app.masterService.viewModel.loadFavoriteProblemCauses();
-                                        var lvFProblemCause = $("#lvFProblemCause").data("kendoMobileListView");
-                                        lvFProblemCause.dataSource.read();
-                                        lvFProblemCause.refresh();
+                                        var lvFProblemCauseM = $("#lvFProblemCauseM").data("kendoMobileListView");
+                                        lvFProblemCauseM.dataSource.read();
+                                        lvFProblemCauseM.refresh();
                                         // alert('SUCCESS:' + response.status);
                                         //that.hideLoading();
 
@@ -3973,6 +4002,7 @@
             });
             that.set("selectItem", selectItem);
         },
+
         onClearAllCheck: function() {
             setTimeout(function() {
                 $.each($("input:checkbox[class^='CM']"), function(index, val) {

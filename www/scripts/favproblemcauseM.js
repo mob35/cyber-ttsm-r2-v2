@@ -13,142 +13,142 @@
                 return JSON.parse(cache).userId;
             }
         },
-        initFaMProblemCauseMaster: function() {
-            var that = this;
-
-            $("#lvFProblemCauseM").kendoMobileListView({
-                dataSource: {
-                    transport: {
-                        read: function(operation) {
-                            operation.success(JSON.parse(localStorage.getItem("favoriteProblemCausesData")));
-                        }
-                    },
-                    schema: {
-                        data: "favoriteProblemCauses"
-                    }
-                },
-
-                template: $("#favorite-problem-cause-multi-template").html(),
-                databound: function() {
-                    that.hideLoading();
-                },
-                filterable: {
-                    field: "problemCauseDesc",
-                    ignoreCase: true
-                },
-                click: function(e) {
-                        that.selectPbC(e);
-                    }
-                    //virtualViewSize: 30,
-                    //endlessScroll: true,
-            });
-            ////console.log('lv Problemcause Master Loaded');
-
-        },
-        //===========================================================================================
         // initFaMProblemCauseMaster: function() {
-        // 	var that = this;
+        //     var that = this;
 
-        // 	$("#lvFProblemCauseM").kendoMobileListView({
-        // 		dataSource: {
-        // 			transport: {
-        // 				read: function(operation) {
-        // 					//operation.success(JSON.parse(localStorage.getItem("favoriteProblemCausesData")));
-        // 					if (app.configService.isMorkupData) {
-        //                var response = {
-        //                    "favoriteProblemCauses": [{
-        //                        "userId": "7478",
-        //                        "favProblemCauseId": "6",
-        //                        "problemCauseMainId": "02",
-        //                        "problemCauseDesc": "Transmission",
-        //                        "problemCauseSubId": "016",
-        //                        "problemCauseSubDesc": "Connector/Patch cord"
-        //                    }, {
-        //                        "userId": "7478",
-        //                        "favProblemCauseId": "2",
-        //                        "problemCauseMainId": "08",
-        //                        "problemCauseDesc": "AC MAIN FAILED",
-        //                        "problemCauseSubId": "042",
-        //                        "problemCauseSubDesc": "MEA/PEA Failed"
-        //                    }, {
-        //                        "userId": "7478",
-        //                        "favProblemCauseId": "1",
-        //                        "problemCauseMainId": "08",
-        //                        "problemCauseDesc": "AC MAIN FAILED",
-        //                        "problemCauseSubId": "050",
-        //                        "problemCauseSubDesc": "Phase Error / Loss of Phase"
-        //                    }],
-        //                    "version": "1",
-        //                    "userId": "7478",
-        //                    "jobId": ""
-        //                };
-        //                localStorage.setItem("favoriteProblemCausesData", JSON.stringify(response));
-        //            } else {
-        //                $.ajax({ //using jsfiddle's echo service to simulate remote data loading
-        //                    type: "POST",
-        //                    timeout: 180000,
-        //                    url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=getFavoriteProblemCauseTTSME.json',
-        //                    data: JSON.stringify({
-        //                        "token": localStorage.getItem("token"),
-        //                        "userId": JSON.parse(localStorage.getItem("profileData")).userId,
-        //                        "statusId": "",
-        //                        "version": "2"
-        //                    }),
+        //     $("#lvFProblemCauseM").kendoMobileListView({
+        //         dataSource: {
+        //             transport: {
+        //                 read: function(operation) {
+        //                     operation.success(JSON.parse(localStorage.getItem("favoriteProblemCausesData")));
+        //                 }
+        //             },
+        //             schema: {
+        //                 data: "favoriteProblemCauses"
+        //             }
+        //         },
 
-        //                    dataType: "json",
-        //                    contentType: 'application/json',
-        //                    success: function(response) {
-        //                        localStorage.setItem("favoriteProblemCausesData", JSON.stringify(response));
-        //                        operation.success(response);
-        //                        //that.hideLoading();
-        //                        ////console.log("fetch Reason Over Due Data : Complete");
-        //                        ////console.log("Reason Over Due Data :" + JSON.stringify(response));
-        //                    },
-        //                    error: function(xhr, error) {
-
-        //                        if (!app.ajaxHandlerService.error(xhr, error)) {
-        //                            var cache = localStorage.getItem("favoriteProblemCausesData");
-
-        //                            if (cache == null || cache == undefined) {
-        //                                ////console.log("Get Reason Over Due failed");
-        //                                ////console.log(xhr);
-        //                                ////console.log(error);
-        //                                navigator.notification.alert(xhr.status + error,
-        //                                    function() {}, "Get Favorite Problem Causes failed", 'OK');
-        //                            }
-
-        //                        }
-        //                        return;
-        //                    },
-        //                    complete: function() {
-        //                    	that.hideLoading();
-        //                    }
-        //                });
-        //            }
-        // 				}
-        // 			},
-        // 			schema: {
-        // 				data: "favoriteProblemCauses"
-        // 			}
-        // 		},
-
-        // 		template: $("#favorite-problem-cause-multi-template").html(),
-        // 		databound: function() {
-        // 			that.hideLoading();
-        // 		},
-        // 		filterable: {
-        // 			field: "problemCauseDesc",
-        // 			ignoreCase: true
-        // 		},
-        // 		click: function(e) {
-        // 			that.selectPbC(e);
-        // 		}
-        // 		//virtualViewSize: 30,
-        // 		//endlessScroll: true,
-        // 	});
-        // 	////console.log('lv Problemcause Master Loaded');
+        //         template: $("#favorite-problem-cause-multi-template").html(),
+        //         databound: function() {
+        //             that.hideLoading();
+        //         },
+        //         filterable: {
+        //             field: "problemCauseDesc",
+        //             ignoreCase: true
+        //         },
+        //         click: function(e) {
+        //                 that.selectPbC(e);
+        //             }
+        //             //virtualViewSize: 30,
+        //             //endlessScroll: true,
+        //     });
+        //     ////console.log('lv Problemcause Master Loaded');
 
         // },
+        //===========================================================================================
+        initFaMProblemCauseMaster: function() {
+        	var that = this;
+
+        	$("#lvFProblemCauseM").kendoMobileListView({
+        		dataSource: {
+        			transport: {
+        				read: function(operation) {
+        					//operation.success(JSON.parse(localStorage.getItem("favoriteProblemCausesData")));
+        					if (app.configService.isMorkupData) {
+                       var response = {
+                           "favoriteProblemCauses": [{
+                               "userId": "7478",
+                               "favProblemCauseId": "6",
+                               "problemCauseMainId": "02",
+                               "problemCauseDesc": "Transmission",
+                               "problemCauseSubId": "016",
+                               "problemCauseSubDesc": "Connector/Patch cord"
+                           }, {
+                               "userId": "7478",
+                               "favProblemCauseId": "2",
+                               "problemCauseMainId": "08",
+                               "problemCauseDesc": "AC MAIN FAILED",
+                               "problemCauseSubId": "042",
+                               "problemCauseSubDesc": "MEA/PEA Failed"
+                           }, {
+                               "userId": "7478",
+                               "favProblemCauseId": "1",
+                               "problemCauseMainId": "08",
+                               "problemCauseDesc": "AC MAIN FAILED",
+                               "problemCauseSubId": "050",
+                               "problemCauseSubDesc": "Phase Error / Loss of Phase"
+                           }],
+                           "version": "1",
+                           "userId": "7478",
+                           "jobId": ""
+                       };
+                       localStorage.setItem("favoriteProblemCausesData", JSON.stringify(response));
+                   } else {
+                       $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                           type: "POST",
+                           timeout: 180000,
+                           url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=getFavoriteProblemCauseTTSME.json',
+                           data: JSON.stringify({
+                               "token": localStorage.getItem("token"),
+                               "userId": JSON.parse(localStorage.getItem("profileData")).userId,
+                               "statusId": "",
+                               "version": "2"
+                           }),
+
+                           dataType: "json",
+                           contentType: 'application/json',
+                           success: function(response) {
+                               localStorage.setItem("favoriteProblemCausesData", JSON.stringify(response));
+                               operation.success(response);
+                               //that.hideLoading();
+                               ////console.log("fetch Reason Over Due Data : Complete");
+                               ////console.log("Reason Over Due Data :" + JSON.stringify(response));
+                           },
+                           error: function(xhr, error) {
+
+                               if (!app.ajaxHandlerService.error(xhr, error)) {
+                                   var cache = localStorage.getItem("favoriteProblemCausesData");
+
+                                   if (cache == null || cache == undefined) {
+                                       ////console.log("Get Reason Over Due failed");
+                                       ////console.log(xhr);
+                                       ////console.log(error);
+                                       navigator.notification.alert(xhr.status + error,
+                                           function() {}, "Get Favorite Problem Causes failed", 'OK');
+                                   }
+
+                               }
+                               return;
+                           },
+                           complete: function() {
+                           	that.hideLoading();
+                           }
+                       });
+                   }
+        				}
+        			},
+        			schema: {
+        				data: "favoriteProblemCauses"
+        			}
+        		},
+
+        		template: $("#favorite-problem-cause-multi-template").html(),
+        		databound: function() {
+        			that.hideLoading();
+        		},
+        		filterable: {
+        			field: "problemCauseDesc",
+        			ignoreCase: true
+        		},
+        		click: function(e) {
+        			that.selectPbC(e);
+        		}
+        		//virtualViewSize: 30,
+        		//endlessScroll: true,
+        	});
+        	////console.log('lv Problemcause Master Loaded');
+
+        },
         showFaProblemCauseMaster: function() {
             var that = this;
             // app.masterService.viewModel.loadFavoriteProblemCauses();
