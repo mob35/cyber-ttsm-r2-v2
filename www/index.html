@@ -2127,8 +2127,13 @@
             <ul id="lvFProblemCause"></ul>
         </div>
     </div>
+      <script type="text/x-kendo-tmpl" id="Fproblem-cause-template">
+        <a data-icon="contact">
+            ${problemCauseDesc} - ${problemCauseSubDesc}
+            </a>
+    </script>
     <!--Fproblem-causeM-->
-    <div data-title="Problem Causetest" data-role="view" id="Fproblem-causeM" data-layout="tabstrip-layout" data-init="app.FavoriteproblemCauseMService.init" data-show="app.FavoriteproblemCauseMService.show" data-model="app.FavoriteproblemCauseMService.viewModel" data-url="/">
+    <div data-title="Problem Causetest" data-role="view" id="Fproblem-causeM" data-layout="tabstrip-layout" data-init="app.favoriteProblemCauseMService.init" data-show="app.favoriteProblemCauseMService.show" data-model="app.favoriteProblemCauseMService.viewModel" data-url="/">
         <header data-role="header">
             <div data-role="navbar">
                 <a href="#job-problem-cause-multi" data-role="button" class="fa" data-icon="fa-back" data-align="left"></a>
@@ -2147,19 +2152,13 @@
             <ul id="lvFProblemCauseM"></ul>
         </div>
     </div>
-    <!--problemMastertemplate-->
-    <script type="text/x-kendo-tmpl" id="Fproblem-cause-template">
+     <script type="text/x-kendo-tmpl" id="favorite-problem-cause-multi-template">
         <a data-icon="contact">
             ${problemCauseDesc} - ${problemCauseSubDesc}
             </a>
     </script>
-<script type="text/x-kendo-tmpl" id="favorite-problem-cause-multi-template">
-        <label data-icon="contact">
-            <input type="checkbox" class="CM${multiCauseIds}CM  multiCauseChkBox"> ${multiCauseDescs}
-        </label>
-    </script>
 
-    <!--end problemMastertemplate-->
+    
     <!-- problemsolve-->
     <div data-title="Problem Solve" data-role="view" id="job-problem-solve" data-layout="tabstrip-layout" data-show="app.jobService.loadProblemSolve" data-model="app.jobService.viewModel" data-after-show="app.jobService.viewModel.onClearAllCheckPS">
         <header data-role="header">
@@ -4242,7 +4241,7 @@
         </label>
     </script>
     <script id="lv-site-Direc-template" type="text/x-kendo-template">
-        ${siteCode} #if(latitude != null && longitude != null){#<span class="position-right "><i class="icon-Favorite1 icon-red" style="font-size: 2.0em" ></i></span> #}#
+        ${siteCode} #if(latitude != null && longitude != null){#<span class="position-right "><i class="fa icons-search_nameTH icon-red" style="font-size: 2.0em" ></i></span> #}#
     </script>
     <script id="multi-zone-template" type="text/x-kendo-template">
         <label data-icon="contact">
