@@ -300,6 +300,7 @@
     };
 
     powerSearchViewModel = kendo.data.ObservableObject.extend({
+        lastupdateaccept : null,
         jobid: "",
         sitecode: "",
         assignDateFrom: "",
@@ -311,8 +312,9 @@
         assignTo: "",
         assignBy: "",
         titletxt: 'Power Search',
-        titletxtJobListMap: 'Power Service',
+        titletxtJobListMap: 'Job List',
         paramsSearch : "P",
+
         setTmp: function() {
             // alert("Region");
             // ddlregion

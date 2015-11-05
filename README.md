@@ -54,4 +54,8 @@ List:
 	2:map.js FontAwesome [color - active, inactive] 
 	3:myteam.js [viewModel.set("paramsSearch", "");]
 	4:powerSearch.js set ["page": paramsSearch : "P",]
-	
+
+version: "2.1.0"
+List:
+	1:powerService 3 page map powerSearch myTeam
+	2:powerService go-back

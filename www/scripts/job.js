@@ -3207,7 +3207,7 @@
                             value: selectItem.jobId
                         });
 
-                        //if (dataSourcePSP != null && dataSourcePSP != undefined) {
+                        // if (dataSourcePSP != null && dataSourcePSP != undefined) {
                         //  dataSourcePSP.filter({
                         //      logic: "and",
                         //      filters: [{
@@ -3216,7 +3216,7 @@
                         //          value: selectItem.jobId
                         //      }]
                         //  });
-                        //}
+                        // }
                         that.set("selectProblemC", null);
                         that.set("selectProblemCM", null);
                         that.set("selectProblemS", null);
@@ -3736,19 +3736,6 @@
                                     "problemCause": dataC[i].problemCauseMainId,
                                     "subProblemCause": dataC[i].problemCauseSubId,
                                     "version": "2"
-
-                                    // msg: ""
-                                    // problemCause: "pc"
-                                    // status: "TRUE"
-                                    // subProblemCause: "sub"
-                                    // userId: "7478"
-                                    // version: "1"
-
-                                    // problemCause: "pc"
-                                    // subProblemCause: "sub"
-                                    // token: "EKQvULhg2+pM6SrBjUmArB4q9InP90Ilry3vgh/wVRVva9dMX/7xbw=="
-                                    // userId: "7478"
-                                    // version: "2"
                                 };
                                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading
                                     type: "POST",
@@ -3760,10 +3747,10 @@
                                     contentType: 'application/json',
                                     success: function(response) {
                                         // app.masterService.viewModel.loadFavoriteProblemCauses();
-                                        // var lvFProblemCause = $("#lvFProblemCause").data("kendoMobileListView");
-                                        // lvFProblemCause.dataSource.read();
-                                        // lvFProblemCause.refresh();
-                                        alert('SUCCESS:' + response.status);
+                                        var lvFProblemCause = $("#lvFProblemCause").data("kendoMobileListView");
+                                        lvFProblemCause.dataSource.read();
+                                        lvFProblemCause.refresh();
+                                        // alert('SUCCESS:' + response.status);
                                         //that.hideLoading();
 
 
@@ -3814,53 +3801,40 @@
             //     }
             // }
             // that.set("selectItem", selectItem);
-
+            
 
         },
-
         onAddFavoriteM: function() {
             var that = this;
 
             var selectItem = that.get("selectItem");
 
-            var selectProblemCM = that.get("selectProblemCM");
-            var selectProblemSP = that.get("selectProblemSP");
-            // favProblemCauseId: "1"
-            // problemCauseDesc: "Activity - link down => Fiber optic"
-            // problemCauseMainId: "45"
-            // problemCauseSubDesc: "0"
-            // problemCauseSubId: "0"
-            // userId: "7478"
-            $.each($("input:checkbox[class^='CM']"), function(index, val) {
-                selectProblemCM.fetch(function() {
-                    var dataCM = selectProblemCM.view();
+            var selectProblemC = that.get("selectProblemC");
+            var selectProblemS = that.get("selectProblemS");
 
-                    for (var i = 0; i < dataCM.length; i++) {
+            $.each($("input:checkbox[class^='PC']"), function(index, val) {
+                selectProblemC.fetch(function() {
+                    var dataC = selectProblemC.view();
+
+                    for (var i = 0; i < dataC.length; i++) {
                         if (val.checked) {
-                            if (val.className.indexOf('CM' + dataCM[i].multiCauseIds + 'CM') > -1) {
+                            if (val.className.indexOf('PC' + dataC[i].problemCauseSubId + 'PC') > -1) {
                                 // console.log(dataC[i]);
 
+                                // var dataValue = {
+                                //     "token": localStorage.getItem("token"),
+                                //     "userId": JSON.parse(localStorage.getItem("profileData")).userId,
+                                //     "problemCause": dataC[i].problemCauseMainId,
+                                //     "subProblemCause": dataC[i].problemCauseSubId,
+                                //     "version": "2"
+                                // };
                                 var dataValue = {
                                     "token": localStorage.getItem("token"),
                                     "userId": JSON.parse(localStorage.getItem("profileData")).userId,
-                                    "seqId": null,
-                                    "problemCause": dataCM[i].multiCauseIds,
-                                    "levelCause": dataCM[i].multiCauseLevels,
+                                    "problemCause": "Mu",
+                                    "seqId": "1",
+                                    "levelCause": "2",
                                     "version": "2"
-
-                                    // levelCause: "2"
-                                    // problemCause: "Mu"
-                                    // seqId: "1"
-                                    // token: "EKQvULhg2+pM6SrBjUmArMf2glPwM1G3s2ApSNmOkhRva9dMX/7xbw=="
-                                    // userId: "7478"
-                                    // version: "2"
-
-                                    //levelCause: "2"
-                                    // problemCause: "Mu"
-                                    // -seqId: "1"
-                                    // -token: "EKQvULhg2+pM6SrBjUmArB4q9InP90Ilry3vgh/wVRVva9dMX/7xbw=="
-                                    // -userId: "7478"
-                                    // -version: "2"
                                 };
                                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading
                                     type: "POST",
@@ -3871,11 +3845,7 @@
                                     //async: false,
                                     contentType: 'application/json',
                                     success: function(response) {
-                                        // app.masterService.viewModel.loadFavoriteProblemCauses();
-                                        // var lvFProblemCauseM = $("#lvFProblemCauseM").data("kendoMobileListView");
-                                        // lvFProblemCauseM.dataSource.read();
-                                        // lvFProblemCauseM.refresh();
-                                        alert('SUCCESS:' + response.status);
+                                        // alert('SUCCESS:' + response.status);
                                         //that.hideLoading();
 
 
@@ -3916,18 +3886,16 @@
 
             });
 
-            // if (selectItem.cntProblemCause == 0) {
-            //     //console.log("#### Clear selectProblemS ########");
-            //     if ($("#lvProblemSolveMaster").data("kendoMobileListView") != undefined && $("#lvProblemSolveMaster").data("kendoMobileListView") != null) {
-            //         var lvProblemSolveMaster = $("#lvProblemSolveMaster").data("kendoMobileListView");
-            //         var newDataSource = new kendo.data.DataSource();
-            //         lvProblemSolveMaster.setDataSource(newDataSource);
-            //         lvProblemSolveMaster.refresh();
-            //     }
-            // }
-            // that.set("selectItem", selectItem);
-
-
+            if (selectItem.cntProblemCause == 0) {
+                //console.log("#### Clear selectProblemS ########");
+                if ($("#lvProblemSolveMaster").data("kendoMobileListView") != undefined && $("#lvProblemSolveMaster").data("kendoMobileListView") != null) {
+                    var lvProblemSolveMaster = $("#lvProblemSolveMaster").data("kendoMobileListView");
+                    var newDataSource = new kendo.data.DataSource();
+                    lvProblemSolveMaster.setDataSource(newDataSource);
+                    lvProblemSolveMaster.refresh();
+                }
+            }
+            that.set("selectItem", selectItem);
         },
         gotoMultiMaster: function() {
             app.problemCauseMultiService.viewModel.set("groupParent", "0");
@@ -4002,7 +3970,6 @@
             });
             that.set("selectItem", selectItem);
         },
-
         onClearAllCheck: function() {
             setTimeout(function() {
                 $.each($("input:checkbox[class^='CM']"), function(index, val) {
