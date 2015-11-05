@@ -3809,32 +3809,44 @@
 
             var selectItem = that.get("selectItem");
 
-            var selectProblemC = that.get("selectProblemC");
-            var selectProblemS = that.get("selectProblemS");
+            var selectProblemCM = that.get("selectProblemCM");
+            var selectProblemSP = that.get("selectProblemSP");
+            // favProblemCauseId: "1"
+            // problemCauseDesc: "Activity - link down => Fiber optic"
+            // problemCauseMainId: "45"
+            // problemCauseSubDesc: "0"
+            // problemCauseSubId: "0"
+            // userId: "7478"
+            $.each($("input:checkbox[class^='CM']"), function(index, val) {
+                selectProblemCM.fetch(function() {
+                    var dataCM = selectProblemCM.view();
 
-            $.each($("input:checkbox[class^='PC']"), function(index, val) {
-                selectProblemC.fetch(function() {
-                    var dataC = selectProblemC.view();
-
-                    for (var i = 0; i < dataC.length; i++) {
+                    for (var i = 0; i < dataCM.length; i++) {
                         if (val.checked) {
-                            if (val.className.indexOf('PC' + dataC[i].problemCauseSubId + 'PC') > -1) {
+                            if (val.className.indexOf('CM' + dataCM[i].multiCauseIds + 'CM') > -1) {
                                 // console.log(dataC[i]);
 
-                                // var dataValue = {
-                                //     "token": localStorage.getItem("token"),
-                                //     "userId": JSON.parse(localStorage.getItem("profileData")).userId,
-                                //     "problemCause": dataC[i].problemCauseMainId,
-                                //     "subProblemCause": dataC[i].problemCauseSubId,
-                                //     "version": "2"
-                                // };
                                 var dataValue = {
                                     "token": localStorage.getItem("token"),
                                     "userId": JSON.parse(localStorage.getItem("profileData")).userId,
-                                    "problemCause": "Mu",
-                                    "seqId": "1",
-                                    "levelCause": "2",
+                                    "seqId": null,
+                                    "problemCause": dataCM[i].multiCauseIds,
+                                    "levelCause": dataCM[i].multiCauseLevels,
                                     "version": "2"
+
+                                    // levelCause: "2"
+                                    // problemCause: "Mu"
+                                    // seqId: "1"
+                                    // token: "EKQvULhg2+pM6SrBjUmArMf2glPwM1G3s2ApSNmOkhRva9dMX/7xbw=="
+                                    // userId: "7478"
+                                    // version: "2"
+
+                                    //levelCause: "2"
+                                    // problemCause: "Mu"
+                                    // -seqId: "1"
+                                    // -token: "EKQvULhg2+pM6SrBjUmArB4q9InP90Ilry3vgh/wVRVva9dMX/7xbw=="
+                                    // -userId: "7478"
+                                    // -version: "2"
                                 };
                                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading
                                     type: "POST",
@@ -3845,7 +3857,11 @@
                                     //async: false,
                                     contentType: 'application/json',
                                     success: function(response) {
-                                        // alert('SUCCESS:' + response.status);
+                                        // app.masterService.viewModel.loadFavoriteProblemCauses();
+                                        // var lvFProblemCauseM = $("#lvFProblemCauseM").data("kendoMobileListView");
+                                        // lvFProblemCauseM.dataSource.read();
+                                        // lvFProblemCauseM.refresh();
+                                        alert('SUCCESS:' + response.status);
                                         //that.hideLoading();
 
 
@@ -3886,16 +3902,18 @@
 
             });
 
-            if (selectItem.cntProblemCause == 0) {
-                //console.log("#### Clear selectProblemS ########");
-                if ($("#lvProblemSolveMaster").data("kendoMobileListView") != undefined && $("#lvProblemSolveMaster").data("kendoMobileListView") != null) {
-                    var lvProblemSolveMaster = $("#lvProblemSolveMaster").data("kendoMobileListView");
-                    var newDataSource = new kendo.data.DataSource();
-                    lvProblemSolveMaster.setDataSource(newDataSource);
-                    lvProblemSolveMaster.refresh();
-                }
-            }
-            that.set("selectItem", selectItem);
+            // if (selectItem.cntProblemCause == 0) {
+            //     //console.log("#### Clear selectProblemS ########");
+            //     if ($("#lvProblemSolveMaster").data("kendoMobileListView") != undefined && $("#lvProblemSolveMaster").data("kendoMobileListView") != null) {
+            //         var lvProblemSolveMaster = $("#lvProblemSolveMaster").data("kendoMobileListView");
+            //         var newDataSource = new kendo.data.DataSource();
+            //         lvProblemSolveMaster.setDataSource(newDataSource);
+            //         lvProblemSolveMaster.refresh();
+            //     }
+            // }
+            // that.set("selectItem", selectItem);
+
+
         },
         gotoMultiMaster: function() {
             app.problemCauseMultiService.viewModel.set("groupParent", "0");

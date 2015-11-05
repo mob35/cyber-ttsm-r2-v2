@@ -13,6 +13,39 @@
 				return JSON.parse(cache).userId;
 			}
 		},
+		// initFaProblemCauseMaster: function() {
+		// 	var that = this;
+
+		// 	$("#lvFProblemCause").kendoMobileListView({
+		// 		dataSource: {
+		// 			transport: {
+		// 				read: function(operation) {
+		// 					operation.success(JSON.parse(localStorage.getItem("favoriteProblemCausesData")));
+		// 				}
+		// 			},
+		// 			schema: {
+		// 				data: "favoriteProblemCauses"
+		// 			}
+		// 		},
+
+		// 		template: $("#Fproblem-cause-template").html(),
+		// 		databound: function() {
+		// 			that.hideLoading();
+		// 		},
+		// 		filterable: {
+		// 			field: "problemCauseDesc",
+		// 			ignoreCase: true
+		// 		},
+		// 		click: function(e) {
+		// 			that.selectPbC(e);
+		// 		}
+		// 		//virtualViewSize: 30,
+		// 		//endlessScroll: true,
+		// 	});
+		// 	////console.log('lv Problemcause Master Loaded');
+
+		// },
+		//=================================================================================
 		initFaProblemCauseMaster: function() {
 			var that = this;
 
@@ -99,7 +132,7 @@
 					}
 				},
 
-				template: $("#Fproblem-cause-template").html(),
+				template: $("#favorite-problem-cause-template").html(),
 				databound: function() {
 					that.hideLoading();
 				},
