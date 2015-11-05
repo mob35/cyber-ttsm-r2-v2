@@ -3760,10 +3760,10 @@
                                     contentType: 'application/json',
                                     success: function(response) {
                                         // app.masterService.viewModel.loadFavoriteProblemCauses();
-                                        var lvFProblemCause = $("#lvFProblemCause").data("kendoMobileListView");
-                                        lvFProblemCause.dataSource.read();
-                                        lvFProblemCause.refresh();
-                                        // alert('SUCCESS:' + response.status);
+                                        // var lvFProblemCause = $("#lvFProblemCause").data("kendoMobileListView");
+                                        // lvFProblemCause.dataSource.read();
+                                        // lvFProblemCause.refresh();
+                                        alert('SUCCESS:' + response.status);
                                         //that.hideLoading();
 
 
@@ -3872,10 +3872,10 @@
                                     contentType: 'application/json',
                                     success: function(response) {
                                         // app.masterService.viewModel.loadFavoriteProblemCauses();
-                                        var lvFProblemCauseM = $("#lvFProblemCauseM").data("kendoMobileListView");
-                                        lvFProblemCauseM.dataSource.read();
-                                        lvFProblemCauseM.refresh();
-                                        // alert('SUCCESS:' + response.status);
+                                        // var lvFProblemCauseM = $("#lvFProblemCauseM").data("kendoMobileListView");
+                                        // lvFProblemCauseM.dataSource.read();
+                                        // lvFProblemCauseM.refresh();
+                                        alert('SUCCESS:' + response.status);
                                         //that.hideLoading();
 
 

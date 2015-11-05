@@ -13,38 +13,6 @@
                 return JSON.parse(cache).userId;
             }
         },
-        // initFaMProblemCauseMaster: function() {
-        //     var that = this;
-
-        //     $("#lvFProblemCauseM").kendoMobileListView({
-        //         dataSource: {
-        //             transport: {
-        //                 read: function(operation) {
-        //                     operation.success(JSON.parse(localStorage.getItem("favoriteProblemCausesData")));
-        //                 }
-        //             },
-        //             schema: {
-        //                 data: "favoriteProblemCauses"
-        //             }
-        //         },
-
-        //         template: $("#favorite-problem-cause-multi-template").html(),
-        //         databound: function() {
-        //             that.hideLoading();
-        //         },
-        //         filterable: {
-        //             field: "problemCauseDesc",
-        //             ignoreCase: true
-        //         },
-        //         click: function(e) {
-        //                 that.selectPbC(e);
-        //             }
-        //             //virtualViewSize: 30,
-        //             //endlessScroll: true,
-        //     });
-        //     ////console.log('lv Problemcause Master Loaded');
-
-        // },
         //===========================================================================================
         initFaMProblemCauseMaster: function() {
         	var that = this;
@@ -82,12 +50,12 @@
                            "userId": "7478",
                            "jobId": ""
                        };
-                       localStorage.setItem("favoriteProblemCausesData", JSON.stringify(response));
+                       localStorage.setItem("favoriteProblemCausesMultiData", JSON.stringify(response));
                    } else {
                        $.ajax({ //using jsfiddle's echo service to simulate remote data loading
                            type: "POST",
                            timeout: 180000,
-                           url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=getFavoriteProblemCauseTTSME.json',
+                           url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=getFavoriteProblemCauseMultiTTSME.json',
                            data: JSON.stringify({
                                "token": localStorage.getItem("token"),
                                "userId": JSON.parse(localStorage.getItem("profileData")).userId,
@@ -98,7 +66,7 @@
                            dataType: "json",
                            contentType: 'application/json',
                            success: function(response) {
-                               localStorage.setItem("favoriteProblemCausesData", JSON.stringify(response));
+                               localStorage.setItem("favoriteProblemCausesMultiData", JSON.stringify(response));
                                operation.success(response);
                                //that.hideLoading();
                                ////console.log("fetch Reason Over Due Data : Complete");
@@ -107,7 +75,7 @@
                            error: function(xhr, error) {
 
                                if (!app.ajaxHandlerService.error(xhr, error)) {
-                                   var cache = localStorage.getItem("favoriteProblemCausesData");
+                                   var cache = localStorage.getItem("favoriteProblemCausesMultiData");
 
                                    if (cache == null || cache == undefined) {
                                        ////console.log("Get Reason Over Due failed");
@@ -137,7 +105,7 @@
         			that.hideLoading();
         		},
         		filterable: {
-        			field: "problemCauseDesc",
+        			field: "multiCauseDesc",
         			ignoreCase: true
         		},
         		click: function(e) {
@@ -300,7 +268,7 @@
             var problemSolveData = new kendo.data.DataSource({
                 transport: {
                     read: function(operation) {
-                        operation.success(JSON.parse(localStorage.getItem("favoriteProblemCausesData")));
+                        operation.success(JSON.parse(localStorage.getItem("favoriteProblemCausesMultiData")));
                     }
                 },
                 schema: {
