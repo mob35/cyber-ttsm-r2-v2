@@ -41,6 +41,7 @@
 
     MapViewModel = kendo.data.ObservableObject.extend({
         _lastMarker: null,
+        lastupdateaccept: null,
         //_isLoading: true,
         direction: false,
         mcDataSource: null,
@@ -50,6 +51,8 @@
         longitude: null,
         address: "",
         isGoogleMapsInitialized: false,
+        
+        
 
         //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         //:::                                                                         :::
@@ -337,25 +340,15 @@
 
         },
 
-        gotoAlarmMob: function(siteDesc) {
-            var siteCode = siteDesc.split('[');
+        gotoAlarmMob: function(item) {
+            var that = this,
+            
 
-            //alert($.trim(siteCode[0]));
-            var sCode = $.trim(siteCode[0]);
-            //app.jobService.viewModel.gotoAlarmMobFromMap(sCode);
-            var alarmDataSource = new kendo.data.DataSource({
+            //console.log("fetch My Team");
+            myTeam = new kendo.data.DataSource({
                 transport: {
                     read: function(operation) {
-                        // var response = {
-                        //     "siteCode": sCode,
-                        //     "userId": userId,
-                        //     "token": localStorage.getItem("token"),
-                        //     "version": "2"
-                        // };
-
                         if (app.configService.isMorkupData) {
-
-
                             var response = {
                                 "jobBySites": [{
                                     "jobId": "JB14-271876",
@@ -2198,45 +2191,57 @@
                                 "siteId": "S-INS-1670",
                                 "version": "1"
                             };
-
                             operation.success(response);
-                        } else {
+                            that.set("lastupdateaccept", format_time_date(new Date()));
 
+
+                        } else {
                             $.ajax({ //using jsfiddle's echo service to simulate remote data loading
                                 beforeSend: app.loginService.viewModel.checkOnline,
                                 type: "POST",
                                 timeout: 180000,
                                 url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=getJobBySiteTTSME.json',
                                 data: JSON.stringify({
-                                    "siteCode": sCode,
                                     "token": localStorage.getItem("token"),
                                     "userId": JSON.parse(localStorage.getItem("profileData")).userId,
+                                    "siteId": item,
                                     "version": "2"
                                 }),
                                 dataType: "json",
                                 contentType: 'application/json',
                                 success: function(response) {
-                                    //alert("Alarm Active not found.");
-                                    // navigator.notification.alert("Alarm Active not found.",
-                                    //     function() {}, "Alarm Active ", 'OK');
-
+                                    //store response
+                                    //console.log(JSON.stringify(response));
+                                    //pass the pass response to the DataSource
+                                    //navigator.notification.alert(JSON.stringify(response),
+                                    //                        function () { }, "Get My Team failed", 'OK');
                                     operation.success(response);
+                                    
+                                    that.set("lastupdateaccept", format_time_date(new Date()));
+                                    //that.set("lastupdateteam", format_time_date(new Date()));
+
+                                    //navigator.notification.alert(JSON.stringify(response),
+                                    //                        function () { }, "Get My Team failed", 'OK');
+
+                                    //console.log("fetch My Team : Complete");
                                 },
                                 error: function(xhr, error) {
+                                    //console.debug("Get My Team failed");
+                                    //console.debug(xhr);
+                                    //console.debug(error);
                                     that.hideLoading();
                                     if (!app.ajaxHandlerService.error(xhr, error)) {
-                                        ////console.log("Accept : Save incomplete! ");
-                                        ////console.log("err=>xhr : " + JSON.stringify(xhr) + ", error : " + error);
-                                        navigator.notification.alert(error,
-                                            function() {}, "Get job incomplete! ", 'OK');
+                                        navigator.notification.alert(xhr.status + ' ' + error,
+                                            function() {}, "Get My Team failed", 'OK');
                                     }
-                                    //return false;
+                                    return;
                                 },
                                 complete: function() {
-                                    app.myService.viewModel.hideLoading();
+                                    //that.set("lastupdateaccept", format_time_date(new Date()));
                                 }
                             });
                         }
+
                     }
                 },
                 schema: {
@@ -2244,11 +2249,10 @@
                 }
             });
 
-            // alarmDataSource.fetch(function() {
-            // console.log(alarmDataSource);
-            // });
+            //console.log(JSON.stringify(myTeam));
+                console.log(item);
             $("#lvPowerSearchList").kendoMobileListView({
-                dataSource: alarmDataSource,
+                dataSource: myTeam,
                 //style: "inset",
                 template: $("#psearch-template").html(),
                 // pullToRefresh: true,
@@ -2261,7 +2265,6 @@
             );
 
         },
-
 
         clearCal: function() {
             directionsDisplay.setMap(null);
@@ -2374,7 +2377,7 @@
                         '</div>Last check in :' + app.mapService.viewModel.format_time_date2(moment());
 
                     position = new google.maps.LatLng(myLat, myLong);
-                    //alert(position);
+                    // alert(position);
                     app.mapService.viewModel.myPinLocation();
 
                     map.panTo(position);
@@ -2848,13 +2851,13 @@
         _putMarkerSite: function() {
 
 
-           
+
             for (var i = 0; i < marker_site.length; i++) {
                 marker_site[i].setMap(null);
             }
-           
+
             marker_site = [];
-            
+
             _searchSite_data = [];
             _searchNameTH_data = [];
             _searchNameEN_data = [];
@@ -3252,8 +3255,8 @@
             $('#earch_mc').attr('src', 'images/search_mc.png');
             $('#earch_job').attr('src', 'images/search_job.png');
             $('#' + typeName).attr('src', 'images/s' + typeName + '_active.png');
-            $('#earch_nameTH').css('color', '#AEAEAE');
-            $('#earch_nameEN').css('color', '#AEAEAE');
+            $('#earch_nameTH').css('color', '#D6D6D6');
+            $('#earch_nameEN').css('color', '#D6D6D6');
             $('#' + typeName).css('color', '#489CD8');
             $('#searchText').val('');
             $('#Hidden1').val('set');
@@ -3546,7 +3549,7 @@
             infowindow = new google.maps.InfoWindow();
             var inFor = "";
             //nameSite_s = "name1,name2,name3";
-
+            //console.log(sIds);
             var arr = nameSite_s.split('|');
             var arrT = siteType.split(',');
             var arrA = siteAlarm.split(',');
@@ -3558,6 +3561,7 @@
 
             for (var i = 0; i < arr.length; i++) {
                 if (arr[i] != "") {
+                    // console.log(arr[i]);
                     imageName = app.mapService.viewModel.fn_checkPIN_SITE_TYPE(arrT[i], arrA[i], arrStatus[i]);
                     var act_navi_begin = '<a class="linkText" href="#tabstrip-map" onclick="$(\'#startMap\').html(\'' + arr[i] + '\'); $(\'#lat_start\').val(\'' + la_site + '\'); $(\'#long_start\').val(\'' + long_site + '\'); app.mapService.viewModel.checkCal();">' +
                         '<i class="fa fa-flag"></i>' +
@@ -3571,7 +3575,7 @@
                     var enhance_act_get_alarm = ' | &nbsp;' + '<a class="linkText fa" href="#SiteAlarmDtl" onclick="app.mapService.viewModel.gotoAlarmDtl(\'' + arr[i] + '\');">' +
                         '<i class="fa iconTTSM-notification6 assertive"></i>' +
                         '</a>';
-                    var enhance_act_get_job = ' | &nbsp;' + '<div class="linkText fa" style="cursor:pointer" onclick="app.mapService.viewModel.gotoAlarmMob(\'' + arrSId[i] + '\');">' +
+                    var enhance_act_get_job = ' | &nbsp;' + '<div class="linkText fa" style="cursor:pointer" onclick="app.mapService.viewModel.gotoAlarmMob(\'' + arrSId[0] + '\');">' +
                         '<i class="fa fa-file"></i>' +
                         '</div>';
                     //var enhance_act_get_job = '';
@@ -3579,7 +3583,7 @@
                     var enhance_act_get_lalan = 'Lat Long :' + '<a class="linkText" onclick="app.mapService.viewModel.toClipboard(\'' + la_site + ',' + long_site + '\');"><span class="lalng">' + la_site + ',' + long_site + '</span></a>';
                     inFor = inFor + '<div  data-role="scroller" class="checkPin_' + arrT[i] + '' + arrA[i] + '_show"> &nbsp;&nbsp; <img src="' + imageName + '" class="tBalloon icon_result_width" /> ' + arr[i] + '' +
                         ' &nbsp;&nbsp;' + act_navi_begin + act_navi_end +
-                        enhance_act_director + enhance_act_get_alarm + enhance_act_get_job + '<br>' + enhance_act_get_name + '<br>' + enhance_act_get_lalan  + '<hr class="hr_head">' + '</div>';
+                        enhance_act_director + enhance_act_get_alarm + enhance_act_get_job + '<br>' + enhance_act_get_name + '<br>' + enhance_act_get_lalan + '<hr class="hr_head">' + '</div>';
                 }
             }
             var tx = '<div style="min-width:200px; overflow:auto; height:auto;">' + inFor + '</div>';
@@ -42675,9 +42679,9 @@
                     // // if center changed then update lat and lon document objects
                     google.maps.event.addListener(map, 'idle', function() {
                         var location = map.getCenter();
-                        
+
                         var center = new google.maps.LatLng(_default_lat, _default_long);
-                        
+
                         dragstart = center;
                         //console.log("dragend : " + location.lat() + " : " + location.lng());
                         dragend = location;
@@ -42765,7 +42769,7 @@
                     var longitude = app.mapService.viewModel.get("longitude");
                     var latitude = app.mapService.viewModel.get("latitude");
                     app.mapService.viewModel.directTo(latitude, longitude);
-                    app.mapService.viewModel.set("isGoFromJob",false);
+                    app.mapService.viewModel.set("isGoFromJob", false);
                 }
             }
         },
