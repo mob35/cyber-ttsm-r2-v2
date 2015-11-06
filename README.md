@@ -59,3 +59,4 @@ version: "2.1.0"
 List:
 	1:powerService 3 page map powerSearch myTeam
 	2:powerService go-back
+	3:delety fa-icon awesome

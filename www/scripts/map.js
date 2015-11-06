@@ -2392,7 +2392,7 @@
 
             navigator.geolocation.getCurrentPosition(
                 function(position) {
-                    //alert(position);
+                    //alert('position');
                     myLat = position.coords.latitude;
                     myLong = position.coords.longitude;
 
@@ -2405,15 +2405,16 @@
                         '</div>Last check in :' + app.mapService.viewModel.format_time_date2(moment());
 
                     position = new google.maps.LatLng(myLat, myLong);
-                    // alert(position);
+                     //alert(position);
                     app.mapService.viewModel.myPinLocation();
-
+                    
                     map.panTo(position);
+                    app.application.hideLoading();
                     map.setZoom(16);
 
 
 
-                    app.application.hideLoading();
+                    
                     //marker[0].setAnimation(google.maps.Animation.BOUNCE);
                     //that._putMarker(position);
 
@@ -2437,10 +2438,11 @@
                         function() {}, "Location failed", 'OK');
                 }, {
                     maximumAge: 30000,
-                    timeout: 30000,
+                    timeout: 10000,
                     enableHighAccuracy: true
                 }
             );
+
         },
 
         onSearchAddress: function() {
@@ -23941,7 +23943,9 @@
                             _default_lat = location.lat();
                             _default_long = location.lng();
                             //setTimeout(app.mapService.viewModel.loadSiteOnly, 1000);
+                            $(".c_loading").hide();
                             app.mapService.viewModel.loadSiteOnly();
+                            $(".c_loading").hide();
                         }
 
 

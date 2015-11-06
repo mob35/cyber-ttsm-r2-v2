@@ -1260,7 +1260,8 @@ s}
     background-position: center center;*/
     /*height:720px;
     overflow: auto;*/
-    height:1500px;
+    /*height:1500px;*/
+    min-height: 400px !important;
     top:0;
     bottom:0;
     /*background:red;*/

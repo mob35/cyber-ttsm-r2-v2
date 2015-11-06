@@ -5933,6 +5933,7 @@
             app.jobService.viewModel.loadassignlist();
 
             btnGroup.select(0);
+            app.jobService.viewModel.filterassign(0);
             app.jobService.viewModel.countAssign();
         },
         initAcceptlist: function() {
@@ -5954,6 +5955,7 @@
             app.jobService.viewModel.loadacceptlist();
 
             btnGroup.select(0);
+            app.jobService.viewModel.filteraccept(0);
             app.jobService.viewModel.countAccept();
         },
         showreject: function() {
