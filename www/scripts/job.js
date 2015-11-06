@@ -3188,25 +3188,28 @@
                             dataSourcePCM = that.get("jobProblemCMDataSource"),
                             dataSourcePS = that.get("jobProblemSDataSource");
                         //dataSourcePSP = that.get("jobProblemSPDataSource");
+                        if (dataSourcePC != null && dataSourcePC != undefined) {
+                            dataSourcePC.filter({
+                                field: "jobId",
+                                operator: "eq",
+                                value: selectItem.jobId
+                            });
+                        }
 
-                        dataSourcePC.filter({
-                            field: "jobId",
-                            operator: "eq",
-                            value: selectItem.jobId
-                        });
-
-                        dataSourcePCM.filter({
-                            field: "jobId",
-                            operator: "eq",
-                            value: selectItem.jobId
-                        });
-
-                        dataSourcePS.filter({
-                            field: "jobId",
-                            operator: "eq",
-                            value: selectItem.jobId
-                        });
-
+                        if (dataSourcePCM != null && dataSourcePCM != undefined) {
+                            dataSourcePCM.filter({
+                                field: "jobId",
+                                operator: "eq",
+                                value: selectItem.jobId
+                            });
+                        }
+                        if (dataSourcePCM != null && dataSourcePCM != undefined) {
+                            dataSourcePS.filter({
+                                field: "jobId",
+                                operator: "eq",
+                                value: selectItem.jobId
+                            });
+                        }
                         // if (dataSourcePSP != null && dataSourcePSP != undefined) {
                         //  dataSourcePSP.filter({
                         //      logic: "and",
@@ -3220,31 +3223,39 @@
                         that.set("selectProblemC", null);
                         that.set("selectProblemCM", null);
                         that.set("selectProblemS", null);
+                        if (dataSourcePCM != null && dataSourcePCM != undefined) {
 
-                        dataSourcePC.fetch(function() {
+                            dataSourcePC.fetch(function() {
 
-                            var tempPC = new kendo.data.DataSource({
-                                data: dataSourcePC.view()
+                                var tempPC = new kendo.data.DataSource({
+                                    data: dataSourcePC.view()
+                                });
+
+                                that.set("selectProblemC", tempPC);
                             });
+                        }
+                        if (dataSourcePCM != null && dataSourcePCM != undefined) {
 
-                            that.set("selectProblemC", tempPC);
-                        });
-                        dataSourcePCM.fetch(function() {
+                            dataSourcePCM.fetch(function() {
 
-                            var tempPCM = new kendo.data.DataSource({
-                                data: dataSourcePCM.view()
+                                var tempPCM = new kendo.data.DataSource({
+                                    data: dataSourcePCM.view()
+                                });
+
+                                that.set("selectProblemCM", tempPCM);
                             });
+                        }
+                        if (dataSourcePCM != null && dataSourcePCM != undefined) {
 
-                            that.set("selectProblemCM", tempPCM);
-                        });
-                        dataSourcePS.fetch(function() {
+                            dataSourcePS.fetch(function() {
 
-                            var tempPS = new kendo.data.DataSource({
-                                data: dataSourcePS.view()
+                                var tempPS = new kendo.data.DataSource({
+                                    data: dataSourcePS.view()
+                                });
+
+                                that.set("selectProblemS", tempPS);
                             });
-
-                            that.set("selectProblemS", tempPS);
-                        });
+                        }
 
                         that.set("returnUrl", app.application.view().id);
                         //that.set("selectProblemSP", dataSourcePSP);
@@ -3801,7 +3812,7 @@
             //     }
             // }
             // that.set("selectItem", selectItem);
-            
+
 
         },
         onAddFavoriteM: function() {

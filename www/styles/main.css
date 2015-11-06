@@ -445,54 +445,6 @@ body, html
     background-position: center center;
 }
 
-#search_nameTH
-{
-    width: 24px;
-    height: 40px;
-    color: #fff;
-    border: none;
-    background: none;
-    background-image: url(../images/search_site.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-#search_nameTH_active
-{
-    width: 40px;
-    height: 40px;
-    color: #fff;
-    border: none;
-    background: none;
-    background-image: url(../images/search_site_active.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-#search_nameEN
-{
-    width: 24px;
-    height: 40px;
-    color: #fff;
-    border: none;
-    background: none;
-
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-#search_nameEN_active
-{
-    width: 40px;
-    height: 40px;
-    color: #fff;
-    border: none;
-    background: none;
-
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
 #search_mc
 {
     width: 24px;
@@ -504,7 +456,6 @@ body, html
     background-repeat: no-repeat;
     background-position: center center;
 }
-
 
 #search_mc_active
 {
@@ -1211,7 +1162,7 @@ s}
 }
 .div_searchText {
     position:absolute;
-    left:160px;
+    left:105px;
     top:10px;
     z-index:99;
     width:40%;
@@ -1353,14 +1304,4 @@ s}
 }
 .sort-icon{
     font-size: 25px; 
-}
-.icon-red{
-    font-size: 25px;
-    color: red;
-}
-.size{
-    font-size: 20px;
-}
-.sizes{
-    font-size: 18px;
 }
