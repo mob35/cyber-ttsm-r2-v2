@@ -35879,8 +35879,8 @@
              app.masterService.viewModel.loadMyJBProblemCause();
              app.masterService.viewModel.loadMyJBProblemCauseM();
              app.masterService.viewModel.loadMyJBProblemSolve();
-             app.masterService.viewModel.loadFavoriteProblemCauses();
-             app.masterService.viewModel.loadFavoriteProblemCausesM();
+             // app.masterService.viewModel.loadFavoriteProblemCauses();
+             // app.masterService.viewModel.loadFavoriteProblemCausesM();
              app.masterService.viewModel.loadMyJB();
 
 
