@@ -944,7 +944,8 @@
             console.log(switchInstance.check());
             var lvPowerSearchList = $("#lvPowerSearchList").data("kendoMobileListView");
 
-            lvPowerSearchList.dataSource.sort({
+            lvPowerSearchList
+.dataSource.sort({
                 field: fieldName,
                 dir: switchInstance.check() ? "asc" : "desc"
             });

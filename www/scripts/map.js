@@ -2199,7 +2199,7 @@
                                 "version": "1"
                             };
                             operation.success(response);
-                            that.set("lastupdateaccept", format_time_date(new Date()));
+                            //that.set("lastupdateaccept", format_time_date(new Date()));
 
 
                         } else {
@@ -2259,7 +2259,7 @@
                 // pullToRefresh: true,
                 // endlessScroll: true
             });
-
+            app.jobService.viewModel.set("jobDataSource", alarmDataSource);
             app.powerSearchService.viewModel.set("titletxtJobListMap", "Job List");
             app.application.navigate(
                 '#powerService'
@@ -3309,28 +3309,28 @@
                 $('#hd_searchType').val("site");
 
 
-            // } else if (typeName == 'earch_nameTH') {
-            //     for (var i = 0; i < _searchNameTH_data.length; i++) {
-            //         tSearch += _searchNameTH_data[i];
-            //         //end_li = '<li class="li_not_found"><font style="color:red;">Not found!</font></li>';
-            //     }
-            //     //alert('setSearch');
-            //     $('#ul_searchResult').html(tSearch + end_li);
-            //     $('#searchText').attr('placeholder', 'Search Site Name Thai...');
-            //     $('#hd_searchType').val("site");
+                // } else if (typeName == 'earch_nameTH') {
+                //     for (var i = 0; i < _searchNameTH_data.length; i++) {
+                //         tSearch += _searchNameTH_data[i];
+                //         //end_li = '<li class="li_not_found"><font style="color:red;">Not found!</font></li>';
+                //     }
+                //     //alert('setSearch');
+                //     $('#ul_searchResult').html(tSearch + end_li);
+                //     $('#searchText').attr('placeholder', 'Search Site Name Thai...');
+                //     $('#hd_searchType').val("site");
 
 
 
-            // } else if (typeName == 'earch_nameEN') {
+                // } else if (typeName == 'earch_nameEN') {
 
-            //     for (var i = 0; i < _searchNameEN_data.length; i++) {
-            //         tSearch += _searchNameEN_data[i];
-            //         //end_li = '<li class="li_not_found"><font style="color:red;">Not found!</font></li>';
-            //     }
-            //     //alert('setSearch');
-            //     $('#ul_searchResult').html(tSearch + end_li);
-            //     $('#searchText').attr('placeholder', 'Search Site Name ENG...');
-            //     $('#hd_searchType').val("site");
+                //     for (var i = 0; i < _searchNameEN_data.length; i++) {
+                //         tSearch += _searchNameEN_data[i];
+                //         //end_li = '<li class="li_not_found"><font style="color:red;">Not found!</font></li>';
+                //     }
+                //     //alert('setSearch');
+                //     $('#ul_searchResult').html(tSearch + end_li);
+                //     $('#searchText').attr('placeholder', 'Search Site Name ENG...');
+                //     $('#hd_searchType').val("site");
 
 
 
@@ -22691,9 +22691,9 @@
                                     sne += iitem.sne + ",";
 
                                     _searchSite_data[count_searchSite] = ['<li onclick="app.mapService.viewModel.clickResult(\'' + filterBy + '\', \'' + item.ltt + '\', \'' + item.lgt + '\');" class="post_site" title="' + iitem.sTy + iitem.sAl + '" data-filter="' + data_icon + '"><a href="#tabstrip-map" style="text-decoration:none;"> ' +
-                                                '&nbsp;&nbsp; <img src="' + app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt) + '" class="icon_result_width" /> ' + filterBy + '</a></li>' +
-                                                ''
-                                            ];
+                                        '&nbsp;&nbsp; <img src="' + app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt) + '" class="icon_result_width" /> ' + filterBy + '</a></li>' +
+                                        ''
+                                    ];
                                     // _searchNameTH_data[count_searchSite] = ['<li onclick="app.mapService.viewModel.clickResult(\'' + filterBy + '\', \'' + item.ltt + '\', \'' + item.lgt + '\');" class="post_site" title="' + iitem.sTy + iitem.sAl + '" data-filter="' + filterBy + '"><a href="#tabstrip-map" style="text-decoration:none;"> ' +
                                     //     '&nbsp;&nbsp; <img src="' + app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt) + '" class="icon_result_width" /> ' + filterBy + '</a></li>' +
                                     //     ''
@@ -23410,9 +23410,9 @@
                                     sne += iitem.sne + ",";
 
                                     _searchSite_data[count_searchSite] = ['<li onclick="app.mapService.viewModel.clickResult(\'' + filterBy + '\', \'' + item.ltt + '\', \'' + item.lgt + '\');" class="post_site" title="' + iitem.sTy + iitem.sAl + '" data-filter="' + data_icon + '"><a href="#tabstrip-map" style="text-decoration:none;"> ' +
-                                                '&nbsp;&nbsp; <img src="' + app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt) + '" class="icon_result_width" /> ' + filterBy + '</a></li>' +
-                                                ''
-                                            ];
+                                        '&nbsp;&nbsp; <img src="' + app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt) + '" class="icon_result_width" /> ' + filterBy + '</a></li>' +
+                                        ''
+                                    ];
                                     //_searchNameTH_data[count_searchSite] = ['<li onclick="app.mapService.viewModel.clickResult(\'' + filterBy + '\', \'' + item.ltt + '\', \'' + item.lgt + '\');" class="post_site" title="' + iitem.sTy + iitem.sAl + '" data-filter="' + filterBy + '"><a href="#tabstrip-map" style="text-decoration:none;"> ' +
                                     //     '&nbsp;&nbsp; <img src="' + app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt) + '" class="icon_result_width" /> ' + filterBy + '</a></li>' +
                                     //     ''
