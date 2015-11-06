@@ -198,9 +198,9 @@
             if (selectProblemCM != null && selectProblemCM != undefined) {
                 var data = selectProblemCM.data();
                 for (var i = 0; i < data.length; i++) {
-                    var multiID = data[i].multiCauseId.split("|");
-                    var level = multiID.length-1;
-                    if (multiID[level] == e.dataItem.multiCauseId) {
+                    // var multiID = data[i].multiCauseId.split("|");
+                    // var level = multiID.length-1;
+                    if (data[i].multiCauseId == e.dataItem.multiCauseId) {
                         flag = false;
                         e.preventDefault();
                         navigator.notification.alert("Duplicate problem cause.",
@@ -215,44 +215,29 @@
 
             if (flag) {
                 selectItem.cntProblemCause++;
-                //selectItem.problemCauseMainId++;
-                // problemCauseDesc: "AC MAIN FAILED"
-                // problemCauseMainId: "08"
-                // problemCauseSubDesc: "Phase Error / Loss of Phase"
-                // problemCauseSubId: "050"
 
+
+                // var pbcm = {
+                //     "jobId": selectItem.jobId,
+                //     "problemCauseMainId": e.dataItem.id,
+                //     "multiCauseDesc": e.dataItem.multiCauseDesc,
+                //     "multiCauseId": e.dataItem.multiCauseId,
+                //     "multiCauseLevel": e.dataItem.multiCauseLevel,
+                //     "seqId": e.dataItem.seqId,
+                //     "levelCause": null,
+                //     "problemCauseId": null
+
+                // };
                 var pbcm = {
-                    "jobId": selectItem.jobId,
-                    "problemCauseMainId": e.dataItem.id,
-                    "multiCauseDesc": e.dataItem.multiCauseDesc,
-                    "multiCauseId": e.dataItem.multiCauseId,
-                    "multiCauseLevel": e.dataItem.multiCauseLevel,
-                    "seqId": null,
-                    "levelCause": null,
-                    "problemCauseId": null
+                            //"ids": e.dataItem.id,
+                            "jobId": selectItem.jobId,
+                            "seqId": null,
+                            "multiCauseIds": e.dataItem.multiCauseId,
+                            "multiCauseLevels": e.dataItem.multiCauseLevel,
+                            "maxLevel": e.dataItem.maxLevel,
+                            "multiCauseDescs": e.dataItem.multiCauseDesc
+                        };
 
-                };
-                // "jobId": selectItem.jobId,
-                //                     "seqId": null,
-                //                     "multiCauseIds": multiCauseIds.join("|"),
-                //                     "multiCauseLevels": multiCauseLevels.join("|"),
-                //                     "maxLevel": e.dataItem.level,
-                //                     "multiCauseDescs": multiCauseDescs.join(" => ")
-
-                // "token": localStorage.getItem("token"),
-                //    "userId": JSON.parse(localStorage.getItem("profileData")).userId,
-                //    "seqId": null,
-                //    "problemCause": dataCM[i].multiCauseIds,
-                //    "levelCause": dataCM[i].multiCauseLevels,
-                //    "version": "2"
-
-                //   favProblemCauseId: "0"
-                // maxLevel: "3"
-                // multiCauseDesc: "Power outage - link unstable => MSC => Activity"
-                // multiCauseId: "11|44|149"
-                // multiCauseLevel: "1|2|3"
-                // seqId: "1"
-                // userId: "7478"
 
                 selectProblemCM.pushCreate(pbcm);
 
@@ -261,7 +246,7 @@
                     that.set("selectProblemCM", selectProblemCM);
                 });
 
-                app.favoriteProblemCauseMService.viewModel.setFarProblemSolveRadio();
+                // app.favoriteProblemCauseMService.viewModel.setFarProblemSolveRadio();
                 //SUBPRO_CAUSE_ID   
                 //SUBPRO_CAUSE_DESCRIPTION  
                 //SUBPRO_CAUSE_STATUS   

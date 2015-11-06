@@ -3857,11 +3857,14 @@
                                     //async: false,
                                     contentType: 'application/json',
                                     success: function(response) {
+                                        var lvFProblemCauseM = $("#lvFProblemCauseM").data("kendoMobileListView");
+                                        lvFProblemCauseM.dataSource.read();
+                                        lvFProblemCauseM.refresh();
                                         // app.masterService.viewModel.loadFavoriteProblemCauses();
                                         // var lvFProblemCauseM = $("#lvFProblemCauseM").data("kendoMobileListView");
                                         // lvFProblemCauseM.dataSource.read();
                                         // lvFProblemCauseM.refresh();
-                                        alert('SUCCESS:' + response.status);
+                                        // alert('SUCCESS:' + response.status);
                                         //that.hideLoading();
 
 
