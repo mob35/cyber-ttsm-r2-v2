@@ -2115,19 +2115,19 @@
                 <span data-role="view-title">Favorite for Problem Cause</span>
             </div>
         </header>
+        <div class="position-left">
+            <a data-role="button" class="sizes" data-bind="click: onDelProbmF" data-icon="delete" style="color: red"></a>   
+        </div>
         <div data-role="content">
-            <!--<ul data-role="listview">
-             <li>
-             <div class="position-right">
-             <a href="#" data-role="button" class="fa fa-plus-circle" style="color: green"></a>
-             <a href="#" data-role="button" data-bind-"click: onDelProbm" class="fa fa-minus-circle" style="color: red"></a>
-             </div>
-             </li>
-             </ul>-->
             <ul id="lvFProblemCause"></ul>
         </div>
     </div>
-      <script type="text/x-kendo-tmpl" id="favorite-problem-cause-template">
+    <script type="text/x-kendo-tmpl" id="favorite-problem-cause-template">
+        <label data-icon="contact">
+            <input type="checkbox" class="FC${problemCauseSubId}FC" /> ${problemCauseDesc} - ${problemCauseSubDesc}
+        </label>
+    </script>
+      <!--<script type="text/x-kendo-tmpl" id="favorite-problem-cause-template">
         <a data-icon="contact">
             ${problemCauseDesc} - ${problemCauseSubDesc}
             </a>
@@ -2140,19 +2140,19 @@
                 <span data-role="view-title">Favorite for Problem Cause</span>
             </div>
         </header>
+        <div class="position-left">
+            <a data-role="button" class="sizes" data-bind="click: onDelProbmFM" data-icon="delete" style="color: red"></a>   
+        </div>
         <div data-role="content">
-            <!--<ul data-role="listview">
-             <li>
-             <div class="position-right">
-             <a href="#" data-role="button" class="fa fa-plus-circle" style="color: green"></a>
-             <a href="#" data-role="button" data-bind-"click: onDelProbm" class="fa fa-minus-circle" style="color: red"></a>
-             </div>
-             </li>
-             </ul>-->
             <ul id="lvFProblemCauseM"></ul>
         </div>
     </div>
     <script type="text/x-kendo-tmpl" id="favorite-problem-cause-multi-template">
+        <label data-icon="contact">
+            <input type="checkbox" class="CM${multiCauseId}CM  multiCauseChkBox"> ${multiCauseDesc}
+        </label>
+    </script>
+    <!--<script type="text/x-kendo-tmpl" id="favorite-problem-cause-multi-template">
         <a data-icon="contact">
                 ${multiCauseDesc}
             </a>
