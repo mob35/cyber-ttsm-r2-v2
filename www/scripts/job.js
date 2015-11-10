@@ -3772,9 +3772,7 @@
                                         lvFProblemCause.refresh();
                                         // alert('SUCCESS:' + response.status);
                                         //that.hideLoading();
-
-
-
+                                            
                                     },
                                     error: function(xhr, error) {
                                         that.hideLoading();
@@ -3784,7 +3782,8 @@
                                         }
                                         ////console.log(JSON.stringify(xhr));
                                     },
-                                    complete: function() {}
+                                    complete: function() {
+                                    }
                                 });
                                 // selectProblemC.remove(dataC[i]);
                                 // selectItem.cntProblemCause--;
@@ -3826,17 +3825,10 @@
         },
         onAddFavoriteM: function() {
             var that = this;
-
             var selectItem = that.get("selectItem");
-
             var selectProblemCM = that.get("selectProblemCM");
             var selectProblemSP = that.get("selectProblemSP");
-            // favProblemCauseId: "1"
-            // problemCauseDesc: "Activity - link down => Fiber optic"
-            // problemCauseMainId: "45"
-            // problemCauseSubDesc: "0"
-            // problemCauseSubId: "0"
-            // userId: "7478"
+
             $.each($("input:checkbox[class^='CM']"), function(index, val) {
                 selectProblemCM.fetch(function() {
                     var dataCM = selectProblemCM.view();
@@ -3853,20 +3845,6 @@
                                     "problemCause": dataCM[i].multiCauseIds,
                                     "levelCause": dataCM[i].multiCauseLevels,
                                     "version": "2"
-
-                                    // levelCause: "2"
-                                    // problemCause: "Mu"
-                                    // seqId: "1"
-                                    // token: "EKQvULhg2+pM6SrBjUmArMf2glPwM1G3s2ApSNmOkhRva9dMX/7xbw=="
-                                    // userId: "7478"
-                                    // version: "2"
-
-                                    //levelCause: "2"
-                                    // problemCause: "Mu"
-                                    // -seqId: "1"
-                                    // -token: "EKQvULhg2+pM6SrBjUmArB4q9InP90Ilry3vgh/wVRVva9dMX/7xbw=="
-                                    // -userId: "7478"
-                                    // -version: "2"
                                 };
                                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading
                                     type: "POST",
@@ -3886,9 +3864,6 @@
                                         // lvFProblemCauseM.refresh();
                                         // alert('SUCCESS:' + response.status);
                                         //that.hideLoading();
-
-
-
                                     },
                                     error: function(xhr, error) {
                                         that.hideLoading();
@@ -3900,50 +3875,18 @@
                                     },
                                     complete: function() {}
                                 });
-                                // selectProblemC.remove(dataC[i]);
-                                // selectItem.cntProblemCause--;
-
-                                // selectProblemS.fetch(function() {
-                                //     var dataS = selectProblemS.view();
-
-                                //     for (var j = 0; j < dataS.length; j++) {
-                                //         if (val.className.indexOf('PC' + dataS[j].subProblemCauseId + 'PC') > -1) {
-                                //             selectProblemS.remove(dataS[j]);
-                                //             if (selectItem.cntProblemSolve > 0) {
-                                //                 selectItem.cntProblemSolve--;
-                                //             }
-                                //         }
-                                //     }
-
-                                // });
                             }
                         }
                     }
-
-
                 });
 
             });
-
-            // if (selectItem.cntProblemCause == 0) {
-            //     //console.log("#### Clear selectProblemS ########");
-            //     if ($("#lvProblemSolveMaster").data("kendoMobileListView") != undefined && $("#lvProblemSolveMaster").data("kendoMobileListView") != null) {
-            //         var lvProblemSolveMaster = $("#lvProblemSolveMaster").data("kendoMobileListView");
-            //         var newDataSource = new kendo.data.DataSource();
-            //         lvProblemSolveMaster.setDataSource(newDataSource);
-            //         lvProblemSolveMaster.refresh();
-            //     }
-            // }
-            // that.set("selectItem", selectItem);
-
-
         },
         gotoMultiMaster: function() {
             app.problemCauseMultiService.viewModel.set("groupParent", "0");
             app.problemCauseMultiService.viewModel.set("multiCauseIds", []);
             app.problemCauseMultiService.viewModel.set("multiCauseLevels", []);
             app.problemCauseMultiService.viewModel.set("multiCauseDescs", []);
-
             app.application.navigate("#problem-cause-multi-master");
         },
         getProblemCauseM: function() {
@@ -4011,6 +3954,108 @@
             });
             that.set("selectItem", selectItem);
         },
+        // onDelProbmF: function() {
+        //     var that = this;
+        //     var selectItem = that.get("selectItem");
+        //     var selectProblemC = that.get("selectProblemC");
+        //     var selectProblemS = that.get("selectProblemS");
+
+        //     $.each($("input:checkbox[class^='FC']"), function(index, val) {
+        //         selectProblemC.fetch(function() {
+        //             var dataC = selectProblemC.view();
+
+        //             for (var i = 0; i < dataC.length; i++) {
+        //                 if (val.checked) {
+        //                     if (val.className.indexOf('FC' + dataC[i].problemCauseSubId + 'FC') > -1) {
+        //                         selectProblemC.remove(dataC[i]);
+        //                         selectItem.cntProblemCause--;
+
+        //                         var dataValue = {
+        //                             "token": localStorage.getItem("token"),
+        //                             "userId": JSON.parse(localStorage.getItem("profileData")).userId,
+        //                             "problemCause": dataC[i].problemCauseMainId,
+        //                             "subProblemCause": dataC[i].problemCauseSubId,
+        //                             "version": "2"
+        //                         };
+        //                         $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+        //                             type: "POST",
+        //                             timeout: 180000,
+        //                             url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=createFavoriteProblemCause.json',
+        //                             data: JSON.stringify(dataValue),
+        //                             dataType: "json",
+        //                             //async: false,
+        //                             contentType: 'application/json',
+        //                             success: function(response) {
+        //                                 // app.masterService.viewModel.loadFavoriteProblemCauses();
+        //                                 var lvFProblemCause = $("#lvFProblemCause").data("kendoMobileListView");
+        //                                 lvFProblemCause.dataSource.read();
+        //                                 lvFProblemCause.refresh();
+        //                                 // alert('SUCCESS:' + response.status);
+        //                                 //that.hideLoading();
+        //                             },
+        //                             error: function(xhr, error) {
+        //                                 that.hideLoading();
+        //                                 if (!app.ajaxHandlerService.error(xhr, error)) {
+        //                                     navigator.notification.alert(error,
+        //                                         function() {}, "Change Status Job : Save incomplete!", 'OK');
+        //                                 }
+        //                                 ////console.log(JSON.stringify(xhr));
+        //                             },
+        //                             complete: function() {}
+        //                         });
+        //                     }
+        //                 }
+        //             }
+        //         });
+        //     });
+        //     if (selectItem.cntProblemCause == 0) {
+        //         //console.log("#### Clear selectProblemS ########");
+        //         if ($("#lvProblemSolveMaster").data("kendoMobileListView") != undefined && $("#lvProblemSolveMaster").data("kendoMobileListView") != null) {
+        //             var lvProblemSolveMaster = $("#lvProblemSolveMaster").data("kendoMobileListView");
+        //             var newDataSource = new kendo.data.DataSource();
+        //             lvProblemSolveMaster.setDataSource(newDataSource);
+        //             lvProblemSolveMaster.refresh();
+        //         }
+        //     }
+        //     that.set("selectItem", selectItem);
+        // },
+        // onDelProbmFM: function() {
+        //     var that = this;
+        //     var selectItem = that.get("selectItem");
+        //     var selectProblemCM = that.get("selectProblemCM");
+        //     var selectProblemS = that.get("selectProblemS");
+
+        //     $.each($("input:checkbox[class^='CM']"), function(index, val) {
+        //         selectProblemCM.fetch(function() {
+        //             var dataCM = selectProblemCM.view();
+
+        //             for (var i = 0; i < dataCM.length; i++) {
+        //                 if (val.checked) {
+        //                     if (val.className.indexOf('CM' + dataCM[i].multiCauseIds + 'CM') > -1) {
+        //                         selectProblemCM.remove(dataCM[i]);
+        //                         selectItem.cntProblemCause--;
+
+        //                         selectProblemS.fetch(function() {
+        //                             var dataS = selectProblemS.view();
+
+        //                             for (var j = 0; j < dataS.length; j++) {
+        //                                 if (val.className.indexOf(dataS[j].subProblemCauseId + 'CM') > -1) {
+        //                                     selectProblemS.remove(dataS[j]);
+        //                                     selectItem.cntProblemSolve--;
+        //                                 }
+        //                             }
+
+        //                         });
+        //                     }
+        //                 }
+        //             }
+
+        //         });
+
+        //     });
+        //     that.set("selectItem", selectItem);
+        // },
+
         onClearAllCheck: function() {
             setTimeout(function() {
                 $.each($("input:checkbox[class^='CM']"), function(index, val) {
