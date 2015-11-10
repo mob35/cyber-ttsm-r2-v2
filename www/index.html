@@ -2128,13 +2128,14 @@
             ${problemCauseDesc} - ${problemCauseSubDesc}
             </a>
     </script>
-        <div data-title="Favorite for Problem Cause" data-role="view" id="delfarvirite-problem-cause" data-layout="tabstrip-layout" data-init="app.fadelProblemCauseService.init" data-show="app.fadelProblemCauseService.show" data-model="app.fadelProblemCauseService.viewModel" data-url="/">
+        <div data-title="Delete Favorite for Problem Cause" data-role="view" id="delfarvirite-problem-cause" data-layout="tabstrip-layout" data-init="app.fadelProblemCauseService.init" data-show="app.fadelProblemCauseService.show" data-model="app.fadelProblemCauseService.viewModel" data-url="/">
         <header data-role="header">
             <div data-role="navbar">
                 <a href="#job-problem-cause" data-role="button" class="fa" data-icon="fa-back" data-align="left"></a>
                 <span data-role="view-title">Favorite for Problem Cause</span>
+                <a data-role="button" data-bind="click: onDelProbmD" data-icon="check" data-align="right"></a>
             </div>
-            <a data-role="button" class="sizes" data-bind="click: onDelProbmD" data-icon="delete" style="color: red"></a>
+            
         </header>
         <div data-role="content">
             <ul id="lvFProblemCauseD"></ul>
@@ -2162,13 +2163,13 @@
                 ${multiCauseDesc}
             </a>
     </script>
-    <div data-title="Favorite for Problem Cause" data-role="view" id="delfavorite-problem-cause-multi" data-layout="tabstrip-layout" data-init="app.delfavoriteProblemCauseMService.init" data-show="app.delfavoriteProblemCauseMService.show" data-model="app.delfavoriteProblemCauseMService.viewModel" data-url="/">
+    <div data-title="Delete Favorite for Problem Cause" data-role="view" id="delfavorite-problem-cause-multi" data-layout="tabstrip-layout" data-init="app.delfavoriteProblemCauseMService.init" data-show="app.delfavoriteProblemCauseMService.show" data-model="app.delfavoriteProblemCauseMService.viewModel" data-url="/">
         <header data-role="header">
             <div data-role="navbar">
                 <a href="#job-problem-cause-multi" data-role="button" class="fa" data-icon="fa-back" data-align="left"></a>
+                <a data-role="button" data-bind="click: onDelProbmDM" data-icon="check" data-align="right"></a>
                 <span data-role="view-title">Favorite for Problem Cause</span>
             </div>
-            <a data-role="button" class="sizes" data-bind="click: onDelProbmDM" data-icon="delete" style="color: red"></a>
         </header>
         <div data-role="content">
             <ul id="lvFProblemCauseMD"></ul>
