@@ -300,7 +300,7 @@
     };
 
     powerSearchViewModel = kendo.data.ObservableObject.extend({
-        lastupdateaccept : null,
+        lastupdateaccept: null,
         jobid: "",
         sitecode: "",
         assignDateFrom: "",
@@ -313,7 +313,11 @@
         assignBy: "",
         titletxt: 'Power Search',
         titletxtJobListMap: 'Job List',
-        paramsSearch : "P",
+        paramsSearch: "P",
+
+
+
+
 
         setTmp: function() {
             // alert("Region");
@@ -353,6 +357,9 @@
                                 var dropdownlist = $("#ddlzone").data("kendoDropDownList");
                                 dropdownlist.select(0);
                                 dropdownlist.destroy();
+
+
+
                             }
                         }
                     },
@@ -521,6 +528,7 @@
                 Photo;
 
             app.myService.viewModel.showLoading();
+
             var jobid = that.get("jobid");
 
             var ddlregion = ($("#ddlregion").data("kendoDropDownList") ? $("#ddlregion").data("kendoDropDownList").value() : "");
@@ -844,7 +852,7 @@
                                         // that.countAccept();                                        
                                         that.set("lastupdateaccept", format_time_date(new Date()));
                                         app.myService.viewModel.hideLoading();
-                                        that.set("paramsSearch","P");
+                                        that.set("paramsSearch", "P");
                                     }
                                 });
                             }
@@ -870,11 +878,11 @@
                     }
 
                 });
-                
+
             }
-        
-            app.jobService.viewModel.set("jobDataSource",JBs);
-            
+
+            app.jobService.viewModel.set("jobDataSource", JBs);
+
             if ($("#lvPowerSearchList").data("kendoMobileListView") == undefined || $("#lvPowerSearchList").data("kendoMobileListView") == null) {
                 $("#lvPowerSearchList").kendoMobileListView({
                     dataSource: JBs,
@@ -883,16 +891,16 @@
                     // pullToRefresh: true,
                     // endlessScroll: true
                 });
-                
+
             } else {
                 $("#lvPowerSearchList").data("kendoMobileListView").setDataSource(JBs);
-                
+
             }
             app.myService.viewModel.hideLoading();
             app.application.navigate(
-                    '#powerService'
-                );
-            
+                '#powerService'
+            );
+
         },
         filterAllocateEvent: function() {
             var that = app.powerSearchService.viewModel;
@@ -906,18 +914,18 @@
             var filterJob = {
                 logic: "or",
                 filters: [{
-                field: "jobId",
-                operator: "contains",
-                value: allocateFilter
-            },{
+                    field: "jobId",
+                    operator: "contains",
+                    value: allocateFilter
+                }, {
                     field: "title",
                     operator: "contains",
                     value: allocateFilter
-                },{
+                }, {
                     field: "assignByName",
                     operator: "contains",
                     value: allocateFilter
-                },{
+                }, {
                     field: "siteAccessDesc",
                     operator: "contains",
                     value: allocateFilter
@@ -945,15 +953,16 @@
             var lvPowerSearchList = $("#lvPowerSearchList").data("kendoMobileListView");
 
             lvPowerSearchList
-.dataSource.sort({
-                field: fieldName,
-                dir: switchInstance.check() ? "asc" : "desc"
-            });
+                .dataSource.sort({
+                    field: fieldName,
+                    dir: switchInstance.check() ? "asc" : "desc"
+                });
             //jigkoh comment for not re-read datasource
             //lvReallocate.dataSource.read();
             lvPowerSearchList.refresh();
             app.application.view().scroller.reset();
             $("#sortActionSheetPowerService").data("kendoMobileActionSheet").close();
+
         },
     });
     app.powerSearchService = {
@@ -961,6 +970,7 @@
         init: function() {
             // alert("init");
             app.powerSearchService.viewModel.setTmp();
+
             ////console.log('loading Login');
         },
 
@@ -987,6 +997,23 @@
                         }, "Internet Connection", 'OK');
                 }
             }
+            $('#jobid').val('');
+            $("#ddlregion").data("kendoDropDownList").select(0);
+            var ddlZone = $("#ddlzone").data("kendoDropDownList");
+            if (ddlZone) {
+                $("#ddlzone").data("kendoDropDownList").select(0)
+            }
+            $('#sitecode').val('');
+            $('#assignDateFrom').val('');
+            $('#assignDateTo').val('');
+            $('#finishDateFrom').val('');
+            $('#finishDateTo').val('');
+            $("#ddlstatus").data("kendoDropDownList").select(0);
+            $("#ddlpiority").data("kendoDropDownList").select(0);
+            $('#title').val('');
+            $('#siteNameThai').val('');
+            $('#assignTo').val('');
+            $('#assignBy').val('');
             //app.myService.viewModel.hideLoading(////console.logle.debug("myteam hide hide");
         },
         hide: function() {

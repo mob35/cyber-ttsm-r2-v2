@@ -3606,6 +3606,7 @@
             for (var i = 0; i < arr.length; i++) {
                 if (arr[i] != "") {
                     // console.log(arr[i]);
+                    var infoBar = arr[i].split("]")[0] + "]";
                     imageName = app.mapService.viewModel.fn_checkPIN_SITE_TYPE(arrT[i], arrA[i], arrStatus[i]);
                     var act_navi_begin = '<a class="linkText" href="#tabstrip-map" onclick="$(\'#startMap\').html(\'' + arr[i] + '\'); $(\'#lat_start\').val(\'' + la_site + '\'); $(\'#long_start\').val(\'' + long_site + '\'); app.mapService.viewModel.checkCal();">' +
                         '<i class="fa fa-flag"></i>' +
@@ -3625,7 +3626,7 @@
                     //var enhance_act_get_job = '';
                     var enhance_act_get_name = 'Name TH :' + arrNameTH[i] + '<br>' + 'Name EN :' + arrNameEN[i];
                     var enhance_act_get_lalan = 'Lat Long :' + '<a class="linkText" onclick="app.mapService.viewModel.toClipboard(\'' + la_site + ',' + long_site + '\');"><span class="lalng">' + la_site + ',' + long_site + '</span></a>';
-                    inFor = inFor + '<div  data-role="scroller" class="checkPin_' + arrT[i] + '' + arrA[i] + '_show"> &nbsp;&nbsp; <img src="' + imageName + '" class="tBalloon icon_result_width" /> ' + arr[i] + '' +
+                    inFor = inFor + '<div  data-role="scroller" class="checkPin_' + arrT[i] + '' + arrA[i] + '_show"> &nbsp;&nbsp; <img src="' + imageName + '" class="tBalloon icon_result_width" /> ' + infoBar + '' +
                         ' &nbsp;&nbsp;' + act_navi_begin + act_navi_end +
                         enhance_act_director + enhance_act_get_alarm + enhance_act_get_job + '<br>' + enhance_act_get_name + '<br>' + enhance_act_get_lalan + '<hr class="hr_head">' + '</div>';
                 }
@@ -23841,7 +23842,7 @@
         showNewSolution: function() {
 
             //app.mapService.viewModel.get("isGoogleMapsInitialized")
-
+            $("#map-direction-wrap").hide();
             $('#div_map_bottom').hide();
 
             $("#map-canvas").css("display", "");
