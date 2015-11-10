@@ -2012,7 +2012,9 @@
             <a href="#problem-cause-master" class="sizes" data-role="button" data-icon="add" style="color: green"></a>
             <a data-role="button" class="sizes" data-bind="click: onDelProbm" data-icon="delete" style="color: red"></a>
             <a href="#farvirite-problem-cause" class="icon-Favorite2 position-right size" data-role="button"></a>
+            <a href="#delfarvirite-problem-cause" class="position-right " style="font-size: 1.35em" data-icon="delete" data-role="button"></a>
             <a data-role="button" class="icon-Favorite1 position-right size" data-bind="click: onAddFavorite"></a>
+
         </div>
         <div data-role="content">
             <ul id="lvJobProblemCause"></ul>
@@ -2066,7 +2068,9 @@
             <a href="#problem-cause-multi-master" class="sizes"data-role="button" data-icon="add" style="color: green"></a>
             <a data-role="button" class="sizes" data-bind="click: onDelProbmCM" data-icon="delete" style="color: red"></a>
             <a href="#favorite-problem-cause-multi" class="icon-Favorite2 position-right size" data-role="button"></a>
+            <a href="#delfavorite-problem-cause-multi" class="position-right " style="font-size: 1.35em" data-icon="delete" data-role="button"></a>
             <a data-role="button" class="icon-Favorite1 position-right size" data-bind="click: onAddFavoriteM"></a>
+           
         </div>
         <div data-role="content">
             <ul id="lvJobProblemCauseM"></ul>
@@ -2115,22 +2119,31 @@
                 <span data-role="view-title">Favorite for Problem Cause</span>
             </div>
         </header>
-        <div class="position-left">
-            <a data-role="button" class="sizes" data-bind="click: onDelProbmF" data-icon="delete" style="color: red"></a>   
-        </div>
         <div data-role="content">
             <ul id="lvFProblemCause"></ul>
         </div>
     </div>
     <script type="text/x-kendo-tmpl" id="favorite-problem-cause-template">
-        <label data-icon="contact">
-            <input type="checkbox" class="FC${problemCauseSubId}FC" /> ${problemCauseDesc} - ${problemCauseSubDesc}
-        </label>
-    </script>
-      <!--<script type="text/x-kendo-tmpl" id="favorite-problem-cause-template">
         <a data-icon="contact">
             ${problemCauseDesc} - ${problemCauseSubDesc}
             </a>
+    </script>
+        <div data-title="Favorite for Problem Cause" data-role="view" id="delfarvirite-problem-cause" data-layout="tabstrip-layout" data-init="app.fadelProblemCauseService.init" data-show="app.fadelProblemCauseService.show" data-model="app.fadelProblemCauseService.viewModel" data-url="/">
+        <header data-role="header">
+            <div data-role="navbar">
+                <a href="#job-problem-cause" data-role="button" class="fa" data-icon="fa-back" data-align="left"></a>
+                <span data-role="view-title">Favorite for Problem Cause</span>
+            </div>
+            <a data-role="button" class="sizes" data-bind="click: onDelProbmD" data-icon="delete" style="color: red"></a>
+        </header>
+        <div data-role="content">
+            <ul id="lvFProblemCauseD"></ul>
+        </div>
+    </div>
+        <script type="text/x-kendo-tmpl" id="delfavorite-problem-cause-template">
+        <label data-icon="contact">
+            <input type="checkbox" class="DF${problemCauseSubId}" alt="${problemCauseSubId}" /> ${problemCauseDesc} - ${problemCauseSubDesc}
+        </label>
     </script>
     <!--favorite-problem-cause-multi-->
     <div data-title="Favorite for Problem Cause" data-role="view" id="favorite-problem-cause-multi" data-layout="tabstrip-layout" data-init="app.favoriteProblemCauseMService.init" data-show="app.favoriteProblemCauseMService.show" data-model="app.favoriteProblemCauseMService.viewModel" data-url="/">
@@ -2140,25 +2153,32 @@
                 <span data-role="view-title">Favorite for Problem Cause</span>
             </div>
         </header>
-        <div class="position-left">
-            <a data-role="button" class="sizes" data-bind="click: onDelProbmFM" data-icon="delete" style="color: red"></a>   
-        </div>
         <div data-role="content">
             <ul id="lvFProblemCauseM"></ul>
         </div>
     </div>
     <script type="text/x-kendo-tmpl" id="favorite-problem-cause-multi-template">
-        <label data-icon="contact">
-            <input type="checkbox" class="CM${multiCauseId}CM  multiCauseChkBox"> ${multiCauseDesc}
-        </label>
-    </script>
-    <!--<script type="text/x-kendo-tmpl" id="favorite-problem-cause-multi-template">
         <a data-icon="contact">
                 ${multiCauseDesc}
             </a>
     </script>
-
-
+    <div data-title="Favorite for Problem Cause" data-role="view" id="delfavorite-problem-cause-multi" data-layout="tabstrip-layout" data-init="app.delfavoriteProblemCauseMService.init" data-show="app.delfavoriteProblemCauseMService.show" data-model="app.delfavoriteProblemCauseMService.viewModel" data-url="/">
+        <header data-role="header">
+            <div data-role="navbar">
+                <a href="#job-problem-cause-multi" data-role="button" class="fa" data-icon="fa-back" data-align="left"></a>
+                <span data-role="view-title">Favorite for Problem Cause</span>
+            </div>
+            <a data-role="button" class="sizes" data-bind="click: onDelProbmDM" data-icon="delete" style="color: red"></a>
+        </header>
+        <div data-role="content">
+            <ul id="lvFProblemCauseMD"></ul>
+        </div>
+    </div>
+    <script type="text/x-kendo-tmpl" id="delfavorite-problem-cause-multi-template">
+        <label data-icon="contact">
+            <input type="checkbox" class="DM${multiCauseId}" alt="${multiCauseId}"> ${multiCauseDesc}
+        </label>
+    </script>
     
     <!-- problemsolve-->
     <div data-title="Problem Solve" data-role="view" id="job-problem-solve" data-layout="tabstrip-layout" data-show="app.jobService.loadProblemSolve" data-model="app.jobService.viewModel" data-after-show="app.jobService.viewModel.onClearAllCheckPS">
@@ -4404,6 +4424,8 @@
     <script src="scripts/powerSearch.js"></script>
     <script src="scripts/favproblemcause.js"></script>
     <script src="scripts/favproblemcauseM.js"></script>
+    <script src="scripts/delfavproblemcause.js"></script>
+    <script src="scripts/delfavproblemcauseM.js"></script>
     <!--end-->
     <script src="scripts/dashboard.js"></script>
     <script src="scripts/dashboardFilter.js"></script>

@@ -1,9 +1,9 @@
 (function(global) {
-    var FaProblemCauseViewModel,
+    var FaDelProblemCauseViewModel,
         app = global.app = global.app || {};
 
 
-    FaProblemCauseViewModel = kendo.data.ObservableObject.extend({
+    FaDelProblemCauseViewModel = kendo.data.ObservableObject.extend({
         _isLoading: true,
         userId: function() {
             var cache = localStorage.getItem("profileData");
@@ -13,43 +13,10 @@
                 return JSON.parse(cache).userId;
             }
         },
-        // initFaProblemCauseMaster: function() {
-        // 	var that = this;
-
-        // 	$("#lvFProblemCause").kendoMobileListView({
-        // 		dataSource: {
-        // 			transport: {
-        // 				read: function(operation) {
-        // 					operation.success(JSON.parse(localStorage.getItem("favoriteProblemCausesData")));
-        // 				}
-        // 			},
-        // 			schema: {
-        // 				data: "favoriteProblemCauses"
-        // 			}
-        // 		},
-
-        // 		template: $("#Fproblem-cause-template").html(),
-        // 		databound: function() {
-        // 			that.hideLoading();
-        // 		},
-        // 		filterable: {
-        // 			field: "problemCauseDesc",
-        // 			ignoreCase: true
-        // 		},
-        // 		click: function(e) {
-        // 			that.selectPbC(e);
-        // 		}
-        // 		//virtualViewSize: 30,
-        // 		//endlessScroll: true,
-        // 	});
-        // 	////console.log('lv Problemcause Master Loaded');
-
-        // },
-        //=================================================================================
         initFaProblemCauseMaster: function() {
             var that = this;
 
-            $("#lvFProblemCause").kendoMobileListView({
+            $("#lvFProblemCauseD").kendoMobileListView({
                 dataSource: {
                     transport: {
                         read: function(operation) {
@@ -132,7 +99,7 @@
                     }
                 },
 
-                template: $("#favorite-problem-cause-template").html(),
+                template: $("#delfavorite-problem-cause-template").html(),
                 databound: function() {
                     that.hideLoading();
                 },
@@ -140,162 +107,87 @@
                     field: "problemCauseDesc",
                     ignoreCase: true
                 },
-                click: function(e) {
-                        that.selectPbC(e);
-                    }
-                    //virtualViewSize: 30,
-                    //endlessScroll: true,
             });
             ////console.log('lv Problemcause Master Loaded');
 
         },
-        // onDelProbmF: function() {
-        //     var that = app.jobService.viewModel;
+        onDelProbmD: function() {
+            var that = app.jobService.viewModel;
+            $.each($("input:checkbox[class^='DF']"), function(index, val) {
+                if (val.checked) {
+                    console.log(val.alt);
+                    if (val.alt) {
+                        var arrId = val.alt.split("|");
+                        var arrLength = arrId.length;
+                        var lastestId = arrId[arrLength - 1];
+                        console.log("lastestId : " + lastestId);
 
-        //     var selectItem = that.get("selectItem");
+                        var dataValue = {
+                            "token": localStorage.getItem("token"),
+                            "userId": JSON.parse(localStorage.getItem("profileData")).userId,
+                            "favoriteId": lastestId,
+                            "favoriteType": "S",
+                            "version": "2"
 
-        //     var selectProblemC = that.get("selectProblemC");
-        //     var selectProblemS = that.get("selectProblemS");
+                            // favoriteId: "1"
+                            // favoriteType: "S"
+                            // token: ""
+                            // userId: "7478"
+                            // version: "2"
+                        };
+                        $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                            type: "POST",
+                            timeout: 180000,
+                            url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=deleteFavoriteProblemCause.json',
+                            data: JSON.stringify(dataValue),
+                            dataType: "json",
+                            //async: false,
+                            contentType: 'application/json',
+                            success: function(response) {
 
-        //     $.each($("input:checkbox[class^='FC']"), function(index, val) {
-        //         selectProblemC.fetch(function() {
-        //             var dataC = selectProblemC.view();
+                                var lvFProblemCauseD = $("#lvFProblemCauseD").data("kendoMobileListView");
+                                lvFProblemCauseD.dataSource.read();
+                                lvFProblemCauseD.refresh();
+                                var lvFProblemCause = $("#lvFProblemCause").data("kendoMobileListView");
+                                lvFProblemCause.dataSource.read();
+                                lvFProblemCause.refresh();
+                            },
+                            error: function(xhr, error) {
+                                that.hideLoading();
+                                if (!app.ajaxHandlerService.error(xhr, error)) {
+                                    navigator.notification.alert(error,
+                                        function() {}, "Change Status Job : Save incomplete!", 'OK');
+                                }
+                                ////console.log(JSON.stringify(xhr));
+                            },
+                            complete: function() {}
+                        });
 
-        //             for (var i = 0; i < dataC.length; i++) {
-        //                 if (val.checked) {
-        //                     if (val.className.indexOf('FC' + dataC[i].problemCauseSubId + 'FC') > -1) {
-        //                         selectProblemC.remove(dataC[i]);
-        //                         selectItem.cntProblemCause--;
+                    }
+                }
 
-        //                         selectProblemS.fetch(function() {
-        //                             var dataS = selectProblemS.view();
 
-        //                             for (var j = 0; j < dataS.length; j++) {
-        //                                 if (val.className.indexOf('FC' + dataS[j].subProblemCauseId + 'FC') > -1) {
-        //                                     selectProblemS.remove(dataS[j]);
-        //                                     if (selectItem.cntProblemSolve > 0) {
-        //                                         selectItem.cntProblemSolve--;
-        //                                     }
-        //                                 }
-        //                             }
-        //                             // $.ajax({ //using jsfiddle's echo service to simulate remote data loading
-        //                             //     type: "POST",
-        //                             //     timeout: 180000,
-        //                             //     url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=createFavoriteProblemCause.json',
-        //                             //     data: JSON.stringify(dataValue),
-        //                             //     dataType: "json",
-        //                             //     //async: false,
-        //                             //     contentType: 'application/json',
-        //                             //     success: function(response) {
-        //                             //         // app.masterService.viewModel.loadFavoriteProblemCauses();
-        //                             //         var lvFProblemCause = $("#lvFProblemCause").data("kendoMobileListView");
-        //                             //         lvFProblemCause.dataSource.read();
-        //                             //         lvFProblemCause.refresh();
-        //                             //         // alert('SUCCESS:' + response.status);
-        //                             //         //that.hideLoading();
 
-        //                             //     },
-        //                             //     error: function(xhr, error) {
-        //                             //         that.hideLoading();
-        //                             //         if (!app.ajaxHandlerService.error(xhr, error)) {
-        //                             //             navigator.notification.alert(error,
-        //                             //                 function() {}, "Change Status Job : Save incomplete!", 'OK');
-        //                             //         }
-        //                             //         ////console.log(JSON.stringify(xhr));
-        //                             //     },
-        //                             //     complete: function() {}
-        //                             // });
 
-        //                         });
-        //                     }
-        //                 }
-        //             }
+            });
 
-        //         });
-
-        //     });
-
-        //     if (selectItem.cntProblemCause == 0) {
-        //         //console.log("#### Clear selectProblemS ########");
-        //         if ($("#lvProblemSolveMaster").data("kendoMobileListView") != undefined && $("#lvProblemSolveMaster").data("kendoMobileListView") != null) {
-        //             var lvProblemSolveMaster = $("#lvProblemSolveMaster").data("kendoMobileListView");
-        //             var newDataSource = new kendo.data.DataSource();
-        //             lvProblemSolveMaster.setDataSource(newDataSource);
-        //             lvProblemSolveMaster.refresh();
-        //         }
-        //     }
-        //     that.set("selectItem", selectItem);
-        // },
+        },
         showFaProblemCauseMaster: function() {
             var that = this;
             // app.masterService.viewModel.loadFavoriteProblemCauses();
             // var aa = JSON.parse(localStorage.getItem("favoriteProblemCausesData"));
+            var lvFProblemCauseD = $("#lvFProblemCauseD").data("kendoMobileListView");
+            lvFProblemCauseD.dataSource.read();
+            lvFProblemCauseD.refresh();
             var lvFProblemCause = $("#lvFProblemCause").data("kendoMobileListView");
             lvFProblemCause.dataSource.read();
             lvFProblemCause.refresh();
         },
         loadFaProblemCauseMaster: function() {
             var that = this;
-            var lvProblemCauseMaster = $("#lvFProblemCause").data("kendoMobileListView");
+            var lvProblemCauseMaster = $("#lvFProblemCauseD").data("kendoMobileListView");
             //lvProblemCauseMaster.reset();
             app.application.view().scroller.reset();
-        },
-        selectPbC: function(e) {
-            //console.log("###### selectPbC #########");
-            var that = app.jobService.viewModel;
-
-            var selectItem = that.get("selectItem");
-
-            var selectProblemC = that.get("selectProblemC");
-
-            var flag = true;
-            if (selectProblemC != null && selectProblemC != undefined) {
-                var data = selectProblemC.data();
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].favProblemCauseId == e.dataItem.favProblemCauseId) {
-                        flag = false;
-                        e.preventDefault();
-                        navigator.notification.alert("Duplicate problem cause.",
-                            function() {}, "Error", 'OK');
-                        i = data.length;
-                    }
-                }
-            } else {
-                selectProblemC = new kendo.data.DataSource();
-
-            }
-
-            if (flag) {
-                selectItem.cntProblemCause++;
-                var pbc = {
-                    "jobId": selectItem.jobId,
-                    "problemCauseMainId": e.dataItem.id,
-                    "problemCauseDesc": e.dataItem.problemCauseDesc,
-                    "problemCauseSubId": e.dataItem.problemCauseSubId,
-                    "problemCauseSubDesc": e.dataItem.problemCauseSubDesc,
-                    "seqId": null,
-                    "levelCause": null,
-                    "problemCauseId": null
-                };
-
-                selectProblemC.pushCreate(pbc);
-
-
-                selectProblemC.fetch(function() {
-                    that.set("selectProblemC", selectProblemC);
-                });
-
-                app.faProblemCauseService.viewModel.setFaProblemSolveRadio();
-
-                that.set("selectItem", selectItem);
-                //that.set("selectPage", 2);
-                app.application.navigate(
-                    '#job-problem-cause'
-                );
-            } else {
-                //				navigator.notification.alert("Problem cause duplicate",
-                //					function() {}, "Error", 'OK');
-            }
         },
         setFaProblemSolveRadio: function() {
             var that = app.jobService.viewModel;
@@ -444,10 +336,10 @@
 
     });
 
-    app.faProblemCauseService = {
+    app.fadelProblemCauseService = {
         init: function() {
             ////console.log("myteam init start");
-            app.faProblemCauseService.viewModel.initFaProblemCauseMaster();
+            app.fadelProblemCauseService.viewModel.initFaProblemCauseMaster();
             ////console.log("myteam init end");
         },
         show: function() {
@@ -464,6 +356,6 @@
             //app.myService.viewModel.hideLoading();
             ////console.log("myteam hide hide");
         },
-        viewModel: new FaProblemCauseViewModel()
+        viewModel: new FaDelProblemCauseViewModel()
     }
 })(window);
