@@ -23842,7 +23842,7 @@
         showNewSolution: function() {
 
             //app.mapService.viewModel.get("isGoogleMapsInitialized")
-
+            $("#map-direction-wrap").hide();
             $('#div_map_bottom').hide();
 
             $("#map-canvas").css("display", "");
