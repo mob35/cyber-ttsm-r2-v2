@@ -82,10 +82,10 @@
                         </div>
                         <div>
                             <p>
-                                <b style="color: white;font-size: 0.5em">Android Version 4.3 Upper&nbsp;</b>
+                                <b style="color: white;font-size: 0.5em">Android Version 5.0.1 Upper&nbsp;</b>
                             </p>
                             <p>
-                                <b style="color: white;font-size: 0.5em">IOS Version 7 Upper&nbsp;</b>
+                                <b style="color: white;font-size: 0.5em">IOS Version 8 Upper&nbsp;</b>
                             </p>
                         </div>
                     </form>
@@ -3642,7 +3642,7 @@
                             <b>Assign Date From</b>
                         </div>
                         <div class="position-right">
-                            <input id="assignDateFrom" class="textbox-no-border" placeholder="Assign Date From" data-bind="value: assignDateFrom" />
+                            <input id="assignDateFrom" class="textbox-no-border" placeholder="YYYY-MM-DD" data-bind="value: assignDateFrom" />
                         </div>
                     </li>
                     <li data-icon="contact" data-bind="invisible: isMoreDetail">
@@ -3650,7 +3650,7 @@
                             <b>Assign Date To</b>
                         </div>
                         <div class="position-right">
-                            <input id="assignDateTo" class="textbox-no-border" placeholder="Assign Date To" data-bind="value: assignDateTo" />
+                            <input id="assignDateTo" class="textbox-no-border" placeholder="YYYY-MM-DD" data-bind="value: assignDateTo" />
                         </div>
                     </li>
                     <li data-icon="contact" data-bind="invisible: isMoreDetail">
@@ -3658,7 +3658,7 @@
                             <b>Finish Date From</b>
                         </div>
                         <div class="position-right">
-                            <input id="finishDateFrom" class="textbox-no-border" placeholder="Finish Date From" data-bind="value: finishDateFrom" />
+                            <input id="finishDateFrom" class="textbox-no-border" placeholder="YYYY-MM-DD" data-bind="value: finishDateFrom" />
                         </div>
                     </li>
                     <li data-icon="contact" data-bind="invisible: isMoreDetail">
@@ -3666,7 +3666,7 @@
                             <b>Finish Date To</b>
                         </div>
                         <div class="position-right">
-                            <input id="finishDateTo" class="textbox-no-border" placeholder="Finish Date To" data-bind="value: finishDateTo" />
+                            <input id="finishDateTo" class="textbox-no-border" placeholder="YYYY-MM-DD" data-bind="value: finishDateTo" />
                         </div>
                     </li>
                     <li data-icon="contact">
@@ -3741,6 +3741,7 @@
             <form class="km-filter-form">
                 <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheetPowerService" class="km-filter-reset" title="Sort"><span class="fa icon-AZ3 sort-icon"></span></a></div>
             </form>
+
             <ul data-role="actionsheet" id="sortActionSheetPowerService">
                 <div class="position-right">
                     <input id="switchPowerService" data-role="switch" data-on-label="A-Z" data-off-label="Z-A" />
@@ -3764,6 +3765,9 @@
         </span>
         <div style="height: 10px">&nbsp;</div>
         <div data-role="content">
+        <div style="color:red; text-align:center;">
+            <span  data-bind="visible: isNotfound">Data Not Found.</span>
+        </div>
             <ul id="lvPowerSearchList"></ul>
             <ul data-role="actionsheet" id="pAssignActions">
                 <li>

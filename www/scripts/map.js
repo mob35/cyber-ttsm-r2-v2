@@ -23702,7 +23702,7 @@
                 else if (pinSiteType == "SC") image_name = "images/allsn" + status + ".png";
                 else image_name = "images/icon_close.png";
             } else if (pinSiteAlarm == "A") {
-                if (pinSiteType == "S") image_name = "images/asam" + status + ".png";
+                if (pinSiteType == "S") image_name = "images/allsam" + status + ".png";
                 else if (pinSiteType == "C") image_name = "images/csam" + status + ".png";
                 else if (pinSiteType == "SC") image_name = "images/allsam" + status + ".png";
                 else image_name = "images/icon_close.png";
