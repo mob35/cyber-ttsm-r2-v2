@@ -1089,7 +1089,10 @@
 		onSaveChangeStatus: function (e) {
 			////console.log("on Save Change Status");
 			var selectList = app.multiService.viewModel.get("selected");
-			if (selectList.length > 0) {
+			if(selectList.length > 10){
+				alert("Please Select Only 10 items.");
+
+			}else if(selectList.length > 0) {
 				var status = $("#ddlStatusMulti").data("kendoDropDownList").value();
 
 				if (status == "01") {
@@ -1112,8 +1115,8 @@
 				navigator.notification.alert("Please select job",
 					function () { }, "Warning", 'OK');
 				return;
-
 			}
+			
 		},
         setJBs: function () {
             //console.log("########## setJbs ###########");

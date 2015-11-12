@@ -4605,6 +4605,7 @@
             //lvAcceptList.dataSource.read();
             lvAcceptList.refresh();
             app.application.view().scroller.reset();
+            
         },
         exeDetailSearch: function(jbSearchId) {
             var that = this;

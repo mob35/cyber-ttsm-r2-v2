@@ -314,7 +314,9 @@
         titletxt: 'Power Search',
         titletxtJobListMap: 'Job List',
         paramsSearch: "P",
+        isNotfound: true,
         isDirectFromMap: false,
+
 
 
 
@@ -527,12 +529,12 @@
                 JBs,
                 Photo;
 
-            app.myService.viewModel.showLoading();
+            // app.myService.viewModel.showLoading();
+            // app.application.showLoading();
 
             var jobid = that.get("jobid");
 
             var ddlregion = ($("#ddlregion").data("kendoDropDownList") ? $("#ddlregion").data("kendoDropDownList").value() : "");
-
             var ddlzone = ($("#ddlzone").data("kendoDropDownList") ? $("#ddlzone").data("kendoDropDownList").value() : "");
 
             var sitecode = that.get("sitecode");
@@ -549,358 +551,377 @@
             var assignBy = that.get("assignBy");
             var paramsSearch = that.get("paramsSearch");
             //var networkState = navigator.connection.type;
+            if (ddlzone && ddlzone) {
+                
+                var isOffline = app.loginService.viewModel.get("isOffline");
 
-            var isOffline = app.loginService.viewModel.get("isOffline");
+                if (!isOffline) {
+                    JBs = new kendo.data.DataSource({
+                        transport: {
+                            read: function(operation) {
 
-            if (!isOffline) {
-                JBs = new kendo.data.DataSource({
-                    transport: {
-                        read: function(operation) {
-                            if (app.configService.isMorkupData) {
-                                var response = {
-                                    "version": "1",
-                                    "userId": "7478",
-                                    "jobId": "",
-                                    "region": "",
-                                    "zone": "",
-                                    "siteCode": "",
-                                    "assignDateFrom": "20131009",
-                                    "assignDateTo": "20140110",
-                                    "finishDateFrom": "20131011",
-                                    "finishDateTo": "20140112",
-                                    "status": "",
-                                    "priority": "",
-                                    "title": "",
-                                    "siteNameTh": "",
-                                    "assignTo": "",
-                                    "assignBy": "",
-                                    "page": "",
-                                    "jobs": [{
-                                        "jobId": "JB14-268795",
-                                        "title": "RWH2-REPEATER FAIL > 15 mins-1|-|2|-|",
-                                        "assignBy": "2572",
-                                        "assignByName": "Panithan Paladsingh",
-                                        "assignTo": "7478",
-                                        "assignToName": "Hansa Saensing",
-                                        "initiateDate": 1401077966000,
-                                        "finishDate": 1401088740000,
-                                        "siteAccessDesc": "RWH2(BSCST23,MSSTLC1E)",
-                                        "priorityId": "4",
-                                        "priorityName": "Critical",
-                                        "statusId": "04",
-                                        "status": "On-Site",
-                                        "systemName": "GSM900(All)",
-                                        "siteAffect": "RWH2(BSCST23,MSSTLC1E)",
-                                        "reportTypeId": null,
-                                        "report": null,
-                                        "oldReportDetail": null,
-                                        "trId": null,
-                                        "faultAlarmNumber": null,
-                                        "ttId": "TT14-287115",
-                                        "reportTypeDesc": null,
-                                        "waitingReport": null,
-                                        "latitude": null,
-                                        "longtitude": null,
-                                        "cntProblemCause": "0",
-                                        "cntProblemSolve": "0",
-                                        "reportType": "01",
-                                        "cntProcess": "0",
-                                        "cntProblemSolvePerTemp": "0",
-                                        "reasonOverdueId": null,
-                                        "reasonOverdueDesc": null,
-                                        "groupJob": "TT14-287115",
-                                        "siteNameTh": "โรงพยาบาลราชวิถี2",
-                                        "siteNameEn": "RATWITHI HOSPITAL2"
-                                    }, {
-                                        "jobId": "JB14-271316",
-                                        "title": "12AL_LF-test mobile ",
-                                        "assignBy": "7478",
-                                        "assignByName": "Hansa Saensing",
-                                        "assignTo": "7478",
-                                        "assignToName": "Hansa Saensing",
-                                        "initiateDate": 1414550280000,
-                                        "finishDate": 1414561080000,
-                                        "siteAccessDesc": "12AL_LF",
-                                        "priorityId": "4",
-                                        "priorityName": "Critical",
-                                        "statusId": "05",
-                                        "status": "Waiting for Report",
-                                        "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
-                                        "siteAffect": "12AL_LF",
-                                        "reportTypeId": "01",
-                                        "report": null,
-                                        "oldReportDetail": "Test\n",
-                                        "trId": null,
-                                        "faultAlarmNumber": null,
-                                        "ttId": "TT14-586854",
-                                        "reportTypeDesc": "Solution Complete",
-                                        "waitingReport": "Y",
-                                        "latitude": null,
-                                        "longtitude": null,
-                                        "cntProblemCause": "2",
-                                        "cntProblemSolve": "0",
-                                        "reportType": "02",
-                                        "cntProcess": "0",
-                                        "cntProblemSolvePerTemp": "0",
-                                        "reasonOverdueId": "11",
-                                        "reasonOverdueDesc": "เข้าสถานที่ไม่ได้",
-                                        "groupJob": "TT14-586854",
-                                        "siteNameTh": "วัน-ทู-ออล พนาสินเพลส (+O2K Thailand+A Multimediaใช้ Last mile เส้นเดียวกัน)",
-                                        "siteNameEn": "วัน-ทู-ออล พนาสินเพลส (+O2K Thailand+A Multimediaใช้ Last mile เส้นเดียวกัน)"
-                                    }, {
-                                        "jobId": "JB14-271314",
-                                        "title": "12AL_LF-test SMS",
-                                        "assignBy": "7478",
-                                        "assignByName": "Hansa Saensing",
-                                        "assignTo": "7478",
-                                        "assignToName": "Hansa Saensing",
-                                        "initiateDate": 1414550040000,
-                                        "finishDate": 1414561200000,
-                                        "siteAccessDesc": "12AL_LF,12TM_LF",
-                                        "priorityId": "4",
-                                        "priorityName": "Critical",
-                                        "statusId": "02",
-                                        "status": "Accept",
-                                        "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
-                                        "siteAffect": "12AL_LF",
-                                        "reportTypeId": "01",
-                                        "report": null,
-                                        "oldReportDetail": "Test",
-                                        "trId": null,
-                                        "faultAlarmNumber": null,
-                                        "ttId": "TT14-586854",
-                                        "reportTypeDesc": "Solution Complete",
-                                        "waitingReport": null,
-                                        "latitude": "13.782762",
-                                        "longtitude": "100.546392",
-                                        "cntProblemCause": "1",
-                                        "cntProblemSolve": "0",
-                                        "reportType": "02",
-                                        "cntProcess": "0",
-                                        "cntProblemSolvePerTemp": "0",
-                                        "reasonOverdueId": "22",
-                                        "reasonOverdueDesc": "เจ้าของอาคารและการไฟฟ้าดับไฟ",
-                                        "groupJob": "TT14-586854",
-                                        "siteNameTh": "วัน-ทู-ออล พนาสินเพลส (+O2K Thailand+A Multimediaใช้ Last mile เส้นเดียวกัน)",
-                                        "siteNameEn": "วัน-ทู-ออล พนาสินเพลส (+O2K Thailand+A Multimediaใช้ Last mile เส้นเดียวกัน)"
-                                    }, {
-                                        "jobId": "JB14-271314",
-                                        "title": "12AL_LF-test SMS",
-                                        "assignBy": "7478",
-                                        "assignByName": "Hansa Saensing",
-                                        "assignTo": "7478",
-                                        "assignToName": "Hansa Saensing",
-                                        "initiateDate": 1414550040000,
-                                        "finishDate": 1414561200000,
-                                        "siteAccessDesc": "12AL_LF,12TM_LF",
-                                        "priorityId": "4",
-                                        "priorityName": "Critical",
-                                        "statusId": "02",
-                                        "status": "Accept",
-                                        "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
-                                        "siteAffect": "12AL_LF",
-                                        "reportTypeId": "01",
-                                        "report": null,
-                                        "oldReportDetail": "Test",
-                                        "trId": null,
-                                        "faultAlarmNumber": null,
-                                        "ttId": "TT14-586854",
-                                        "reportTypeDesc": "Solution Complete",
-                                        "waitingReport": null,
-                                        "latitude": "13.782762",
-                                        "longtitude": "100.546392",
-                                        "cntProblemCause": "1",
-                                        "cntProblemSolve": "0",
-                                        "reportType": "02",
-                                        "cntProcess": "0",
-                                        "cntProblemSolvePerTemp": "0",
-                                        "reasonOverdueId": "22",
-                                        "reasonOverdueDesc": "เจ้าของอาคารและการไฟฟ้าดับไฟ",
-                                        "groupJob": "TT14-586854",
-                                        "siteNameTh": "1-To-All ถนอมมิตรปาร์ค",
-                                        "siteNameEn": "1-To-All ถนอมมิตรปาร์ค"
-                                    }, {
-                                        "jobId": "JB14-271339",
-                                        "title": "3BMPCWD04B-test SMS",
-                                        "assignBy": "7478",
-                                        "assignByName": "Hansa Saensing",
-                                        "assignTo": "7478",
-                                        "assignToName": "Hansa Saensing",
-                                        "initiateDate": 1414552500000,
-                                        "finishDate": 1414576680000,
-                                        "siteAccessDesc": "3BMPCWD04B,3G2100,3I200CWD01B,3INVCWD01B,3IPVCWD01B,3MDBCWD01B",
-                                        "priorityId": "4",
-                                        "priorityName": "Critical",
-                                        "statusId": "03",
-                                        "status": "Initiate",
-                                        "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
-                                        "siteAffect": "3BMPCWD04B",
-                                        "reportTypeId": null,
-                                        "report": null,
-                                        "oldReportDetail": null,
-                                        "trId": null,
-                                        "faultAlarmNumber": null,
-                                        "ttId": "TT14-586726",
-                                        "reportTypeDesc": null,
-                                        "waitingReport": null,
-                                        "latitude": null,
-                                        "longtitude": null,
-                                        "cntProblemCause": "0",
-                                        "cntProblemSolve": "0",
-                                        "reportType": "01",
-                                        "cntProcess": "0",
-                                        "cntProblemSolvePerTemp": "0",
-                                        "reasonOverdueId": null,
-                                        "reasonOverdueDesc": null,
-                                        "groupJob": "TT14-586726",
-                                        "siteNameTh": "3MDBCWD01B แจ้งวัฒนะดาต้าเซ็นเตอร์",
-                                        "siteNameEn": "3MDBCWD01B CWT Data Center"
-                                    }, {
-                                        "jobId": "JB14-271678",
-                                        "title": "2IPTNJ08CWDC_2EQ02C6-TST-PD-Gen_20141113-2006",
-                                        "assignBy": "9094",
-                                        "assignByName": "Praweena Sangprakan",
-                                        "assignTo": "7478",
-                                        "assignToName": "Hansa Saensing",
-                                        "initiateDate": 1415926800000,
-                                        "finishDate": 1450004400000,
-                                        "siteAccessDesc": "2IPTNJ08CWDC_2EQ02C6",
-                                        "priorityId": "1",
-                                        "priorityName": "None",
-                                        "statusId": "01",
-                                        "status": "Assign",
-                                        "systemName": "GSM900(All),3G900(All)",
-                                        "siteAffect": "2IPTNJ08CWDC_2EQ02C6",
-                                        "reportTypeId": null,
-                                        "report": null,
-                                        "oldReportDetail": null,
-                                        "trId": null,
-                                        "faultAlarmNumber": null,
-                                        "ttId": "TT14-587212",
-                                        "reportTypeDesc": null,
-                                        "waitingReport": null,
-                                        "latitude": null,
-                                        "longtitude": null,
-                                        "cntProblemCause": "0",
-                                        "cntProblemSolve": "0",
-                                        "reportType": "01",
-                                        "cntProcess": "0",
-                                        "cntProblemSolvePerTemp": "0",
-                                        "reasonOverdueId": null,
-                                        "reasonOverdueDesc": null,
-                                        "groupJob": "TT14-587212",
-                                        "siteNameTh": "IPTNJ#08_CWDC_FL2_PE01 (แจ้งวัฒนะดาต้าเซ็นเตอร์_ชั่น2_ห้อง5_IPTNJ)",
-                                        "siteNameEn": "IPTNJ#08_CWDC_FL2_PE01 (CWDC_FL2_Room5_IPTNJ)"
-                                    }]
-                                };
-                                operation.success(response);
-                                that.set("lastupdateaccept", format_time_date(new Date()));
-                                // app.myService.viewModel.hideLoading();
-                            } else {
-                                $.ajax({ //using jsfiddle's echo service to simulate remote data loading
-                                    beforeSend: app.loginService.viewModel.checkOnline,
-                                    type: "POST",
-                                    timeout: 180000,
-                                    url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=getPowerSearchTTSME.json',
-                                    data: JSON.stringify({
-                                        "token": localStorage.getItem("token"),
-                                        "userId": JSON.parse(localStorage.getItem("profileData")).userId,
-                                        "version": "2",
-                                        "assignBy": assignBy,
-                                        //
-                                        "assignDateFrom": assignDateFrom,
-                                        "assignDateTo": assignDateTo,
-                                        "assignTo": assignTo,
-                                        //
-                                        "finishDateFrom": finishDateFrom,
-                                        "finishDateTo": finishDateTo,
-                                        "jobId": jobid,
-                                        "page": paramsSearch,
-                                        "priority": ddlpiority,
-                                        "region": ddlregion,
-                                        "siteCode": sitecode,
-                                        "siteNameTh": siteNameThai,
-                                        "status": ddlstatus,
-                                        "title": title,
-                                        "zone": ddlzone
-                                    }),
-                                    dataType: "json",
-                                    contentType: 'application/json',
-                                    success: function(response) {
-                                        //store response
-                                        operation.success(response);
-
-                                    },
-                                    error: function(xhr, error) {
-                                        that.hideLoading();
-                                        if (!app.ajaxHandlerService.error(xhr, error)) {
-                                            cache = localStorage.getItem("jbData");
-
-                                            if (cache != null && cache != undefined) {
-                                                operation.success(JSON.parse(cache));
+                                if (app.configService.isMorkupData) {
+                                    var response = {
+                                        "version": "1",
+                                        "userId": "7478",
+                                        "jobId": "",
+                                        "region": "",
+                                        "zone": "",
+                                        "siteCode": "",
+                                        "assignDateFrom": "20131009",
+                                        "assignDateTo": "20140110",
+                                        "finishDateFrom": "20131011",
+                                        "finishDateTo": "20140112",
+                                        "status": "",
+                                        "priority": "",
+                                        "title": "",
+                                        "siteNameTh": "",
+                                        "assignTo": "",
+                                        "assignBy": "",
+                                        "page": "",
+                                        "jobs": [{
+                                            "jobId": "JB14-268795",
+                                            "title": "RWH2-REPEATER FAIL > 15 mins-1|-|2|-|",
+                                            "assignBy": "2572",
+                                            "assignByName": "Panithan Paladsingh",
+                                            "assignTo": "7478",
+                                            "assignToName": "Hansa Saensing",
+                                            "initiateDate": 1401077966000,
+                                            "finishDate": 1401088740000,
+                                            "siteAccessDesc": "RWH2(BSCST23,MSSTLC1E)",
+                                            "priorityId": "4",
+                                            "priorityName": "Critical",
+                                            "statusId": "04",
+                                            "status": "On-Site",
+                                            "systemName": "GSM900(All)",
+                                            "siteAffect": "RWH2(BSCST23,MSSTLC1E)",
+                                            "reportTypeId": null,
+                                            "report": null,
+                                            "oldReportDetail": null,
+                                            "trId": null,
+                                            "faultAlarmNumber": null,
+                                            "ttId": "TT14-287115",
+                                            "reportTypeDesc": null,
+                                            "waitingReport": null,
+                                            "latitude": null,
+                                            "longtitude": null,
+                                            "cntProblemCause": "0",
+                                            "cntProblemSolve": "0",
+                                            "reportType": "01",
+                                            "cntProcess": "0",
+                                            "cntProblemSolvePerTemp": "0",
+                                            "reasonOverdueId": null,
+                                            "reasonOverdueDesc": null,
+                                            "groupJob": "TT14-287115",
+                                            "siteNameTh": "โรงพยาบาลราชวิถี2",
+                                            "siteNameEn": "RATWITHI HOSPITAL2"
+                                        }, {
+                                            "jobId": "JB14-271316",
+                                            "title": "12AL_LF-test mobile ",
+                                            "assignBy": "7478",
+                                            "assignByName": "Hansa Saensing",
+                                            "assignTo": "7478",
+                                            "assignToName": "Hansa Saensing",
+                                            "initiateDate": 1414550280000,
+                                            "finishDate": 1414561080000,
+                                            "siteAccessDesc": "12AL_LF",
+                                            "priorityId": "4",
+                                            "priorityName": "Critical",
+                                            "statusId": "05",
+                                            "status": "Waiting for Report",
+                                            "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                            "siteAffect": "12AL_LF",
+                                            "reportTypeId": "01",
+                                            "report": null,
+                                            "oldReportDetail": "Test\n",
+                                            "trId": null,
+                                            "faultAlarmNumber": null,
+                                            "ttId": "TT14-586854",
+                                            "reportTypeDesc": "Solution Complete",
+                                            "waitingReport": "Y",
+                                            "latitude": null,
+                                            "longtitude": null,
+                                            "cntProblemCause": "2",
+                                            "cntProblemSolve": "0",
+                                            "reportType": "02",
+                                            "cntProcess": "0",
+                                            "cntProblemSolvePerTemp": "0",
+                                            "reasonOverdueId": "11",
+                                            "reasonOverdueDesc": "เข้าสถานที่ไม่ได้",
+                                            "groupJob": "TT14-586854",
+                                            "siteNameTh": "วัน-ทู-ออล พนาสินเพลส (+O2K Thailand+A Multimediaใช้ Last mile เส้นเดียวกัน)",
+                                            "siteNameEn": "วัน-ทู-ออล พนาสินเพลส (+O2K Thailand+A Multimediaใช้ Last mile เส้นเดียวกัน)"
+                                        }, {
+                                            "jobId": "JB14-271314",
+                                            "title": "12AL_LF-test SMS",
+                                            "assignBy": "7478",
+                                            "assignByName": "Hansa Saensing",
+                                            "assignTo": "7478",
+                                            "assignToName": "Hansa Saensing",
+                                            "initiateDate": 1414550040000,
+                                            "finishDate": 1414561200000,
+                                            "siteAccessDesc": "12AL_LF,12TM_LF",
+                                            "priorityId": "4",
+                                            "priorityName": "Critical",
+                                            "statusId": "02",
+                                            "status": "Accept",
+                                            "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                            "siteAffect": "12AL_LF",
+                                            "reportTypeId": "01",
+                                            "report": null,
+                                            "oldReportDetail": "Test",
+                                            "trId": null,
+                                            "faultAlarmNumber": null,
+                                            "ttId": "TT14-586854",
+                                            "reportTypeDesc": "Solution Complete",
+                                            "waitingReport": null,
+                                            "latitude": "13.782762",
+                                            "longtitude": "100.546392",
+                                            "cntProblemCause": "1",
+                                            "cntProblemSolve": "0",
+                                            "reportType": "02",
+                                            "cntProcess": "0",
+                                            "cntProblemSolvePerTemp": "0",
+                                            "reasonOverdueId": "22",
+                                            "reasonOverdueDesc": "เจ้าของอาคารและการไฟฟ้าดับไฟ",
+                                            "groupJob": "TT14-586854",
+                                            "siteNameTh": "วัน-ทู-ออล พนาสินเพลส (+O2K Thailand+A Multimediaใช้ Last mile เส้นเดียวกัน)",
+                                            "siteNameEn": "วัน-ทู-ออล พนาสินเพลส (+O2K Thailand+A Multimediaใช้ Last mile เส้นเดียวกัน)"
+                                        }, {
+                                            "jobId": "JB14-271314",
+                                            "title": "12AL_LF-test SMS",
+                                            "assignBy": "7478",
+                                            "assignByName": "Hansa Saensing",
+                                            "assignTo": "7478",
+                                            "assignToName": "Hansa Saensing",
+                                            "initiateDate": 1414550040000,
+                                            "finishDate": 1414561200000,
+                                            "siteAccessDesc": "12AL_LF,12TM_LF",
+                                            "priorityId": "4",
+                                            "priorityName": "Critical",
+                                            "statusId": "02",
+                                            "status": "Accept",
+                                            "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                            "siteAffect": "12AL_LF",
+                                            "reportTypeId": "01",
+                                            "report": null,
+                                            "oldReportDetail": "Test",
+                                            "trId": null,
+                                            "faultAlarmNumber": null,
+                                            "ttId": "TT14-586854",
+                                            "reportTypeDesc": "Solution Complete",
+                                            "waitingReport": null,
+                                            "latitude": "13.782762",
+                                            "longtitude": "100.546392",
+                                            "cntProblemCause": "1",
+                                            "cntProblemSolve": "0",
+                                            "reportType": "02",
+                                            "cntProcess": "0",
+                                            "cntProblemSolvePerTemp": "0",
+                                            "reasonOverdueId": "22",
+                                            "reasonOverdueDesc": "เจ้าของอาคารและการไฟฟ้าดับไฟ",
+                                            "groupJob": "TT14-586854",
+                                            "siteNameTh": "1-To-All ถนอมมิตรปาร์ค",
+                                            "siteNameEn": "1-To-All ถนอมมิตรปาร์ค"
+                                        }, {
+                                            "jobId": "JB14-271339",
+                                            "title": "3BMPCWD04B-test SMS",
+                                            "assignBy": "7478",
+                                            "assignByName": "Hansa Saensing",
+                                            "assignTo": "7478",
+                                            "assignToName": "Hansa Saensing",
+                                            "initiateDate": 1414552500000,
+                                            "finishDate": 1414576680000,
+                                            "siteAccessDesc": "3BMPCWD04B,3G2100,3I200CWD01B,3INVCWD01B,3IPVCWD01B,3MDBCWD01B",
+                                            "priorityId": "4",
+                                            "priorityName": "Critical",
+                                            "statusId": "03",
+                                            "status": "Initiate",
+                                            "systemName": "GSM900(All),3G900(All),3G2100(All),GSM1800",
+                                            "siteAffect": "3BMPCWD04B",
+                                            "reportTypeId": null,
+                                            "report": null,
+                                            "oldReportDetail": null,
+                                            "trId": null,
+                                            "faultAlarmNumber": null,
+                                            "ttId": "TT14-586726",
+                                            "reportTypeDesc": null,
+                                            "waitingReport": null,
+                                            "latitude": null,
+                                            "longtitude": null,
+                                            "cntProblemCause": "0",
+                                            "cntProblemSolve": "0",
+                                            "reportType": "01",
+                                            "cntProcess": "0",
+                                            "cntProblemSolvePerTemp": "0",
+                                            "reasonOverdueId": null,
+                                            "reasonOverdueDesc": null,
+                                            "groupJob": "TT14-586726",
+                                            "siteNameTh": "3MDBCWD01B แจ้งวัฒนะดาต้าเซ็นเตอร์",
+                                            "siteNameEn": "3MDBCWD01B CWT Data Center"
+                                        }, {
+                                            "jobId": "JB14-271678",
+                                            "title": "2IPTNJ08CWDC_2EQ02C6-TST-PD-Gen_20141113-2006",
+                                            "assignBy": "9094",
+                                            "assignByName": "Praweena Sangprakan",
+                                            "assignTo": "7478",
+                                            "assignToName": "Hansa Saensing",
+                                            "initiateDate": 1415926800000,
+                                            "finishDate": 1450004400000,
+                                            "siteAccessDesc": "2IPTNJ08CWDC_2EQ02C6",
+                                            "priorityId": "1",
+                                            "priorityName": "None",
+                                            "statusId": "01",
+                                            "status": "Assign",
+                                            "systemName": "GSM900(All),3G900(All)",
+                                            "siteAffect": "2IPTNJ08CWDC_2EQ02C6",
+                                            "reportTypeId": null,
+                                            "report": null,
+                                            "oldReportDetail": null,
+                                            "trId": null,
+                                            "faultAlarmNumber": null,
+                                            "ttId": "TT14-587212",
+                                            "reportTypeDesc": null,
+                                            "waitingReport": null,
+                                            "latitude": null,
+                                            "longtitude": null,
+                                            "cntProblemCause": "0",
+                                            "cntProblemSolve": "0",
+                                            "reportType": "01",
+                                            "cntProcess": "0",
+                                            "cntProblemSolvePerTemp": "0",
+                                            "reasonOverdueId": null,
+                                            "reasonOverdueDesc": null,
+                                            "groupJob": "TT14-587212",
+                                            "siteNameTh": "IPTNJ#08_CWDC_FL2_PE01 (แจ้งวัฒนะดาต้าเซ็นเตอร์_ชั่น2_ห้อง5_IPTNJ)",
+                                            "siteNameEn": "IPTNJ#08_CWDC_FL2_PE01 (CWDC_FL2_Room5_IPTNJ)"
+                                        }]
+                                    };
+                                    operation.success(response);
+                                    that.set("lastupdateaccept", format_time_date(new Date()));
+                                    // app.myService.viewModel.hideLoading();
+                                } else {
+                                    $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                                        beforeSend: app.loginService.viewModel.checkOnline,
+                                        type: "POST",
+                                        timeout: 180000,
+                                        url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=getPowerSearchTTSME.json',
+                                        data: JSON.stringify({
+                                            "token": localStorage.getItem("token"),
+                                            "userId": JSON.parse(localStorage.getItem("profileData")).userId,
+                                            "version": "2",
+                                            "assignBy": assignBy,
+                                            //
+                                            "assignDateFrom": assignDateFrom,
+                                            "assignDateTo": assignDateTo,
+                                            "assignTo": assignTo,
+                                            //
+                                            "finishDateFrom": finishDateFrom,
+                                            "finishDateTo": finishDateTo,
+                                            "jobId": jobid,
+                                            "page": paramsSearch,
+                                            "priority": ddlpiority,
+                                            "region": ddlregion,
+                                            "siteCode": sitecode,
+                                            "siteNameTh": siteNameThai,
+                                            "status": ddlstatus,
+                                            "title": title,
+                                            "zone": ddlzone
+                                        }),
+                                        dataType: "json",
+                                        contentType: 'application/json',
+                                        success: function(response) {
+                                            //store response
+                                            if (response && response.jobs && response.jobs.length >= 1) {
+                                                that.set("isNotfound", false);
                                             } else {
-                                                ////console.log("Get My Job failed");
-                                                ////console.log(xhr);
-                                                ////console.log(error);
-                                                navigator.notification.alert(xhr.status + error,
-                                                    function() {}, "Get Power Search TTSME failed", 'OK');
-                                                return;
+                                                that.set("isNotfound", true);
                                             }
+
+
+                                        },
+                                        error: function(xhr, error) {
+                                            that.hideLoading();
+                                            that.set("isNotfound", true);
+                                            if (!app.ajaxHandlerService.error(xhr, error)) {
+                                                cache = localStorage.getItem("jbData");
+
+                                                if (cache != null && cache != undefined) {
+                                                    operation.success(JSON.parse(cache));
+                                                } else {
+                                                    ////console.log("Get My Job failed");
+                                                    ////console.log(xhr);
+                                                    ////console.log(error);
+                                                    navigator.notification.alert(xhr.status + error,
+                                                        function() {}, "Get Power Search TTSME failed", 'OK');
+                                                    return;
+                                                }
+                                            }
+                                        },
+                                        complete: function() {
+                                            // that.countAccept();                                        
+                                            that.set("lastupdateaccept", format_time_date(new Date()));
+                                            app.myService.viewModel.hideLoading();
+                                            that.set("paramsSearch", "P");
                                         }
-                                    },
-                                    complete: function() {
-                                        // that.countAccept();                                        
-                                        that.set("lastupdateaccept", format_time_date(new Date()));
-                                        app.myService.viewModel.hideLoading();
-                                        that.set("paramsSearch", "P");
-                                    }
-                                });
+                                    });
+                                }
+
                             }
-
+                        },
+                        schema: {
+                            data: "jobs"
+                        },
+                        model: {
+                            id: "jobId"
                         }
-                    },
-                    schema: {
-                        data: "jobs"
-                    },
-                    model: {
-                        id: "jobId"
-                    }
-                });
+                    });
+                } else {
+                    JBs = new kendo.data.DataSource({
+                        data: JSON.parse(localStorage.getItem("jbData")),
+
+                        schema: {
+                            data: "jobs"
+                        },
+                        model: {
+                            id: "jobId"
+                        }
+
+                    });
+
+                }
+
+                app.jobService.viewModel.set("jobDataSource", JBs);
+
+                if ($("#lvPowerSearchList").data("kendoMobileListView") == undefined || $("#lvPowerSearchList").data("kendoMobileListView") == null) {
+                    $("#lvPowerSearchList").kendoMobileListView({
+                        dataSource: JBs,
+                        //style: "inset",
+                        template: $("#psearch-template").html(),
+                        // pullToRefresh: true,
+                        // endlessScroll: true
+                    });
+
+                } else {
+                    $("#lvPowerSearchList").data("kendoMobileListView").setDataSource(JBs);
+
+                }
+                app.myService.viewModel.hideLoading();
+                app.application.navigate(
+                    '#powerService'
+                );
+            } if ((jobid && jobid.length >= 1) || (sitecode && sitecode.length >= 1)) {
+                app.application.navigate(
+                    '#powerService'
+                );
             } else {
-                JBs = new kendo.data.DataSource({
-                    data: JSON.parse(localStorage.getItem("jbData")),
 
-                    schema: {
-                        data: "jobs"
-                    },
-                    model: {
-                        id: "jobId"
-                    }
 
-                });
-
+                that.set("ddlzone");
+                alert("โปรดเลือก Field Zone");
             }
 
-            app.jobService.viewModel.set("jobDataSource", JBs);
-
-            if ($("#lvPowerSearchList").data("kendoMobileListView") == undefined || $("#lvPowerSearchList").data("kendoMobileListView") == null) {
-                $("#lvPowerSearchList").kendoMobileListView({
-                    dataSource: JBs,
-                    //style: "inset",
-                    template: $("#psearch-template").html(),
-                    // pullToRefresh: true,
-                    // endlessScroll: true
-                });
-
-            } else {
-                $("#lvPowerSearchList").data("kendoMobileListView").setDataSource(JBs);
-
-            }
-            app.myService.viewModel.hideLoading();
-            app.application.navigate(
-                '#powerService'
-            );
-
+            // $('.c_div_searchResult').hide();
         },
         filterAllocateEvent: function() {
             var that = app.powerSearchService.viewModel;
@@ -990,7 +1011,7 @@
         // },
         show: function() {
             ////console.log("myteam show start");
-            //app.myService.viewModel.showLoading();
+            // app.myService.viewModel.showLoading();
             var isOffline = app.loginService.viewModel.get("isOffline");
             if (!isOffline) {
                 sleep(1000);
