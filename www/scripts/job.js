@@ -53,7 +53,15 @@
             app.siteAffectService.viewModel.set("returnUrl", "#tabstrip-edit");
             app.application.navigate('#siteAffect');
         },
-
+        backToMap: function() {
+            //alert("backToMap");
+            app.mapService.viewModel.set("mapFromMode", "A");
+            //app.mapService.viewModel.set("latitude", e.dataItem.latitude);
+            //app.mapService.viewModel.set("longitude", e.dataItem.longitude);
+            app.application.navigate(
+                '#tabstrip-map'
+            );
+        },
         isReason: function() {
             var that = app.jobService.viewModel;
 
@@ -3456,7 +3464,8 @@
             // uid: "436e4949-070f-4bab-9521-cf402fc8d992"
             //app.mapService.viewModel.directTo(e.dataItem.latitude,e.dataItem.longitude);
             if ((e.dataItem.latitude != null && e.dataItem.longitude != null)) {
-                app.mapService.viewModel.set("isGoFromJob", true);
+                //app.mapService.viewModel.set("isGoFromJob", true);
+                app.mapService.viewModel.set("mapFromMode", "J");
                 app.mapService.viewModel.set("latitude", e.dataItem.latitude);
                 app.mapService.viewModel.set("longitude", e.dataItem.longitude);
                 app.application.navigate(
@@ -6015,8 +6024,6 @@
                 template: $("#scrollview-template").html(),
                 contentHeight: "500px"
             });
-
-
         },
         showbyid: function() {
 
@@ -6282,7 +6289,6 @@
             }
 
             app.jobService.viewModel.hideLoading();
-
         },
         initSiteAlarm: function() {
             app.jobService.viewModel.initSiteAlarmList();
