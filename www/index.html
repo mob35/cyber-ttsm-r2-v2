@@ -382,28 +382,28 @@
         <div class="position-right">
             <div style="width:50px;display:inline-block" data-userid="${userId}" data-username="${fullName}" data-statusid="01" data-statusname="Assign">
                 <a>
-                    <i class="fa-2x balance iconTTSM2-as" data-userid="${userId}" data-username="${fullName}" data-statusid="01" data-statusname="Assign" />&nbsp;&nbsp;${sumAssing}
+                    <i class="fa-2x balance iconTTSM2-as" data-userid="${userId}" data-username="${fullName}" data-statusid="01" data-statusname="Assign"/>&nbsp;&nbsp;${sumAssing}
                 </a>
             </div>
             <div style="width:50px;display:inline-block" data-userid="${userId}" data-username="${fullName}" data-statusid="02" data-statusname="Accept">
                 <a>
-                    <i class="fa-2x balance iconTTSM2-a" data-userid="${userId}" data-username="${fullName}" data-statusid="02" data-statusname="Accept" />&nbsp;&nbsp;${sumAccept}</a>
+                    <i class="fa-2x balance iconTTSM2-a" data-userid="${userId}" data-username="${fullName}" data-statusid="02" data-statusname="Accept"/>&nbsp;&nbsp;${sumAccept}</a>
             </div>
             <div style="width:50px;display:inline-block" data-userid="${userId}" data-username="${fullName}" data-statusid="03" data-statusname="Initiate">
                 <a>
-                    <i class="fa-2x balance iconTTSM2-i" data-userid="${userId}" data-username="${fullName}" data-statusid="03" data-statusname="Initiate" />&nbsp;&nbsp;${sumInit}</a>
+                    <i class="fa-2x balance iconTTSM2-i" data-userid="${userId}" data-username="${fullName}" data-statusid="03" data-statusname="Initiate"/>&nbsp;&nbsp;${sumInit}</a>
             </div>
             <div style="width:50px;display:inline-block" data-userid="${userId}" data-username="${fullName}" data-statusid="04" data-statusname="Onsite">
                 <a>
-                    <i class="fa-2x balance iconTTSM2-O" data-userid="${userId}" data-username="${fullName}" data-statusid="04" data-statusname="Onsite" />&nbsp;&nbsp;${sumOnsite}</a>
+                    <i class="fa-2x balance iconTTSM2-O" data-userid="${userId}" data-username="${fullName}" data-statusid="04" data-statusname="Onsite"/>&nbsp;&nbsp;${sumOnsite}</a>
             </div>
             <div style="width:50px;display:inline-block" data-userid="${userId}" data-username="${fullName}" data-statusid="05" data-statusname="Wait for Report">
                 <a>
-                    <i class="fa-2x balance iconTTSM2-wr" data-userid="${userId}" data-username="${fullName}" data-statusid="05" data-statusname="Wait for Report" />&nbsp;&nbsp;${sumWaitReport}</a>
+                    <i class="fa-2x balance iconTTSM2-wr" data-userid="${userId}" data-username="${fullName}" data-statusid="05" data-statusname="Wait for Report"/>&nbsp;&nbsp;${sumWaitReport}</a>
             </div>
             <div style="width:50px;display:inline-block" data-userid="${userId}" data-username="${fullName}" data-statusid="06" data-statusname="Wait for Detail">
                 <a>
-                    <i class="fa-2x balance iconTTSM2-wd" data-userid="${userId}" data-username="${fullName}" data-statusid="06" data-statusname="Wait for Detail" />&nbsp;&nbsp;${sumWaitDetail}</a>
+                    <i class="fa-2x balance iconTTSM2-wd" data-userid="${userId}" data-username="${fullName}" data-statusid="06" data-statusname="Wait for Detail"/>&nbsp;&nbsp;${sumWaitDetail}</a>
             </div>
         </div>
     </script>
@@ -3923,7 +3923,9 @@
         <div data-role="header">
             <div data-role="navbar">
                 <span data-bind="text: siteAlarmType"></span>
+                <!-- jigkoh3 fix issue back to map -->
                 <a data-role="backbutton" data-align="left" class="fa" data-icon="fa-back"></a>
+                <a data-icon="search" data-role="button" data-align="right" data-bind="click: backToMap"></a>
             </div>
         </div>
         <ul data-role="listview" id="lvAlarm" data-style="inset">

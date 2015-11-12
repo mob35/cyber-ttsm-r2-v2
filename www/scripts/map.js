@@ -24026,7 +24026,9 @@
                 }
             }
         },
-
+        backToMap : function(){
+            alert("jigkoh3");
+        },
         hide: function() {
             //hide loading mask if user changed the tab as it is only relevant to location tab
             //app.mapService.viewModel.hideLoading();

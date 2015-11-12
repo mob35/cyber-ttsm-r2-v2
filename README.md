@@ -55,8 +55,18 @@ List:
 	3:myteam.js [viewModel.set("paramsSearch", "");]
 	4:powerSearch.js set ["page": paramsSearch : "P",]
 
-version: "2.1.0"
+version: "2.0.10"
 List:
 	1:powerService 3 page map powerSearch myTeam
 	2:powerService go-back
 	3:delety fa-icon awesome
+
+version: "2.0.11"
+List:
+	1:map.js var infobar = arr[i] split("]") 
+	2:map.js hide direction wrap
+	3:index botton checkbox in problemCauseSubId
+	4:index botton delety [data-bind onDelProbmDM]
+	5:create funtion delfavproblemcause.js and delfavproblemcauseM.js
+	6:map.js var myMobileNo
+	7:map.js app.application.hideLoading(); befor map.setZoom(16);

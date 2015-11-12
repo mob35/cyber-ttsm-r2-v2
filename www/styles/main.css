@@ -1258,16 +1258,18 @@ s}
     /*background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;*/
-    /*height:720px;
-    overflow: auto;*/
+    /*height:400px;*/
+    
+
     /*height:1500px;*/
-    min-height: 400px !important;
+    min-height: 430px !important;
     top:0;
     bottom:0;
-    /*background:red;*/
-    /*position: absolute;*/
+    overflow: auto;
+   
    
 }
+
 .slideviewMy 
 {
 
