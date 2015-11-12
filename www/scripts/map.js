@@ -3633,7 +3633,8 @@
                         '</div>';
                     //var enhance_act_get_job = '';
                     var enhance_act_get_name = 'Name TH :' + arrNameTH[i] + '<br>' + 'Name EN :' + arrNameEN[i];
-                    var enhance_act_get_lalan = 'Lat Long :' + '<a class="linkText" onclick="app.mapService.viewModel.toClipboard(\'' + la_site + ',' + long_site + '\');"><span class="lalng">' + la_site + ',' + long_site + '</span></a>';
+                    //var enhance_act_get_lalan = 'Lat Long :' + '<a class="linkText" onclick="app.mapService.viewModel.toClipboard(\'' + la_site + ',' + long_site + '\');"><span class="lalng">' + la_site + ',' + long_site + '</span></a>';
+                    var enhance_act_get_lalan = 'Lat Long :' + '<input type="text" value="' + la_site + ':' + long_site + '" />'
                     inFor = inFor + '<div  data-role="scroller" class="checkPin_' + arrT[i] + '' + arrA[i] + '_show"> &nbsp;&nbsp; <img src="' + imageName + '" class="tBalloon icon_result_width" /> ' + infoBar + '' +
                         ' &nbsp;&nbsp;' + act_navi_begin + act_navi_end +
                         enhance_act_director + enhance_act_get_alarm + enhance_act_get_job + '<br>' + enhance_act_get_name + '<br>' + enhance_act_get_lalan + '<hr class="hr_head">' + '</div>';
