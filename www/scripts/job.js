@@ -3735,82 +3735,66 @@
         },
         onAddFavorite: function() {
             var that = this;
-
             var selectItem = that.get("selectItem");
-
             var selectProblemC = that.get("selectProblemC");
             var selectProblemS = that.get("selectProblemS");
 
-            $.each($("input:checkbox[class^='PC']"), function(index, val) {
-                selectProblemC.fetch(function() {
-                    var dataC = selectProblemC.view();
+            if ($("input:checkbox[class^='PC']").length == 0) {
+                alert("Please Select Favorite.");
+            } else {
+                $.each($("input:checkbox[class^='PC']"), function(index, val) {
+                    selectProblemC.fetch(function() {
+                        var dataC = selectProblemC.view();
+                        for (var i = 0; i < dataC.length; i++) {
+                            if (val.checked) {
+                                if (val.className.indexOf('PC' + dataC[i].problemCauseSubId + 'PC') > -1) {
+                                    // console.log(dataC[i]);
 
-                    for (var i = 0; i < dataC.length; i++) {
-                        if (val.checked) {
-                            if (val.className.indexOf('PC' + dataC[i].problemCauseSubId + 'PC') > -1) {
-                                // console.log(dataC[i]);
+                                    var dataValue = {
+                                        "token": localStorage.getItem("token"),
+                                        "userId": JSON.parse(localStorage.getItem("profileData")).userId,
+                                        "problemCause": dataC[i].problemCauseMainId,
+                                        "subProblemCause": dataC[i].problemCauseSubId,
+                                        "version": "2"
+                                    };
+                                    $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                                        type: "POST",
+                                        timeout: 180000,
+                                        url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=createFavoriteProblemCause.json',
+                                        data: JSON.stringify(dataValue),
+                                        dataType: "json",
+                                        //async: false,
+                                        contentType: 'application/json',
+                                        success: function(response) {
+                                            // app.masterService.viewModel.loadFavoriteProblemCauses();
+                                            var lvFProblemCause = $("#lvFProblemCause").data("kendoMobileListView");
+                                            lvFProblemCause.dataSource.read();
+                                            lvFProblemCause.refresh();
+                                            var lvFProblemCauseD = $("#lvFProblemCauseD").data("kendoMobileListView");
+                                            lvFProblemCauseD.dataSource.read();
+                                            lvFProblemCauseD.refresh();
+                                            // alert('SUCCESS:' + response.status);
+                                            //that.hideLoading();
 
-                                var dataValue = {
-                                    "token": localStorage.getItem("token"),
-                                    "userId": JSON.parse(localStorage.getItem("profileData")).userId,
-                                    "problemCause": dataC[i].problemCauseMainId,
-                                    "subProblemCause": dataC[i].problemCauseSubId,
-                                    "version": "2"
-                                };
-                                $.ajax({ //using jsfiddle's echo service to simulate remote data loading
-                                    type: "POST",
-                                    timeout: 180000,
-                                    url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=createFavoriteProblemCause.json',
-                                    data: JSON.stringify(dataValue),
-                                    dataType: "json",
-                                    //async: false,
-                                    contentType: 'application/json',
-                                    success: function(response) {
-                                        // app.masterService.viewModel.loadFavoriteProblemCauses();
-                                        var lvFProblemCause = $("#lvFProblemCause").data("kendoMobileListView");
-                                        lvFProblemCause.dataSource.read();
-                                        lvFProblemCause.refresh();
-                                        var lvFProblemCauseD = $("#lvFProblemCauseD").data("kendoMobileListView");
-                                        lvFProblemCauseD.dataSource.read();
-                                        lvFProblemCauseD.refresh();
-                                        // alert('SUCCESS:' + response.status);
-                                        //that.hideLoading();
-
-                                    },
-                                    error: function(xhr, error) {
-                                        that.hideLoading();
-                                        if (!app.ajaxHandlerService.error(xhr, error)) {
-                                            navigator.notification.alert(error,
-                                                function() {}, "Change Status Job : Save incomplete!", 'OK');
-                                        }
-                                        ////console.log(JSON.stringify(xhr));
-                                    },
-                                    complete: function() {}
-                                });
-                                // selectProblemC.remove(dataC[i]);
-                                // selectItem.cntProblemCause--;
-
-                                // selectProblemS.fetch(function() {
-                                //     var dataS = selectProblemS.view();
-
-                                //     for (var j = 0; j < dataS.length; j++) {
-                                //         if (val.className.indexOf('PC' + dataS[j].subProblemCauseId + 'PC') > -1) {
-                                //             selectProblemS.remove(dataS[j]);
-                                //             if (selectItem.cntProblemSolve > 0) {
-                                //                 selectItem.cntProblemSolve--;
-                                //             }
-                                //         }
-                                //     }
-
-                                // });
+                                        },
+                                        error: function(xhr, error) {
+                                            that.hideLoading();
+                                            if (!app.ajaxHandlerService.error(xhr, error)) {
+                                                navigator.notification.alert(error,
+                                                    function() {}, "Change Status Job : Save incomplete!", 'OK');
+                                            }
+                                            ////console.log(JSON.stringify(xhr));
+                                        },
+                                        complete: function() {}
+                                    });
+                                }
                             }
                         }
-                    }
 
+                    });
 
                 });
-
-            });
+            }
         },
         onAddFavoriteM: function() {
             var that = this;
@@ -3818,58 +3802,62 @@
             var selectProblemCM = that.get("selectProblemCM");
             var selectProblemSP = that.get("selectProblemSP");
 
-            $.each($("input:checkbox[class^='CM']"), function(index, val) {
-                selectProblemCM.fetch(function() {
-                    var dataCM = selectProblemCM.view();
+            if ($("input:checkbox[class^='CM']").length == 0) {
+                alert("Please Select Favorite.");
+            } else {
+                $.each($("input:checkbox[class^='CM']"), function(index, val) {
+                    selectProblemCM.fetch(function() {
+                        var dataCM = selectProblemCM.view();
 
-                    for (var i = 0; i < dataCM.length; i++) {
-                        if (val.checked) {
-                            if (val.className.indexOf('CM' + dataCM[i].multiCauseIds + 'CM') > -1) {
-                                // console.log(dataC[i]);
+                        for (var i = 0; i < dataCM.length; i++) {
+                            if (val.checked) {
+                                if (val.className.indexOf('CM' + dataCM[i].multiCauseIds + 'CM') > -1) {
+                                    // console.log(dataC[i]);
 
-                                var dataValue = {
-                                    "token": localStorage.getItem("token"),
-                                    "userId": JSON.parse(localStorage.getItem("profileData")).userId,
-                                    "seqId": null,
-                                    "problemCause": dataCM[i].multiCauseIds,
-                                    "levelCause": dataCM[i].multiCauseLevels,
-                                    "version": "2"
-                                };
-                                $.ajax({ //using jsfiddle's echo service to simulate remote data loading
-                                    type: "POST",
-                                    timeout: 180000,
-                                    url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=createFavoriteProblemCauseMulti.json',
-                                    data: JSON.stringify(dataValue),
-                                    dataType: "json",
-                                    //async: false,
-                                    contentType: 'application/json',
-                                    success: function(response) {
-                                        var lvFProblemCauseM = $("#lvFProblemCauseM").data("kendoMobileListView");
-                                        lvFProblemCauseM.dataSource.read();
-                                        lvFProblemCauseM.refresh();
-                                        var lvFProblemCauseMD = $("#lvFProblemCauseMD").data("kendoMobileListView");
-                                        lvFProblemCauseMD.dataSource.read();
-                                        lvFProblemCauseMD.refresh();
-                                        // app.masterService.viewModel.loadFavoriteProblemCauses();
-                                        // alert('SUCCESS:' + response.status);
-                                        //that.hideLoading();
-                                    },
-                                    error: function(xhr, error) {
-                                        that.hideLoading();
-                                        if (!app.ajaxHandlerService.error(xhr, error)) {
-                                            navigator.notification.alert(error,
-                                                function() {}, "Change Status Job : Save incomplete!", 'OK');
-                                        }
-                                        ////console.log(JSON.stringify(xhr));
-                                    },
-                                    complete: function() {}
-                                });
+                                    var dataValue = {
+                                        "token": localStorage.getItem("token"),
+                                        "userId": JSON.parse(localStorage.getItem("profileData")).userId,
+                                        "seqId": null,
+                                        "problemCause": dataCM[i].multiCauseIds,
+                                        "levelCause": dataCM[i].multiCauseLevels,
+                                        "version": "2"
+                                    };
+                                    $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                                        type: "POST",
+                                        timeout: 180000,
+                                        url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=createFavoriteProblemCauseMulti.json',
+                                        data: JSON.stringify(dataValue),
+                                        dataType: "json",
+                                        //async: false,
+                                        contentType: 'application/json',
+                                        success: function(response) {
+                                            var lvFProblemCauseM = $("#lvFProblemCauseM").data("kendoMobileListView");
+                                            lvFProblemCauseM.dataSource.read();
+                                            lvFProblemCauseM.refresh();
+                                            var lvFProblemCauseMD = $("#lvFProblemCauseMD").data("kendoMobileListView");
+                                            lvFProblemCauseMD.dataSource.read();
+                                            lvFProblemCauseMD.refresh();
+                                            // app.masterService.viewModel.loadFavoriteProblemCauses();
+                                            // alert('SUCCESS:' + response.status);
+                                            //that.hideLoading();
+                                        },
+                                        error: function(xhr, error) {
+                                            that.hideLoading();
+                                            if (!app.ajaxHandlerService.error(xhr, error)) {
+                                                navigator.notification.alert(error,
+                                                    function() {}, "Change Status Job : Save incomplete!", 'OK');
+                                            }
+                                            ////console.log(JSON.stringify(xhr));
+                                        },
+                                        complete: function() {}
+                                    });
+                                }
                             }
                         }
-                    }
-                });
+                    });
 
-            });
+                });
+            }
         },
         gotoMultiMaster: function() {
             app.problemCauseMultiService.viewModel.set("groupParent", "0");

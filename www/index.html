@@ -2014,7 +2014,6 @@
             <a href="#farvirite-problem-cause" class="icon-Favorite2 position-right size" data-role="button"></a>
             <a href="#delfarvirite-problem-cause" class="position-right " style="font-size: 1.35em" data-icon="delete" data-role="button"></a>
             <a data-role="button" class="icon-Favorite1 position-right size" data-bind="click: onAddFavorite"></a>
-
         </div>
         <div data-role="content">
             <ul id="lvJobProblemCause"></ul>
@@ -2065,12 +2064,11 @@
             </div>
         </header>
         <div class="position-right">
-            <a href="#problem-cause-multi-master" class="sizes"data-role="button" data-icon="add" style="color: green"></a>
+            <a href="#problem-cause-multi-master" class="sizes" data-role="button" data-icon="add" style="color: green"></a>
             <a data-role="button" class="sizes" data-bind="click: onDelProbmCM" data-icon="delete" style="color: red"></a>
             <a href="#favorite-problem-cause-multi" class="icon-Favorite2 position-right size" data-role="button"></a>
             <a href="#delfavorite-problem-cause-multi" class="position-right " style="font-size: 1.35em" data-icon="delete" data-role="button"></a>
             <a data-role="button" class="icon-Favorite1 position-right size" data-bind="click: onAddFavoriteM"></a>
-           
         </div>
         <div data-role="content">
             <ul id="lvJobProblemCauseM"></ul>
@@ -2128,20 +2126,19 @@
             ${problemCauseDesc} - ${problemCauseSubDesc}
             </a>
     </script>
-        <div data-title="Delete Favorite for Problem Cause" data-role="view" id="delfarvirite-problem-cause" data-layout="tabstrip-layout" data-init="app.fadelProblemCauseService.init" data-show="app.fadelProblemCauseService.show" data-model="app.fadelProblemCauseService.viewModel" data-url="/">
+    <div data-title="Delete Favorite for Problem Cause" data-role="view" id="delfarvirite-problem-cause" data-layout="tabstrip-layout" data-init="app.fadelProblemCauseService.init" data-show="app.fadelProblemCauseService.show" data-model="app.fadelProblemCauseService.viewModel" data-url="/">
         <header data-role="header">
             <div data-role="navbar">
                 <a href="#job-problem-cause" data-role="button" class="fa" data-icon="fa-back" data-align="left"></a>
                 <span data-role="view-title">Favorite for Problem Cause</span>
                 <a data-role="button" data-bind="click: onDelProbmD" data-icon="check" data-align="right"></a>
             </div>
-            
         </header>
         <div data-role="content">
             <ul id="lvFProblemCauseD"></ul>
         </div>
     </div>
-        <script type="text/x-kendo-tmpl" id="delfavorite-problem-cause-template">
+    <script type="text/x-kendo-tmpl" id="delfavorite-problem-cause-template">
         <label data-icon="contact">
             <input type="checkbox" class="DF${problemCauseSubId}" alt="${problemCauseSubId}" /> ${problemCauseDesc} - ${problemCauseSubDesc}
         </label>
@@ -2180,7 +2177,6 @@
             <input type="checkbox" class="DM${multiCauseId}" alt="${multiCauseId}"> ${multiCauseDesc}
         </label>
     </script>
-    
     <!-- problemsolve-->
     <div data-title="Problem Solve" data-role="view" id="job-problem-solve" data-layout="tabstrip-layout" data-show="app.jobService.loadProblemSolve" data-model="app.jobService.viewModel" data-after-show="app.jobService.viewModel.onClearAllCheckPS">
         <header data-role="header">
@@ -4370,7 +4366,7 @@
         <ul data-role="listview" class="left-menu">
             <li class="ion balance" data-icon="ion-home"><a href="#tabstrip-assign" data-transition="none">Home</a></li>
             <li class="ion calm" data-icon="ion-multi-change"><a data-bind="click: gotoMulti" data-transition="none">Multi-Change</a></li>
-            <li class="ion assertive" data-icon="ion-power-search"><a data-bind ="click:gotoPserach" style="cursor:pointer" data-transition="none">Power Search</a></li>
+            <li class="ion assertive" data-icon="ion-power-search"><a data-bind="click:gotoPserach" style="cursor:pointer" data-transition="none">Power Search</a></li>
             <li class="ion positive" data-icon="ion-setting"><a href="#Setting" data-transition="none">Setting</a></li>
             <li class="ion royal" data-icon="ion-help"><a href="#Help" data-transition="none">Help</a></li>
             <li class="ion dark" data-icon="ion-logout"><a data-bind="click: logout" data-transition="none">Log Out</a></li>
