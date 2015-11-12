@@ -46,6 +46,7 @@
         direction: false,
         mcDataSource: null,
         siteDataSource: null,
+        mapFromMode: "N", // 1. N : from normal || 2. A : direct form alarm site || 3. J : direct from job
         isGoFromJob: false,
         latitude: null,
         longitude: null,
@@ -272,7 +273,10 @@
 
             document.body.removeChild(textArea);
         },
-        gotoAlarmDtl: function(siteDesc) {
+        gotoAlarmDtl: function(siteDesc,lat,lng) {
+            var that = this;
+            _default_lat = lat;
+            _default_long = lng;
             var siteCode = siteDesc.split('[');
             if (siteCode) {
                 //alert($.trim(siteCode[0]));
@@ -290,6 +294,7 @@
                                     "siteCode": sCode,
                                     "token": localStorage.getItem("token"),
                                     "user": JSON.parse(localStorage.getItem("profileData")).userId,
+                                    "req_via": "mobile",
                                     "version": "2"
                                 }),
                                 dataType: "json",
@@ -303,7 +308,7 @@
                                     operation.success(response);
                                 },
                                 error: function(xhr, error) {
-                                    that.hideLoading();
+                                    //that.hideLoading();
                                     if (!app.ajaxHandlerService.error(xhr, error)) {
                                         ////console.log("Accept : Save incomplete! ");
                                         ////console.log("err=>xhr : " + JSON.stringify(xhr) + ", error : " + error);
@@ -340,9 +345,11 @@
 
         },
 
-        gotoAlarmMob: function(siteDesc) {
+        gotoAlarmMob: function(siteDesc,lat,lng) {
 
-
+            _default_lat = lat;
+            _default_long = lng;
+            app.powerSearchService.viewModel.set("isDirectFromMap",true);
             var siteCode = siteDesc.split('[');
             // if (siteCode) {
             //alert($.trim(siteCode[0]));
@@ -2406,16 +2413,16 @@
                         '</div>Last check in :' + app.mapService.viewModel.format_time_date2(moment());
 
                     position = new google.maps.LatLng(myLat, myLong);
-                     //alert(position);
+                    //alert(position);
                     app.mapService.viewModel.myPinLocation();
-                    
+
                     map.panTo(position);
                     app.application.hideLoading();
                     map.setZoom(16);
 
 
 
-                    
+
                     //marker[0].setAnimation(google.maps.Animation.BOUNCE);
                     //that._putMarker(position);
 
@@ -2866,7 +2873,7 @@
             //========================================================================================
 
 
-            map.panTo(new google.maps.LatLng(_default_lat, _default_long));
+            //map.panTo(new google.maps.LatLng(_default_lat, _default_long));
             app.mapService.viewModel.check();
             app.mapService.viewModel.myPinLocation();
             // _site = null;
@@ -3618,10 +3625,10 @@
                     //var enhance_act_director = '';
                     var enhance_act_director = ' | &nbsp;' + '<a class="linkText" href="#tabstrip-map" onclick="app.mapService.viewModel.directTo(\'' + la_site + '\',\'' + long_site + '\');">' +
                         '<i class="fa iconTTSM-compass2"></i>' + '</a>';
-                    var enhance_act_get_alarm = ' | &nbsp;' + '<a class="linkText fa" href="#SiteAlarmDtl" onclick="app.mapService.viewModel.gotoAlarmDtl(\'' + arr[i] + '\');">' +
+                    var enhance_act_get_alarm = ' | &nbsp;' + '<a class="linkText fa" href="#SiteAlarmDtl" onclick="app.mapService.viewModel.gotoAlarmDtl(\'' + arr[i] + '\',\'' + la_site + '\',\'' +  long_site + '\');">' +
                         '<i class="fa iconTTSM-notification6 assertive"></i>' +
                         '</a>';
-                    var enhance_act_get_job = ' | &nbsp;' + '<div class="linkText fa" style="cursor:pointer" onclick="app.mapService.viewModel.gotoAlarmMob(\'' + arrSId[0] + '\');">' +
+                    var enhance_act_get_job = ' | &nbsp;' + '<div class="linkText fa" style="cursor:pointer" onclick="app.mapService.viewModel.gotoAlarmMob(\'' + arrSId[0] + '\',\'' + la_site + '\',\'' +  long_site + '\');">' +
                         '<i class="fa fa-file"></i>' +
                         '</div>';
                     //var enhance_act_get_job = '';
@@ -23724,6 +23731,95 @@
             );
         },
 
+        mapFromNormalFlow: function() {
+            var profileData = JSON.parse(localStorage.getItem("profileData"));
+            if (profileData) {
+                var usrLat = profileData.profiles[0].zoneLat;
+                var usrLng = profileData.profiles[0].zoneLon;
+                //console.debug(usrLat + ":" + usrLng);
+                map.setZoom(10);
+                if (usrLat && usrLng && usrLat != "0.0" && usrLng != "0.0") {
+                    //if user login is assign to one zone display site within zoom 16
+                    //1. set map
+                    _usrDisplay = "S";
+                    _displayType = "S";
+                    map.setZoom(16);
+                    _default_lat = usrLat;
+                    _default_long = usrLng;
+                    var center = new google.maps.LatLng(_default_lat, _default_long);
+                    map = new google.maps.Map(document.getElementById("map-canvas"), {
+                        center: center,
+                        zoom: map.getZoom(),
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    });
+                    //2. loadData MC & Site
+                    setTimeout(app.mapService.viewModel.loadData, 1000);
+                } else {
+                    //if user login is assign to multi zone display zone with zoom 10
+                    //1. set map
+                    _usrDisplay = "Z";
+                    map.setZoom(16);
+                    //console.debug('Display Zone');
+                    _displayType = "S";
+
+                    _default_lat = JSON.parse(localStorage.getItem("profileData")).profiles[0].regionLat;
+                    _default_long = JSON.parse(localStorage.getItem("profileData")).profiles[0].regionLon;
+                    var center = new google.maps.LatLng(_default_lat, _default_long);
+                    map = new google.maps.Map(document.getElementById("map-canvas"), {
+                        center: center,
+                        zoom: map.getZoom(),
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    });
+                    //2. loadData zone cluster in user region
+                    setTimeout(app.mapService.viewModel.loadData, 1000);
+
+
+                }
+
+
+
+            } else {
+                alert("User Profile is undefined!!");
+            }
+
+        },
+
+        mapFromSiteAlarm: function() {
+            // _usrDisplay = "S";
+            // _displayType = "S";
+            // map.setZoom(16);
+            //alert(_default_lat + " : " + _default_long);
+            // _default_lat = usrLat;
+            // _default_long = usrLng;
+            var center = new google.maps.LatLng(_default_lat, _default_long);
+            map = new google.maps.Map(document.getElementById("map-canvas"), {
+                center: center,
+                zoom: map.getZoom(),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            //2. loadData MC & Site
+            setTimeout(app.mapService.viewModel.loadData, 1000);
+        },
+
+        mapFromJob: function() {
+            // _usrDisplay = "Z";
+            // _displayType = "Z";
+            // map.setZoom(10);
+
+            _default_lat = app.mapService.viewModel.get("latitude");
+            _default_long = app.mapService.viewModel.get("longitude");
+            var center = new google.maps.LatLng(_default_lat, _default_long);
+            map = new google.maps.Map(document.getElementById("map-canvas"), {
+                center: center,
+                zoom: map.getZoom(),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            //2. loadData MC & Site
+            setTimeout(app.mapService.viewModel.loadData, 1000);
+            app.mapService.viewModel.directTo(_default_lat, _default_long);
+
+        },
+
         //------------------------------------------------------------------------------end
     });
 
@@ -23860,86 +23956,33 @@
                         dataSource: null
                     });
                 }
+                //mapFromMode: "N", // 1. N : from normal || 2. A : direct form alarm site || 3. J : direct from job
 
-                var profileData = JSON.parse(localStorage.getItem("profileData"));
-                if (profileData) {
-                    var usrLat = profileData.profiles[0].zoneLat;
-                    var usrLng = profileData.profiles[0].zoneLon;
-                    //console.debug(usrLat + ":" + usrLng);
-                    map.setZoom(10);
-                    if (usrLat && usrLng && usrLat != "0.0" && usrLng != "0.0") {
-                        //if user login is assign to one zone display site within zoom 16
-                        //1. set map
-                        _usrDisplay = "S";
-                        _displayType = "S";
-                        map.setZoom(16);
-                        _default_lat = usrLat;
-                        _default_long = usrLng;
-                        var center = new google.maps.LatLng(_default_lat, _default_long);
-                        map = new google.maps.Map(document.getElementById("map-canvas"), {
-                            center: center,
-                            zoom: map.getZoom(),
-                            mapTypeId: google.maps.MapTypeId.ROADMAP
-                        });
-                        //2. loadData MC & Site
-                        setTimeout(app.mapService.viewModel.loadData, 1000);
-                    } else {
-                        //if user login is assign to multi zone display zone with zoom 10
-                        //1. set map
-                        _usrDisplay = "Z";
-                        map.setZoom(16);
-                        //console.debug('Display Zone');
-                        _displayType = "S";
+                var mode = app.mapService.viewModel.get("mapFromMode");
+                if (mode == "N") {
+                    //case normal flow
+                    app.mapService.viewModel.mapFromNormalFlow();
 
-                        _default_lat = JSON.parse(localStorage.getItem("profileData")).profiles[0].regionLat;
-                        _default_long = JSON.parse(localStorage.getItem("profileData")).profiles[0].regionLon;
-                        var center = new google.maps.LatLng(_default_lat, _default_long);
-                        map = new google.maps.Map(document.getElementById("map-canvas"), {
-                            center: center,
-                            zoom: map.getZoom(),
-                            mapTypeId: google.maps.MapTypeId.ROADMAP
-                        });
-                        //2. loadData zone cluster in user region
-                        setTimeout(app.mapService.viewModel.loadData, 1000);
+                } else if (mode == "A") {
+                    // case back from site alarm
+                    app.mapService.viewModel.mapFromSiteAlarm();
+                } else if (mode == "J") {
+                    //case go from job list
+                    app.mapService.viewModel.mapFromJob();
+                }
 
+                google.maps.event.addListener(map, 'idle', function() {
+                    var location = map.getCenter();
 
-                    }
+                    var center = new google.maps.LatLng(_default_lat, _default_long);
 
-                    // google.maps.event.addListener(map, 'dragstart', function() {
-                    //     var location = map.getCenter();
-                    //     // document.getElementById("lat").innerHTML = location.lat();
-
-                    //     // document.getElementById("lon").innerHTML = location.lng();
-                    //     // // call function to reposition marker location
-                    //     // placeMarker(location);
-                    //     // _default_lat = JSON.parse(localStorage.getItem("profileData")).profiles[0].regionLat;
-                    //     // _default_long = JSON.parse(localStorage.getItem("profileData")).profiles[0].regionLon;
-                    //     // var center = new google.maps.LatLng(_default_lat, _default_long);
-                    //     // var dist = app.mapService.viewModel.distance(center.lat(), center.lng(), location.lat(), location.lng(), 'K');
-                    //     // if(dist >= 100)
-                    //     // {
-                    //     //     alert(dist);
-                    //     // }
-                    //     // window.setTimeout(function() {
-                    //     //   console.log(location.lat() + " : " + location.lng());
-                    //     // }, 3000);
-                    //     console.log("dragstart : " + location.lat() + " : " + location.lng());
-                    //     dragstart = location;
-
-                    // });
-                    // // if center changed then update lat and lon document objects
-                    google.maps.event.addListener(map, 'idle', function() {
-                        var location = map.getCenter();
-
-                        var center = new google.maps.LatLng(_default_lat, _default_long);
-
-                        dragstart = center;
-                        //console.log("dragend : " + location.lat() + " : " + location.lng());
-                        dragend = location;
-                        var dist = app.mapService.viewModel.distance(dragstart.lat(), dragstart.lng(), dragend.lat(), dragend.lng(), 'K');
-                        //console.log("difference : " + dist);
-
-
+                    dragstart = center;
+                    //console.log("dragend : " + location.lat() + " : " + location.lng());
+                    dragend = location;
+                    var dist = app.mapService.viewModel.distance(dragstart.lat(), dragstart.lng(), dragend.lat(), dragend.lng(), 'K');
+                    //console.log("difference : " + dist);
+                    var zoomLevel = map.getZoom();
+                    if (zoomLevel <= 14 && _displayType == "S") {
                         //clear site and site marker
                         if (dist >= 10) {
                             _default_lat = location.lat();
@@ -23949,85 +23992,73 @@
                             app.mapService.viewModel.loadSiteOnly();
                             $(".c_loading").hide();
                         }
-
-
-                    });
-
-                    google.maps.event.addListener(map, 'zoom_changed', function() {
-                        var zoomLevel = map.getZoom();
-                        //console.debug("event : zoom_changed level = " + zoomLevel);
-                        if (zoomLevel >= 15 && _displayType == "Z") {
-                            //console.debug("event : zoom_changed (Site Display)");
-                            for (var i = 0; i < marker_zone.length; i++) {
-                                marker_zone[i].setMap(null);
-                            }
-                            for (var i = 0; i < marker_mc.length; i++) {
-                                marker_mc[i].setMap(null);
-                            }
-
-                            for (var i = 0; i < marker_site.length; i++) {
-                                marker_site[i].setMap(null);
-                            }
-
-                            for (var i = 0; i < marker_mc.length; i++) {
-                                marker_mc[i].setMap(map);
-                            }
-
-                            for (var i = 0; i < marker_site.length; i++) {
-                                marker_site[i].setMap(map);
-                            }
-
-                            _displayType = "S";
-                            //map.panTo(new google.maps.LatLng(_default_lat, _default_long));
-                            app.mapService.viewModel.check();
-                            //app.mapService.viewModel.myPinLocation();
-                        }
-
-                        if (zoomLevel <= 14 && _displayType == "S") {
-
-                            //console.debug("event : zoom_changed (Zone Display)");
-                            for (var i = 0; i < marker_zone.length; i++) {
-                                marker_zone[i].setMap(null);
-                            }
-
-                            for (var i = 0; i < marker_mc.length; i++) {
-                                marker_mc[i].setMap(null);
-                            }
-                            //console.debug(_site.length);
-                            for (var i = 0; i < _site.length; i++) {
-                                marker_site[i].setMap(null);
-                            }
-
-                            for (var i = 0; i < marker_zone.length; i++) {
-                                marker_zone[i].setMap(map);
-                            }
-                            _displayType = "Z";
-                        }
-                    });
-
-
-                    if (!app.mapService.viewModel.get("isGoogleMapsInitialized")) {
-                        return;
                     }
 
+                });
 
-                    //resize the map in case the orientation has been changed while showing other tab
-                    google.maps.event.trigger(map, "resize");
-                } else {
-                    alert("User Profile is undefined!!");
-                }
-                var isGoFromJob = app.mapService.viewModel.get("isGoFromJob");
+                google.maps.event.addListener(map, 'zoom_changed', function() {
+                    var zoomLevel = map.getZoom();
+                    //console.debug("event : zoom_changed level = " + zoomLevel);
+                    if (zoomLevel >= 15 && _displayType == "Z") {
+                        //console.debug("event : zoom_changed (Site Display)");
+                        for (var i = 0; i < marker_zone.length; i++) {
+                            marker_zone[i].setMap(null);
+                        }
+                        for (var i = 0; i < marker_mc.length; i++) {
+                            marker_mc[i].setMap(null);
+                        }
 
-                if (isGoFromJob) {
-                    var longitude = app.mapService.viewModel.get("longitude");
-                    var latitude = app.mapService.viewModel.get("latitude");
-                    app.mapService.viewModel.directTo(latitude, longitude);
-                    app.mapService.viewModel.set("isGoFromJob", false);
+                        for (var i = 0; i < marker_site.length; i++) {
+                            marker_site[i].setMap(null);
+                        }
+
+                        for (var i = 0; i < marker_mc.length; i++) {
+                            marker_mc[i].setMap(map);
+                        }
+
+                        for (var i = 0; i < marker_site.length; i++) {
+                            marker_site[i].setMap(map);
+                        }
+
+                        _displayType = "S";
+                        //map.panTo(new google.maps.LatLng(_default_lat, _default_long));
+                        app.mapService.viewModel.check();
+                        //app.mapService.viewModel.myPinLocation();
+                    }
+
+                    if (zoomLevel <= 14 && _displayType == "S") {
+
+                        //console.debug("event : zoom_changed (Zone Display)");
+                        for (var i = 0; i < marker_zone.length; i++) {
+                            marker_zone[i].setMap(null);
+                        }
+
+                        for (var i = 0; i < marker_mc.length; i++) {
+                            marker_mc[i].setMap(null);
+                        }
+                        //console.debug(_site.length);
+                        for (var i = 0; i < _site.length; i++) {
+                            marker_site[i].setMap(null);
+                        }
+
+                        for (var i = 0; i < marker_zone.length; i++) {
+                            marker_zone[i].setMap(map);
+                        }
+                        _displayType = "Z";
+                    }
+                });
+
+
+                if (!app.mapService.viewModel.get("isGoogleMapsInitialized")) {
+                    return;
                 }
+
+
+                //resize the map in case the orientation has been changed while showing other tab
+                google.maps.event.trigger(map, "resize");
+
+                
             }
-        },
-        backToMap : function(){
-            alert("jigkoh3");
         },
         hide: function() {
             //hide loading mask if user changed the tab as it is only relevant to location tab

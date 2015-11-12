@@ -315,6 +315,7 @@
         titletxtJobListMap: 'Job List',
         paramsSearch: "P",
         isNotfound: true,
+        isDirectFromMap: false,
 
 
 
@@ -983,6 +984,15 @@
             app.application.view().scroller.reset();
             $("#sortActionSheetPowerService").data("kendoMobileActionSheet").close();
 
+        },
+        backToMap: function() {
+            //alert("backToMap");
+            app.mapService.viewModel.set("mapFromMode", "A");
+            //app.mapService.viewModel.set("latitude", e.dataItem.latitude);
+            //app.mapService.viewModel.set("longitude", e.dataItem.longitude);
+            app.application.navigate(
+                '#tabstrip-map'
+            );
         },
     });
     app.powerSearchService = {
