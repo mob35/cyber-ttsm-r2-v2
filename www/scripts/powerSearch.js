@@ -324,6 +324,7 @@
         setTmp: function() {
             // alert("Region");
             // ddlregion
+
             if (kendo.ui.DropDownList) {
                 $("#ddlregion").kendoDropDownList({
                     change: function(e) {
@@ -398,6 +399,38 @@
                                                     function() {}, "get regions", 'OK');
                                             }
                                             return;
+                                        },
+                                        complete: function() {
+                                            var regionId = JSON.parse(localStorage.getItem("profileData")).profiles[0].regionId;
+                                            if (regionId) {
+                                                var dropdownlist = $("#ddlregion").data("kendoDropDownList")
+                                                    //dropdownlist.value(regionId);
+                                                dropdownlist.select(function(dataItem) {
+                                                    return dataItem.regionId === regionId;
+                                                });
+                                                var idx = dropdownlist.select();
+                                                $("#ddlzone").kendoDropDownList({
+                                                    dataTextField: "zoneDesc",
+                                                    dataValueField: "zoneId",
+                                                    optionLabel: "---Select---",
+                                                    dataSource: new kendo.data.DataSource({
+                                                        transport: {
+                                                            read: function(operation) {
+                                                                if (app.configService.isMorkupData) {
+                                                                    var response = _getRegionListTTSME.regions[idx - 1];
+                                                                    operation.success(response);
+                                                                } else {
+                                                                    var response = _getRegionListTTSME.regions[idx - 1];
+                                                                    operation.success(response);
+                                                                }
+                                                            }
+                                                        },
+                                                        schema: {
+                                                            data: "zones"
+                                                        }
+                                                    })
+                                                });
+                                            }
                                         }
                                     });
                                 }
@@ -529,6 +562,7 @@
                 JBs,
                 Photo;
 
+            app.application.showLoading();
             // app.myService.viewModel.showLoading();
             // app.application.showLoading();
 
@@ -550,9 +584,23 @@
             var assignTo = that.get("assignTo");
             var assignBy = that.get("assignBy");
             var paramsSearch = that.get("paramsSearch");
+
+            var isValid = false;
+            if ((jobid && jobid.length >= 1) || (sitecode && sitecode.length >= 1)) {
+                isValid = true;
+            } else {
+                if (ddlzone && ddlzone) {
+                    isValid = true;
+                } else {
+
+                    // that.set("ddlzone");
+                    app.application.hideLoading();
+                    alert("โปรดเลือก Field Zone");
+                }
+            }
             //var networkState = navigator.connection.type;
-            if (ddlzone && ddlzone) {
-                
+            if (isValid) {
+
                 var isOffline = app.loginService.viewModel.get("isOffline");
 
                 if (!isOffline) {
@@ -837,7 +885,7 @@
                                             } else {
                                                 that.set("isNotfound", true);
                                             }
-
+                                            operation.success(response);
 
                                         },
                                         error: function(xhr, error) {
@@ -859,9 +907,10 @@
                                             }
                                         },
                                         complete: function() {
-                                            // that.countAccept();                                        
+                                            // that.countAccept();         
+                                            //app.application.hideLoading();                               
                                             that.set("lastupdateaccept", format_time_date(new Date()));
-                                            app.myService.viewModel.hideLoading();
+
                                             that.set("paramsSearch", "P");
                                         }
                                     });
@@ -906,19 +955,10 @@
                     $("#lvPowerSearchList").data("kendoMobileListView").setDataSource(JBs);
 
                 }
-                app.myService.viewModel.hideLoading();
+
                 app.application.navigate(
                     '#powerService'
                 );
-            } if ((jobid && jobid.length >= 1) || (sitecode && sitecode.length >= 1)) {
-                app.application.navigate(
-                    '#powerService'
-                );
-            } else {
-
-
-                that.set("ddlzone");
-                alert("โปรดเลือก Field Zone");
             }
 
             // $('.c_div_searchResult').hide();
@@ -999,6 +1039,7 @@
         viewModel: new powerSearchViewModel(),
         init: function() {
             // alert("init");
+
             app.powerSearchService.viewModel.setTmp();
 
             ////console.log('loading Login');
@@ -1012,6 +1053,7 @@
         show: function() {
             ////console.log("myteam show start");
             // app.myService.viewModel.showLoading();
+
             var isOffline = app.loginService.viewModel.get("isOffline");
             if (!isOffline) {
                 sleep(1000);
@@ -1028,7 +1070,11 @@
                 }
             }
             $('#jobid').val('');
+            //"regionId": "BKK",
+            //"zoneId": "B1",
+
             $("#ddlregion").data("kendoDropDownList").select(0);
+
             var ddlZone = $("#ddlzone").data("kendoDropDownList");
             if (ddlZone) {
                 $("#ddlzone").data("kendoDropDownList").select(0)
@@ -1045,6 +1091,9 @@
             $('#assignTo').val('');
             $('#assignBy').val('');
             //app.myService.viewModel.hideLoading(////console.logle.debug("myteam hide hide");
+
+            app.powerSearchService.viewModel.setTmp();
+
         },
         hide: function() {
             // alert("hide");
