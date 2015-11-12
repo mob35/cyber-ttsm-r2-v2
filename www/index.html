@@ -113,7 +113,9 @@
         </div>
         <div class="km-listview-wrapper">
             <form class="km-filter-form">
-                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheetReAllocate" class="km-filter-reset" title="Sort"><span class="fa icon-AZ3 sort-icon"></span></a></div>
+                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheetReAllocate" class="km-filter-reset" title="Sort"><span class="fa icon-AZ3 sort-icon"></span></a>
+                <div class="hiddentext" style="visibility:hidden">
+                <input></div></div>
             </form>
         </div>
         <span>Last Updated :
@@ -154,7 +156,7 @@
             <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('jobId')">Job ID</a></li>
             <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('title')">Title</a></li>
             <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('siteAccessDesc')">Site Access(Code)</a></li>
-            <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('siteAccessDesc')">Site Access(Name Thai)</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('siteNameTh')">Site Access(Name Thai)</a></li>
             <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('initiateDate')">Assign Date</a></li>
             <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('finishDate')">Finish Date</a></li>
             <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('priorityId')">Priority</a></li>
@@ -247,6 +249,7 @@
                 </div> 
                 <span class="info_view">Site Access : <b style="color:black">${siteAccessDesc}</b></span>
                 <span class="info_view">Status : <b style="color:black">${status}</b></span>
+                <div><span class="info_view">Site Name Thai : <b style="color:black">${siteNameTh}</b></span></div>
             </a>
     </script>
     <script id="reallocateWithStatus-template" type="text/x-kendo-template">
@@ -289,6 +292,7 @@
                 </div> 
                 <span class="info_view">Site Access : <b style="color:black">${siteAccessDesc}</b></span>
                 <span class="info_view">Status : <b style="color:black">${status}</b></span>
+                <div><span class="info_view">Site Name Thai : <b style="color:black">${siteNameTh}</b></span></div>
             </a>
     </script>
     <!--My Team-->
@@ -482,6 +486,7 @@
         </div>
         <span class="info_view">Site Access : <b style="color:black">${siteAccessDesc}</b></span>
         <span class="info_view">Status : <b style="color:black">${status}</b></span>
+        <div><span class="info_view">Site Name Thai : <b style="color:black">${siteNameTh}</b></span></div>
         </a>
     </script>
     <!--My-->
@@ -1044,7 +1049,9 @@
         </div>
         <div class="km-listview-wrapper" data-bind="visible: isSearch">
             <form class="km-filter-form">
-                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:assignFilter, events: { keyup: filterAssignEvent }" data-value-update="keyup"><a data-bind="click: openActSheetAssign" class="km-filter-reset" title="Sort"><span class="fa icon-AZ3 sort-icon"></span></a></div>
+                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:assignFilter, events: { keyup: filterAssignEvent }" data-value-update="keyup"><a data-bind="click: openActSheetAssign" class="km-filter-reset" title="Sort"><span class="fa icon-AZ3 sort-icon"></span></a>
+                <div class="hiddentext" style="visibility:hidden">
+                <input></div></div>
             </form>
         </div>
         <span>Last Updated :
@@ -1097,10 +1104,9 @@
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('jobId')">Job ID</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('title')">Title</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('siteAccessDesc')">Site Access(Code)</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('siteAccessDesc')">Site Access(Name Thai)</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('siteNameTh')">Site Access(Name Thai)</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('initiateDate')">Assign Date</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')">Finish Date</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('priorityId')">Priority</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('status')">Status</a></li>
         </ul>
     </div>
@@ -1137,7 +1143,11 @@
                 <span class="info_view">#:format_time_date(finishDate)#</span>
                 </div>
                 <span class="info_view">Site Access : <b style="color:black">${siteAccessDesc}</b></span>
+                <div>
+                <span class="info_view">Site Name Thai : <b style="color:black">${siteNameTh}</b></span>
+                </div>
                 <span class="info_view">Status : <b style="color:black">${status}</b></span>
+
             </a>
     </script>
     <!--Reject View-->
@@ -1206,10 +1216,13 @@
             </div>
         </div>
         <div class="km-listview-wrapper" data-bind="visible: isSearch">
-            <form class="km-filter-form">
-                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:acceptFilter, events: { keyup: filterAcceptEvent }" data-value-update="keyup"><a data-bind="click: openActSheetAccept" class="km-filter-reset" title="Sort"><span class="fa icon-AZ3 sort-icon"></span></a></div>
+            <form class="km-filter-form"
+            ><div class="km-filter-wrap"><input type="search"  placeholder="Search..." data-bind="value:acceptFilter, events: { keyup: filterAcceptEvent }" data-value-update="keyup" ><a data-bind="click: openActSheetAccept" class="km-filter-reset" title="Sort"><span class="fa icon-AZ3 sort-icon"></span></a>
+                <div class="hiddentext" style="visibility:hidden">
+                <input></div></div>
             </form>
         </div>
+        
         <span>Last Updated :
                 <span data-bind="text: lastupdateaccept"></span>
         </span>
@@ -1323,12 +1336,11 @@
             <li> <a data-action="app.jobService.viewModel.onAcceptSortby('jobId')">Job ID</a></li>
             <li> <a data-action="app.jobService.viewModel.onAcceptSortby('title')">Title</a></li>
             <li> <a data-action="app.jobService.viewModel.onAcceptSortby('siteAccessDesc')">Site Access(Code)</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('siteAccessDesc')">Site Access(Name Thai)</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('siteNameTh')">Site Access(Name Thai)</a></li>
             <li> <a data-action="app.jobService.viewModel.onAcceptSortby('initiateDate')">Assign Date</a></li>
             <li> <a data-action="app.jobService.viewModel.onAcceptSortby('finishDate')">Finish Date</a></li>
             <li> <a data-action="app.jobService.viewModel.onAcceptSortby('priorityId')">Priority</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('status')">Status</a></li>
-        </ul>
+         </ul>
     </div>
     <!--Accept template-->
     <script type="text/x-kendo-tmpl" id="accept-template">
@@ -1370,7 +1382,10 @@
             <span class="info_view">-</span>
             <span class="info_view">#:format_time_date(finishDate)#</span>
             </div>
+            <div>
             <span class="info_view">Site Access : <b style="color:black">${siteAccessDesc}</b></span>
+            </div>
+            <span class="info_view">Site Name Thai : <b style="color:black">${siteNameTh}</b></span>
         </a>
     </script>
     <!--Multi data-model="app.jobService.viewModel" data-init="app.jobService.initMultilist" data-show="app.jobService.showMutiltlist"
@@ -1606,7 +1621,9 @@
                 <span class="info_view">-</span>
                 <span class="info_view">#:format_time_date(finishDate)#</span>
             </div>
+            <div>
             <span class="info_view">Site Access : <b style="color:black">${siteAccessDesc}</b></span> </a>
+            </div>           
     </script>
     <!--multi template-->
     <script type="text/x-kendo-tmpl" id="multi-template">
@@ -3249,6 +3266,7 @@
                 </div>
                 <span class="info_view">Site Access : <b style="color:black">${siteAccessDesc}</b></span>
                 <span class="info_view">Job Status : <b style="color:black">${status}</b></span>
+                <div><span class="info_view">Site Name Thai : <b style="color:black">${siteNameTh}</b></span></div>
             </li>
         </script>
     </div>
@@ -3466,6 +3484,7 @@
             </div>
             <span class="info_view">Site Access : <b style="color:black">${siteAccessDesc}</b></span>
             <span class="info_view">Job Status : <b style="color:black">${statusName}</b></span>
+            <div><span class="info_view">Site Name Thai : <b style="color:black">${siteNameTh}</b></span></div>
         </li>
     </script>
     <!--Dashboard Filter-->
@@ -3735,7 +3754,9 @@
         <div style="height:10px">&nbsp;</div>
         <div class="km-listview-wrapper" data-bind="visible: isSearch">
             <form class="km-filter-form">
-                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheetPowerService" class="km-filter-reset" title="Sort"><span class="fa icon-AZ3 sort-icon"></span></a></div>
+                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateEvent }" data-value-update="keyup"><a data-bind="click: openActSheetPowerService" class="km-filter-reset" title="Sort"><span class="fa icon-AZ3 sort-icon"></span></a>
+                <div class="hiddentext" style="visibility:hidden">
+                <input></div></div>
             </form>
             <ul data-role="actionsheet" id="sortActionSheetPowerService">
                 <div class="position-right">
@@ -4122,7 +4143,7 @@
                         <li>
                             <label>
                                 <span class="position-left">
-                                        <img src="images/myMC.gif" class="image_icon" />&nbsp;
+                                        &nbsp;<img src="images/myMC.gif" class="image_icon" />&nbsp;
                                         <b>My Location</b>
                                     </span>
                             </label>
@@ -4130,7 +4151,7 @@
                         <li>
                             <label>
                                 <span class="position-left">
-                                        <img src="images/otherMC.png" class="image_icon" />&nbsp;
+                                        &nbsp;<img src="images/otherMC.png" class="image_icon" />&nbsp;
                                         <b>Other Field Engineer</b>
                                     </span>
                             </label>
@@ -4138,7 +4159,7 @@
                         <li>
                             <label>
                                 <span class="position-left">
-                                        <img src="images/aissite.png" class="image_icon" />&nbsp;
+                                        &nbsp;<img src="images/aissite.png" class="image_icon" />&nbsp;
                                         <b>AIS Normal Site</b>
                                     </span>
                             </label>
@@ -4146,8 +4167,40 @@
                         <li>
                             <label>
                                 <span class="position-left">
-                                        <img src="images/alarm.png" class="image_icon" />&nbsp;
+                                        &nbsp;<img src="images/asn2.png" class="image_icon" />&nbsp;
+                                        <b>AIS Normal Site and Job Active</b>
+                                    </span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <span class="position-left">
+                                        &nbsp;<img src="images/asn-1.png" class="image_icon" />&nbsp;
+                                        <b>AIS Normal Site and Job On-Site</b>
+                                    </span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <span class="position-left">
+                                        &nbsp;<img src="images/alarm.png" class="image_icon" />&nbsp;
                                         <b>AIS Alarm Site</b>
+                                    </span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <span class="position-left">
+                                        &nbsp;<img src="images/all_site_alarm-2.png" class="image_icon" />&nbsp;
+                                        <b>AIS Alarm Site and Job Active</b>
+                                    </span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <span class="position-left">
+                                        &nbsp;<img src="images/allsam-1.png" class="image_icon" />&nbsp;
+                                        <b>AIS Alarm Site and Job On-Site</b>
                                     </span>
                             </label>
                         </li>
@@ -4162,8 +4215,40 @@
                         <li>
                             <label>
                                 <span class="position-left">
-                                        <img src="images/aiscussite.png" class="image_icon" />&nbsp;
+                                        &nbsp;<img src="images/csn2.png" class="image_icon" />&nbsp;
+                                        <b>Customer Normal Site and Job Active</b>
+                                    </span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <span class="position-left">
+                                        &nbsp;<img src="images/csn-1.png" class="image_icon" />&nbsp;
+                                        <b>Customer Normal Site and Job On-Site</b>
+                                    </span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <span class="position-left">
+                                        &nbsp;<img src="images/aiscussite.png" class="image_icon" />&nbsp;
                                         <b>Customer Site & AIS Site together</b>
+                                    </span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <span class="position-left">
+                                        &nbsp;<img src="images/aiscussite-2.png" class="image_icon" />&nbsp;
+                                        <b>Customer Site & AIS Site and Job Active</b>
+                                    </span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <span class="position-left">
+                                        &nbsp;<img src="images/allsn-1.png" class="image_icon" />&nbsp;
+                                        <b>Customer Site & AIS Site and Job On-Site</b>
                                     </span>
                             </label>
                         </li>
@@ -4186,7 +4271,7 @@
                         <li>
                             <label>
                                 <span class="position-left">
-                                        <img src="images/search_site_active.png" class="image_icon" />&nbsp;
+                                        &nbsp;<img src="images/search_site_active.png" class="image_icon" />&nbsp;
                                         <b>Search Site Code</b>
                                     </span>
                             </label>
@@ -4194,7 +4279,7 @@
                         <li>
                             <label>
                                 <span class="position-left">
-                                        <img src="images/otherMC.png" class="image_icon" />&nbsp;
+                                        &nbsp;<img src="images/otherMC.png" class="image_icon" />&nbsp;
                                         <b>Search Field Engineer Name</b>
                                     </span>
                             </label>
@@ -4202,7 +4287,7 @@
                         <li>
                             <label>
                                 <span class="position-left">
-                                        <img src="images/search_job_active.png" class="image_icon" />&nbsp;
+                                        &nbsp;<img src="images/search_job_active.png" class="image_icon" />&nbsp;
                                         <b>Search Job ID</b>
                                     </span>
                             </label>
