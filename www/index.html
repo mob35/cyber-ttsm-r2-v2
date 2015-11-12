@@ -1100,17 +1100,16 @@
             <li>
                 <font color="White">Sort By</font>
             </li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')">Count Down</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('jobId')">Job ID</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('title')">Title</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('siteAccessDesc')">Site Access(Code)</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('siteNameTh')">Site Access(Name Thai)</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('initiateDate')">Assign Date</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')">Finish Date</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('status')">Status</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')"><i data-bind="visible: isVisible('finishDate')" class="fa icon-tick position-left"></i>Count Down</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('jobId')"><i data-bind="visible: isVisible('jobId')" class="fa icon-tick position-left"></i>Job ID</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('title')"><i data-bind="visible: isVisible('title')" class="fa icon-tick position-left"></i>Title</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('siteAccessDesc')"><i data-bind="visible: isVisible('siteAccessDesc')" class="fa icon-tick position-left"></i>Site Access(Code)</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('siteNameTh')"><i data-bind="visible: isVisible('siteNameTh')" class="fa icon-tick position-left"></i>Site Access(Name Thai)</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('initiateDate')"><i data-bind="visible: isVisible('initiateDate')" class="fa icon-tick position-left"></i>Assign Date</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')"><i data-bind="visible: isVisible('finishDate')" class="fa icon-tick position-left"></i>Finish Date</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('status')"><i data-bind="visible: isVisible('status')" class="fa icon-tick position-left"></i>Status</a></li>
         </ul>
     </div>
-    <!--${COUNTDOWN} data-bind="click: setActionSheet"-->
     <script id="assign-template" type="text/x-kendo-template">
         <a data-rel="actionsheet" href="\\#assignActionSheet" data-actionsheet-context="${jobId}">
                  #if(priorityName=="Critical"){#
@@ -1325,6 +1324,7 @@
                 <a data-action="app.jobService.viewModel.gotoDirection">Direction</a>
             </li>
         </ul>
+        
         <ul data-role="actionsheet" id="sortActionSheetAccept">
             <div class="position-right">
                 <input id="switchAccept" data-role="switch" data-on-label="A-Z" data-off-label="Z-A" />
@@ -1332,14 +1332,14 @@
             <li>
                 <font color="White">Sort By</font>
             </li>
-            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('jobId')">Count Down</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('jobId')">Job ID</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('title')">Title</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('siteAccessDesc')">Site Access(Code)</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('siteNameTh')">Site Access(Name Thai)</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('initiateDate')">Assign Date</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('finishDate')">Finish Date</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('priorityId')">Priority</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('finishDate')"><i data-bind="visible: isVisible('finishDate')" class="fa icon-tick position-left"></i>Count Down</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('jobId')"><i data-bind="visible: isVisible('jobId')" class="fa icon-tick position-left"></i>Job ID</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('title')"><i data-bind="visible: isVisible('title')" class="fa icon-tick position-left"></i>Title</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('siteAccessDesc')"><i data-bind="visible: isVisible('siteAccessDesc')" class="fa icon-tick position-left"></i>Site Access(Code)</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('siteNameTh')"><i data-bind="visible: isVisible('siteNameTh')" class="fa icon-tick position-left"></i>Site Access(Name Thai)</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('initiateDate')"><i data-bind="visible: isVisible('initiateDate')" class="fa icon-tick position-left"></i>Assign Date</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('finishDate')"><i data-bind="visible: isVisible('finishDate')" class="fa icon-tick position-left"></i>Finish Date</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('priorityId')"><i data-bind="visible: isVisible('priorityId')" class="fa icon-tick position-left"></i>Priority</a></li>
          </ul>
     </div>
     <!--Accept template-->
@@ -3908,6 +3908,7 @@
             <span class="info_view">#:format_time_date(finishDate)#</span>
             </div>
             <span class="info_view">Site Access : <b style="color:black">${siteAccessDesc}</b></span>
+            <div><span class="info_view">Site Name Thai : <b style="color:black">${siteNameTh}</b></span></div>
         </a>
     </script>
     <!--SiteDirection-->

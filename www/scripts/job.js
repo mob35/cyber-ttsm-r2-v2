@@ -36,6 +36,7 @@
         searchtxt: '',
         alarmJobId: '',
         assignFilter: '',
+        countBy: 'jobId',
         siteAlarmType: 'Site Access Alarm',
         goSiteAssessView: function() {
             app.siteAccessService.viewModel.set("returnUrl", "#tabstrip-display");
@@ -75,6 +76,14 @@
             } else if (selectItem.statusId == "05") {
                 return true;
             } else {
+                return false;
+            }
+        },
+        isVisible: function(fldName){
+            if(app.jobService.viewModel.get("countBy") == fldName){
+                return true;
+            }
+            else{
                 return false;
             }
         },
@@ -4388,6 +4397,7 @@
         },
         onAssignSortby: function(fieldName) {
             console.log(fieldName);
+            app.jobService.viewModel.set("countBy",fieldName);
             var switchInstance = $("#switchAssign").data("kendoMobileSwitch");
             console.log(switchInstance.check());
             var lvAssignList = $("#lvAssignList").data("kendoMobileListView");
@@ -4408,6 +4418,8 @@
         },
         onAcceptSortby: function(fieldName) {
             console.debug(fieldName);
+            app.jobService.viewModel.set("countBy",fieldName);
+            console.log("onAcceptSortby :" + app.jobService.viewModel.get("countBy"));
             var switchInstance = $("#switchAccept").data("kendoMobileSwitch");
             console.log(switchInstance.check());
             var lvAcceptList = $("#lvAcceptList").data("kendoMobileListView");
