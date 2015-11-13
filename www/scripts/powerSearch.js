@@ -314,6 +314,7 @@
         titletxt: 'Power Search',
         titletxtJobListMap: 'Job List',
         paramsSearch: "P",
+        countBy: 'finishDates',
         isNotfound: false,
         isDirectFromMap: false,
 
@@ -1003,11 +1004,20 @@
             that.set("searchtxt", "");
 
         },
+        isVisible: function(fldName){
+            if(app.powerSearchService.viewModel.get("countBy") == fldName){
+                return true;
+            }
+            else{
+                return false;
+            }
+        },
         openActSheetPowerService: function() {
             $("#sortActionSheetPowerService").data("kendoMobileActionSheet").open();
         },
         onPowerServiceSortby: function(fieldName) {
             console.debug(fieldName);
+            app.powerSearchService.viewModel.set("countBy",fieldName);
             var switchInstance = $("#switchPowerService").data("kendoMobileSwitch");
             console.log(switchInstance.check());
             var lvPowerSearchList = $("#lvPowerSearchList").data("kendoMobileListView");

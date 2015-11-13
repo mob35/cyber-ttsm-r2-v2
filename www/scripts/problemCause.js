@@ -73,20 +73,6 @@
 
 			var flag = true;
 
-			//var pbc = [{"jobId": selectItem.jobId,
-			//			"problemCauseMainId": e.problemCauseId,
-			//			"problemCauseDesc": e.problemCauseDescription,
-			//			"problemCauseSubId": e.subproCauseId,
-			//			"problemCauseSubDesc": e.subproCauseDescription,
-			//			"seqId":null,
-			//			"levelCause":null,
-			//			"problemCauseId":null
-			//			}]
-
-
-
-
-
 			if (selectProblemC != null && selectProblemC != undefined) {
 				var data = selectProblemC.data();
 				for (var i = 0; i < data.length; i++) {
