@@ -314,7 +314,7 @@
         titletxt: 'Power Search',
         titletxtJobListMap: 'Job List',
         paramsSearch: "P",
-        isNotfound: true,
+        isNotfound: false,
         isDirectFromMap: false,
 
 
@@ -1069,7 +1069,7 @@
                         }, "Internet Connection", 'OK');
                 }
             }
-            $('#jobid').val('');
+            $('#jobid').val("");
             //"regionId": "BKK",
             //"zoneId": "B1",
 
