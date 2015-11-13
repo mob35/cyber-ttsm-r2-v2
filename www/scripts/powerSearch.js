@@ -556,6 +556,7 @@
                 });
             }
         },
+
         faback: function() {
             location.reload();
         },
@@ -950,6 +951,7 @@
 
                 app.application.navigate(
                     '#powerService'
+
                 );
             }
 
@@ -995,6 +997,7 @@
             var that = this
             that.set("isSearch", !that.get("isSearch"));
             that.set("searchtxt", "");
+
         },
         openActSheetPowerService: function() {
             $("#sortActionSheetPowerService").data("kendoMobileActionSheet").open();
@@ -1091,6 +1094,7 @@
         },
         hide: function() {
             // alert("hide");
+
             //navigator.splashscreen.hide();
         },
     };
