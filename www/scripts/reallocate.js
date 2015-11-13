@@ -21,11 +21,21 @@
         _isLoading: true,
         rejectReturnUrl: null,
         isSearch: false,
+        countBy: 'jobId',
+        isVisible: function(fldName){
+            if(app.reallocateService.viewModel.get("countBy") == fldName){
+                return true;
+            }
+            else{
+                return false;
+            }
+        },
         openActSheetReAllocate: function() {
             $("#sortActionSheetReAllocate").data("kendoMobileActionSheet").open();
         },
         onReAllocateSortby: function(fieldName) {
             console.debug(fieldName);
+            app.reallocateService.viewModel.set("countBy",fieldName);
             var switchInstance = $("#switchReAllocate").data("kendoMobileSwitch");
             console.log(switchInstance.check());
             var lvReallocate = $("#lvReallocate").data("kendoMobileListView");

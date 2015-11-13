@@ -79,11 +79,10 @@
                 return false;
             }
         },
-        isVisible: function(fldName){
-            if(app.jobService.viewModel.get("countBy") == fldName){
+        isVisible: function(fldName) {
+            if (app.jobService.viewModel.get("countBy") == fldName) {
                 return true;
-            }
-            else{
+            } else {
                 return false;
             }
         },
@@ -3758,7 +3757,8 @@
             var selectProblemS = that.get("selectProblemS");
 
             if ($("input:checkbox[class^='PC']").length == 0) {
-                alert("Please Select Favorite.");
+                navigator.notification.alert("Please Select Favorite.");
+
             } else {
                 $.each($("input:checkbox[class^='PC']"), function(index, val) {
                     selectProblemC.fetch(function() {
@@ -3821,7 +3821,7 @@
             var selectProblemSP = that.get("selectProblemSP");
 
             if ($("input:checkbox[class^='CM']").length == 0) {
-                alert("Please Select Favorite.");
+                navigator.notification.alert("Please Select Favorite.");
             } else {
                 $.each($("input:checkbox[class^='CM']"), function(index, val) {
                     selectProblemCM.fetch(function() {
@@ -4397,7 +4397,7 @@
         },
         onAssignSortby: function(fieldName) {
             console.log(fieldName);
-            app.jobService.viewModel.set("countBy",fieldName);
+            app.jobService.viewModel.set("countBy", fieldName);
             var switchInstance = $("#switchAssign").data("kendoMobileSwitch");
             console.log(switchInstance.check());
             var lvAssignList = $("#lvAssignList").data("kendoMobileListView");
@@ -4418,7 +4418,7 @@
         },
         onAcceptSortby: function(fieldName) {
             console.debug(fieldName);
-            app.jobService.viewModel.set("countBy",fieldName);
+            app.jobService.viewModel.set("countBy", fieldName);
             console.log("onAcceptSortby :" + app.jobService.viewModel.get("countBy"));
             var switchInstance = $("#switchAccept").data("kendoMobileSwitch");
             console.log(switchInstance.check());
@@ -4617,7 +4617,7 @@
             //lvAcceptList.dataSource.read();
             lvAcceptList.refresh();
             app.application.view().scroller.reset();
-            
+
         },
         exeDetailSearch: function(jbSearchId) {
             var that = this;

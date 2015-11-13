@@ -144,7 +144,7 @@
             if (selectProblemC != null && selectProblemC != undefined) {
                 var data = selectProblemC.data();
                 for (var i = 0; i < data.length; i++) {
-                    if (data[i].favProblemCauseId == e.dataItem.favProblemCauseId) {
+                    if (data[i].problemCauseSubId == e.dataItem.problemCauseSubId) {
                         flag = false;
                         e.preventDefault();
                         navigator.notification.alert("Duplicate problem cause.",
@@ -161,7 +161,7 @@
                 selectItem.cntProblemCause++;
                 var pbc = {
                     "jobId": selectItem.jobId,
-                    "problemCauseMainId": e.dataItem.id,
+                    "problemCauseMainId": e.dataItem.problemCauseMainId,
                     "problemCauseDesc": e.dataItem.problemCauseDesc,
                     "problemCauseSubId": e.dataItem.problemCauseSubId,
                     "problemCauseSubDesc": e.dataItem.problemCauseSubDesc,
