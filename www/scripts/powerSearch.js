@@ -314,8 +314,8 @@
         titletxt: 'Power Search',
         titletxtJobListMap: 'Job List',
         paramsSearch: "P",
-        countBy: 'jobId',
-        isNotfound: true,
+        countBy: 'finishDates',
+        isNotfound: false,
         isDirectFromMap: false,
 
 
@@ -557,23 +557,18 @@
                 });
             }
         },
+        faback: function() {
+            location.reload();
+        },
         showResult: function() {
-
             var that = this,
                 JBs,
                 Photo;
-
             app.application.showLoading();
-            // app.myService.viewModel.showLoading();
-            // app.application.showLoading();
-
             var jobid = that.get("jobid");
-
             var ddlregion = ($("#ddlregion").data("kendoDropDownList") ? $("#ddlregion").data("kendoDropDownList").value() : "");
             var ddlzone = ($("#ddlzone").data("kendoDropDownList") ? $("#ddlzone").data("kendoDropDownList").value() : "");
-
             var sitecode = that.get("sitecode");
-
             var assignDateFrom = that.get("assignDateFrom");
             var assignDateTo = that.get("assignDateTo");
             var finishDateFrom = that.get("finishDateFrom");
@@ -585,7 +580,6 @@
             var assignTo = that.get("assignTo");
             var assignBy = that.get("assignBy");
             var paramsSearch = that.get("paramsSearch");
-
             var isValid = false;
             if ((jobid && jobid.length >= 1) || (sitecode && sitecode.length >= 1)) {
                 isValid = true;
@@ -593,7 +587,6 @@
                 if (ddlzone && ddlzone) {
                     isValid = true;
                 } else {
-
                     // that.set("ddlzone");
                     app.application.hideLoading();
                     alert("โปรดเลือก Field Zone");
@@ -601,7 +594,6 @@
             }
             //var networkState = navigator.connection.type;
             if (isValid) {
-
                 var isOffline = app.loginService.viewModel.get("isOffline");
 
                 if (!isOffline) {
@@ -1061,6 +1053,7 @@
         //     //navigator.splashscreen.hide();
         // },
         show: function() {
+
             ////console.log("myteam show start");
             // app.myService.viewModel.showLoading();
 
@@ -1079,10 +1072,9 @@
                         }, "Internet Connection", 'OK');
                 }
             }
-            $('#jobid').val('');
-            //"regionId": "BKK",
-            //"zoneId": "B1",
 
+
+            $('#jobid').val('');
             $("#ddlregion").data("kendoDropDownList").select(0);
 
             var ddlZone = $("#ddlzone").data("kendoDropDownList");
@@ -1102,7 +1094,9 @@
             $('#assignBy').val('');
             //app.myService.viewModel.hideLoading(////console.logle.debug("myteam hide hide");
 
+
             app.powerSearchService.viewModel.setTmp();
+
 
         },
         hide: function() {

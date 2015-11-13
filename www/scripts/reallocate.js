@@ -21,21 +21,21 @@
         _isLoading: true,
         rejectReturnUrl: null,
         isSearch: false,
-        countBy: 'jobId',
-        isVisible: function(fldName){
-            if(app.reallocateService.viewModel.get("countBy") == fldName){
+        countBy: 'finishDates',
+        isVisible: function(fldName) {
+            if (app.reallocateService.viewModel.get("countBy") == fldName) {
                 return true;
-            }
-            else{
+            } else {
                 return false;
             }
         },
+
         openActSheetReAllocate: function() {
             $("#sortActionSheetReAllocate").data("kendoMobileActionSheet").open();
         },
         onReAllocateSortby: function(fieldName) {
             console.debug(fieldName);
-            app.reallocateService.viewModel.set("countBy",fieldName);
+            app.reallocateService.viewModel.set("countBy", fieldName);
             var switchInstance = $("#switchReAllocate").data("kendoMobileSwitch");
             console.log(switchInstance.check());
             var lvReallocate = $("#lvReallocate").data("kendoMobileListView");
@@ -49,6 +49,26 @@
             lvReallocate.refresh();
             app.application.view().scroller.reset();
             $("#sortActionSheetReAllocate").data("kendoMobileActionSheet").close();
+        },
+        sortActionSheetReAllocateWith: function() {
+            $("#sortActionSheetReAllocateWith").data("kendoMobileActionSheet").open();
+        },
+        onReAllocateWithSortby: function(fieldName) {
+            console.debug(fieldName);
+            app.reallocateService.viewModel.set("countBy", fieldName);
+            var switchInstance = $("#switchReAllocateWith").data("kendoMobileSwitch");
+            console.log(switchInstance.check());
+            var lvReallocateWithStatus = $("#lvReallocateWithStatus").data("kendoMobileListView");
+
+            lvReallocateWithStatus.dataSource.sort({
+                field: fieldName,
+                dir: switchInstance.check() ? "asc" : "desc"
+            });
+            //jigkoh comment for not re-read datasource
+            //lvReallocate.dataSource.read();
+            lvReallocateWithStatus.refresh();
+            app.application.view().scroller.reset();
+            $("#sortActionSheetReAllocateWith").data("kendoMobileActionSheet").close();
         },
         isReportType: function() {
             var that = this;
@@ -128,18 +148,18 @@
             var filterJob = {
                 logic: "or",
                 filters: [{
-                field: "jobId",
-                operator: "contains",
-                value: allocateFilter
-            },{
+                    field: "jobId",
+                    operator: "contains",
+                    value: allocateFilter
+                }, {
                     field: "title",
                     operator: "contains",
                     value: allocateFilter
-                },{
+                }, {
                     field: "assignByName",
                     operator: "contains",
                     value: allocateFilter
-                },{
+                }, {
                     field: "siteAccessDesc",
                     operator: "contains",
                     value: allocateFilter
@@ -150,6 +170,42 @@
             //jigkoh comment for not re-read datasource
             //lvReallocate.dataSource.read();
             lvReallocate.refresh();
+            app.application.view().scroller.reset();
+        },
+        filterAllocateWithEvent: function() {
+            var that = app.reallocateService.viewModel;
+            //that.showLoading();
+            var allocateFilter = that.get("allocateFilter");
+            //console.log(assignFilter);
+
+            var lvReallocateWithStatus = $("#lvReallocateWithStatus").data("kendoMobileListView");
+            // ////console.log("Assign Filter : " + index);
+            // that.showLoading();
+            var filterJob = {
+                logic: "or",
+                filters: [{
+                    field: "jobId",
+                    operator: "contains",
+                    value: allocateFilter
+                }, {
+                    field: "title",
+                    operator: "contains",
+                    value: allocateFilter
+                }, {
+                    field: "assignByName",
+                    operator: "contains",
+                    value: allocateFilter
+                }, {
+                    field: "siteAccessDesc",
+                    operator: "contains",
+                    value: allocateFilter
+                }]
+            };
+
+            lvReallocateWithStatus.dataSource.filter(filterJob);
+            //jigkoh comment for not re-read datasource
+            //lvReallocate.dataSource.read();
+            lvReallocateWithStatus.refresh();
             app.application.view().scroller.reset();
         },
         loadlist: function() {
@@ -310,6 +366,7 @@
                             operation.success(JSON.parse(localStorage.getItem("jbData")));
                             JBSs.fetch();
                             that.hideLoading();
+                            that.set("reallocateDataSource", JBs);
                             that.set("lastupdatereallocate", format_time_date(new Date()));
                         } else {
                             $.ajax({ //using jsfiddle's echo service to simulate remote data loading
@@ -417,7 +474,9 @@
             //setTimeout(function () {
             //that.set("selectId", e.selectId);
             var JBs = that.get("reallocateDataSource");
+            if(JBs == null){
 
+            }else{
             JBs.filter({
                 field: "jobId",
                 operator: "eq",
@@ -440,6 +499,7 @@
                     "#tabstrip-display"
                 );
             });
+        }
             //prevent `swipe`
             //this.events.cancel();
             //e.event.stopPropagation();

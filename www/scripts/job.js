@@ -36,7 +36,7 @@
         searchtxt: '',
         alarmJobId: '',
         assignFilter: '',
-        countBy: 'jobId',
+        countBy: 'finishDates',
         siteAlarmType: 'Site Access Alarm',
         goSiteAssessView: function() {
             app.siteAccessService.viewModel.set("returnUrl", "#tabstrip-display");

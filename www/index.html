@@ -152,7 +152,7 @@
             <li>
                 <font color="White">Sort By</font>
             </li>
-            <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('finishDate')"><i data-bind="visible: isVisible('finishDate')" class="fa icon-tick position-left"></i>Count Down</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('finishDates')"><i data-bind="visible: isVisible('finishDates')" class="fa icon-tick position-left"></i>Count Down</a></li>
             <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('jobId')"><i data-bind="visible: isVisible('jobId')" class="fa icon-tick position-left"></i>Job ID</a></li>
             <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('title')"><i data-bind="visible: isVisible('title')" class="fa icon-tick position-left"></i>Title</a></li>
             <li> <a data-action="app.reallocateService.viewModel.onReAllocateSortby('siteAccessDesc')"><i data-bind="visible: isVisible('siteAccessDesc')" class="fa icon-tick position-left"></i>Site Access(Code)</a></li>
@@ -171,6 +171,13 @@
                 <!-- <a data-role="button" href="#myOwnerActionSheet" data-rel="actionsheet" class="fa" data-icon="undo" data-align="right"></a>
                 <a data-role="button" href="#AssignActionSheet" data-rel="actionsheet" class="fa" data-icon="fa-action" data-align="right"></a>-->
             </div>
+        </div>
+        <div class="km-listview-wrapper">
+            <form class="km-filter-form">
+                <div class="km-filter-wrap"><input type="search" placeholder="Search..." data-bind="value:allocateFilter, events: { keyup: filterAllocateWithEvent }" data-value-update="keyup"><a data-bind="click: sortActionSheetReAllocateWith" class="km-filter-reset" title="Sort"><span class="fa icon-AZ3 sort-icon"></span></a>
+                <div class="hiddentext" style="visibility:hidden">
+                <input></div></div>
+            </form>
         </div>
         <div style="height:10px">&nbsp;</div>
         <span>Last Updated :
@@ -199,6 +206,23 @@
             <li>
                 <a data-action="app.reallocateService.viewModel.gotoDisplay">Go to detail</a>
             </li>
+        </ul>
+        <ul data-role="actionsheet" id="sortActionSheetReAllocateWith">
+            <div class="position-right">
+                <input id="switchReAllocateWith" data-role="switch" data-on-label="A-Z" data-off-label="Z-A" />
+            </div>
+            <li>
+                <font color="White">Sort By</font>
+            </li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateWithSortby('finishDates')"><i data-bind="visible: isVisible('finishDates')" class="fa icon-tick position-left"></i>Count Down</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateWithSortby('jobId')"><i data-bind="visible: isVisible('jobId')" class="fa icon-tick position-left"></i>Job ID</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateWithSortby('title')"><i data-bind="visible: isVisible('title')" class="fa icon-tick position-left"></i>Title</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateWithSortby('siteAccessDesc')"><i data-bind="visible: isVisible('siteAccessDesc')" class="fa icon-tick position-left"></i>Site Access(Code)</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateWithSortby('siteNameTh')"><i data-bind="visible: isVisible('siteNameTh')" class="fa icon-tick position-left"></i>Site Access(Name Thai)</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateWithSortby('initiateDate')"><i data-bind="visible: isVisible('initiateDate')" class="fa icon-tick position-left"></i>Assign Date</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateWithSortby('finishDate')"><i data-bind="visible: isVisible('finishDate')" class="fa icon-tick position-left"></i>Finish Date</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateWithSortby('priorityId')"><i data-bind="visible: isVisible('priorityId')" class="fa icon-tick position-left"></i>Priority</a></li>
+            <li> <a data-action="app.reallocateService.viewModel.onReAllocateWithSortby('status')"><i data-bind="visible: isVisible('status')" class="fa icon-tick position-left"></i>Status</a></li>
         </ul>
     </div>
     <!--reallocate-severity-template"-->
@@ -1100,7 +1124,7 @@
             <li>
                 <font color="White">Sort By</font>
             </li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')"><i data-bind="visible: isVisible('finishDate')" class="fa icon-tick position-left"></i>Count Down</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDates')"><i data-bind="visible: isVisible('finishDates')" class="fa icon-tick position-left"></i>Count Down</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('jobId')"><i data-bind="visible: isVisible('jobId')" class="fa icon-tick position-left"></i>Job ID</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('title')"><i data-bind="visible: isVisible('title')" class="fa icon-tick position-left"></i>Title</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('siteAccessDesc')"><i data-bind="visible: isVisible('siteAccessDesc')" class="fa icon-tick position-left"></i>Site Access(Code)</a></li>
@@ -1332,7 +1356,7 @@
             <li>
                 <font color="White">Sort By</font>
             </li>
-            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('finishDate')"><i data-bind="visible: isVisible('finishDate')" class="fa icon-tick position-left"></i>Count Down</a></li>
+            <li> <a data-action="app.jobService.viewModel.onAcceptSortby('finishDates')"><i data-bind="visible: isVisible('finishDates')" class="fa icon-tick position-left"></i>Count Down</a></li>
             <li> <a data-action="app.jobService.viewModel.onAcceptSortby('jobId')"><i data-bind="visible: isVisible('jobId')" class="fa icon-tick position-left"></i>Job ID</a></li>
             <li> <a data-action="app.jobService.viewModel.onAcceptSortby('title')"><i data-bind="visible: isVisible('title')" class="fa icon-tick position-left"></i>Title</a></li>
             <li> <a data-action="app.jobService.viewModel.onAcceptSortby('siteAccessDesc')"><i data-bind="visible: isVisible('siteAccessDesc')" class="fa icon-tick position-left"></i>Site Access(Code)</a></li>
@@ -3747,7 +3771,7 @@
         <div data-role="header">
             <div data-role="navbar">
                 <span><label data-bind="text: titletxtJobListMap"></label></span>
-                <a data-role="backbutton" data-align="left" class="fa" data-icon="fa-back" data-bind="invisible: isDirectFromMap"></a>
+                <a data-role="backbutton" data-align="left" class="fa" data-icon="fa-back" onclick="app.powerSearchService.viewModel.faback();"></a>
                 <a data-icon="fa-back" class="fa" data-role="button" data-align="left" data-bind="click: backToMap, visible: isDirectFromMap"></a>
                 <a data-icon="search" data-role="button" data-align="right" data-bind="click: onSearch"></a>
             </div>
@@ -3767,7 +3791,7 @@
                 <li>
                     <font color="White">Sort By</font>
 
-            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('finishDate')"><i data-bind="visible: isVisible('finishDate')" class="fa icon-tick position-left"></i>Count Down</a></li>
+            <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('finishDates')"><i data-bind="visible: isVisible('finishDates')" class="fa icon-tick position-left"></i>Count Down</a></li>
             <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('jobId')"><i data-bind="visible: isVisible('jobId')" class="fa icon-tick position-left"></i>Job ID</a></li>
             <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('title')"><i data-bind="visible: isVisible('title')" class="fa icon-tick position-left"></i>Title</a></li>
             <li> <a data-action="app.powerSearchService.viewModel.onPowerServiceSortby('siteAccessDesc')"><i data-bind="visible: isVisible('siteAccessDesc')" class="fa icon-tick position-left"></i>Site Access(Code)</a></li>
