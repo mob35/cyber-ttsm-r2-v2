@@ -557,6 +557,7 @@
                 });
             }
         },
+
         faback: function() {
             location.reload();
         },
@@ -951,6 +952,7 @@
 
                 app.application.navigate(
                     '#powerService'
+
                 );
             }
 
@@ -996,6 +998,7 @@
             var that = this
             that.set("isSearch", !that.get("isSearch"));
             that.set("searchtxt", "");
+
         },
         isVisible: function(fldName){
             if(app.powerSearchService.viewModel.get("countBy") == fldName){
@@ -1101,6 +1104,7 @@
         },
         hide: function() {
             // alert("hide");
+
             //navigator.splashscreen.hide();
         },
     };
