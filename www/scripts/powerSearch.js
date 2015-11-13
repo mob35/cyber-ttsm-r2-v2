@@ -557,9 +557,13 @@
             }
         },
 
-        faback: function() {
-            location.reload();
-        },
+        // faback: function() {
+        //     $('input:text').click(
+        //         function() {
+        //             $("#jobid").val("fffffffff");
+        //         });
+
+        // },
         showResult: function() {
             var that = this,
                 JBs,
