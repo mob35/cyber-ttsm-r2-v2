@@ -4617,11 +4617,7 @@
             //lvAcceptList.dataSource.read();
             lvAcceptList.refresh();
             app.application.view().scroller.reset();
-<<<<<<< HEAD
-            
-=======
 
->>>>>>> 0d407c0f73f158f4767e8606eac6fc4513fe6192
         },
         exeDetailSearch: function(jbSearchId) {
             var that = this;
