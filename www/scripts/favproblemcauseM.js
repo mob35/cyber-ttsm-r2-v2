@@ -181,26 +181,12 @@
 
             var flag = true;
 
-            //var pbc = [{"jobId": selectItem.jobId,
-            //          "problemCauseMainId": e.problemCauseId,
-            //          "problemCauseDesc": e.problemCauseDescription,
-            //          "problemCauseSubId": e.subproCauseId,
-            //          "problemCauseSubDesc": e.subproCauseDescription,
-            //          "seqId":null,
-            //          "levelCause":null,
-            //          "problemCauseId":null
-            //          }]
-
-
-
-
-
             if (selectProblemCM != null && selectProblemCM != undefined) {
                 var data = selectProblemCM.data();
                 for (var i = 0; i < data.length; i++) {
                     // var multiID = data[i].multiCauseId.split("|");
                     // var level = multiID.length-1;
-                    if (data[i].multiCauseId == e.dataItem.multiCauseId) {
+                    if (data[i].multiCauseIds == e.dataItem.multiCauseId) {
                         flag = false;
                         e.preventDefault();
                         navigator.notification.alert("Duplicate problem cause.",
@@ -216,18 +202,6 @@
             if (flag) {
                 selectItem.cntProblemCause++;
 
-
-                // var pbcm = {
-                //     "jobId": selectItem.jobId,
-                //     "problemCauseMainId": e.dataItem.id,
-                //     "multiCauseDesc": e.dataItem.multiCauseDesc,
-                //     "multiCauseId": e.dataItem.multiCauseId,
-                //     "multiCauseLevel": e.dataItem.multiCauseLevel,
-                //     "seqId": e.dataItem.seqId,
-                //     "levelCause": null,
-                //     "problemCauseId": null
-
-                // };
                 var pbcm = {
                             //"ids": e.dataItem.id,
                             "jobId": selectItem.jobId,
