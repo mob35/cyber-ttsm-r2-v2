@@ -38,6 +38,7 @@
         assignFilter: '',
         countBy: 'finishDates',
         siteAlarmType: 'Site Access Alarm',
+        isDirectFromMap: false,
         goSiteAssessView: function() {
             app.siteAccessService.viewModel.set("returnUrl", "#tabstrip-display");
             app.application.navigate('#job-site-access');

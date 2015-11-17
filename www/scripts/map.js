@@ -277,6 +277,7 @@
             var that = this;
             _default_lat = lat;
             _default_long = lng;
+            app.jobService.viewModel.set("isDirectFromMap",true);
             var siteCode = siteDesc.split('[');
             if (siteCode) {
                 //alert($.trim(siteCode[0]));
@@ -3597,7 +3598,7 @@
 
         },
 
-        tempBalloon_allSite: function(nameSite_s, siteType, siteAlarm, la_site, long_site, jobsStatus, snt, sne, sIds) {
+        tempBalloon_allSite: function(nameSite_s, siteType, siteAlarm, la_site, long_site, jobsStatus, snt, sne, sIds, regions, zones) {
             infowindow = new google.maps.InfoWindow();
             var inFor = "";
             //nameSite_s = "name1,name2,name3";
@@ -3609,6 +3610,8 @@
             var arrNameTH = snt.split(',');
             var arrNameEN = sne.split(',');
             var arrSId = sIds.split(',');
+            var arrRegion = regions.split(',');
+            var arrZone = zones.split(',');
 
 
             for (var i = 0; i < arr.length; i++) {
@@ -3633,11 +3636,13 @@
                         '</div>';
                     //var enhance_act_get_job = '';
                     var enhance_act_get_name = 'Name TH :' + arrNameTH[i] + '<br>' + 'Name EN :' + arrNameEN[i];
+                    var enhance_region = 'Region :' + arrRegion[i];
+                    var enhance_zone = 'Zone :' + arrZone[i];
                     //var enhance_act_get_lalan = 'Lat Long :' + '<a class="linkText" onclick="app.mapService.viewModel.toClipboard(\'' + la_site + ',' + long_site + '\');"><span class="lalng">' + la_site + ',' + long_site + '</span></a>';
-                    var enhance_act_get_lalan = 'Lat Long :' + '<input type="text" value="' + la_site + ':' + long_site + '" />'
+                    var enhance_act_get_lalan = 'Lat Long :' + '<input type="text" value="' + la_site + ',' + long_site + '" />'
                     inFor = inFor + '<div  data-role="scroller" class="checkPin_' + arrT[i] + '' + arrA[i] + '_show"> &nbsp;&nbsp; <img src="' + imageName + '" class="tBalloon icon_result_width" /> ' + infoBar + '' +
                         ' &nbsp;&nbsp;' + act_navi_begin + act_navi_end +
-                        enhance_act_director + enhance_act_get_alarm + enhance_act_get_job + '<br>' + enhance_act_get_name + '<br>' + enhance_act_get_lalan + '<hr class="hr_head">' + '</div>';
+                        enhance_act_director + enhance_act_get_alarm + enhance_act_get_job + '<br>' + enhance_act_get_name + '<br>' + enhance_region + '<br>' + enhance_zone + '<br>' + enhance_act_get_lalan + '<hr class="hr_head">' + '</div>';
                 }
             }
             var tx = '<div style="min-width:200px; overflow:auto; height:auto;">' + inFor + '</div>';
@@ -22688,6 +22693,8 @@
                                 var snt = "";
                                 var sne = "";
                                 var sIds = "";
+                                var regions = "";
+                                var zones = "";
                                 $.each(item.sDtls, function(ii, iitem) {
                                     //filterBy = iitem.sCd;
                                     filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc, iitem.snt, iitem.sne);
@@ -22698,6 +22705,8 @@
                                     siteAlarms += iitem.sAl + ",";
                                     siteStatusList += iitem.jSt + ",";
                                     sIds += iitem.sId + ",";
+                                    regions += iitem.region + ",";
+                                    zones += iitem.zone + ",";
                                     imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
                                     snt += iitem.snt + ",";
                                     sne += iitem.sne + ",";
@@ -22736,7 +22745,7 @@
                                     _default_long = item.lgt;
                                 }
                                 _site[i] = [
-                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds),
+                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds, regions, zones),
                                     item.ltt,
                                     item.lgt,
                                     app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
@@ -22783,6 +22792,8 @@
                                         var snt = "";
                                         var sne = "";
                                         var sIds = "";
+                                        var regions = "";
+                                        var zones = "";
                                         $.each(item.sDtls, function(ii, iitem) {
                                             //filterBy = iitem.sCd;
                                             filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc, iitem.snt, iitem.sne);
@@ -22793,6 +22804,8 @@
                                             siteAlarms += iitem.sAl + ",";
                                             siteStatusList += iitem.jSt + ",";
                                             sIds += iitem.sId + ",";
+                                            regions += iitem.region + ",";
+                                            zones += iitem.zone + ",";
                                             imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
                                             snt += iitem.snt + ",";
                                             sne += iitem.sne + ",";
@@ -22831,7 +22844,7 @@
                                             _default_long = item.lgt;
                                         }
                                         _site[i] = [
-                                            app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds),
+                                            app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds, regions, zones),
                                             item.ltt,
                                             item.lgt,
                                             app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
@@ -23408,6 +23421,8 @@
                                 var snt = "";
                                 var sne = "";
                                 var sIds = "";
+                                var regions = "";
+                                var zones = "";
                                 $.each(item.sDtls, function(ii, iitem) {
                                     //filterBy = iitem.sCd;
                                     filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc, iitem.snt, iitem.sne);
@@ -23417,6 +23432,8 @@
                                     siteAlarms += iitem.sAl + ",";
                                     siteStatusList += iitem.jSt + ",";
                                     sIds += iitem.sId + ",";
+                                    regions += iitem.region + ",";
+                                    zones += iitem.zone + ",";
                                     imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
                                     snt += iitem.snt + ",";
                                     sne += iitem.sne + ",";
@@ -23455,7 +23472,7 @@
                                     _default_long = item.lgt;
                                 }
                                 _site[i] = [
-                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds),
+                                    app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds, regions, zones),
                                     item.ltt,
                                     item.lgt,
                                     app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
@@ -23501,6 +23518,8 @@
                                         var snt = "";
                                         var sne = "";
                                         var sIds = "";
+                                        var regions = "";
+                                        var zones = "";
                                         $.each(item.sDtls, function(ii, iitem) {
                                             //filterBy = iitem.sCd;
                                             filterBy = app.mapService.viewModel.fn_siteName_final(iitem.sCd, iitem.bsc, iitem.msc, iitem.snt, iitem.sne);
@@ -23511,6 +23530,8 @@
                                             siteAlarms += iitem.sAl + ",";
                                             siteStatusList += iitem.jSt + ",";
                                             sIds += iitem.sId + ",";
+                                            regions += iitem.region + ",";
+                                            zones += iitem.zone + ",";
                                             imagePin += app.mapService.viewModel.fn_checkPIN_SITE_TYPE(iitem.sTy, iitem.sAl, iitem.jSt);
                                             snt += iitem.snt + ",";
                                             sne += iitem.sne + ",";
@@ -23549,7 +23570,7 @@
                                             _default_long = item.lgt;
                                         }
                                         _site[i] = [
-                                            app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds),
+                                            app.mapService.viewModel.tempBalloon_allSite(SITE_CODE, siteTypes, siteAlarms, item.ltt, item.lgt, siteStatusList, snt, sne, sIds, regions, zones),
                                             item.ltt,
                                             item.lgt,
                                             app.mapService.viewModel.fn_checkImagePin(imagePin, siteStatus)
