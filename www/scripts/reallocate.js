@@ -385,10 +385,12 @@
                                 contentType: 'application/json; charset=utf-8',
                                 success: function(response) {
                                     //store response
+                                    
                                     operation.success(response);
-                                    JBSs.fetch();
+                                    JBs.fetch();
                                     that.hideLoading();
-                                    //that.set("reallocateWithSatusDataSource", JBSs);
+                                    // jigkoh3 fix issue link from re-allocate wit status
+                                    that.set("reallocateDataSource", JBs);
                                     //console.log("fetch My Job : Complete");
                                     //var btnGroup = $("#assigngroup").data("kendoMobileButtonGroup");
                                     //app.jobService.viewModel.showLoading();
@@ -473,33 +475,35 @@
             ////console.log("gotoDisplay : " + e.context);
             //setTimeout(function () {
             //that.set("selectId", e.selectId);
+
+
+            // mooh check datasource is null
             var JBs = that.get("reallocateDataSource");
-            if(JBs == null){
+            if (JBs != null) {
+                JBs.filter({
+                    field: "jobId",
+                    operator: "eq",
+                    value: e.context,
+                });
 
-            }else{
-            JBs.filter({
-                field: "jobId",
-                operator: "eq",
-                value: e.context,
-            });
+                JBs.fetch(function() {
+                    var view = JBs.view();
 
-            JBs.fetch(function() {
-                var view = JBs.view();
+                    var selectItem = view[0];
 
-                var selectItem = view[0];
+                    app.jobService.viewModel.set("selectItem", selectItem);
 
-                app.jobService.viewModel.set("selectItem", selectItem);
+                    that.loadProblemReallocate(selectItem.assignTo, e.context);
 
-                that.loadProblemReallocate(selectItem.assignTo, e.context);
+                    app.jobService.viewModel.set("showType", "view");
+                    app.jobService.viewModel.set("returnUrl", app.application.view().id);
 
-                app.jobService.viewModel.set("showType", "view");
-                app.jobService.viewModel.set("returnUrl", app.application.view().id);
-
-                app.application.navigate(
-                    "#tabstrip-display"
-                );
-            });
-        }
+                    app.application.navigate(
+                        "#tabstrip-display"
+                    );
+                });
+            }
+            
             //prevent `swipe`
             //this.events.cancel();
             //e.event.stopPropagation();
