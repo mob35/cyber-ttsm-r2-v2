@@ -2011,6 +2011,16 @@
             that.exeChangeStatusJob(dataValue);
 
         },
+        isSave : function(){
+            var that = app.jobService.viewModel;
+            var selectItem = that.get("selectItem");
+            if(selectItem && selectItem.assignTo  && selectItem.assignTo == JSON.parse(localStorage.getItem("profileData")).userId){
+                return true;
+            }else{
+                return false;
+            }
+        },
+        
         changeStatus: function() {
             console.log("########### changeStatus ######## ");
             var that = app.jobService.viewModel;

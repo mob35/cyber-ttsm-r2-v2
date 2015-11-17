@@ -1747,10 +1747,11 @@
     <div data-role="view" id="tabstrip-edit" data-model="app.jobService.viewModel" data-init="app.jobService.editInit" data-show="app.jobService.showbyid" data-layout="tabstrip-layout">
         <header data-role="header">
             <div data-role="navbar">
-                <a data-role="button" class="fa" data-icon="fa-back" data-align="left" data-bind="click: onBack"></a>
+                <!-- <a data-role="button" class="fa" data-icon="fa-back" data-align="left" data-bind="click: onBack"></a> -->
+                <a data-role="backbutton" data-align="left" class="fa" data-icon="fa-back" ></a>
                 <span data-role="view-title" data-bind="text: selectItem.jobId"></span>
-                <a data-role="button" class="mo" data-icon="icon-save2" data-align="right" data-bind="click: changeStatusMore"></a>
-                <a data-role="button" class="mo" data-icon="icon-save" data-align="right" data-bind="click: changeStatus"></a>
+                <a data-role="button" class="mo" data-icon="icon-save2" data-align="right" data-bind="click: changeStatusMore, visible: isSave"></a>
+                <a data-role="button" class="mo" data-icon="icon-save" data-align="right" data-bind="click: changeStatus, visible: isSave"></a>
             </div>
         </header>
         <div data-role="content">
@@ -3768,7 +3769,7 @@
         </ul>
     </div>
     <!--powerService-->
-    <div data-role="view" id="powerService" data-model="app.powerSearchService.viewModel" data-init="app.powerSearchService.init" data-show="app.powerSearchService.show" data-hide="app.powerSearchService.hide" data-layout="tabstrip-layout">
+    <div data-role="view" id="powerService" data-model="app.powerSearchService.viewModel" data-show="app.powerSearchService.showResult"  data-layout="tabstrip-layout">
         <div data-role="header">
             <div data-role="navbar">
                 <span><label data-bind="text: titletxtJobListMap"></label></span>
@@ -3888,12 +3889,59 @@
                     <a data-action="app.jobService.viewModel.gotoAlarm">Check Alarm</a>
                 </li>
             </ul>
+            
+            <ul data-role="actionsheet" id="pAssignActionsV">
+                
+                <li>
+                    <a href="#tabstrip-assign" data-action="app.jobService.viewModel.gotoAssignDetail">Go to detail</a>
+                </li>
+            </ul>
+            <ul data-role="actionsheet" id="pAcceptActionsV">
+                
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoDetail">Go to Detail</a>
+                </li>
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoAlarm">Check Alarm</a>
+                </li>
+            </ul>
+            <ul data-role="actionsheet" id="pInitialActionsV">
+                <li class="km-actionsheet-title">Change Status to:</li>
+                
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoDetail">Go to Detail</a>
+                </li>
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoAlarm">Check Alarm</a>
+                </li>
+            </ul>
+            <ul data-role="actionsheet" id="pOnsiteActionsV">
+                <li class="km-actionsheet-title">Change Status to:</li>
+                
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoDetail">Go to Detail</a>
+                </li>
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoAlarm">Check Alarm</a>
+                </li>
+            </ul>
+            <ul data-role="actionsheet" id="pReportActionsV">
+                <li class="km-actionsheet-title">Change Status to:</li>
+                
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoDetail">Go to Detail</a>
+                </li>
+                <li>
+                    <a data-action="app.jobService.viewModel.gotoAlarm">Check Alarm</a>
+                </li>
+            </ul>
         </div>
     </div>
     <!--Power Search template-->
     <script type="text/x-kendo-tmpl" id="psearch-template">
-        #if(status=="Assign"){#
-        <a data-rel="actionsheet" href="\\#pAssignActions" data-actionsheet-context="${jobId}">
+        #if(assignTo == JSON.parse(localStorage.getItem("profileData")).userId){
+            if(status=="Assign"){#
+            <a data-rel="actionsheet" href="\\#pAssignActions" data-actionsheet-context="${jobId}">
             #}else if (status=="Accept"){#
             <a data-rel="actionsheet" href="\\#pAcceptActions" data-actionsheet-context="${jobId}">
             #}else if (status=="Initiate"){#
@@ -3902,8 +3950,24 @@
                 <a data-rel="actionsheet" href="\\#pOnsiteActions" data-actionsheet-context="${jobId}">
             #}else {#
                 <a data-rel="actionsheet" href="\\#pReportActions" data-actionsheet-context="${jobId}">
-            #}#
+            #}
+        }else{
+            if(status=="Assign"){#
+            <a data-rel="actionsheet" href="\\#pAssignActionsV" data-actionsheet-context="${jobId}">
+            #}else if (status=="Accept"){#
+            <a data-rel="actionsheet" href="\\#pAcceptActionsV" data-actionsheet-context="${jobId}">
+            #}else if (status=="Initiate"){#
+                <a data-rel="actionsheet" href="\\#pInitialActionsV" data-actionsheet-context="${jobId}">
+            #}else if (status=="On-Site"){#
+                <a data-rel="actionsheet" href="\\#pOnsiteActionsV" data-actionsheet-context="${jobId}">
+            #}else {#
+                <a data-rel="actionsheet" href="\\#pReportActionsV" data-actionsheet-context="${jobId}">
+            #}
+        }#
 
+            
+        
+       
             #if(priorityName=="Critical"){#
                 <img src="images/Critical.png" class="image_icon" />
             #}else if (priorityName=="Major"){#
@@ -3913,7 +3977,6 @@
             #}else if (priorityName=="None"){#
                 <img src="images/None.png" class="image_icon" />
             #}#
-    
                 &nbsp;
                 <b style="color:black">${jobId}</b>
                 <span style="display: inline-block;color:#:fn_checkCountdown(finishDate)#;">

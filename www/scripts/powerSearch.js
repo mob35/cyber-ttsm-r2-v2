@@ -885,7 +885,7 @@
                                             } else {
                                                 that.set("isNotfound", true);
                                             }
-
+                                            localStorage.setItem("jobSearchDataSource", JSON.stringify(response));
                                             operation.success(response);
 
                                         },
@@ -914,6 +914,12 @@
                                             that.set("lastupdateaccept", format_time_date(new Date()));
 
                                             that.set("paramsSearch", "P");
+
+                                            app.application.navigate(
+                                                '#powerService'
+
+                                            );
+
                                         }
                                     });
                                 }
@@ -944,25 +950,23 @@
 
                 app.jobService.viewModel.set("jobDataSource", JBs);
 
-                if ($("#lvPowerSearchList").data("kendoMobileListView") == undefined || $("#lvPowerSearchList").data("kendoMobileListView") == null) {
-                    $("#lvPowerSearchList").kendoMobileListView({
-                        dataSource: JBs,
-                        //style: "inset",
-                        template: $("#psearch-template").html(),
-                        // pullToRefresh: true,
-                        // endlessScroll: true
-                    });
+                JBs.fetch();
+                // if ($("#lvPowerSearchList").data("kendoMobileListView") == undefined || $("#lvPowerSearchList").data("kendoMobileListView") == null) {
+                //     $("#lvPowerSearchList").kendoMobileListView({
+                //         dataSource: JBs,
+                //         //style: "inset",
+                //         template: $("#psearch-template").html(),
+                //         // pullToRefresh: true,
+                //         // endlessScroll: true
+                //     });
 
-                } else {
-                    $("#lvPowerSearchList").data("kendoMobileListView").setDataSource(JBs);
+                // } else {
+                //     $("#lvPowerSearchList").data("kendoMobileListView").setDataSource(JBs);
 
-                }
+                // }
 
 
-                app.application.navigate(
-                    '#powerService'
 
-                );
 
             }
 
@@ -1010,11 +1014,19 @@
             that.set("searchtxt", "");
 
         },
-        isVisible: function(fldName){
-            if(app.powerSearchService.viewModel.get("countBy") == fldName){
+        // isSave: function() {
+        //     var that = app.jobService.viewModel;
+        //     var selectItem = that.get("selectItem");
+        //     if (selectItem && selectItem.assignTo && selectItem.assignTo == JSON.parse(localStorage.getItem("profileData")).userId) {
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
+        // },
+        isVisible: function(fldName) {
+            if (app.powerSearchService.viewModel.get("countBy") == fldName) {
                 return true;
-            }
-            else{
+            } else {
                 return false;
             }
         },
@@ -1023,7 +1035,7 @@
         },
         onPowerServiceSortby: function(fieldName) {
             console.debug(fieldName);
-            app.powerSearchService.viewModel.set("countBy",fieldName);
+            app.powerSearchService.viewModel.set("countBy", fieldName);
             var switchInstance = $("#switchPowerService").data("kendoMobileSwitch");
             console.log(switchInstance.check());
             var lvPowerSearchList = $("#lvPowerSearchList").data("kendoMobileListView");
@@ -1076,6 +1088,8 @@
                 //app.myService.viewModel.loadMy();
                 //}
                 //, 1000);
+                //app.powerSearchService.viewModel.showResult();
+
             } else {
                 if (app.loginService.viewModel.get("isOffline") != true) {
                     navigator.notification.alert("offline",
@@ -1110,6 +1124,33 @@
             app.powerSearchService.viewModel.setTmp();
 
 
+        },
+        showResult: function() {
+
+            JBs = new kendo.data.DataSource({
+                data: JSON.parse(localStorage.getItem("jobSearchDataSource")),
+
+                schema: {
+                    data: "jobs"
+                },
+                model: {
+                    id: "jobId"
+                }
+
+            });
+            if ($("#lvPowerSearchList").data("kendoMobileListView") == undefined || $("#lvPowerSearchList").data("kendoMobileListView") == null) {
+                $("#lvPowerSearchList").kendoMobileListView({
+                    dataSource: JBs,
+                    //style: "inset",
+                    template: $("#psearch-template").html(),
+                    // pullToRefresh: true,
+                    // endlessScroll: true
+                });
+
+            } else {
+                $("#lvPowerSearchList").data("kendoMobileListView").setDataSource(JBs);
+
+            }
         },
         hide: function() {
             // alert("hide");
