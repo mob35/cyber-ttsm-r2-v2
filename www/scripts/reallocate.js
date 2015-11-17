@@ -338,7 +338,7 @@
         },
         loadlistWithStatus: function() {
             var that = this;
-            var JBSs;
+            var JBs;
             that.showLoading();
             //kendo.data.ObservableObject.fn.init.apply(that, []);
             var userId = that.get("selectUserId");
@@ -359,12 +359,12 @@
             ////console.log("reallocate userId : " + userId);
             ////console.log("reallocate priorityId : " + priorityId);
 
-            JBSs = new kendo.data.DataSource({
+            JBs = new kendo.data.DataSource({
                 transport: {
                     read: function(operation) {
                         if (app.configService.isMorkupData) {
                             operation.success(JSON.parse(localStorage.getItem("jbData")));
-                            JBSs.fetch();
+                            JBs.fetch();
                             that.hideLoading();
                             that.set("reallocateDataSource", JBs);
                             that.set("lastupdatereallocate", format_time_date(new Date()));
@@ -436,14 +436,14 @@
 
             ////console.log(JSON.stringify(JBs));
             //that.hideLoading();
-            JBSs.fetch(function() {
+            JBs.fetch(function() {
 
 
                 if ($("#lvReallocateWithStatus").data("kendoMobileListView") != undefined && $("#lvReallocateWithStatus").data("kendoMobileListView") != null) {
-                    $("#lvReallocateWithStatus").data("kendoMobileListView").setDataSource(JBSs);
+                    $("#lvReallocateWithStatus").data("kendoMobileListView").setDataSource(JBs);
                 } else {
                     $("#lvReallocateWithStatus").kendoMobileListView({
-                        dataSource: JBSs,
+                        dataSource: JBs,
                         template: $("#reallocateWithStatus-template").html(),
                         //pullToRefresh: true,
                         virtualViewSize: 40,

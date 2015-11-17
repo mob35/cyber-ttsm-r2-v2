@@ -1125,16 +1125,6 @@
             <li>
                 <font color="White">Sort By</font>
             </li>
-<<<<<<< HEAD
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')">Count Down</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('jobId')">Job ID</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('title')">Title</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('siteAccessDesc')">Site Access(Code)</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('siteNameTh')">Site Access(Name Thai)</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('initiateDate')">Assign Date</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')">Finish Date</a></li>
-            <li> <a data-action="app.jobService.viewModel.onAssignSortby('status')">Status</a></li>
-=======
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDates')"><i data-bind="visible: isVisible('finishDates')" class="fa icon-tick position-left"></i>Count Down</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('jobId')"><i data-bind="visible: isVisible('jobId')" class="fa icon-tick position-left"></i>Job ID</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('title')"><i data-bind="visible: isVisible('title')" class="fa icon-tick position-left"></i>Title</a></li>
@@ -1143,7 +1133,6 @@
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('initiateDate')"><i data-bind="visible: isVisible('initiateDate')" class="fa icon-tick position-left"></i>Assign Date</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('finishDate')"><i data-bind="visible: isVisible('finishDate')" class="fa icon-tick position-left"></i>Finish Date</a></li>
             <li> <a data-action="app.jobService.viewModel.onAssignSortby('status')"><i data-bind="visible: isVisible('status')" class="fa icon-tick position-left"></i>Status</a></li>
->>>>>>> 0d407c0f73f158f4767e8606eac6fc4513fe6192
         </ul>
     </div>
     <script id="assign-template" type="text/x-kendo-template">
@@ -3781,9 +3770,9 @@
     <!--powerService-->
     <div data-role="view" id="powerService" data-model="app.powerSearchService.viewModel" data-init="app.powerSearchService.init" data-show="app.powerSearchService.show" data-hide="app.powerSearchService.hide" data-layout="tabstrip-layout">
         <div data-role="header">
-            <div data-role="navbar">
+<div data-role="navbar">
                 <span><label data-bind="text: titletxtJobListMap"></label></span>
-                <a data-role="backbutton" type="text" data-align="left" class="fa" data-icon="fa-back" onclick="app.powerSearchService.viewModel.faback();"></a>
+                <a data-role="backbutton" data-align="left" class="fa" data-icon="fa-back" data-bind="invisible: isDirectFromMap"></a>
                 <a data-icon="fa-back" class="fa" data-role="button" data-align="left" data-bind="click: backToMap, visible: isDirectFromMap"></a>
                 <a data-icon="search" data-role="button" data-align="right" data-bind="click: onSearch"></a>
             </div>
