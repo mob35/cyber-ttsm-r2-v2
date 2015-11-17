@@ -359,12 +359,12 @@
             ////console.log("reallocate userId : " + userId);
             ////console.log("reallocate priorityId : " + priorityId);
 
-            JBSs = new kendo.data.DataSource({
+            JBs = new kendo.data.DataSource({
                 transport: {
                     read: function(operation) {
                         if (app.configService.isMorkupData) {
                             operation.success(JSON.parse(localStorage.getItem("jbData")));
-                            JBSs.fetch();
+                            JBs.fetch();
                             that.hideLoading();
                             that.set("reallocateDataSource", JBs);
                             that.set("lastupdatereallocate", format_time_date(new Date()));
