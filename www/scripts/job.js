@@ -2443,8 +2443,7 @@
                 //     complete: function() {}
                 // });
 
-                //selectItem.remarkOverDue
-                dataValue.remarkOverdue = selectItem.remarkOverDue;
+                //jigkoh3 add remarkOverDue in changeStatus service 19/11/2015 
                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading
                     type: "POST",
                     timeout: 180000,
@@ -2636,7 +2635,7 @@
 
             if (!isOffline) {
                 //console.log("#### datavalue : " + JSON.stringify(dataValue));
-                dataValue.remarkOverdue = selectItem.remarkOverDue;
+                //jigkoh3 add remarkOverDue in changeStatus service 19/11/2015 
                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading
                     type: "POST",
                     timeout: 180000,

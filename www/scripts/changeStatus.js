@@ -33,6 +33,9 @@
                 var oldStatus = selectItem.statusId;
                 var report = selectItem.report;
                 var reasonOverdue = "";
+                //jigkoh3 add remarkOverDue 19/11/2015
+                var remarkOverDue = selectItem.remarkOverDue;
+
                 var reportTypeId = "";
                 var reportType = "";
 
@@ -157,6 +160,9 @@
                 itemsAttr.report = report;
 
                 itemsAttr.reasonOverdue = reasonOverdue;
+                //jigkoh3 add remarkOverDue 19/11/2015
+                itemsAttr.remarkOverdue = remarkOverDue;
+
                 itemsAttr.reportTypeId = reportTypeId;
                 itemsAttr.reportType = reportType;
 
