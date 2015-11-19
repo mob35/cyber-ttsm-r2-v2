@@ -2011,16 +2011,16 @@
             that.exeChangeStatusJob(dataValue);
 
         },
-        isSave : function(){
+        isSave: function() {
             var that = app.jobService.viewModel;
             var selectItem = that.get("selectItem");
-            if(selectItem && selectItem.assignTo  && selectItem.assignTo == JSON.parse(localStorage.getItem("profileData")).userId){
+            if (selectItem && selectItem.assignTo && selectItem.assignTo == JSON.parse(localStorage.getItem("profileData")).userId) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         },
-        
+
         changeStatus: function() {
             console.log("########### changeStatus ######## ");
             var that = app.jobService.viewModel;
@@ -2327,109 +2327,200 @@
 
 
             if (!isOffline) {
+
+                // $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                //     type: "POST",
+                //     timeout: 180000,
+                //     url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=createJBRemarkOverDue.json',
+                //     data: JSON.stringify({
+                //         token: localStorage.getItem("token"),
+                //         jobId: selectItem.jobId,
+                //         remarkOverDue: selectItem.remarkOverDue,
+                //         version: "2"
+                //     }),
+                //     dataType: "json",
+                //     //async: false,
+                //     contentType: 'application/json',
+                //     success: function(response) {
+
+                //         //console.log("#### datavalue : " + JSON.stringify(dataValue));
+                //         $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                //             type: "POST",
+                //             timeout: 180000,
+                //             url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=changeStatusJob.json',
+                //             data: JSON.stringify(dataValue),
+                //             dataType: "json",
+                //             //async: false,
+                //             contentType: 'application/json',
+                //             success: function(response) {
+                //                 //alert('SUCCESS:' + response.status);
+                //                 that.hideLoading();
+
+                //                 if (response.status == "TRUE") {
+                //                     var returnUrl = that.get("returnUrl");
+
+                //                     if (returnUrl == "#tabstrip-accept") {
+                //                         ////console.log("start upload");
+
+                //                         if (dataValue.allItemList[0].jbList[0].newStatus == "05") {
+                //                             app.jobService.viewModel.uploadPhoto(dataValue.allItemList[0].jbList[0].jobId);
+                //                         }
+
+                //                         navigator.notification.alert(dataValue.allItemList[0].jbList[0].jobId,
+                //                             function() {
+                //                                 if (dataValue.allItemList[0].jbList[0].newStatus == "05") {
+                //                                     app.jobService.viewModel.deleteFolder(dataValue.allItemList[0].jbList[0].jobId);
+                //                                 }
+                //                                 //app.jobService.viewModel.set("selectItem",null);
+
+                //                                 app.application.navigate(
+                //                                     '#tabstrip-accept'
+                //                                 );
+                //                                 app.jobService.viewModel.loadacceptlist();
+
+                //                                 ////console.log("load inbox");
+
+                //                                 var btnGroup = $("#acceptgroup").data("kendoMobileButtonGroup");
+                //                                 app.jobService.viewModel.filteraccept(btnGroup.current().index());
+                //                             }, "Change Status Job : Save complete!", 'OK');
+                //                     } else if (returnUrl == "#Multi") {
+                //                         navigator.notification.alert(dataValue.allItemList[0].jbList[0].jobId,
+                //                             function() {
+                //                                 app.application.navigate('#Multi');
+                //                                 app.multiService.viewModel.set("selected", []);
+                //                                 app.multiService.viewModel.loadMultiDetail();
+                //                             }, "Change Status Job : Save complete!", 'OK');
+
+                //                     } else {
+
+                //                         //app.jobService.viewModel.loadacceptlist();
+                //                         navigator.notification.alert(dataValue.allItemList[0].jbList[0].jobId,
+                //                             function() {
+                //                                 var AcceptActions = $("#AcceptActions").data("kendoMobileActionSheet");
+                //                                 var InitialActions = $("#InitialActions").data("kendoMobileActionSheet");
+                //                                 var OnsiteActions = $("#OnsiteActions").data("kendoMobileActionSheet");
+                //                                 var ReportActions = $("#ReportActions").data("kendoMobileActionSheet");
+
+                //                                 AcceptActions.close();
+                //                                 InitialActions.close();
+                //                                 OnsiteActions.close();
+                //                                 ReportActions.close();
+                //                                 app.jobService.viewModel.loadacceptlist();
+                //                                 app.jobService.viewModel.filteraccept(btnGroup.current().index());
+                //                             }, "Change Status Job : Save complete!", 'OK');
+                //                         ////console.log("load inbox");
+
+                //                         //var btnGroup = $("#acceptgroup").data("kendoMobileButtonGroup");
+
+                //                     }
+
+
+                //                 } else {
+                //                     navigator.notification.alert(response.msg,
+                //                         function() {}, "Change Status Job : Save incomplete!", 'OK');
+                //                 }
+
+                //             },
+                //             error: function(xhr, error) {
+                //                 that.hideLoading();
+                //                 if (!app.ajaxHandlerService.error(xhr, error)) {
+                //                     navigator.notification.alert(error,
+                //                         function() {}, "Change Status Job : Save incomplete!", 'OK');
+                //                 }
+                //                 ////console.log(JSON.stringify(xhr));
+                //             },
+                //             complete: function() {}
+                //         });
+                //     },
+                //     error: function(xhr, error) {
+                //         that.hideLoading();
+                //         if (!app.ajaxHandlerService.error(xhr, error)) {
+                //             navigator.notification.alert(error,
+                //                 function() {}, "Change Status Job : Save incomplete!", 'OK');
+                //         }
+                //         ////console.log(JSON.stringify(xhr));
+                //     },
+                //     complete: function() {}
+                // });
+
+                //selectItem.remarkOverDue
+                dataValue.remarkOverdue = selectItem.remarkOverDue;
                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading
                     type: "POST",
                     timeout: 180000,
-                    url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=createJBRemarkOverDue.json',
-                    data: JSON.stringify({
-                        token: localStorage.getItem("token"),
-                        jobId: selectItem.jobId,
-                        remarkOverDue: selectItem.remarkOverDue,
-                        version: "2"
-                    }),
+                    url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=changeStatusJob.json',
+                    data: JSON.stringify(dataValue),
                     dataType: "json",
                     //async: false,
                     contentType: 'application/json',
                     success: function(response) {
+                        //alert('SUCCESS:' + response.status);
+                        that.hideLoading();
 
-                        //console.log("#### datavalue : " + JSON.stringify(dataValue));
-                        $.ajax({ //using jsfiddle's echo service to simulate remote data loading
-                            type: "POST",
-                            timeout: 180000,
-                            url: app.configService.serviceUrl + 'post-json.service?s=transaction-service&o=changeStatusJob.json',
-                            data: JSON.stringify(dataValue),
-                            dataType: "json",
-                            //async: false,
-                            contentType: 'application/json',
-                            success: function(response) {
-                                //alert('SUCCESS:' + response.status);
-                                that.hideLoading();
+                        if (response.status == "TRUE") {
+                            var returnUrl = that.get("returnUrl");
 
-                                if (response.status == "TRUE") {
-                                    var returnUrl = that.get("returnUrl");
+                            if (returnUrl == "#tabstrip-accept") {
+                                ////console.log("start upload");
 
-                                    if (returnUrl == "#tabstrip-accept") {
-                                        ////console.log("start upload");
+                                if (dataValue.allItemList[0].jbList[0].newStatus == "05") {
+                                    app.jobService.viewModel.uploadPhoto(dataValue.allItemList[0].jbList[0].jobId);
+                                }
 
+                                navigator.notification.alert(dataValue.allItemList[0].jbList[0].jobId,
+                                    function() {
                                         if (dataValue.allItemList[0].jbList[0].newStatus == "05") {
-                                            app.jobService.viewModel.uploadPhoto(dataValue.allItemList[0].jbList[0].jobId);
+                                            app.jobService.viewModel.deleteFolder(dataValue.allItemList[0].jbList[0].jobId);
                                         }
+                                        //app.jobService.viewModel.set("selectItem",null);
 
-                                        navigator.notification.alert(dataValue.allItemList[0].jbList[0].jobId,
-                                            function() {
-                                                if (dataValue.allItemList[0].jbList[0].newStatus == "05") {
-                                                    app.jobService.viewModel.deleteFolder(dataValue.allItemList[0].jbList[0].jobId);
-                                                }
-                                                //app.jobService.viewModel.set("selectItem",null);
+                                        app.application.navigate(
+                                            '#tabstrip-accept'
+                                        );
+                                        app.jobService.viewModel.loadacceptlist();
 
-                                                app.application.navigate(
-                                                    '#tabstrip-accept'
-                                                );
-                                                app.jobService.viewModel.loadacceptlist();
-
-                                                ////console.log("load inbox");
-
-                                                var btnGroup = $("#acceptgroup").data("kendoMobileButtonGroup");
-                                                app.jobService.viewModel.filteraccept(btnGroup.current().index());
-                                            }, "Change Status Job : Save complete!", 'OK');
-                                    } else if (returnUrl == "#Multi") {
-                                        navigator.notification.alert(dataValue.allItemList[0].jbList[0].jobId,
-                                            function() {
-                                                app.application.navigate('#Multi');
-                                                app.multiService.viewModel.set("selected", []);
-                                                app.multiService.viewModel.loadMultiDetail();
-                                            }, "Change Status Job : Save complete!", 'OK');
-
-                                    } else {
-
-                                        //app.jobService.viewModel.loadacceptlist();
-                                        navigator.notification.alert(dataValue.allItemList[0].jbList[0].jobId,
-                                            function() {
-                                                var AcceptActions = $("#AcceptActions").data("kendoMobileActionSheet");
-                                                var InitialActions = $("#InitialActions").data("kendoMobileActionSheet");
-                                                var OnsiteActions = $("#OnsiteActions").data("kendoMobileActionSheet");
-                                                var ReportActions = $("#ReportActions").data("kendoMobileActionSheet");
-
-                                                AcceptActions.close();
-                                                InitialActions.close();
-                                                OnsiteActions.close();
-                                                ReportActions.close();
-                                                app.jobService.viewModel.loadacceptlist();
-                                                app.jobService.viewModel.filteraccept(btnGroup.current().index());
-                                            }, "Change Status Job : Save complete!", 'OK');
                                         ////console.log("load inbox");
 
-                                        //var btnGroup = $("#acceptgroup").data("kendoMobileButtonGroup");
+                                        var btnGroup = $("#acceptgroup").data("kendoMobileButtonGroup");
+                                        app.jobService.viewModel.filteraccept(btnGroup.current().index());
+                                    }, "Change Status Job : Save complete!", 'OK');
+                            } else if (returnUrl == "#Multi") {
+                                navigator.notification.alert(dataValue.allItemList[0].jbList[0].jobId,
+                                    function() {
+                                        app.application.navigate('#Multi');
+                                        app.multiService.viewModel.set("selected", []);
+                                        app.multiService.viewModel.loadMultiDetail();
+                                    }, "Change Status Job : Save complete!", 'OK');
 
-                                    }
+                            } else {
+
+                                //app.jobService.viewModel.loadacceptlist();
+                                navigator.notification.alert(dataValue.allItemList[0].jbList[0].jobId,
+                                    function() {
+                                        var AcceptActions = $("#AcceptActions").data("kendoMobileActionSheet");
+                                        var InitialActions = $("#InitialActions").data("kendoMobileActionSheet");
+                                        var OnsiteActions = $("#OnsiteActions").data("kendoMobileActionSheet");
+                                        var ReportActions = $("#ReportActions").data("kendoMobileActionSheet");
+
+                                        AcceptActions.close();
+                                        InitialActions.close();
+                                        OnsiteActions.close();
+                                        ReportActions.close();
+                                        app.jobService.viewModel.loadacceptlist();
+                                        app.jobService.viewModel.filteraccept(btnGroup.current().index());
+                                    }, "Change Status Job : Save complete!", 'OK');
+                                ////console.log("load inbox");
+
+                                //var btnGroup = $("#acceptgroup").data("kendoMobileButtonGroup");
+
+                            }
 
 
-                                } else {
-                                    navigator.notification.alert(response.msg,
-                                        function() {}, "Change Status Job : Save incomplete!", 'OK');
-                                }
+                        } else {
+                            navigator.notification.alert(response.msg,
+                                function() {}, "Change Status Job : Save incomplete!", 'OK');
+                        }
 
-                            },
-                            error: function(xhr, error) {
-                                that.hideLoading();
-                                if (!app.ajaxHandlerService.error(xhr, error)) {
-                                    navigator.notification.alert(error,
-                                        function() {}, "Change Status Job : Save incomplete!", 'OK');
-                                }
-                                ////console.log(JSON.stringify(xhr));
-                            },
-                            complete: function() {}
-                        });
                     },
                     error: function(xhr, error) {
                         that.hideLoading();
@@ -2441,8 +2532,6 @@
                     },
                     complete: function() {}
                 });
-
-
 
             } else {
                 console.log('alert offline');
@@ -2547,6 +2636,7 @@
 
             if (!isOffline) {
                 //console.log("#### datavalue : " + JSON.stringify(dataValue));
+                dataValue.remarkOverdue = selectItem.remarkOverDue;
                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading
                     type: "POST",
                     timeout: 180000,
