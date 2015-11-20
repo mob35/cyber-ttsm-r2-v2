@@ -4589,6 +4589,7 @@
             //     operator: "contains",
             //     value: assignFilter
             // };
+            //siteNameTh
 
             var filterJob = {
                 logic: "or",
@@ -4606,6 +4607,10 @@
                     value: assignFilter
                 }, {
                     field: "siteAccessDesc",
+                    operator: "contains",
+                    value: assignFilter
+                },{
+                    field: "siteNameTh",
                     operator: "contains",
                     value: assignFilter
                 }]
@@ -4641,6 +4646,8 @@
             //var lvAcceptList = $("#lvAcceptList").data("kendoMobileListView");
             // ////console.log("Assign Filter : " + index);
             // that.showLoading();
+            //siteNameTh
+
             var filterJob = {
                 logic: "or",
                 filters: [{
@@ -4657,6 +4664,10 @@
                     value: acceptFilter
                 }, {
                     field: "siteAccessDesc",
+                    operator: "contains",
+                    value: acceptFilter
+                },{
+                    field: "siteNameTh",
                     operator: "contains",
                     value: acceptFilter
                 }]
