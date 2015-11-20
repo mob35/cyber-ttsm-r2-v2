@@ -27,6 +27,7 @@
 
 		gotoPserach: function(){
            app.powerSearchService.viewModel.set("titletxt", "Power Search");
+           app.powerSearchService.viewModel.set("paramsSearch", "P");
            app.application.navigate('#powerSearch');
            },
 

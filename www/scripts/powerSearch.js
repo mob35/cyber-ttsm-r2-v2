@@ -913,7 +913,7 @@
                                             //app.application.hideLoading();                               
                                             that.set("lastupdateaccept", format_time_date(new Date()));
 
-                                            that.set("paramsSearch", "P");
+                                            //that.set("paramsSearch", "P");
 
                                             app.application.navigate(
                                                 '#powerService'
