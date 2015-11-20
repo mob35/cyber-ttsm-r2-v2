@@ -999,9 +999,13 @@
                     field: "siteAccessDesc",
                     operator: "contains",
                     value: allocateFilter
+                },{
+                    field: "siteNameTh",
+                    operator: "contains",
+                    value: allocateFilter
                 }]
             };
-
+//siteNameTh
             lvPowerSearchList.dataSource.filter(filterJob);
             //jigkoh comment for not re-read datasource
             //lvPowerSearchList.dataSource.read();
@@ -1100,24 +1104,34 @@
             }
 
 
-            $('#jobid').val('');
+            //$('#jobid').val('');
+            app.powerSearchService.viewModel.set("jobid","");
             $("#ddlregion").data("kendoDropDownList").select(0);
 
             var ddlZone = $("#ddlzone").data("kendoDropDownList");
             if (ddlZone) {
                 $("#ddlzone").data("kendoDropDownList").select(0)
             }
-            $('#sitecode').val('');
-            $('#assignDateFrom').val('');
-            $('#assignDateTo').val('');
-            $('#finishDateFrom').val('');
-            $('#finishDateTo').val('');
+            //$('#sitecode').val('');
+            app.powerSearchService.viewModel.set("sitecode","");
+            //$('#assignDateFrom').val('');
+            app.powerSearchService.viewModel.set("assignDateFrom","");
+            //$('#assignDateTo').val('');
+            app.powerSearchService.viewModel.set("assignDateTo","");
+            //$('#finishDateFrom').val('');
+            app.powerSearchService.viewModel.set("finishDateFrom","");
+            //$('#finishDateTo').val('');
+            app.powerSearchService.viewModel.set("finishDateTo","");
             $("#ddlstatus").data("kendoDropDownList").select(0);
             $("#ddlpiority").data("kendoDropDownList").select(0);
-            $('#title').val('');
-            $('#siteNameThai').val('');
-            $('#assignTo').val('');
-            $('#assignBy').val('');
+            //$('#title').val('');
+            app.powerSearchService.viewModel.set("title","");
+            //$('#siteNameThai').val('');
+            app.powerSearchService.viewModel.set("siteNameThai","");
+            //$('#assignTo').val('');
+            app.powerSearchService.viewModel.set("assignTo","");
+            //$('#assignBy').val('');
+            app.powerSearchService.viewModel.set("assignBy","");
             //app.myService.viewModel.hideLoading(////console.logle.debug("myteam hide hide");
 
 
