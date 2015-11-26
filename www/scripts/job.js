@@ -733,7 +733,7 @@
                     value: index
                 }]
             });
-            lvAssignList.dataSource.read();
+            //lvAssignList.dataSource.read();
             lvAssignList.refresh();
             app.application.view().scroller.reset();
 
@@ -881,7 +881,7 @@
             var lvAcceptList = $("#lvAcceptList").data("kendoMobileListView");
 
             lvAcceptList.dataSource.filter(filter);
-            lvAcceptList.dataSource.read();
+            //lvAcceptList.dataSource.read();
             lvAcceptList.refresh();
             app.application.view().scroller.reset();
 
@@ -2703,7 +2703,7 @@
                                 //var btnGroup = $("#acceptgroup").data("kendoMobileButtonGroup");
 
                             }
-
+                            //that.reloadChangeMore();
 
                         } else {
                             navigator.notification.alert(response.msg,
@@ -3576,6 +3576,7 @@
                 app.mapService.viewModel.set("mapFromMode", "J");
                 app.mapService.viewModel.set("latitude", e.dataItem.latitude);
                 app.mapService.viewModel.set("longitude", e.dataItem.longitude);
+                $('#endMap').html(e.dataItem.siteNameEn);
                 app.application.navigate(
                     '#tabstrip-map'
                 );
@@ -3860,6 +3861,9 @@
                 navigator.notification.alert("Please Select Favorite.");
 
             } else {
+                var cntCompleted = 0;
+                var cntIncompleted = 0;
+                var cntChecked = 0;
                 $.each($("input:checkbox[class^='PC']"), function(index, val) {
                     selectProblemC.fetch(function() {
                         var dataC = selectProblemC.view();
@@ -3867,7 +3871,7 @@
                             if (val.checked) {
                                 if (val.className.indexOf('PC' + dataC[i].problemCauseSubId + 'PC') > -1) {
                                     // console.log(dataC[i]);
-
+                                    cntChecked++;
                                     var dataValue = {
                                         "token": localStorage.getItem("token"),
                                         "userId": JSON.parse(localStorage.getItem("profileData")).userId,
@@ -3884,26 +3888,42 @@
                                         //async: false,
                                         contentType: 'application/json',
                                         success: function(response) {
+                                            cntCompleted++;
                                             // app.masterService.viewModel.loadFavoriteProblemCauses();
                                             var lvFProblemCause = $("#lvFProblemCause").data("kendoMobileListView");
-                                            lvFProblemCause.dataSource.read();
-                                            lvFProblemCause.refresh();
+                                            if (lvFProblemCause) {
+                                                lvFProblemCause.dataSource.read();
+                                                lvFProblemCause.refresh();
+                                            }
+
                                             var lvFProblemCauseD = $("#lvFProblemCauseD").data("kendoMobileListView");
-                                            lvFProblemCauseD.dataSource.read();
-                                            lvFProblemCauseD.refresh();
+                                            if (lvFProblemCauseD) {
+                                                lvFProblemCauseD.dataSource.read();
+                                                lvFProblemCauseD.refresh();
+                                            }
+
                                             // alert('SUCCESS:' + response.status);
                                             //that.hideLoading();
 
                                         },
                                         error: function(xhr, error) {
                                             that.hideLoading();
+                                            cntIncompleted++;
                                             if (!app.ajaxHandlerService.error(xhr, error)) {
                                                 navigator.notification.alert(error,
                                                     function() {}, "Change Status Job : Save incomplete!", 'OK');
                                             }
                                             ////console.log(JSON.stringify(xhr));
                                         },
-                                        complete: function() {}
+                                        complete: function() {
+                                            if (cntChecked == (cntCompleted + cntIncompleted)) {
+                                                navigator.notification.alert(selectItem.jobId,
+                                                    function() {
+
+                                                    }, "Add Favorite : Save " + cntCompleted + " complete " + cntIncompleted + " incomplete !", 'OK');
+                                            }
+
+                                        }
                                     });
                                 }
                             }
@@ -3912,6 +3932,8 @@
                     });
 
                 });
+
+
             }
         },
         onAddFavoriteM: function() {
@@ -3923,6 +3945,9 @@
             if ($("input:checkbox[class^='CM']").length == 0) {
                 navigator.notification.alert("Please Select Favorite.");
             } else {
+                var cntCompleted = 0;
+                var cntIncompleted = 0;
+                var cntChecked = 0;
                 $.each($("input:checkbox[class^='CM']"), function(index, val) {
                     selectProblemCM.fetch(function() {
                         var dataCM = selectProblemCM.view();
@@ -3931,7 +3956,7 @@
                             if (val.checked) {
                                 if (val.className.indexOf('CM' + dataCM[i].multiCauseIds + 'CM') > -1) {
                                     // console.log(dataC[i]);
-
+                                    cntChecked++;
                                     var dataValue = {
                                         "token": localStorage.getItem("token"),
                                         "userId": JSON.parse(localStorage.getItem("profileData")).userId,
@@ -3949,25 +3974,41 @@
                                         //async: false,
                                         contentType: 'application/json',
                                         success: function(response) {
+                                            cntCompleted++;
                                             var lvFProblemCauseM = $("#lvFProblemCauseM").data("kendoMobileListView");
-                                            lvFProblemCauseM.dataSource.read();
-                                            lvFProblemCauseM.refresh();
+                                            if (lvFProblemCauseM) {
+                                                lvFProblemCauseM.dataSource.read();
+                                                lvFProblemCauseM.refresh();
+                                            }
+
                                             var lvFProblemCauseMD = $("#lvFProblemCauseMD").data("kendoMobileListView");
-                                            lvFProblemCauseMD.dataSource.read();
-                                            lvFProblemCauseMD.refresh();
+                                            if (lvFProblemCauseMD) {
+                                                lvFProblemCauseMD.dataSource.read();
+                                                lvFProblemCauseMD.refresh();
+                                            }
+
+
                                             // app.masterService.viewModel.loadFavoriteProblemCauses();
                                             // alert('SUCCESS:' + response.status);
                                             //that.hideLoading();
                                         },
                                         error: function(xhr, error) {
                                             that.hideLoading();
+                                            cntIncompleted++;
                                             if (!app.ajaxHandlerService.error(xhr, error)) {
                                                 navigator.notification.alert(error,
                                                     function() {}, "Change Status Job : Save incomplete!", 'OK');
                                             }
                                             ////console.log(JSON.stringify(xhr));
                                         },
-                                        complete: function() {}
+                                        complete: function() {
+                                            if (cntChecked == (cntCompleted + cntIncompleted)) {
+                                                navigator.notification.alert(selectItem.jobId,
+                                                    function() {
+
+                                                    }, "Add Favorite : Save " + cntCompleted + " complete " + cntIncompleted + " incomplete !", 'OK');
+                                            }
+                                        }
                                     });
                                 }
                             }
@@ -3975,6 +4016,7 @@
                     });
 
                 });
+
             }
         },
         gotoMultiMaster: function() {
@@ -4609,7 +4651,7 @@
                     field: "siteAccessDesc",
                     operator: "contains",
                     value: assignFilter
-                },{
+                }, {
                     field: "siteNameTh",
                     operator: "contains",
                     value: assignFilter
@@ -4666,7 +4708,7 @@
                     field: "siteAccessDesc",
                     operator: "contains",
                     value: acceptFilter
-                },{
+                }, {
                     field: "siteNameTh",
                     operator: "contains",
                     value: acceptFilter
@@ -5390,6 +5432,268 @@
 
             ////console.log("upload error source " + error.source);
             ////console.log("upload error target " + error.target);
+        },
+        reloadChangeMore: function() {
+            var that = app.jobService.viewModel;
+
+            //app.jobService.viewModel.showLoading();
+            app.jobService.viewModel.getAttach();
+
+            var selectItem = app.jobService.viewModel.get("selectItem");
+            ////console.log("showbyid");
+            var listviews = this.element.find("ul.km-listview");
+
+            var isOffline = app.loginService.viewModel.get("isOffline");
+            if (!isOffline) {
+                app.aamService.loadAAMList(selectItem.jobId);
+                if (that.get("showType") != "view") {
+                    //$("#btn_aam_add").show();
+                }
+            } else {
+                $("#btn_aam_add").hide();
+            }
+
+
+
+            //if (app.jobService.viewModel.get("returnUrl") != null || app.jobService.viewModel.get("returnUrl") != "" ) {
+            //  app.siteAccessService.viewModel.set("selectSite", null);
+            //  app.siteAccessService.viewModel.set("selectNewSite", null);
+            //}
+            if (that.get("showType") == "view") {
+                var divPhoto = $("#divPhotoView");
+                var divPhotoScroller = $("#divPhotoScrollerView");
+
+                var displaygroup = $("#displaygroup").data("kendoMobileButtonGroup");
+
+                that.set("selectedStatus", "05");
+
+                var selectPage = that.get("selectPage");
+                if (selectPage == "0") {
+                    displaygroup.select(0);
+                    divPhoto.hide();
+                    divPhotoScroller.hide();
+                    listviews.hide()
+                        .eq(displaygroup.current().index())
+                        .show();
+                } else {
+
+                    if (displaygroup.current().index() == 2) {
+                        listviews.hide();
+                        divPhoto.show();
+                        divPhotoScroller.show();
+                        app.jobService.viewModel.listFile();
+                    } else if (displaygroup.current().index() == 3) {
+                        //selected JobID
+
+                        //that.get("selectItem");
+                        //////console.log("selectItem : " + selectItem.jobId);
+                        divPhoto.hide();
+                        divPhotoScroller.hide();
+                        listviews.hide()
+                            .eq(displaygroup.current().index() - 1)
+                            .show();
+
+                    } else {
+                        divPhoto.hide();
+                        divPhotoScroller.hide();
+                        listviews.hide()
+                            .eq(displaygroup.current().index())
+                            .show();
+                    }
+                }
+
+
+
+
+                $("#ddlStatusDisplay").kendoDropDownList({});
+
+            } else {
+                var divPhoto = $("#divPhoto");
+                var divPhotoScroller = $("#divPhotoScroller");
+
+                var groupEdit = $("#groupEdit").data("kendoMobileButtonGroup");
+
+                var selectPage = that.get("selectPage");
+                if (selectPage == "1") {
+                    groupEdit.select(1);
+                    divPhoto.hide();
+                    divPhotoScroller.hide();
+                    listviews.hide()
+                        .eq(groupEdit.current().index())
+                        .show();
+
+                    if (selectItem.statusId == "03") {
+                        var djbstatusInit = $("#djbstatusInit").data("kendoDropDownList");
+                        djbstatusInit.select(2);
+                        that.set("selectedStatus", djbstatusInit.value());
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    } else if (selectItem.statusId == "04") {
+                        var djbstatusOnsite = $("#djbstatusOnsite").data("kendoDropDownList");
+                        djbstatusOnsite.select(2);
+                        that.set("selectedStatus", djbstatusOnsite.value());
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    } else if (selectItem.statusId == "05") {
+                        var djbstatusReport = $("#djbstatusReport").data("kendoDropDownList");
+                        djbstatusReport.select(0);
+                        that.set("selectedStatus", djbstatusReport.value());
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    } else if (selectItem.statusId == "10") {
+                        var djbstatusReport = $("#djbstatusReport").data("kendoDropDownList");
+                        djbstatusReport.select(0);
+                        that.set("selectedStatus", djbstatusReport.value());
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    }
+
+
+                } else if (selectPage == "0") {
+                    groupEdit.select(0);
+                    divPhoto.hide();
+                    divPhotoScroller.hide();
+                    listviews.hide()
+                        .eq(groupEdit.current().index())
+                        .show();
+
+                    if (selectItem.statusId == "03") {
+                        var djbstatusInit = $("#djbstatusInit").data("kendoDropDownList");
+                        djbstatusInit.select(0);
+                        that.set("selectedStatus", djbstatusInit.value());
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    } else if (selectItem.statusId == "04") {
+                        var djbstatusOnsite = $("#djbstatusOnsite").data("kendoDropDownList");
+                        djbstatusOnsite.select(1);
+                        that.set("selectedStatus", djbstatusOnsite.value());
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    } else if (selectItem.statusId == "05") {
+                        var djbstatusReport = $("#djbstatusReport").data("kendoDropDownList");
+                        djbstatusReport.select(0);
+                        that.set("selectedStatus", djbstatusReport.value());
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    } else if (selectItem.statusId == "10") {
+                        var djbstatusReport = $("#djbstatusReport").data("kendoDropDownList");
+                        djbstatusReport.select(0);
+                        that.set("selectedStatus", djbstatusReport.value());
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    } else if (selectItem.statusId == "02") {
+                        var djbstatusAccept = $("#djbstatusAssign").data("kendoDropDownList");
+                        djbstatusAccept.select(0);
+                        that.set("selectedStatus", djbstatusAccept.value());
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    }
+
+                    var ddReportType = $("#ddReportType").data("kendoDropDownList");
+                    ddReportType.select(0);
+                } else {
+                    if (groupEdit.current().index() == 2) {
+                        listviews.hide();
+                        divPhoto.show();
+                        divPhotoScroller.show();
+                        app.jobService.viewModel.listFile();
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    } else if (groupEdit.current().index() == 3) {
+                        divPhoto.hide();
+                        divPhotoScroller.hide();
+                        //////console.log("selectItem : " + selectItem.jobId);
+                        listviews.hide()
+                            .eq(groupEdit.current().index() - 1)
+                            .show();
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    } else {
+                        divPhoto.hide();
+                        divPhotoScroller.hide();
+                        listviews.hide()
+                            .eq(groupEdit.current().index())
+                            .show();
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    }
+                    /*if (selectItem.statusId == "03") {
+                        var djbstatusInit = $("#djbstatusInit").data("kendoDropDownList");
+                        djbstatusInit.select(0);
+                        that.set("selectedStatus", djbstatusInit.value());
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    } else if (selectItem.statusId == "04") {
+                        var djbstatusOnsite = $("#djbstatusOnsite").data("kendoDropDownList");
+                        djbstatusOnsite.select(1);
+                        that.set("selectedStatus", djbstatusOnsite.value());
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    } else if (selectItem.statusId == "05") {
+                        var djbstatusReport = $("#djbstatusReport").data("kendoDropDownList");
+                        djbstatusReport.select(0);
+                        that.set("selectedStatus", djbstatusReport.value());
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    } else if (selectItem.statusId == "10") {
+                        var djbstatusReport = $("#djbstatusReport").data("kendoDropDownList");
+                        djbstatusReport.select(0);
+                        that.set("selectedStatus", djbstatusReport.value());
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    }*/
+                }
+
+                var body = $(".km-pane");
+
+                $("#ddReportType").kendoDropDownList();
+
+                $("#djbstatusAssign").kendoDropDownList({
+                    change: function() {
+                        var value = this.value();
+                        //if (value == "05") {
+                        that.set("selectedStatus", value);
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                        //}
+                    }
+                });
+
+                $("#djbstatusInit").kendoDropDownList({
+                    change: function() {
+                        var value = this.value();
+                        that.set("selectedStatus", value);
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+                    }
+                });
+
+                $("#djbstatusOnsite").kendoDropDownList({
+                    change: function() {
+                        var value = this.value();
+                        that.set("selectedStatus", value);
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+
+                    }
+                });
+
+                $("#djbstatusReport").kendoDropDownList({
+                    change: function() {
+                        var value = this.value();
+                        that.set("selectedStatus", value);
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+
+                    }
+                });
+
+                $("#djbstatusDetail").kendoDropDownList({
+                    change: function() {
+                        var value = this.value();
+                        that.set("selectedStatus", value);
+                        kendo.bind($(".job-bind"), app.jobService.viewModel);
+
+                    }
+                });
+
+
+            }
+            //app.jobService.viewModel.loadImage();
+            //app.jobService.viewModel.loadProblem();
+
+            ////console.log(app.jobService.viewModel.get("selectItem"));
+
+            //app.jobService.viewModel.listFile();
+
+            that.set("selectPage", null);
+
+            if (!isOffline) {
+                app.siteAccessService.viewModel.loadSiteAccess();
+                app.siteAffectService.viewModel.loadSiteAffect();
+            }
+
+            app.jobService.viewModel.hideLoading();
         },
         onBack: function() {
             app.application.navigate(

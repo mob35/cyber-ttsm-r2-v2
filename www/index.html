@@ -1744,7 +1744,7 @@
     </div>
     <!--End Report multi-->
     <!--Edit View-->
-    <div data-role="view" id="tabstrip-edit" data-model="app.jobService.viewModel" data-init="app.jobService.editInit" data-show="app.jobService.showbyid" data-layout="tabstrip-layout">
+    <div data-role="view" id="tabstrip-edit"  data-model="app.jobService.viewModel" data-init="app.jobService.editInit" data-show="app.jobService.showbyid" data-layout="tabstrip-layout">
         <header data-role="header">
             <div data-role="navbar">
                 <!-- <a data-role="button" class="fa" data-icon="fa-back" data-align="left" data-bind="click: onBack"></a> -->
@@ -3264,7 +3264,7 @@
                 </div>
             </div>
         </div>
-        <!--Dashboard template-->
+        <!--map template-->
         <script type="text/x-kendo-tmpl" id="map-template">
             <li>
                 #if(priorityName=="Critical"){#
@@ -3510,7 +3510,7 @@
             </div>
             <span class="info_view">Site Access : <b style="color:black">${siteAccessDesc}</b></span>
             <span class="info_view">Job Status : <b style="color:black">${statusName}</b></span>
-            <div><span class="info_view">Site Name Thai : <b style="color:black">${siteNameTh}</b></span></div>
+            
         </li>
     </script>
     <!--Dashboard Filter-->
@@ -3683,7 +3683,7 @@
                             <b>Assign Date From</b>
                         </div>
                         <div class="position-right">
-                            <input id="assignDateFrom" class="textbox-no-border" placeholder="YYYYMMDD" data-bind="value: assignDateFrom" />
+                            <input id="assignDateFrom" class="textbox-no-border" placeholder="DDMMYYYY" data-bind="value: assignDateFrom" />
                         </div>
                     </li>
                     <li data-icon="contact" data-bind="invisible: isMoreDetail">
@@ -3691,7 +3691,7 @@
                             <b>Assign Date To</b>
                         </div>
                         <div class="position-right">
-                            <input id="assignDateTo" class="textbox-no-border" placeholder="YYYYMMDD" data-bind="value: assignDateTo" />
+                            <input id="assignDateTo" class="textbox-no-border" placeholder="DDMMYYYY" data-bind="value: assignDateTo" />
                         </div>
                     </li>
                     <li data-icon="contact" data-bind="invisible: isMoreDetail">
@@ -3699,7 +3699,7 @@
                             <b>Finish Date From</b>
                         </div>
                         <div class="position-right">
-                            <input id="finishDateFrom" class="textbox-no-border" placeholder="YYYYMMDD" data-bind="value: finishDateFrom" />
+                            <input id="finishDateFrom" class="textbox-no-border" placeholder="DDMMYYYY" data-bind="value: finishDateFrom" />
                         </div>
                     </li>
                     <li data-icon="contact" data-bind="invisible: isMoreDetail">
@@ -3707,7 +3707,7 @@
                             <b>Finish Date To</b>
                         </div>
                         <div class="position-right">
-                            <input id="finishDateTo" class="textbox-no-border" placeholder="YYYYMMDD" data-bind="value: finishDateTo" />
+                            <input id="finishDateTo" class="textbox-no-border" placeholder="DDMMYYYY" data-bind="value: finishDateTo" />
                         </div>
                     </li>
                     <li data-icon="contact">
@@ -4536,6 +4536,9 @@
     </div>
     <!--View Load Master-->
     <div id="LoadMaster" data-role="view" data-layout="tabstrip-layout" data-init="app.masterService.init" data-show="app.masterService.show" data-after-show="app.masterService.afterShow" data-hide="app.masterService.hide">
+        <div></div>
+    </div>
+    <div id="MockUp" data-role="view" data-layout="tabstrip-layout"  data-show="app.jobService.reloadStatus" >
         <div></div>
     </div>
     <div data-role="drawer" id="my-drawer" class="left-panel" data-swipe-to-open="false" data-model="app.moreService.viewModel">

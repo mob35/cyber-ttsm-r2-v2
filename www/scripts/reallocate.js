@@ -163,6 +163,10 @@
                     field: "siteAccessDesc",
                     operator: "contains",
                     value: allocateFilter
+                },{
+                    field: "siteNameTh",
+                    operator: "contains",
+                    value: allocateFilter
                 }]
             };
 
@@ -829,7 +833,7 @@
                 click: function(e) {
                     app.reallocateService.viewModel.gotoReallocateDetail(e);
                 },
-                pullToRefresh: true,
+                // pullToRefresh: true,
                 filterable: {
                     field: "fullName",
                     operater: "startwith"

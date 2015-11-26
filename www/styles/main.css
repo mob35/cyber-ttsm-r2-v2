@@ -1172,9 +1172,9 @@ html {
     background-repeat: no-repeat;
     background-position: center center;*/
     /*height:400px;*/
-    /*height:1500px;*/
-    min-height: 790px !important;
-    height: auto;
+    height:2500px;
+    /*min-height: 790px !important;
+    height: auto;*/
     top: 0;
     bottom: 0;
     overflow: auto;
@@ -1187,9 +1187,9 @@ html {
     background-repeat: no-repeat;
     background-position: center center;*/
         /*height:400px;*/
-        /*height:1500px;*/
-        min-height: 660px !important;
-        height: auto;
+        height:2500px;
+        /*min-height: 660px !important;
+        height: auto;*/
         top: 0;
         bottom: 0;
         /*overflow: auto;*/
