@@ -3039,6 +3039,10 @@
                     }
                 });
 
+                if (mode == "N") {
+                    //fix case normal flow initail map issue
+                    map.setZoom(map.getZoom()--);
+                }
 
                 if (!app.mapService.viewModel.get("isGoogleMapsInitialized")) {
                     return;

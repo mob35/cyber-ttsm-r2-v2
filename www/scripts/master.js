@@ -315,12 +315,13 @@
                  var response = {};
                  localStorage.setItem("problemCauseData", JSON.stringify(response));
              } else {
-                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading getProblemCauseListTTSME
                      type: "POST",
                      timeout: 180000,
-                     url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=getProblemCause.json',
+                     url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=getProblemCauseListTTSME.json',
                      data: JSON.stringify({
                          "token": localStorage.getItem("token"),
+                         "userId": JSON.parse(localStorage.getItem("profileData")).userId,
                          "version": "2"
                      }),
                      async: true,
@@ -357,12 +358,13 @@
                  var response = {};
                  localStorage.setItem("problemCauseMultiData", JSON.stringify(response));
              } else {
-                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                 $.ajax({ //using jsfiddle's echo service to simulate remote data loading getProblemCauseMultiTTSME
                      type: "POST",
                      timeout: 180000,
-                     url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=getProblemCauseMulti.json',
+                     url: app.configService.serviceUrl + 'post-json.service?s=master-service&o=getProblemCauseMultiTTSME.json',
                      data: JSON.stringify({
                          "token": localStorage.getItem("token"),
+                         "userId": JSON.parse(localStorage.getItem("profileData")).userId,
                          "version": "2"
                      }),
                      async: true,
